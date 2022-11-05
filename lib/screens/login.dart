@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../UserScreens/allscreens.dart';
+
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
 
@@ -90,6 +92,11 @@ class _LoginPageState extends State<LoginPage> {
                         onPressed: () {
                           print(nameController.text);
                           print(passwordController.text);
+                          Navigator.push(context, MaterialPageRoute(
+                            builder: (context) {
+                              return MainPage();
+                            },
+                          ));
                         },
                       )),
                   SizedBox(
