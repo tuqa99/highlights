@@ -70,8 +70,8 @@ class SignupPagespecialist extends StatelessWidget {
                                     children: [
                                       makeInput(label: "Name"),
                                       makeInput(label: "Email"),
-                                      makeInput(label: "numberphone"),
-                                      makeInput(label: "Your location"),
+                                      // makeInput(label: "numberphone"),
+                                      // makeInput(label: "Your location"),
                                       makeInput(
                                           label: "Password", obsureText: true),
                                       makeInput(
