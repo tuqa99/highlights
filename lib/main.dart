@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import 'package:highlights/UserScreens/allscreens.dart';
 import 'package:highlights/screens/SplashScreen.dart';
 
 void main() {
@@ -10,6 +11,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SplashScree();
+    return MainPage();
   }
 }
