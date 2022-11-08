@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:highlights/UserScreens/userProfile/profile.dart';
 import 'package:sliding_clipped_nav_bar/sliding_clipped_nav_bar.dart';
 
 import 'Appointments.dart';
@@ -79,12 +80,5 @@ List<Widget> _listOfWidget = <Widget>[
   HomePage(),
   Appointments(),
   Search(),
-  Container(
-    alignment: Alignment.center,
-    child: const Icon(
-      Icons.tune_rounded,
-      size: 56,
-      color: Colors.brown,
-    ),
-  ),
+  UserProfile(),
 ];
