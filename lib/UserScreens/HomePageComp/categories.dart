@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:highlights/screens/specialistList.dart';
 
 class CategoryCard extends StatelessWidget {
   const CategoryCard(
@@ -70,11 +71,11 @@ class Categories extends StatelessWidget {
                 icon: categories1[index]["icon"],
                 text: categories1[index]["text"],
                 press: () {
-                  // Navigator.push(context, MaterialPageRoute(
-                  //   builder: (context) {
-                  //     return categories1[index]["pressed"];
-                  //   },
-                  // ));
+                  Navigator.push(context, MaterialPageRoute(
+                    builder: (context) {
+                      return SpecialistList();
+                    },
+                  ));
                 },
               ),
             ),
@@ -96,11 +97,11 @@ class Categories extends StatelessWidget {
                 icon: categories2[index]["icon"],
                 text: categories2[index]["text"],
                 press: () {
-                  // Navigator.push(context, MaterialPageRoute(
-                  //   builder: (context) {
-                  //     return categories2[index]["pressed"];
-                  //   },
-                  // ));
+                  Navigator.push(context, MaterialPageRoute(
+                    builder: (context) {
+                      return SpecialistList();
+                    },
+                  ));
                 },
               ),
             ),

@@ -76,6 +76,13 @@ class _VideoAppState extends State<VideoApp> {
                       ),
                       child: Column(
                         children: [
+                          Text(
+                            "SignUp to ?",
+                            style: TextStyle(
+                                fontSize: 20,
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold),
+                          ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
@@ -134,7 +141,7 @@ class _VideoAppState extends State<VideoApp> {
                                       ),
                                     ),
                                     Text(
-                                      'to be a selller',
+                                      'Providing service',
                                       style: TextStyle(
                                           fontSize: 18,
                                           fontWeight: FontWeight.bold,

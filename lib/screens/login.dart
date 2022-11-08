@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
-
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:highlights/FirebaseServices.dart';
+import 'package:highlights/UserScreens/HomePageComp/HomePage.dart';
+import 'package:highlights/screens/viewscreen.dart';
+import 'package:highlights/signInGoogle/database.dart';
 import '../UserScreens/allscreens.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -12,6 +18,18 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   TextEditingController nameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+
+  static Future<bool> emailCheck(String email) async {
+    bool result = false;
+    QuerySnapshot snapshot =
+        await FirebaseFirestore.instance.collection('users').get();
+    snapshot.docs.forEach((f) {
+      if (f['email'] == email) {
+        result = true;
+      }
+    });
+    return result;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -89,22 +107,42 @@ class _LoginPageState extends State<LoginPage> {
                       padding: const EdgeInsets.fromLTRB(60, 22, 60, 0),
                       child: ElevatedButton(
                         child: const Text('Login'),
-                        onPressed: () {
-                          print(nameController.text);
-                          print(passwordController.text);
-                          Navigator.push(context, MaterialPageRoute(
-                            builder: (context) {
-                              return MainPage();
-                            },
-                          ));
+                        onPressed: () async {
+                          try {
+                            var authin = FirebaseAuth.instance;
+                            UserCredential user =
+                                await authin.signInWithEmailAndPassword(
+                                    email: nameController.text,
+                                    password: passwordController.text);
+                            if (emailCheck(nameController.text.trim()) ==
+                                true) {
+                              Navigator.push(context, MaterialPageRoute(
+                                builder: (context) {
+                                  return HomePage();
+                                },
+                              ));
+                            } else {
+                              Navigator.push(context, MaterialPageRoute(
+                                builder: (context) {
+                                  return HomePage(); //change this for specialist homepage
+                                },
+                              ));
+                            }
+                          } catch (e) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                    content:
+                                        Text("sorry invalid email or pass")));
+                          }
                         },
                       )),
-                  SizedBox(
+                  const SizedBox(
                     height: 22,
                   ),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      SizedBox(
+                      const SizedBox(
                         height: 22,
                       ),
                       const Text(
@@ -119,11 +157,17 @@ class _LoginPageState extends State<LoginPage> {
                               color: Color.fromARGB(255, 240, 110, 153)),
                         ),
                         onPressed: () {
-                          //signup screen
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return VideoApp();
+                              },
+                            ),
+                          );
                         },
                       )
                     ],
-                    mainAxisAlignment: MainAxisAlignment.center,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -146,6 +190,27 @@ class _LoginPageState extends State<LoginPage> {
                             width: 30,
                             image: NetworkImage(
                                 'https://cdn-icons-png.flaticon.com/128/300/300221.png')),
+                        onTap: () async {
+                          await FirebaseServices().signInWithGoogle();
+
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text("Welcome"),
+                            ),
+                          );
+
+                          Database.userUid =
+                              FirebaseAuth.instance.currentUser?.uid;
+
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return HomePage();
+                              },
+                            ),
+                          );
+                        },
                       ),
                       SizedBox(
                         width: 50,
@@ -156,6 +221,7 @@ class _LoginPageState extends State<LoginPage> {
                             width: 30,
                             image: NetworkImage(
                                 'https://cdn-icons-png.flaticon.com/128/5968/5968764.png')),
+                        onTap: () {},
                       )
                     ],
                   )
