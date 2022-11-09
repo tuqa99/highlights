@@ -232,3 +232,97 @@ class _ContinarprfileState extends State<Continarprfile> {
     );
   }
 }
+
+class Continarprfileview extends StatefulWidget {
+  Continarprfileview(
+      {required firstname,
+      required email,
+      required profilephotpurl,
+      required career});
+  String? firstname;
+  String? email;
+  String? profilephotpurl;
+  String? career;
+  @override
+  State<Continarprfileview> createState() => _ContinarprfileviewState();
+}
+
+class _ContinarprfileviewState extends State<Continarprfileview> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 200,
+      color: Color.fromARGB(255, 250, 91, 165),
+      child: Padding(
+        padding: const EdgeInsets.all(30),
+        child: Column(
+          children: [
+            Row(
+              children: [
+                Column(
+                  children: [
+                    CircleAvatar(
+                      radius: 40,
+                      backgroundImage:
+                          NetworkImage('${widget.profilephotpurl}'),
+                    ),
+                  ],
+                ),
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                  Text(
+                    '${widget.firstname}',
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white),
+                  ),
+                  SizedBox(
+                    height: 13,
+                  ),
+                  Text(
+                    '${widget.career}',
+                    style: TextStyle(
+                        fontSize: 17,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white),
+                  ),
+                ]),
+                SizedBox(
+                  height: 13,
+                ),
+                Row(
+                  children: [
+                    Icon(Icons.email, color: Colors.white),
+                    SizedBox(
+                      width: 12,
+                    ),
+                    Text(
+                      '${widget.email}',
+                      style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                RatingBarIndicator(
+                  rating: 4.75,
+                  itemBuilder: (context, index) => Icon(
+                    Icons.star,
+                    color: Colors.amber,
+                  ),
+                  itemCount: 5,
+                  itemSize: 25.0,
+                  direction: Axis.horizontal,
+                ),
+              ],
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}

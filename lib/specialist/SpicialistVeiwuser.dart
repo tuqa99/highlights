@@ -9,58 +9,32 @@ import 'compantsspecialist/read.dart';
 import 'compantsspecialist/viewimage.dart';
 
 class Specialistprofile extends StatefulWidget {
-  const Specialistprofile({super.key});
-
+  Specialistprofile(
+      {required firstname,
+      required email,
+      required profilephotpurl,
+      required career});
+  String? firstname;
+  String? email;
+  String? profilephotpurl;
+  String? career;
   @override
   State<Specialistprofile> createState() => _SpecialistprofileState();
 }
 
 class _SpecialistprofileState extends State<Specialistprofile> {
-  String defoultphoto =
-      'https://media.istockphoto.com/id/530827889/vector/profile-icon-female-avatar-woman-portrait.jpg?s=612x612&w=0&k=20&c=kUELgBG6fArZUAqHoKDg_FkeDuqd_SSBzRm7xjTPMPE=';
-  PlatformFile? selectedDirectory;
-
-  Future Uplode() async {
-    final path = 'test/${selectedDirectory!.name}';
-    final file = File(selectedDirectory!.path!);
-    final ref = FirebaseStorage.instance.ref().child(path);
-    ref.putFile(file);
-    UploadTask uploadTask = ref.putFile(file);
-    final storageSnapshot = uploadTask.snapshot;
-    final downloadUrl = await storageSnapshot.ref.getDownloadURL();
-    print('this a link $downloadUrl');
-    return downloadUrl;
-  }
-
-  Future slecteFile() async {
-    final result = await FilePicker.platform.pickFiles();
-    if (result == null) return;
-    setState(() {
-      selectedDirectory = result.files.first;
-    });
-  }
-
-  // Future deletfile() async {
-  //   final path = 'files/${selectedDirectory!.path!}';
-  //   final file = File(selectedDirectory!.path!);
-  //   final ref = FirebaseStorage.instance.ref().child(path);
-
-  //   await ref.delete();
-  // }
-
-  final admineName = TextEditingController();
-  String firstname = 'Tuqa Omar Abu Dahab';
-  final email = TextEditingController();
-  String emaild = '123@123.com';
-  String career = 'makeup artiste';
-  final careercontroller = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(backgroundColor: Color.fromARGB(255, 202, 68, 255)),
         body: Stack(
           children: [
-            Continarprfile(),
+            Continarprfileview(
+              career: widget.career,
+              email: widget.email,
+              firstname: widget.firstname,
+              profilephotpurl: widget.profilephotpurl,
+            ),
             Padding(
               padding: const EdgeInsets.only(top: 175),
               child: Container(
@@ -83,28 +57,18 @@ class _SpecialistprofileState extends State<Specialistprofile> {
                                   width: 55,
                                 ),
                                 Text(
-                                  'My packeges',
+                                  'The packeges',
                                   style: TextStyle(
                                       color: Colors.black,
                                       fontSize: 18,
                                       fontWeight: FontWeight.bold),
                                 ),
-                                IconButton(
-                                    onPressed: () {
-                                      showDialog(
-                                          context: context,
-                                          builder: (ctx) => Addpackegs());
-                                    },
-                                    icon: const Icon(Icons.add))
                               ],
-                            ),
-                            SizedBox(
-                              height: 18,
                             ),
                             Container(
                               height: 300,
                               width: 300,
-                              child: Read_component(),
+                              child: Read_componentforuser(),
                             ),
                             Divider(
                               thickness: 3,
@@ -127,13 +91,6 @@ class _SpecialistprofileState extends State<Specialistprofile> {
                                       fontSize: 18,
                                       fontWeight: FontWeight.bold),
                                 ),
-                                IconButton(
-                                    onPressed: () {
-                                      showDialog(
-                                          context: context,
-                                          builder: (ctx) => addimages());
-                                    },
-                                    icon: const Icon(Icons.add))
                               ],
                             ),
                             SizedBox(
@@ -142,7 +99,7 @@ class _SpecialistprofileState extends State<Specialistprofile> {
                             Container(
                               height: 300,
                               width: 300,
-                              child: Viewimages(),
+                              child: Viewimagesforuser(),
                             ),
                             Divider(
                               thickness: 3,
