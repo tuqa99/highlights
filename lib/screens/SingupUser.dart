@@ -13,6 +13,8 @@ class SignupPageuser extends StatelessWidget {
   TextEditingController location = TextEditingController();
 
   var authin = FirebaseAuth.instance;
+  var selectedService="Hair";
+
 
   @override
   Widget build(BuildContext context) {
@@ -77,6 +79,7 @@ class SignupPageuser extends StatelessWidget {
                     makeInput(email, label: "Email"),
                     makeInput(phoneNumber, label: "numberphone"),
                     makeInput(location, label: "Your location"),
+                    
                     makeInput(password, label: "Password", obsureText: true),
                     makeInput(password2,
                         label: "Confirm Pasword", obsureText: true)

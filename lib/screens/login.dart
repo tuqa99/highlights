@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:highlights/FirebaseServices.dart';
+import 'package:highlights/signInGoogle/FirebaseServices.dart';
 import 'package:highlights/UserScreens/HomePageComp/HomePage.dart';
 import 'package:highlights/screens/viewscreen.dart';
 import 'package:highlights/signInGoogle/database.dart';
+import 'package:highlights/specialist/specialistprofile.dart';
 import '../UserScreens/allscreens.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
@@ -118,13 +119,13 @@ class _LoginPageState extends State<LoginPage> {
                                 true) {
                               Navigator.push(context, MaterialPageRoute(
                                 builder: (context) {
-                                  return HomePage();
+                                  return MainPage();
                                 },
                               ));
                             } else {
                               Navigator.push(context, MaterialPageRoute(
                                 builder: (context) {
-                                  return HomePage(); //change this for specialist homepage
+                                  return Home(); //change this for specialist homepage
                                 },
                               ));
                             }

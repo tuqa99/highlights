@@ -3,7 +3,7 @@ import 'dart:collection';
 import 'package:flutter/material.dart';
 import 'package:highlights/screens/SingupUser.dart';
 import 'package:highlights/screens/login.dart';
-import 'package:highlights/screens/signupuspecialist.dart';
+import 'package:highlights/screens/signupspecialist.dart';
 import 'package:video_player/video_player.dart';
 
 class VideoApp extends StatefulWidget {
@@ -127,7 +127,7 @@ class _VideoAppState extends State<VideoApp> {
                                 onTap: () {
                                   Navigator.push(context, MaterialPageRoute(
                                     builder: (context) {
-                                      return SignupPagespecialist();
+                                      return SignUpSpecialist();
                                     },
                                   ));
                                 },

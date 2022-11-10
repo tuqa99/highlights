@@ -13,11 +13,11 @@ class _SpecialistListState extends State<SpecialistList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   backgroundColor: Colors.white,
-      // ),
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        
+      ),
       backgroundColor: const Color(0xfff8bbd0),
-
       body: GridView.count(
         crossAxisCount: 2,
         children: List.generate(5, (index) {
@@ -25,9 +25,9 @@ class _SpecialistListState extends State<SpecialistList> {
             onTap: (() {}),
             child: Container(
                 decoration: BoxDecoration(
-                  boxShadow: const [ 
+                  boxShadow: const [
                     BoxShadow(
-                      color:  Color(0xffbc477b),
+                      color: Color(0xffbc477b),
                       spreadRadius: 3,
                       blurRadius: 4,
                       offset: Offset(3, 7),
@@ -69,6 +69,7 @@ class _SpecialistListState extends State<SpecialistList> {
                       minRating: 1,
                       direction: Axis.horizontal,
                       allowHalfRating: false,
+                      
                       itemCount: 5,
                       itemPadding: const EdgeInsets.symmetric(horizontal: 4.0),
                       itemBuilder: (context, _) {
@@ -79,19 +80,7 @@ class _SpecialistListState extends State<SpecialistList> {
                       },
                       onRatingUpdate: (value) {},
                     ),
-                    // ListTile(
-                    //   title: Text("SARA"),
-                    //   subtitle: Text("Hair"),
-                    //   trailing: SizedBox(
-                    //     width: 50,
-                    //     child: Row(children: [
-                    //       IconButton(
-                    //         onPressed: () {},
-                    //         icon: Icon(Icons.read_more),
-                    //       ),
-                    //     ]),
-                    //   ),
-                    // )
+                   
                   ],
                 )),
           );
