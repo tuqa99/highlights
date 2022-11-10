@@ -1,7 +1,7 @@
 import 'package:highlights/UserScreens/userProfile/user.dart';
 
 class UserPrefernces {
-  static const myUser = User(
+  static const myUser = Users(
       imagePath:
           "https://yt3.ggpht.com/ytc/AMLnZu-htKBt4jUDwmnm0r-ojGjHZMy9-H92Q1pRoAfkgw=s900-c-k-c0x00ffffff-no-rj",
       name: "Amer Melhem",
