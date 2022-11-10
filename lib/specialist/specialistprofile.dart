@@ -56,7 +56,10 @@ class _SpecialistprofileforeditState extends State<Specialistprofileforedit> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(backgroundColor: Color.fromARGB(255, 202, 68, 255)),
+        appBar: AppBar(
+          backgroundColor: Color.fromARGB(255, 202, 68, 255),
+          automaticallyImplyLeading: false,
+        ),
         body: Stack(
           children: [
             Continarprfile(),
