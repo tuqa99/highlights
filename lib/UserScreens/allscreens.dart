@@ -63,10 +63,6 @@ class _MainPageState extends State<MainPage> {
             title: 'Chat',
           ),
           BarItem(
-            icon: Icons.search,
-            title: 'Search',
-          ),
-          BarItem(
             icon: Icons.person,
             title: 'Profile',
           ),
@@ -82,6 +78,5 @@ class _MainPageState extends State<MainPage> {
 List<Widget> _listOfWidget = <Widget>[
   HomePage(),
   Appointments(),
-  Search(),
   UserProfile(),
 ];

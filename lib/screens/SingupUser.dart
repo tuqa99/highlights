@@ -13,8 +13,7 @@ class SignupPageuser extends StatelessWidget {
   TextEditingController location = TextEditingController();
 
   var authin = FirebaseAuth.instance;
-  var selectedService="Hair";
-
+  var selectedService = "Hair";
 
   @override
   Widget build(BuildContext context) {
@@ -79,7 +78,6 @@ class SignupPageuser extends StatelessWidget {
                     makeInput(email, label: "Email"),
                     makeInput(phoneNumber, label: "numberphone"),
                     makeInput(location, label: "Your location"),
-                    
                     makeInput(password, label: "Password", obsureText: true),
                     makeInput(password2,
                         label: "Confirm Pasword", obsureText: true)
@@ -164,7 +162,12 @@ class SignupPageuser extends StatelessWidget {
 
 Future addUserInfo(String firstName, String lastName, String email,
     String phoneNumber, String location) async {
-  await FirebaseFirestore.instance.collection("users").add({
+  var authin = FirebaseAuth.instance;
+
+  await FirebaseFirestore.instance
+      .collection("users")
+      .doc(authin.currentUser!.uid)
+      .set({
     'first name': firstName,
     'last name': lastName,
     'email': email,
