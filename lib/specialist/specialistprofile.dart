@@ -8,20 +8,19 @@ import 'compantsspecialist/continarprofile.dart';
 import 'compantsspecialist/read.dart';
 import 'compantsspecialist/viewimage.dart';
 
-class Specialistprofile extends StatefulWidget {
-  const Specialistprofile({super.key});
+class Specialistprofileforedit extends StatefulWidget {
+  const Specialistprofileforedit({super.key});
 
   @override
-  State<Specialistprofile> createState() => _SpecialistprofileState();
+  State<Specialistprofileforedit> createState() =>
+      _SpecialistprofileforeditState();
 }
 
-class _SpecialistprofileState extends State<Specialistprofile> {
-  String defoultphoto =
-      'https://media.istockphoto.com/id/530827889/vector/profile-icon-female-avatar-woman-portrait.jpg?s=612x612&w=0&k=20&c=kUELgBG6fArZUAqHoKDg_FkeDuqd_SSBzRm7xjTPMPE=';
+class _SpecialistprofileforeditState extends State<Specialistprofileforedit> {
   PlatformFile? selectedDirectory;
 
   Future Uplode() async {
-    final path = 'test/${selectedDirectory!.name}';
+    final path = 'addimage/${selectedDirectory!.name}';
     final file = File(selectedDirectory!.path!);
     final ref = FirebaseStorage.instance.ref().child(path);
     ref.putFile(file);

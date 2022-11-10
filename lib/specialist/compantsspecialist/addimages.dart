@@ -17,14 +17,16 @@ String downloadUrl = '';
 class _addimagesState extends State<addimages> {
   PlatformFile? selectedDirectory;
   Future Uplode() async {
-    final path = 'imageadd/${selectedDirectory!.name}';
+    final path = 'imagestest/${selectedDirectory!.name}';
     final file = File(selectedDirectory!.path!);
     final ref = FirebaseStorage.instance.ref().child(path);
     ref.putFile(file);
     UploadTask uploadTask = ref.putFile(file);
     final storageSnapshot = uploadTask.snapshot;
     downloadUrl = await storageSnapshot.ref.getDownloadURL();
+    print('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@');
     print('this a link $downloadUrl');
+    print('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@');
     return downloadUrl;
   }
 

@@ -1,15 +1,11 @@
 import 'dart:io';
 import "package:flutter/material.dart";
-import 'package:file_picker/file_picker.dart';
-import 'package:firebase_storage/firebase_storage.dart';
-import 'compantsspecialist/addimages.dart';
-import 'compantsspecialist/addpackeges.dart';
 import 'compantsspecialist/continarprofile.dart';
 import 'compantsspecialist/read.dart';
 import 'compantsspecialist/viewimage.dart';
 
-class Specialistprofile extends StatefulWidget {
-  Specialistprofile(
+class Specialistprofileforuser extends StatefulWidget {
+  Specialistprofileforuser(
       {required firstname,
       required email,
       required profilephotpurl,
@@ -19,10 +15,11 @@ class Specialistprofile extends StatefulWidget {
   String? profilephotpurl;
   String? career;
   @override
-  State<Specialistprofile> createState() => _SpecialistprofileState();
+  State<Specialistprofileforuser> createState() =>
+      _SpecialistprofileforuserState();
 }
 
-class _SpecialistprofileState extends State<Specialistprofile> {
+class _SpecialistprofileforuserState extends State<Specialistprofileforuser> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
