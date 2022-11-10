@@ -1,8 +1,8 @@
 import "package:flutter/material.dart";
 
 import 'package:firebase_core/firebase_core.dart';
-
-import 'UserScreens/allscreens.dart';
+import 'package:highlights/screens/SignUpSpecialist.dart';
+import 'package:highlights/screens/SplashScreen.dart';
 import 'firebase_options.dart';
 
 Future<void> main() async {
@@ -18,6 +18,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MainPage();
+    return SignUpSpecialist();
   }
 }

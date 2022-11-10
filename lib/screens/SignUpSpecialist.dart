@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:highlights/UserScreens/HomePageComp/HomePage.dart';
 import 'package:highlights/UserScreens/allscreens.dart';
 import 'package:highlights/screens/login.dart';
+import 'package:highlights/specialist/SpicialistVeiwuser.dart';
 import 'package:highlights/specialist/specialistprofile.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -211,7 +212,7 @@ class _SignUpSpecialistState extends State<SignUpSpecialist> {
                             );
                             Navigator.push(context, MaterialPageRoute(
                               builder: (context) {
-                                return MainPage();
+                                return Specialistprofileforedit();
                               },
                             ));
                           }
@@ -283,6 +284,7 @@ Future addUserInfo(
       'email': email,
       'location': location,
       'phone number': phoneNumber,
+      'service': 'Hair Cut',
     });
   }
   if (selectedService!.contains("Coloring")) {
@@ -292,6 +294,7 @@ Future addUserInfo(
       'email': email,
       'location': location,
       'phone number': phoneNumber,
+      'service': 'Coloring',
     });
   }
   if (selectedService!.contains("Styling")) {
@@ -301,6 +304,7 @@ Future addUserInfo(
       'email': email,
       'location': location,
       'phone number': phoneNumber,
+      'service': 'Styling',
     });
   }
   if (selectedService!.contains("Extensions")) {
@@ -310,6 +314,7 @@ Future addUserInfo(
       'email': email,
       'location': location,
       'phone number': phoneNumber,
+      'service': 'Extensions',
     });
   }
   if (selectedService!.contains("Nails")) {
@@ -319,6 +324,7 @@ Future addUserInfo(
       'email': email,
       'location': location,
       'phone number': phoneNumber,
+      'service': 'Nails',
     });
   }
   if (selectedService!.contains("Facials")) {
@@ -328,6 +334,7 @@ Future addUserInfo(
       'email': email,
       'location': location,
       'phone number': phoneNumber,
+      'service': 'Facials',
     });
   }
   if (selectedService!.contains("MakeUp")) {
@@ -337,6 +344,7 @@ Future addUserInfo(
       'email': email,
       'location': location,
       'phone number': phoneNumber,
+      'service': 'Make Up',
     });
   }
   if (selectedService!.contains("Photography")) {
@@ -346,6 +354,7 @@ Future addUserInfo(
       'email': email,
       'location': location,
       'phone number': phoneNumber,
+      'service': 'Photography',
     });
   }
 }
