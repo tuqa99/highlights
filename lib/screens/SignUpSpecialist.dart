@@ -276,6 +276,7 @@ Future addUserInfo(
     'email': email,
     'location': location,
     'phone number': phoneNumber,
+    'service': selectedService!,
   });
   if (selectedService!.contains("HairCut")) {
     await FirebaseFirestore.instance.collection("HairCut").add({
