@@ -66,3 +66,62 @@ class Read_component extends StatelessWidget {
     );
   }
 }
+
+class Read_componentforuser extends StatelessWidget {
+  const Read_componentforuser({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    CollectionReference packgesRef =
+        FirebaseFirestore.instance.collection("packges");
+    return Container(
+      child: FutureBuilder<QuerySnapshot>(
+        builder: (context, snapshot) {
+          return Container(
+              child: ListView.builder(
+            itemCount: snapshot.data!.docs.length,
+            itemBuilder: (context, i) {
+              return ListView(
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(right: 22, left: 22),
+                    child: Container(
+                      width: 150,
+                      height: 150,
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.blueAccent),
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text("${snapshot.data!.docs[i]['desc']}"),
+                            ],
+                          ),
+                          Image(
+                              height: 50,
+                              width: 100,
+                              image: NetworkImage(
+                                  "${snapshot.data!.docs[i]['url']}")),
+                        ],
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 100,
+                    width: 100,
+                  )
+                ],
+              );
+            },
+          ));
+        },
+        future: packgesRef.get(),
+      ),
+    );
+  }
+}

@@ -1,65 +1,37 @@
 import 'dart:io';
 import "package:flutter/material.dart";
-import 'package:file_picker/file_picker.dart';
-import 'package:firebase_storage/firebase_storage.dart';
-import 'compantsspecialist/addimages.dart';
-import 'compantsspecialist/addpackeges.dart';
 import 'compantsspecialist/continarprofile.dart';
 import 'compantsspecialist/read.dart';
 import 'compantsspecialist/viewimage.dart';
 
-class Specialistprofileforedit extends StatefulWidget {
-  const Specialistprofileforedit({super.key});
-
+class Specialistprofileforuser extends StatefulWidget {
+  Specialistprofileforuser(
+      {required firstname,
+      required email,
+      required profilephotpurl,
+      required career});
+  String? firstname;
+  String? email;
+  String? profilephotpurl;
+  String? career;
   @override
-  State<Specialistprofileforedit> createState() =>
-      _SpecialistprofileforeditState();
+  State<Specialistprofileforuser> createState() =>
+      _SpecialistprofileforuserState();
 }
 
-class _SpecialistprofileforeditState extends State<Specialistprofileforedit> {
-  PlatformFile? selectedDirectory;
-
-  Future Uplode() async {
-    final path = 'addimage/${selectedDirectory!.name}';
-    final file = File(selectedDirectory!.path!);
-    final ref = FirebaseStorage.instance.ref().child(path);
-    ref.putFile(file);
-    UploadTask uploadTask = ref.putFile(file);
-    final storageSnapshot = uploadTask.snapshot;
-    final downloadUrl = await storageSnapshot.ref.getDownloadURL();
-    print('this a link $downloadUrl');
-    return downloadUrl;
-  }
-
-  Future slecteFile() async {
-    final result = await FilePicker.platform.pickFiles();
-    if (result == null) return;
-    setState(() {
-      selectedDirectory = result.files.first;
-    });
-  }
-
-  // Future deletfile() async {
-  //   final path = 'files/${selectedDirectory!.path!}';
-  //   final file = File(selectedDirectory!.path!);
-  //   final ref = FirebaseStorage.instance.ref().child(path);
-
-  //   await ref.delete();
-  // }
-
-  final admineName = TextEditingController();
-  String firstname = 'Tuqa Omar Abu Dahab';
-  final email = TextEditingController();
-  String emaild = '123@123.com';
-  String career = 'makeup artiste';
-  final careercontroller = TextEditingController();
+class _SpecialistprofileforuserState extends State<Specialistprofileforuser> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(backgroundColor: Color.fromARGB(255, 202, 68, 255)),
         body: Stack(
           children: [
-            Continarprfile(),
+            Continarprfileview(
+              career: widget.career,
+              email: widget.email,
+              firstname: widget.firstname,
+              profilephotpurl: widget.profilephotpurl,
+            ),
             Padding(
               padding: const EdgeInsets.only(top: 175),
               child: Container(
@@ -82,28 +54,18 @@ class _SpecialistprofileforeditState extends State<Specialistprofileforedit> {
                                   width: 55,
                                 ),
                                 Text(
-                                  'My packeges',
+                                  'The packeges',
                                   style: TextStyle(
                                       color: Colors.black,
                                       fontSize: 18,
                                       fontWeight: FontWeight.bold),
                                 ),
-                                IconButton(
-                                    onPressed: () {
-                                      showDialog(
-                                          context: context,
-                                          builder: (ctx) => Addpackegs());
-                                    },
-                                    icon: const Icon(Icons.add))
                               ],
-                            ),
-                            SizedBox(
-                              height: 18,
                             ),
                             Container(
                               height: 300,
                               width: 300,
-                              child: Read_component(),
+                              child: Read_componentforuser(),
                             ),
                             Divider(
                               thickness: 3,
@@ -126,13 +88,6 @@ class _SpecialistprofileforeditState extends State<Specialistprofileforedit> {
                                       fontSize: 18,
                                       fontWeight: FontWeight.bold),
                                 ),
-                                IconButton(
-                                    onPressed: () {
-                                      showDialog(
-                                          context: context,
-                                          builder: (ctx) => addimages());
-                                    },
-                                    icon: const Icon(Icons.add))
                               ],
                             ),
                             SizedBox(
@@ -141,7 +96,7 @@ class _SpecialistprofileforeditState extends State<Specialistprofileforedit> {
                             Container(
                               height: 300,
                               width: 300,
-                              child: Viewimages(),
+                              child: Viewimagesforuser(),
                             ),
                             Divider(
                               thickness: 3,

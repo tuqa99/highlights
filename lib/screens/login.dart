@@ -125,7 +125,7 @@ class _LoginPageState extends State<LoginPage> {
                             } else {
                               Navigator.push(context, MaterialPageRoute(
                                 builder: (context) {
-                                  return Home(); //change this for specialist homepage
+                                  return Specialistprofileforedit(); //change this for specialist homepage
                                 },
                               ));
                             }
