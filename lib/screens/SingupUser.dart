@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:highlights/UserScreens/HomePageComp/HomePage.dart';
 
+import '../UserScreens/userProfile/button_widget.dart';
+
 class SignupPageuser extends StatelessWidget {
   TextEditingController email = TextEditingController();
   TextEditingController firstName = TextEditingController();
@@ -34,128 +36,306 @@ class SignupPageuser extends StatelessWidget {
               color: Colors.black,
             )),
       ),
-      body: Center(
-        child: SingleChildScrollView(
-          scrollDirection: Axis.vertical,
-          // child: Container(
-          //   height: MediaQuery.of(context).size.height,
-          //   width: double.infinity,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Column(
-                verticalDirection: VerticalDirection.down,
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      body: Container(
+        width: double.infinity,
+        decoration: BoxDecoration(
+            gradient: LinearGradient(begin: Alignment.topCenter, colors: [
+          Colors.pink.shade500,
+          Colors.pink.shade300,
+          Colors.pink.shade100,
+        ])),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SizedBox(
+              height: 40,
+            ),
+            Padding(
+              padding: EdgeInsets.only(left: 20, bottom: 40),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Sign up",
-                    style: TextStyle(
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    "Sign Up",
+                    style: TextStyle(fontSize: 40, color: Colors.white),
                   ),
                   SizedBox(
-                    height: 20,
+                    height: 10,
                   ),
                   Text(
-                    "Create an Account,Its free",
-                    style: TextStyle(
-                      fontSize: 15,
-                      color: Colors.grey[700],
-                    ),
-                  ),
-                  SizedBox(
-                    height: 30,
+                    "Create an account it's free",
+                    style: TextStyle(fontSize: 18, color: Colors.white),
                   )
                 ],
               ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 40),
-                child: Column(
-                  children: [
-                    makeInput(firstName, label: "First Name"),
-                    makeInput(lastName, label: "Last Name"),
-                    makeInput(email, label: "Email"),
-                    makeInput(phoneNumber, label: "numberphone"),
-                    makeInput(location, label: "Your location"),
-                    makeInput(password, label: "Password", obsureText: true),
-                    makeInput(password2,
-                        label: "Confirm Pasword", obsureText: true)
-                  ],
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 40),
+            ),
+            Expanded(
                 child: Container(
-                  padding: EdgeInsets.only(top: 3, left: 3),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(40),
-                      border: Border(
-                          bottom: BorderSide(color: Colors.black),
-                          top: BorderSide(color: Colors.black),
-                          right: BorderSide(color: Colors.black),
-                          left: BorderSide(color: Colors.black))),
-                  child: MaterialButton(
-                    minWidth: double.infinity,
-                    height: 60,
-                    onPressed: () async {
-                      try {
-                        var authin = FirebaseAuth.instance;
-                        UserCredential user =
-                            await authin.createUserWithEmailAndPassword(
-                                email: email.text, password: password.text);
-                        addUserInfo(
-                          firstName.text.trim(),
-                          lastName.text.trim(),
-                          email.text.trim(),
-                          phoneNumber.text.trim(),
-                          location.text.trim(),
-                        );
-
-                        ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(content: Text("its added")));
-                        Navigator.push(context, MaterialPageRoute(
-                          builder: (context) {
-                            return HomePage();
-                          },
-                        ));
-                      } catch (e) {
-                        print(e);
-                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                            content: Text(
-                                "sorry try to change the pass and the email")));
-                      }
-                    },
-                    color: Colors.redAccent,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(40)),
-                    child: Text(
-                      "Sign Up",
-                      style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        fontSize: 16,
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(60),
+                    topRight: Radius.circular(60),
+                  )),
+              child: Padding(
+                  padding: EdgeInsets.all(20),
+                  child: SingleChildScrollView(
+                    child: Column(children: [
+                      SizedBox(
+                        height: 40,
                       ),
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text("Already have an account? "),
-                  Text(
-                    "Login",
-                    style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
-                  ),
-                ],
-              ),
-            ],
-          ),
+                      Container(
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(10),
+                            boxShadow: [
+                              BoxShadow(
+                                  color: Color.fromRGBO(225, 95, 27, .3),
+                                  blurRadius: 20,
+                                  offset: Offset(0, 10))
+                            ]),
+                        child: Column(children: [
+                          Container(
+                            padding: EdgeInsets.all(10),
+                            decoration: BoxDecoration(
+                                border: Border(
+                                    bottom: BorderSide(
+                                        color: Colors.grey.shade200))),
+                            child: makeInput(firstName, label: "First Name"),
+                          ),
+                          Container(
+                            padding: EdgeInsets.all(10),
+                            decoration: BoxDecoration(
+                                border: Border(
+                                    bottom: BorderSide(
+                                        color: Colors.grey.shade200))),
+                            child: makeInput(lastName, label: "Last Name"),
+                          ),
+                          Container(
+                            padding: EdgeInsets.all(10),
+                            decoration: BoxDecoration(
+                                border: Border(
+                                    bottom: BorderSide(
+                                        color: Colors.grey.shade200))),
+                            child: makeInput(email, label: "Email"),
+                          ),
+                          Container(
+                            padding: EdgeInsets.all(10),
+                            decoration: BoxDecoration(
+                                border: Border(
+                                    bottom: BorderSide(
+                                        color: Colors.grey.shade200))),
+                            child: makeInput(phoneNumber, label: "numberphone"),
+                          ),
+                          Container(
+                            padding: EdgeInsets.all(10),
+                            decoration: BoxDecoration(
+                                border: Border(
+                                    bottom: BorderSide(
+                                        color: Colors.grey.shade200))),
+                            child: makeInput(location, label: "Your location"),
+                          ),
+                          Container(
+                            padding: EdgeInsets.all(10),
+                            decoration: BoxDecoration(
+                                border: Border(
+                                    bottom: BorderSide(
+                                        color: Colors.grey.shade200))),
+                            child: makeInput(password,
+                                label: "Password", obsureText: true),
+                          ),
+                          Container(
+                              padding: EdgeInsets.all(10),
+                              decoration: BoxDecoration(
+                                  border: Border(
+                                      bottom: BorderSide(
+                                          color: Colors.grey.shade200))),
+                              child: makeInput(password2,
+                                  label: "Confirm Pasword", obsureText: true)),
+                        ]),
+                      ),
+                      SizedBox(
+                        height: 40,
+                      ),
+                      ButtonWidget(
+                        text: "Sign Up",
+                        onClicked: () async {
+                          try {
+                            var authin = FirebaseAuth.instance;
+                            UserCredential user =
+                                await authin.createUserWithEmailAndPassword(
+                                    email: email.text, password: password.text);
+                            addUserInfo(
+                              firstName.text.trim(),
+                              lastName.text.trim(),
+                              email.text.trim(),
+                              phoneNumber.text.trim(),
+                              location.text.trim(),
+                            );
+
+                            ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(content: Text("its added")));
+                            Navigator.push(context, MaterialPageRoute(
+                              builder: (context) {
+                                return HomePage();
+                              },
+                            ));
+                          } catch (e) {
+                            print(e);
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                content: Text(
+                                    "sorry try to change the pass and the email")));
+                          }
+                        },
+                      ),
+                      SizedBox(
+                        height: 40,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text("Already have an account? "),
+                          SizedBox(
+                            width: 5,
+                          ),
+                          Text(
+                            "Login",
+                            style: TextStyle(
+                                color: Colors.pinkAccent,
+                                fontWeight: FontWeight.w600,
+                                fontSize: 18),
+                          ),
+                        ],
+                      ),
+                    ]),
+                  )),
+            ))
+          ],
         ),
       ),
+      // Center(
+      //   child: SingleChildScrollView(
+      //     scrollDirection: Axis.vertical,
+      //     // child: Container(
+      //     //   height: MediaQuery.of(context).size.height,
+      //     //   width: double.infinity,
+      //     child: Column(
+      //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      //       children: [
+      //         Column(
+      //           verticalDirection: VerticalDirection.down,
+      //           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      //           children: [
+      //             Text(
+      //               "Sign up",
+      //               style: TextStyle(
+      //                 fontSize: 30,
+      //                 fontWeight: FontWeight.bold,
+      //               ),
+      //             ),
+      //             SizedBox(
+      //               height: 20,
+      //             ),
+      //             Text(
+      //               "Create an Account,Its free",
+      //               style: TextStyle(
+      //                 fontSize: 15,
+      //                 color: Colors.grey[700],
+      //               ),
+      //             ),
+      //             SizedBox(
+      //               height: 30,
+      //             )
+      //           ],
+      //         ),
+      //         Padding(
+      //           padding: EdgeInsets.symmetric(horizontal: 40),
+      //           child: Column(
+      //             children: [
+      //               makeInput(firstName, label: "First Name"),
+      //               makeInput(lastName, label: "Last Name"),
+      //               makeInput(email, label: "Email"),
+      //               makeInput(phoneNumber, label: "numberphone"),
+      //               makeInput(location, label: "Your location"),
+      //               makeInput(password, label: "Password", obsureText: true),
+      //               makeInput(password2,
+      //                   label: "Confirm Pasword", obsureText: true)
+      //             ],
+      //           ),
+      //         ),
+      //         Padding(
+      //           padding: EdgeInsets.symmetric(horizontal: 40),
+      //           child: Container(
+      //             padding: EdgeInsets.only(top: 3, left: 3),
+      //             decoration: BoxDecoration(
+      //                 borderRadius: BorderRadius.circular(40),
+      //                 border: Border(
+      //                     bottom: BorderSide(color: Colors.black),
+      //                     top: BorderSide(color: Colors.black),
+      //                     right: BorderSide(color: Colors.black),
+      //                     left: BorderSide(color: Colors.black))),
+      //             child: MaterialButton(
+      //               minWidth: double.infinity,
+      //               height: 60,
+      //               onPressed: () async {
+      //                 try {
+      //                   var authin = FirebaseAuth.instance;
+      //                   UserCredential user =
+      //                       await authin.createUserWithEmailAndPassword(
+      //                           email: email.text, password: password.text);
+      //                   addUserInfo(
+      //                     firstName.text.trim(),
+      //                     lastName.text.trim(),
+      //                     email.text.trim(),
+      //                     phoneNumber.text.trim(),
+      //                     location.text.trim(),
+      //                   );
+
+      //                   ScaffoldMessenger.of(context).showSnackBar(
+      //                       const SnackBar(content: Text("its added")));
+      //                   Navigator.push(context, MaterialPageRoute(
+      //                     builder: (context) {
+      //                       return HomePage();
+      //                     },
+      //                   ));
+      //                 } catch (e) {
+      //                   print(e);
+      //                   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      //                       content: Text(
+      //                           "sorry try to change the pass and the email")));
+      //                 }
+      //               },
+      //               color: Colors.pinkAccent,
+      //               shape: RoundedRectangleBorder(
+      //                   borderRadius: BorderRadius.circular(40)),
+      //               child: Text(
+      //                 "Sign Up",
+      //                 style: TextStyle(
+      //                   fontWeight: FontWeight.w600,
+      //                   fontSize: 16,
+      //                 ),
+      //               ),
+      //             ),
+      //           ),
+      //         ),
+      //         SizedBox(
+      //           height: 20,
+      //         ),
+      //         Row(
+      //           mainAxisAlignment: MainAxisAlignment.center,
+      //           children: [
+      //             Text("Already have an account? "),
+      //             Text(
+      //               "Login",
+      //               style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
+      //             ),
+      //           ],
+      //         ),
+      //       ],
+      //     ),
+      //   ),
+      // ),
     );
   }
 }
@@ -178,34 +358,30 @@ Future addUserInfo(String firstName, String lastName, String email,
 
 Widget makeInput(TextEditingController controller,
     {label, obsureText = false}) {
-  return Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      Text(
-        label,
-        style: TextStyle(
-            fontSize: 15, fontWeight: FontWeight.w400, color: Colors.black87),
-      ),
-      SizedBox(
-        height: 5,
-      ),
-      TextField(
-        controller: controller,
-        obscureText: obsureText,
-        decoration: InputDecoration(
-          contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
-          enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(
-              color: Colors.grey,
-            ),
-          ),
-          border:
-              OutlineInputBorder(borderSide: BorderSide(color: Colors.grey)),
-        ),
-      ),
-      SizedBox(
-        height: 30,
-      )
-    ],
+  return TextField(
+    controller: controller,
+    obscureText: obsureText,
+    decoration: InputDecoration(
+      hintStyle: TextStyle(color: Colors.grey),
+      border: InputBorder.none,
+      hintText: label,
+      contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+    ),
   );
+
+  // Column(
+  //   crossAxisAlignment: CrossAxisAlignment.start,
+  //   children: [
+  // Text(
+  //   label,
+  //   style: TextStyle(
+  //       fontSize: 15, fontWeight: FontWeight.w400, color: Colors.black87),
+  // ),
+  // SizedBox(
+  //   height: 5,
+  // ),
+
+  // SizedBox(
+  //   height: 30,
+  // )
 }
