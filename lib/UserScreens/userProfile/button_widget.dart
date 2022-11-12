@@ -14,11 +14,14 @@ class ButtonWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
-        padding: EdgeInsets.symmetric(horizontal: 32, vertical: 14),
-        shape: StadiumBorder(),
-        onPrimary: Colors.white,
+          padding: EdgeInsets.symmetric(horizontal: 50, vertical: 14),
+          shape: StadiumBorder(),
+          // onPrimary: Colors.white,
+          backgroundColor: Colors.pinkAccent),
+      child: Text(
+        text,
+        style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
       ),
-      child: Text(text),
       onPressed: onClicked,
     );
   }

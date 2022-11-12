@@ -1,12 +1,11 @@
 import "package:flutter/material.dart";
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_settings_screens/flutter_settings_screens.dart';
-import 'package:highlights/UserScreens/allscreens.dart';
+import 'package:highlights/profiledrawer/AccountSettings.dart';
 import 'package:highlights/screens/SignUpSpecialist.dart';
 import 'package:highlights/screens/SplashScreen.dart';
-import 'package:highlights/screens/specialistList.dart';
+import 'package:highlights/screens/login.dart';
 import 'firebase_options.dart';
-import 'profiledrawer/AccountSettings.dart';
 
 Future<void> main() async {
   await Settings.init(cacheProvider: SharePreferenceCache());
