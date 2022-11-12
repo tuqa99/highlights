@@ -34,8 +34,8 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: false,
-      ),
+          // automaticallyImplyLeading: false,
+          ),
       body: Column(
         children: <Widget>[
           Expanded(

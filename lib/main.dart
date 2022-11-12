@@ -1,13 +1,10 @@
 import "package:flutter/material.dart";
-
 import 'package:firebase_core/firebase_core.dart';
-<<<<<<< HEAD
-=======
 import 'package:flutter_settings_screens/flutter_settings_screens.dart';
+import 'package:highlights/UserScreens/allscreens.dart';
 import 'package:highlights/screens/SignUpSpecialist.dart';
 import 'package:highlights/screens/SplashScreen.dart';
->>>>>>> 26c05b465f59bc4850e0c5129ed009686ec908ad
-import 'package:highlights/screens/login.dart';
+import 'package:highlights/screens/specialistList.dart';
 import 'firebase_options.dart';
 import 'profiledrawer/AccountSettings.dart';
 
@@ -15,10 +12,6 @@ Future<void> main() async {
   await Settings.init(cacheProvider: SharePreferenceCache());
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-<<<<<<< HEAD
-  runApp(const MaterialApp(
-    home: MyApp(),
-=======
   runApp(ValueChangeObserver<bool>(
     cacheKey: AccountSettings.KeyDarkMode,
     defaultValue: false,
@@ -34,8 +27,8 @@ Future<void> main() async {
       debugShowCheckedModeBanner: false,
       home: MyApp(),
     ),
->>>>>>> 26c05b465f59bc4850e0c5129ed009686ec908ad
   ));
+  // print(getData("HairCut"));
 }
 
 class MyApp extends StatelessWidget {
@@ -43,6 +36,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LoginPage();
+    return SignUpSpecialist();
   }
 }

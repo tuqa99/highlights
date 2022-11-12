@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:highlights/screens/specialistList.dart';
 
@@ -71,11 +73,27 @@ class Categories extends StatelessWidget {
                 icon: categories1[index]["icon"],
                 text: categories1[index]["text"],
                 press: () {
-                  Navigator.push(context, MaterialPageRoute(
-                    builder: (context) {
-                      return SpecialistList();
-                    },
-                  ));
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    if (categories1[index]["text"] == "HairCut") {
+                      return SpecialistList(
+                        CollectionName: "HairCut",
+                      );
+                    }
+                    if (categories1[index]["text"] == "Coloring") {
+                      return SpecialistList(
+                        CollectionName: "Coloring",
+                      );
+                    }
+                    if (categories1[index]["text"] == "Styling") {
+                      return SpecialistList(
+                        CollectionName: "Styling",
+                      );
+                    }
+
+                    return SpecialistList(
+                      CollectionName: "Extensions",
+                    );
+                  }));
                 },
               ),
             ),
@@ -99,7 +117,24 @@ class Categories extends StatelessWidget {
                 press: () {
                   Navigator.push(context, MaterialPageRoute(
                     builder: (context) {
-                      return SpecialistList();
+                      if (categories2[index]["text"] == "Nails") {
+                        return SpecialistList(
+                          CollectionName: "Nails",
+                        );
+                      }
+                      if (categories2[index]["text"] == "Facials") {
+                        return SpecialistList(
+                          CollectionName: "Facials",
+                        );
+                      }
+                      if (categories2[index]["text"] == "MakeUp") {
+                        return SpecialistList(
+                          CollectionName: "MakeUp",
+                        );
+                      }
+                      return SpecialistList(
+                        CollectionName: "Photography",
+                      );
                     },
                   ));
                 },
@@ -114,3 +149,11 @@ class Categories extends StatelessWidget {
     );
   }
 }
+
+// getData(String collection_name) async{
+//   List<String> myData;
+// CollectionReference ref= await FirebaseFirestore.instance.collection(collection_name);
+
+// }
+
+

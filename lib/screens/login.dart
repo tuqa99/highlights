@@ -115,8 +115,8 @@ class _LoginPageState extends State<LoginPage> {
                                 await authin.signInWithEmailAndPassword(
                                     email: nameController.text,
                                     password: passwordController.text);
-                            if (emailCheck(nameController.text.trim()) ==
-                                true) {
+                            if (emailCheck(nameController.text) == true) {
+                              print(emailCheck(nameController.text));
                               Navigator.push(context, MaterialPageRoute(
                                 builder: (context) {
                                   return MainPage();

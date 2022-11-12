@@ -273,6 +273,7 @@ Future addUserInfo(
   await FirebaseFirestore.instance.collection("specialist").add({
     'first name': firstName,
     'last name': lastName,
+    'full name': "$firstName $lastName",
     'email': email,
     'location': location,
     'phone number': phoneNumber,
@@ -282,6 +283,7 @@ Future addUserInfo(
     await FirebaseFirestore.instance.collection("HairCut").add({
       'first name': firstName,
       'last name': lastName,
+      'full name': "$firstName $lastName",
       'email': email,
       'location': location,
       'phone number': phoneNumber,
@@ -292,6 +294,7 @@ Future addUserInfo(
     await FirebaseFirestore.instance.collection("Coloring").add({
       'first name': firstName,
       'last name': lastName,
+      'full name': "$firstName $lastName",
       'email': email,
       'location': location,
       'phone number': phoneNumber,
@@ -302,6 +305,7 @@ Future addUserInfo(
     await FirebaseFirestore.instance.collection("Styling").add({
       'first name': firstName,
       'last name': lastName,
+      'full name': "$firstName $lastName",
       'email': email,
       'location': location,
       'phone number': phoneNumber,
@@ -312,6 +316,7 @@ Future addUserInfo(
     await FirebaseFirestore.instance.collection("Extensions").add({
       'first name': firstName,
       'last name': lastName,
+      'full name': "$firstName $lastName",
       'email': email,
       'location': location,
       'phone number': phoneNumber,
@@ -322,6 +327,7 @@ Future addUserInfo(
     await FirebaseFirestore.instance.collection("Nails").add({
       'first name': firstName,
       'last name': lastName,
+      'full name': "$firstName $lastName",
       'email': email,
       'location': location,
       'phone number': phoneNumber,
@@ -332,6 +338,7 @@ Future addUserInfo(
     await FirebaseFirestore.instance.collection("Facials").add({
       'first name': firstName,
       'last name': lastName,
+      'full name': "$firstName $lastName",
       'email': email,
       'location': location,
       'phone number': phoneNumber,
@@ -342,6 +349,7 @@ Future addUserInfo(
     await FirebaseFirestore.instance.collection("MakeUp").add({
       'first name': firstName,
       'last name': lastName,
+      'full name': "$firstName $lastName",
       'email': email,
       'location': location,
       'phone number': phoneNumber,
@@ -352,6 +360,7 @@ Future addUserInfo(
     await FirebaseFirestore.instance.collection("Photography").add({
       'first name': firstName,
       'last name': lastName,
+      'full name': "$firstName $lastName",
       'email': email,
       'location': location,
       'phone number': phoneNumber,

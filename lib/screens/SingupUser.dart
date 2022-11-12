@@ -170,6 +170,7 @@ Future addUserInfo(String firstName, String lastName, String email,
       .set({
     'first name': firstName,
     'last name': lastName,
+    'full name': "$firstName $lastName",
     'email': email,
     'location': location,
     'phone number': phoneNumber,
