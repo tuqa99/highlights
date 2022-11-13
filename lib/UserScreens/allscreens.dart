@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:highlights/UserScreens/userProfile/profile.dart';
 import 'package:sliding_clipped_nav_bar/sliding_clipped_nav_bar.dart';
-
 import 'Appointments.dart';
 import 'HomePageComp/HomePage.dart';
-import 'search.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -33,9 +31,6 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-          // automaticallyImplyLeading: false,
-          ),
       body: Column(
         children: <Widget>[
           Expanded(
@@ -77,6 +72,6 @@ class _MainPageState extends State<MainPage> {
 
 List<Widget> _listOfWidget = <Widget>[
   HomePage(),
-  Appointments(),
+  Chat(),
   UserProfile(),
 ];

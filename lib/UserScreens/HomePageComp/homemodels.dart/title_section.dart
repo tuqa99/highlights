@@ -15,10 +15,6 @@ class TitleSection extends StatelessWidget {
             text,
             style: TextStyle(fontSize: 20),
           ),
-          GestureDetector(
-            onTap: press,
-            child: Icon(Icons.arrow_circle_right_outlined),
-          )
         ],
       ),
     );

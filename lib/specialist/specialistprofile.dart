@@ -2,6 +2,7 @@ import 'dart:io';
 import "package:flutter/material.dart";
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import '../profiledrawer/AccountSpecial.dart';
 import 'compantsspecialist/addimages.dart';
 import 'compantsspecialist/addpackeges.dart';
 import 'compantsspecialist/continarprofile.dart';
@@ -57,8 +58,33 @@ class _SpecialistprofileforeditState extends State<Specialistprofileforedit> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Color.fromARGB(255, 202, 68, 255),
-          automaticallyImplyLeading: false,
+          leading: IconButton(
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(
+                  builder: (context) {
+                    return AccountSpecial();
+                  },
+                ));
+              },
+              icon: Icon(
+                Icons.settings,
+                color: Colors.black,
+              )),
+          title: const Text(
+            "Specialist",
+            style: TextStyle(color: Colors.black),
+          ),
+          titleSpacing: 00.0,
+          centerTitle: true,
+          toolbarHeight: 60.2,
+          toolbarOpacity: 0.8,
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+                bottomRight: Radius.circular(25),
+                bottomLeft: Radius.circular(25)),
+          ),
+          elevation: 0.00,
+          backgroundColor: Color.fromARGB(255, 225, 223, 224).withOpacity(.6),
         ),
         body: Stack(
           children: [

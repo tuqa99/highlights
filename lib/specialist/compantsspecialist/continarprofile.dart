@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:file_picker/file_picker.dart';
@@ -42,194 +44,214 @@ class _ContinarprfileState extends State<Continarprfile> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 200,
-      color: Color.fromARGB(255, 250, 91, 165),
-      child: Padding(
-        padding: const EdgeInsets.all(30),
-        child: Column(
-          children: [
-            Row(
-              children: [
-                Column(
-                  children: [
-                    if (selectedDirectory != null)
-                      GestureDetector(
-                        onTap: () {
-                          showDialog(
-                            context: context,
-                            builder: (ctx) => AlertDialog(
-                              title: const Text("chang your photo"),
-                              content: Container(
-                                  child: Image(
-                                image:
-                                    FileImage(File(selectedDirectory!.path!)),
-                              )),
-                              actions: <Widget>[
-                                ElevatedButton(
-                                    onPressed: slecteFile,
-                                    child: Text('select photo')),
-                                TextButton(
-                                  onPressed: Uplode,
-                                  child: Container(
-                                    padding: const EdgeInsets.all(14),
-                                    child: const Text("Upadte"),
+    User? auth = FirebaseAuth.instance.currentUser;
+    final doc_id = auth!.uid;
+    var collection = FirebaseFirestore.instance.collection('specialist');
+    return FutureBuilder(
+        future: collection.doc('$doc_id').get(),
+        builder: (_, snapshot) {
+          if (snapshot.connectionState == ConnectionState.done) {
+            if (snapshot.hasError) return Text('Error = ${snapshot.error}');
+
+            if (snapshot.hasData) {
+              var data = snapshot.data!.data();
+              var _fname = data!['first name'];
+              var _lname = data['last name'];
+              var _email = data['email'];
+              var _service = data['service'];
+
+              return Container(
+                height: 200,
+                color: Color.fromARGB(255, 250, 91, 165),
+                child: Padding(
+                  padding: const EdgeInsets.all(30),
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          Column(
+                            children: [
+                              if (selectedDirectory != null)
+                                GestureDetector(
+                                  onTap: () {
+                                    showDialog(
+                                      context: context,
+                                      builder: (ctx) => AlertDialog(
+                                        title: const Text("chang your photo"),
+                                        content: Container(
+                                            child: Image(
+                                          image: FileImage(
+                                              File(selectedDirectory!.path!)),
+                                        )),
+                                        actions: <Widget>[
+                                          ElevatedButton(
+                                              onPressed: slecteFile,
+                                              child: Text('select photo')),
+                                          TextButton(
+                                            onPressed: Uplode,
+                                            child: Container(
+                                              padding: const EdgeInsets.all(14),
+                                              child: const Text("Update"),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    );
+                                  },
+                                  child: CircleAvatar(
+                                    radius: 40,
+                                    backgroundImage: FileImage(
+                                        File(selectedDirectory!.path!)),
                                   ),
                                 ),
-                              ],
-                            ),
-                          );
-                        },
-                        child: CircleAvatar(
-                          radius: 40,
-                          backgroundImage:
-                              FileImage(File(selectedDirectory!.path!)),
-                        ),
-                      ),
-                    IconButton(
-                        onPressed: () {
-                          showDialog(
-                            context: context,
-                            builder: (ctx) => AlertDialog(
-                              title: const Text("chang your photo"),
-                              actions: <Widget>[
-                                ElevatedButton(
-                                    onPressed: slecteFile,
-                                    child: Text('select photo')),
-                                TextButton(
-                                  onPressed: Uplode,
-                                  child: Container(
-                                    padding: const EdgeInsets.all(14),
-                                    child: const Text("Upadte"),
+                              IconButton(
+                                  onPressed: () {
+                                    showDialog(
+                                      context: context,
+                                      builder: (ctx) => AlertDialog(
+                                        title: const Text("chang your photo"),
+                                        actions: <Widget>[
+                                          ElevatedButton(
+                                              onPressed: slecteFile,
+                                              child: Text('select photo')),
+                                          TextButton(
+                                            onPressed: Uplode,
+                                            child: Container(
+                                              padding: const EdgeInsets.all(14),
+                                              child: const Text("Upadte"),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    );
+                                  },
+                                  icon: Icon(Icons.edit)),
+                            ],
+                          ),
+                          SizedBox(
+                            width: 23,
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              GestureDetector(
+                                onTap: () {
+                                  showDialog(
+                                    context: context,
+                                    builder: (ctx) => AlertDialog(
+                                      title: const Text("chang your name"),
+                                      content: Container(
+                                          child: TextField(
+                                        controller: admineName,
+                                      )),
+                                      actions: <Widget>[
+                                        TextButton(
+                                          onPressed: () {
+                                            setState(() {
+                                              firstname = admineName.text;
+                                            });
+
+                                            Navigator.of(ctx).pop();
+                                          },
+                                          child: Container(
+                                            padding: const EdgeInsets.all(14),
+                                            child: const Text("Upadte"),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  );
+                                },
+                                child: Text(
+                                  _fname + " " + _lname,
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white),
+                                ),
+                              ),
+                              SizedBox(
+                                height: 13,
+                              ),
+                              GestureDetector(
+                                onTap: () {
+                                  showDialog(
+                                    context: context,
+                                    builder: (ctx) => AlertDialog(
+                                      title: const Text("chang your career"),
+                                      content: Container(
+                                          child: TextField(
+                                        controller: careercontroller,
+                                      )),
+                                      actions: <Widget>[
+                                        TextButton(
+                                          onPressed: () {
+                                            setState(() {
+                                              career = careercontroller.text;
+                                            });
+
+                                            Navigator.of(ctx).pop();
+                                          },
+                                          child: Container(
+                                            padding: const EdgeInsets.all(14),
+                                            child: const Text("Upadte"),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  );
+                                },
+                                child: Text(
+                                  "${_service}",
+                                  style: TextStyle(
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white),
+                                ),
+                              ),
+                              SizedBox(
+                                height: 13,
+                              ),
+                              Row(
+                                children: [
+                                  Icon(Icons.email, color: Colors.white),
+                                  SizedBox(
+                                    width: 12,
                                   ),
+                                  Text(
+                                    _email,
+                                    style: TextStyle(
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              RatingBarIndicator(
+                                rating: 4.75,
+                                itemBuilder: (context, index) => Icon(
+                                  Icons.star,
+                                  color: Colors.amber,
                                 ),
-                              ],
-                            ),
-                          );
-                        },
-                        icon: Icon(Icons.edit)),
-                  ],
-                ),
-                SizedBox(
-                  width: 23,
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        showDialog(
-                          context: context,
-                          builder: (ctx) => AlertDialog(
-                            title: const Text("chang your name"),
-                            content: Container(
-                                child: TextField(
-                              controller: admineName,
-                            )),
-                            actions: <Widget>[
-                              TextButton(
-                                onPressed: () {
-                                  setState(() {
-                                    firstname = admineName.text;
-                                  });
-
-                                  Navigator.of(ctx).pop();
-                                },
-                                child: Container(
-                                  padding: const EdgeInsets.all(14),
-                                  child: const Text("Upadte"),
-                                ),
+                                itemCount: 5,
+                                itemSize: 25.0,
+                                direction: Axis.horizontal,
                               ),
                             ],
-                          ),
-                        );
-                      },
-                      child: Text(
-                        firstname,
-                        style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 13,
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        showDialog(
-                          context: context,
-                          builder: (ctx) => AlertDialog(
-                            title: const Text("chang your career"),
-                            content: Container(
-                                child: TextField(
-                              controller: careercontroller,
-                            )),
-                            actions: <Widget>[
-                              TextButton(
-                                onPressed: () {
-                                  setState(() {
-                                    career = careercontroller.text;
-                                  });
-
-                                  Navigator.of(ctx).pop();
-                                },
-                                child: Container(
-                                  padding: const EdgeInsets.all(14),
-                                  child: const Text("Upadte"),
-                                ),
-                              ),
-                            ],
-                          ),
-                        );
-                      },
-                      child: Text(
-                        career,
-                        style: TextStyle(
-                            fontSize: 17,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 13,
-                    ),
-                    Row(
-                      children: [
-                        Icon(Icons.email, color: Colors.white),
-                        SizedBox(
-                          width: 12,
-                        ),
-                        Text(
-                          emaild,
-                          style: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white),
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    RatingBarIndicator(
-                      rating: 4.75,
-                      itemBuilder: (context, index) => Icon(
-                        Icons.star,
-                        color: Colors.amber,
-                      ),
-                      itemCount: 5,
-                      itemSize: 25.0,
-                      direction: Axis.horizontal,
-                    ),
-                  ],
-                )
-              ],
-            )
-          ],
-        ),
-      ),
-    );
+                          )
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+              );
+            }
+          }
+          return Center(child: CircularProgressIndicator());
+        });
   }
 }
 

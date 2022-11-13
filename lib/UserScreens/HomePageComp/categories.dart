@@ -21,7 +21,7 @@ class CategoryCard extends StatelessWidget {
               aspectRatio: 1,
               child: Container(
                 decoration: BoxDecoration(
-                  color: Color(0xffc38a9e).withOpacity(.8),
+                  color: Color.fromARGB(255, 225, 223, 224).withOpacity(.6),
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Image.asset(icon),
@@ -47,16 +47,16 @@ class Categories extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<Map<String, dynamic>> categories1 = [
-      {"icon": "icons/scissors.png", "text": "HairCut"},
-      {"icon": "icons/brush.png", "text": "Coloring"},
-      {"icon": "icons/styling.png", "text": "Styling"},
-      {"icon": "icons/extensions.png", "text": "Extensions"},
+      {"icon": "icons/cutting.png", "text": "HairCut"},
+      {"icon": "icons/dying.png", "text": "Coloring"},
+      {"icon": "icons/style.png", "text": "Styling"},
+      {"icon": "icons/strightner.png", "text": "Extensions"},
     ];
     List<Map<String, dynamic>> categories2 = [
-      {"icon": "icons/nails.png", "text": "Nails"},
-      {"icon": "icons/facial.png", "text": "Facials"},
-      {"icon": "icons/makeup.png", "text": "MakeUp"},
-      {"icon": "icons/camera.png", "text": "Photography"},
+      {"icon": "icons/nails1.png", "text": "Nails"},
+      {"icon": "icons/facial1.png", "text": "Facials"},
+      {"icon": "icons/makeupb.png", "text": "MakeUp"},
+      {"icon": "icons/camera1.png", "text": "Photography"},
     ];
     return Column(
       children: [

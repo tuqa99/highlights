@@ -20,8 +20,7 @@ class MyTile extends StatelessWidget {
 
         // onTap: (){ontap();},
         trailing: Icon(traiIcon),
-        iconColor: Color(0xFF880e4f),
-        tileColor: Color(0xFFffeeff),
+
         title: Text(
           "$text",
           style: TextStyle(

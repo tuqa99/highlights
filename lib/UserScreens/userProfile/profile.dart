@@ -22,17 +22,11 @@ class _UserProfileState extends State<UserProfile> {
   Widget build(BuildContext context) {
     final user = UserPrefernces.myUser;
     return Scaffold(
-      backgroundColor: Color(0xFFffeeff),
       // appBar: buildAppBar(context),
       body: Container(
         child: Column(children: [
           Container(
               height: 250,
-              decoration: BoxDecoration(
-                color: Color(0xFFf8bbd0),
-                // borderRadius:
-                //     BorderRadius.only(bottomRight: Radius.circular(200)),
-              ),
               child: Column(children: [
                 SizedBox(
                   height: 100,
@@ -52,9 +46,6 @@ class _UserProfileState extends State<UserProfile> {
                   //useer
                   PrfileHeader(),
                 ]),
-                // SizedBox(
-                //   height: 10,
-                // )
               ])),
           ProfileInfo(),
         ]),

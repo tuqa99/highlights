@@ -112,7 +112,7 @@ class _VideoAppState extends State<VideoApp> {
                                     Text(
                                       'Find a service',
                                       style: TextStyle(
-                                          fontSize: 18,
+                                          fontSize: 15,
                                           fontWeight: FontWeight.bold,
                                           color: Color.fromARGB(
                                               255, 233, 60, 117)),
@@ -143,7 +143,7 @@ class _VideoAppState extends State<VideoApp> {
                                     Text(
                                       'Providing service',
                                       style: TextStyle(
-                                          fontSize: 18,
+                                          fontSize: 15,
                                           fontWeight: FontWeight.bold,
                                           color: Color.fromARGB(
                                               255, 233, 60, 117)),
