@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../AccountDetails.dart';
-
 class IconWidget extends StatelessWidget {
   final IconData icon;
   final Color color;
@@ -36,11 +34,6 @@ class ImageWidget extends StatelessWidget {
         backgroundImage: AssetImage(image),
         radius: 50,
       ),
-      onTap: () => Navigator.push(context, MaterialPageRoute(
-        builder: (context) {
-          return AccountDetails();
-        },
-      )),
     );
   }
 }

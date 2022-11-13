@@ -36,6 +36,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Specialistprofileforedit();
+    return LoginPage();
   }
 }
