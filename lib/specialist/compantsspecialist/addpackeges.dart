@@ -23,24 +23,24 @@ class _AddpackegsState extends State<Addpackegs> {
     PlatformFile? selectedDirectory;
     File IMge;
     String imageurl = '';
-    Future getimage() async {
-      final ImagePicker _picker = ImagePicker();
-      final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
-      setState(() {
-        IMge = image as File;
-      });
-    }
+    // Future getimage() async {
+    //   final ImagePicker _picker = ImagePicker();
+    //   final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
+    //   setState(() {
+    //     IMge = image as File;
+    //   });
+    // }
 
-    Future Uplode() async {
-      final path = 'url/${selectedDirectory!.name}';
-      final file = File(selectedDirectory.path!);
-      final ref = FirebaseStorage.instance.ref().child(path);
-      final task = ref.putFile(file);
+    // Future Uplode() async {
+    //   final path = 'url/${selectedDirectory!.name}';
+    //   final file = File(selectedDirectory.path!);
+    //   final ref = FirebaseStorage.instance.ref().child(path);
+    //   final task = ref.putFile(file);
 
-      imageurl = await ref.getDownloadURL();
-      print(
-          '////////////////////////////////this a link $imageurl///////////////////////////////////////////////////////');
-    }
+    //   imageurl = await ref.getDownloadURL();
+    //   print(
+    //       '////////////////////////////////this a link $imageurl///////////////////////////////////////////////////////');
+    // }
 
     File? myFile;
 
@@ -63,8 +63,8 @@ class _AddpackegsState extends State<Addpackegs> {
         print('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@');
         print(Url1);
         CollectionReference addimages =
-            FirebaseFirestore.instance.collection("packges");
-        addimages.add({'url': Url1});
+            FirebaseFirestore.instance.collection("addpackeges");
+        addimages.add({'URL': Url1});
       }
     }
 
@@ -75,8 +75,7 @@ class _AddpackegsState extends State<Addpackegs> {
     //     selectedDirectory = result.files.first;
     //   });
     // }
-    CollectionReference studentRef =
-        FirebaseFirestore.instance.collection("packges");
+
     return AlertDialog(
       title: const Text("create your packeg"),
       content: Column(
@@ -94,7 +93,9 @@ class _AddpackegsState extends State<Addpackegs> {
         TextButton(onPressed: uploadImageProcess, child: Text('Select photo')),
         TextButton(
           onPressed: () async {
-            await studentRef.add({'desc': descriptionpackeg.text});
+            CollectionReference studentRef =
+                FirebaseFirestore.instance.collection("packges");
+            await studentRef.add({'description': descriptionpackeg.text});
             Navigator.of(context).pop();
           },
           child: Container(
