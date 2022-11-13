@@ -81,14 +81,14 @@ class _ProfileInfoState extends State<ProfileInfo> {
 
   @override
   Widget build(BuildContext context) {
-    final doc_id = auth!.uid;
+    final docId = auth!.uid;
     var collection = FirebaseFirestore.instance.collection('users');
     return FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
-      future: collection.doc('$doc_id').get(),
+      future: collection.doc(docId).get(),
       builder: (_, snapshot) {
         if (snapshot.hasError) return Text('Error = ${snapshot.error}');
-
-        if (snapshot.hasData) {
+        if (snapshot.hasData &&
+            snapshot.connectionState == ConnectionState.done) {
           var data = snapshot.data!.data();
           var _fname = data!['first name'];
           var _lname = data['last name'];
@@ -109,7 +109,7 @@ class _ProfileInfoState extends State<ProfileInfo> {
                         style: TextStyle(
                             fontSize: 18, fontWeight: FontWeight.bold),
                       )),
-                  MyTile(leadIcon: Icons.person, text: _fname + _lname),
+                  MyTile(leadIcon: Icons.person, text: _fname + " $_lname"),
                   MyTile(leadIcon: Icons.phone, text: _phone),
                   MyTile(
                     leadIcon: Icons.mail,
@@ -169,7 +169,6 @@ class _ProfileInfoState extends State<ProfileInfo> {
             ),
           );
         }
-
         return Center(child: CircularProgressIndicator());
       },
     );
@@ -195,7 +194,8 @@ class _PrfileHeaderState extends State<PrfileHeader> {
       builder: (_, snapshot) {
         if (snapshot.hasError) return Text('Error = ${snapshot.error}');
 
-        if (snapshot.hasData) {
+        if (snapshot.hasData &&
+            snapshot.connectionState == ConnectionState.done) {
           var data = snapshot.data!.data();
           var _fname = data!['first name'];
           var _lname = data['last name'];
@@ -208,7 +208,7 @@ class _PrfileHeaderState extends State<PrfileHeader> {
             child: Column(
               children: [
                 Text(
-                  _fname + _lname,
+                  _fname + " $_lname",
                   style: TextStyle(
                     fontSize: 24,
                   ),
