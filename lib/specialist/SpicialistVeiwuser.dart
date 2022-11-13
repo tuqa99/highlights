@@ -65,7 +65,7 @@ class _SpecialistprofileforuserState extends State<Specialistprofileforuser> {
                             Container(
                               height: 300,
                               width: 300,
-                              child: Read_componentforuser(),
+                              child: Readbackgesforuser(),
                             ),
                             Divider(
                               thickness: 3,
