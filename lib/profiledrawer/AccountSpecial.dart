@@ -6,9 +6,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 import '../screens/login.dart';
 import 'Widget/icon_widget.dart';
 
-class AccountSettings extends StatelessWidget {
+class AccountSpecial extends StatelessWidget {
   static const KeyDarkMode = 'key-dark-mode';
   Color mycolor = Colors.black;
+  static const KeyLocation = 'key-Location';
+  static const Keypassword = 'key-password';
+  static const keyAbout = 'key-About';
   static const KeyLanguage = 'key-language';
 
   User? auth = FirebaseAuth.instance.currentUser;
@@ -37,7 +40,7 @@ class AccountSettings extends StatelessWidget {
           return Scaffold(
             appBar: AppBar(
               title: const Text(
-                "Seetings",
+                "Settings",
                 style: TextStyle(color: Colors.black),
               ),
               titleSpacing: 00.0,
@@ -59,7 +62,7 @@ class AccountSettings extends StatelessWidget {
                 children: [
                   AccountInformation(),
                   SettingsGroup(
-                    title: '',
+                    title: 'System prefrence',
                     children: <Widget>[
                       //===========================Dark Mode=====================================
 
@@ -77,10 +80,6 @@ class AccountSettings extends StatelessWidget {
                   SettingsGroup(
                     title: 'General',
                     children: <Widget>[
-                      //===========================AccountDetails=====================================
-
-                      // AccountDetails(),
-
                       //===========================logout=====================================
                       SimpleSettingsTile(
                         title: 'Logout',
@@ -171,52 +170,74 @@ class AccountInformation extends StatefulWidget {
 class _AccountInformationState extends State<AccountInformation> {
   User? auth = FirebaseAuth.instance.currentUser;
 
+  static const keylocation = 'key-location';
+  static const keyAbout = 'key-About';
   @override
   Widget build(BuildContext context) {
     final doc_id = auth!.uid;
-    var collection = FirebaseFirestore.instance.collection('users');
+    var collection = FirebaseFirestore.instance.collection('specialist');
     return FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
-      future: collection.doc('$doc_id').get(),
-      builder: (_, snapshot) {
-        if (snapshot.hasError) return Text('Error = ${snapshot.error}');
+        future: collection.doc('$doc_id').get(),
+        builder: (_, snapshot) {
+          if (snapshot.connectionState == ConnectionState.done) {
+            if (snapshot.hasError) return Text('Error = ${snapshot.error}');
 
-        if (snapshot.hasData) {
-          var data = snapshot.data!.data();
-          var _fname = data!['first name'];
-          var _lname = data['last name'];
-          var _email = data['email'];
-          var _phone = data['phone number'];
-          return Card(
-            shape: BeveledRectangleBorder(
-              borderRadius: BorderRadius.circular(10.0),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                CircleAvatar(
-                  radius: 50,
-                  backgroundImage: AssetImage("images/profile.jpg"),
+            if (snapshot.hasData) {
+              var data = snapshot.data!.data();
+              var _fname = data!['first name'];
+              var _lname = data['last name'];
+              var _email = data['email'];
+              var _phone = data['phone number'];
+              var _location = data['location'];
+              return Card(
+                shape: BeveledRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
                 ),
-                Column(
+                child: Column(
                   children: [
-                    Container(
-                        alignment: Alignment.bottomCenter,
-                        child: Text("Name: $_fname $_lname")),
-                    Container(
-                        alignment: Alignment.bottomCenter,
-                        child: Text("Email: $_email ")),
-                    Container(
-                        alignment: Alignment.bottomCenter,
-                        child: Text("Phone:$_phone ")),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        CircleAvatar(
+                          radius: 50,
+                          backgroundImage: AssetImage("images/profile.jpg"),
+                        ),
+                        Column(
+                          children: [
+                            Container(
+                                alignment: Alignment.bottomCenter,
+                                child: Text("Name: $_fname $_lname")),
+                            Container(
+                                alignment: Alignment.bottomCenter,
+                                child: Text("Email: $_email ")),
+                            Container(
+                                alignment: Alignment.bottomCenter,
+                                child: Text("Phone:$_phone ")),
+                          ],
+                        ),
+                      ],
+                    ),
+                    SettingsGroup(title: "Account Info", children: <Widget>[
+                      TextInputSettingsTile(
+                        settingKey: keyAbout,
+                        title: 'About Section',
+                        initialValue: "Enter an about section",
+                        onChange: (About) {},
+                      ),
+                      TextInputSettingsTile(
+                        settingKey: keylocation,
+                        title: 'Location',
+                        initialValue: "$_location",
+                        onChange: (About) {},
+                      ),
+                    ]),
                   ],
                 ),
-              ],
-            ),
-          );
-        }
+              );
+            }
+          }
 
-        return Center(child: CircularProgressIndicator());
-      },
-    );
+          return Center(child: CircularProgressIndicator());
+        });
   }
 }

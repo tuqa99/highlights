@@ -7,121 +7,104 @@ class Read_component extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     CollectionReference packgesRef =
-        FirebaseFirestore.instance.collection("packges");
-    return Container(
-      child: FutureBuilder<QuerySnapshot>(
-        builder: (context, snapshot) {
-          return Container(
-              child: ListView.builder(
-            itemCount: snapshot.data!.docs.length,
-            itemBuilder: (context, i) {
-              return ListView(
-                shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(right: 22, left: 22),
-                    child: Container(
-                      width: 150,
-                      height: 150,
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.blueAccent),
-                      ),
-                      child: Column(
+        FirebaseFirestore.instance.collection("addpackeges");
+    return StreamBuilder(
+      stream: packgesRef.snapshots(),
+      builder: (context, AsyncSnapshot<QuerySnapshot> streamSnapshot) {
+        if (streamSnapshot.hasData) {
+          return ListView.builder(
+            itemCount: streamSnapshot.data!.docs.length,
+            itemBuilder: (context, index) {
+              final DocumentSnapshot documentSnapshot =
+                  streamSnapshot.data!.docs[index];
+              return Padding(
+                padding: const EdgeInsets.only(right: 22, left: 22),
+                child: Container(
+                  width: 100,
+                  height: 200,
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.blueAccent),
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      // Text(documentSnapshot['description']),
+                      Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text("${snapshot.data!.docs[i]['desc']}"),
-                              IconButton(
-                                  onPressed: () async {
-                                    await packgesRef
-                                        .doc(snapshot.data!.docs[i].id)
-                                        .delete();
-                                  },
-                                  icon: Icon(Icons.delete))
-                            ],
-                          ),
-                          Image(
-                              height: 50,
-                              width: 100,
-                              image: NetworkImage(
-                                  "${snapshot.data!.docs[i]['url']}")),
+                          IconButton(
+                              onPressed: () async {
+                                await packgesRef
+                                    .doc(documentSnapshot['URL'])
+                                    .delete();
+                              },
+                              icon: Icon(Icons.delete))
                         ],
                       ),
-                    ),
+                      Image(
+                          height: 100,
+                          width: 100,
+                          image: NetworkImage("${documentSnapshot['URL']}")),
+                    ],
                   ),
-                  SizedBox(
-                    height: 100,
-                    width: 100,
-                  )
-                ],
+                ),
               );
             },
-          ));
-        },
-        future: packgesRef.get(),
-      ),
+          );
+        }
+
+        return const Center(
+          child: CircularProgressIndicator(),
+        );
+      },
     );
   }
 }
 
-class Read_componentforuser extends StatelessWidget {
-  const Read_componentforuser({super.key});
+class Readbackgesforuser extends StatelessWidget {
+  const Readbackgesforuser({super.key});
 
   @override
   Widget build(BuildContext context) {
     CollectionReference packgesRef =
-        FirebaseFirestore.instance.collection("packges");
-    return Container(
-      child: FutureBuilder<QuerySnapshot>(
-        builder: (context, snapshot) {
-          return Container(
-              child: ListView.builder(
-            itemCount: snapshot.data!.docs.length,
-            itemBuilder: (context, i) {
-              return ListView(
-                shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(right: 22, left: 22),
-                    child: Container(
-                      width: 150,
-                      height: 150,
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.blueAccent),
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text("${snapshot.data!.docs[i]['desc']}"),
-                            ],
-                          ),
-                          Image(
-                              height: 50,
-                              width: 100,
-                              image: NetworkImage(
-                                  "${snapshot.data!.docs[i]['url']}")),
-                        ],
-                      ),
-                    ),
+        FirebaseFirestore.instance.collection("addpackeges");
+    return StreamBuilder(
+      stream: packgesRef.snapshots(),
+      builder: (context, AsyncSnapshot<QuerySnapshot> streamSnapshot) {
+        if (streamSnapshot.hasData) {
+          return ListView.builder(
+            itemCount: streamSnapshot.data!.docs.length,
+            itemBuilder: (context, index) {
+              final DocumentSnapshot documentSnapshot =
+                  streamSnapshot.data!.docs[index];
+              return Padding(
+                padding: const EdgeInsets.only(right: 22, left: 22),
+                child: Container(
+                  width: 100,
+                  height: 200,
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.blueAccent),
                   ),
-                  SizedBox(
-                    height: 100,
-                    width: 100,
-                  )
-                ],
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      // Text(documentSnapshot['desc']),
+                      Image(
+                          height: 100,
+                          width: 100,
+                          image: NetworkImage("${documentSnapshot['URL']}")),
+                    ],
+                  ),
+                ),
               );
             },
-          ));
-        },
-        future: packgesRef.get(),
-      ),
+          );
+        }
+
+        return const Center(
+          child: CircularProgressIndicator(),
+        );
+      },
     );
   }
 }

@@ -3,6 +3,8 @@ import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
+import 'package:image_picker/image_picker.dart';
+import 'package:path/path.dart';
 
 class Addpackegs extends StatefulWidget {
   const Addpackegs({super.key});
@@ -14,8 +16,12 @@ class Addpackegs extends StatefulWidget {
 class _AddpackegsState extends State<Addpackegs> {
   @override
   Widget build(BuildContext context) {
-    PlatformFile? selectedDirectory;
     TextEditingController descriptionpackeg = TextEditingController();
+    TextEditingController imagenet = TextEditingController();
+
+    TextEditingController courseController = TextEditingController();
+    PlatformFile? selectedDirectory;
+    File IMge;
     String imageurl = '';
     // Future getimage() async {
     //   final ImagePicker _picker = ImagePicker();
@@ -25,89 +31,79 @@ class _AddpackegsState extends State<Addpackegs> {
     //   });
     // }
 
-    Future Uplode() async {
-      final path = 'backges/${selectedDirectory!.name}';
-      final file = File(selectedDirectory!.path!);
-      final ref = FirebaseStorage.instance.ref().child(path);
-      ref.putFile(file);
-      UploadTask uploadTask = ref.putFile(file);
-      final storageSnapshot = uploadTask.snapshot;
-      imageurl = await storageSnapshot.ref.getDownloadURL();
-      print('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@');
-      print('this a link $imageurl');
-      print('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@');
-      return imageurl;
+    // Future Uplode() async {
+    //   final path = 'url/${selectedDirectory!.name}';
+    //   final file = File(selectedDirectory.path!);
+    //   final ref = FirebaseStorage.instance.ref().child(path);
+    //   final task = ref.putFile(file);
+
+    //   imageurl = await ref.getDownloadURL();
+    //   print(
+    //       '////////////////////////////////this a link $imageurl///////////////////////////////////////////////////////');
+    // }
+
+    File? myFile;
+
+    var imagePick = ImagePicker();
+
+    uploadImageProcess() async {
+      var theImageThatIHavePicked =
+          await imagePick.pickImage(source: ImageSource.gallery);
+
+      if (imagePick != null) {
+        var fileName = basename(theImageThatIHavePicked!.path);
+        myFile = File(theImageThatIHavePicked.path);
+
+        var refrenceforMyStorage =
+            FirebaseStorage.instance.ref("mypackges/$fileName");
+
+        await refrenceforMyStorage.putFile(myFile!);
+
+        var Url1 = await refrenceforMyStorage.getDownloadURL();
+        print('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@');
+        print(Url1);
+        CollectionReference addimages =
+            FirebaseFirestore.instance.collection("addpackeges");
+        addimages.add({'URL': Url1});
+      }
     }
 
-    Future slecteFile() async {
-      final result = await FilePicker.platform.pickFiles();
-      if (result == null) return;
-      setState(() {
-        selectedDirectory = result.files.first;
-      });
-    }
+    // Future slecteFile() async {
+    //   final result = await FilePicker.platform.pickFiles();
+    //   if (result == null) return;
+    //   setState(() {
+    //     selectedDirectory = result.files.first;
+    //   });
+    // }
 
-    CollectionReference studentRef =
-        FirebaseFirestore.instance.collection("packges");
     return AlertDialog(
-      title: Column(
+      title: const Text("create your packeg"),
+      content: Column(
         children: [
-          Text("create your backges"), //       Container(
-          TextField(
+          Container(
+              child: TextField(
             decoration: InputDecoration(
-                hintText: 'Enter your  description',
                 border: OutlineInputBorder(
                     borderSide: new BorderSide(color: Colors.teal))),
             controller: descriptionpackeg,
-          ),
+          )),
         ],
       ),
       actions: <Widget>[
-        ElevatedButton(onPressed: slecteFile, child: Text('select photo')),
+        TextButton(onPressed: uploadImageProcess, child: Text('Select photo')),
         TextButton(
-          onPressed: Uplode,
+          onPressed: () async {
+            CollectionReference studentRef =
+                FirebaseFirestore.instance.collection("packges");
+            await studentRef.add({'description': descriptionpackeg.text});
+            Navigator.of(context).pop();
+          },
           child: Container(
             padding: const EdgeInsets.all(14),
-            child: const Text("Upadte"),
+            child: const Text("ok"),
           ),
         ),
-        ElevatedButton(
-            onPressed: () {
-              studentRef.add({'desc': 'bb', 'url': imageurl});
-            },
-            child: Text('ok'))
       ],
     );
-
-    // AlertDialog(
-    //   title: const Text("create your packeg"),
-    //   content: Column(
-    //     children: [
-    //       Container(
-    //           child: TextField(
-    //         decoration: InputDecoration(
-    //             hintText: 'Enter your  description',
-    //             border: OutlineInputBorder(
-    //                 borderSide: new BorderSide(color: Colors.teal))),
-    //         controller: descriptionpackeg,
-    //       )),
-    //     ],
-    //   ),
-    //   actions: <Widget>[
-    //     ElevatedButton(onPressed: slecteFile, child: Text('select photo')),
-    //     TextButton(
-    //       onPressed: Uplode,
-    //       // studentRef.add({'desc': descriptionpackeg.text, 'url': imageurl});
-
-    //       // Navigator.of(context).pop();
-
-    //       child: Container(
-    //         padding: const EdgeInsets.all(14),
-    //         child: Text('update'),
-    //       ),
-    //     ),
-    //     // TextButton(onPressed:  child: Text('OK'))
-    //   ],
-    // );
   }
 }

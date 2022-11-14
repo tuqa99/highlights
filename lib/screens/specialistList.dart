@@ -18,9 +18,25 @@ class SpecialistList extends StatelessWidget {
     var documents = ref.get();
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        iconTheme: IconThemeData(
+          color: Colors.black,
+        ),
+        titleSpacing: 00.0,
+        centerTitle: true,
+        toolbarHeight: 60.2,
+        toolbarOpacity: 0.8,
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+              bottomRight: Radius.circular(25),
+              bottomLeft: Radius.circular(25)),
+        ),
+        elevation: 0.00,
+        title: Text(
+          "$CollectionName",
+          style: TextStyle(color: Colors.black),
+        ),
+        backgroundColor: Color.fromARGB(255, 225, 223, 224).withOpacity(.6),
       ),
-      backgroundColor: const Color(0xfff8bbd0),
       body: FutureBuilder<QuerySnapshot>(
           future: documents,
           builder: (context, AsyncSnapshot snapshot) {
@@ -33,18 +49,6 @@ class SpecialistList extends StatelessWidget {
                   return InkWell(
                     onTap: (() {}),
                     child: Container(
-                        decoration: BoxDecoration(
-                          boxShadow: const [
-                            BoxShadow(
-                              color: Color(0xffbc477b),
-                              spreadRadius: 3,
-                              blurRadius: 4,
-                              offset: Offset(3, 7),
-                            )
-                          ],
-                          borderRadius: BorderRadius.circular(20),
-                          color: const Color(0xfff8bbd0),
-                        ),
                         margin: const EdgeInsets.all(10),
                         child: Column(
                           children: [
