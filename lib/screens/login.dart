@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:highlights/UserScreens/userProfile/button_widget.dart';
+import 'package:highlights/screens/resetPass.dart';
 import 'package:highlights/signInGoogle/FirebaseServices.dart';
 import 'package:highlights/UserScreens/HomePageComp/HomePage.dart';
 import 'package:highlights/screens/viewscreen.dart';
@@ -21,19 +22,6 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   TextEditingController nameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-
-  static Future<bool> emailCheck(String email) async {
-    CollectionReference db = FirebaseFirestore.instance.collection('users');
-    bool result = false;
-    QuerySnapshot snapshot =
-        await FirebaseFirestore.instance.collection('users').get();
-    snapshot.docs.forEach((f) {
-      if (f['email'] == email) {
-        result = true;
-      }
-    });
-    return result;
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -175,7 +163,11 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       TextButton(
                         onPressed: () {
-                          //forgot password screen
+                          Navigator.push(context, MaterialPageRoute(
+                            builder: (context) {
+                              return ResetPassword();
+                            },
+                          ));
                         },
                         child: const Text(
                           'Forgot Password',
@@ -280,4 +272,16 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
   }
+}
+
+Future<bool> emailCheck(String email) async {
+  bool result = false;
+  QuerySnapshot snapshot =
+      await FirebaseFirestore.instance.collection('users').get();
+  snapshot.docs.forEach((f) {
+    if (f['email'] == email) {
+      result = true;
+    }
+  });
+  return result;
 }

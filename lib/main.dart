@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_settings_screens/flutter_settings_screens.dart';
+import 'package:highlights/UserScreens/allscreens.dart';
 import 'package:highlights/profiledrawer/AccountSettings.dart';
 import 'package:highlights/screens/SignUpSpecialist.dart';
 import 'package:highlights/screens/SplashScreen.dart';
@@ -27,7 +28,6 @@ Future<void> main() async {
       home: MyApp(),
     ),
   ));
-  // print(getData("HairCut"));
 }
 
 class MyApp extends StatelessWidget {

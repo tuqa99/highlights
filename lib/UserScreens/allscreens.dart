@@ -78,5 +78,5 @@ class _MainPageState extends State<MainPage> {
 List<Widget> _listOfWidget = <Widget>[
   HomePage(),
   Appointments(),
-  UserProfile(),
+  ProfileInfo(),
 ];
