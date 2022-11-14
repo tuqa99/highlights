@@ -246,11 +246,20 @@ class _SignUpSpecialistState extends State<SignUpSpecialist> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text("Already have an account? "),
-                    Text(
-                      "Login",
-                      style:
-                          TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
-                    ),
+                    TextButton(
+                      child: Text(
+                        "Login",
+                        style: TextStyle(
+                            fontWeight: FontWeight.w600, fontSize: 18),
+                      ),
+                      onPressed: () {
+                        Navigator.push(context, MaterialPageRoute(
+                          builder: (context) {
+                            return LoginPage();
+                          },
+                        ));
+                      },
+                    )
                   ],
                 )
               ],
@@ -277,109 +286,118 @@ Future addUserInfo(
       .set({
     'first name': firstName,
     'last name': lastName,
+    'full name': "$firstName $lastName",
     'email': email,
     'location': location,
     'phone number': phoneNumber,
     'service': selectedService!,
   });
-  if (selectedService!.contains("HairCut")) {
+  if (selectedService.contains("HairCut")) {
     await FirebaseFirestore.instance
         .collection("HairCut")
         .doc(authin.currentUser!.uid)
         .set({
       'first name': firstName,
       'last name': lastName,
+      'full name': "$firstName $lastName",
       'email': email,
       'location': location,
       'phone number': phoneNumber,
       'service': 'Hair Cut',
     });
   }
-  if (selectedService!.contains("Coloring")) {
+  if (selectedService.contains("Coloring")) {
     await FirebaseFirestore.instance
         .collection("Coloring")
         .doc(authin.currentUser!.uid)
         .set({
       'first name': firstName,
       'last name': lastName,
+      'full name': "$firstName $lastName",
       'email': email,
       'location': location,
       'phone number': phoneNumber,
       'service': 'Coloring',
     });
   }
-  if (selectedService!.contains("Styling")) {
+  if (selectedService.contains("Styling")) {
     await FirebaseFirestore.instance
         .collection("Styling")
         .doc(authin.currentUser!.uid)
         .set({
       'first name': firstName,
       'last name': lastName,
+      'full name': "$firstName $lastName",
       'email': email,
       'location': location,
       'phone number': phoneNumber,
       'service': 'Styling',
     });
   }
-  if (selectedService!.contains("Extensions")) {
+  if (selectedService.contains("Extensions")) {
     await FirebaseFirestore.instance
         .collection("Extensions")
         .doc(authin.currentUser!.uid)
         .set({
       'first name': firstName,
       'last name': lastName,
+      'full name': "$firstName $lastName",
       'email': email,
       'location': location,
       'phone number': phoneNumber,
       'service': 'Extensions',
     });
   }
-  if (selectedService!.contains("Nails")) {
+  if (selectedService.contains("Nails")) {
     await FirebaseFirestore.instance
         .collection("Nails")
         .doc(authin.currentUser!.uid)
         .set({
       'first name': firstName,
       'last name': lastName,
+      'full name': "$firstName $lastName",
       'email': email,
       'location': location,
       'phone number': phoneNumber,
       'service': 'Nails',
     });
   }
-  if (selectedService!.contains("Facials")) {
+  if (selectedService.contains("Facials")) {
     await FirebaseFirestore.instance
         .collection("Facials")
         .doc(authin.currentUser!.uid)
         .set({
       'first name': firstName,
       'last name': lastName,
+      'full name': "$firstName $lastName",
       'email': email,
       'location': location,
       'phone number': phoneNumber,
       'service': 'Facials',
     });
   }
-  if (selectedService!.contains("MakeUp")) {
+  if (selectedService.contains("MakeUp")) {
     await FirebaseFirestore.instance
         .collection("MakeUp")
         .doc(authin.currentUser!.uid)
         .set({
       'first name': firstName,
       'last name': lastName,
+      'full name': "$firstName $lastName",
       'email': email,
       'location': location,
       'phone number': phoneNumber,
       'service': 'Make Up',
     });
   }
-  if (selectedService!.contains("Photography")) {
+  if (selectedService.contains("Photography")) {
     await FirebaseFirestore.instance
         .collection("Photography")
         .doc(authin.currentUser!.uid)
         .set({
       'first name': firstName,
       'last name': lastName,
+      'full name': "$firstName $lastName",
       'email': email,
       'location': location,
       'phone number': phoneNumber,

@@ -98,6 +98,7 @@ class _LoginPageState extends State<LoginPage> {
                                     Icons.email,
                                     color: Colors.pinkAccent,
                                   ),
+                                  
                                   hintText: "Enter your email",
                                   hintStyle: TextStyle(color: Colors.grey),
                                   border: InputBorder.none),
