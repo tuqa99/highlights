@@ -11,6 +11,8 @@ class SpecialistList extends StatelessWidget {
   String? CollectionName;
   @override
   Widget build(BuildContext context) {
+    final color = Theme.of(context).colorScheme.primary;
+
     CollectionReference ref =
         FirebaseFirestore.instance.collection(CollectionName!);
     var documents = ref.get();

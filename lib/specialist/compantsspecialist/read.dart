@@ -7,7 +7,7 @@ class Read_component extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     CollectionReference packgesRef =
-        FirebaseFirestore.instance.collection("packges");
+        FirebaseFirestore.instance.collection("addpackeges");
     return StreamBuilder(
       stream: packgesRef.snapshots(),
       builder: (context, AsyncSnapshot<QuerySnapshot> streamSnapshot) {
@@ -28,23 +28,23 @@ class Read_component extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
+                      // Text(documentSnapshot['description']),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           IconButton(
                               onPressed: () async {
                                 await packgesRef
-                                    .doc(documentSnapshot['url'])
+                                    .doc(documentSnapshot['URL'])
                                     .delete();
                               },
                               icon: Icon(Icons.delete))
                         ],
                       ),
-                      // Text(documentSnapshot['desc']),
                       Image(
                           height: 100,
                           width: 100,
-                          image: NetworkImage("${documentSnapshot['url']}")),
+                          image: NetworkImage("${documentSnapshot['URL']}")),
                     ],
                   ),
                 ),
@@ -67,7 +67,7 @@ class Readbackgesforuser extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     CollectionReference packgesRef =
-        FirebaseFirestore.instance.collection("packges");
+        FirebaseFirestore.instance.collection("addpackeges");
     return StreamBuilder(
       stream: packgesRef.snapshots(),
       builder: (context, AsyncSnapshot<QuerySnapshot> streamSnapshot) {
@@ -92,7 +92,7 @@ class Readbackgesforuser extends StatelessWidget {
                       Image(
                           height: 100,
                           width: 100,
-                          image: NetworkImage("${documentSnapshot['url']}")),
+                          image: NetworkImage("${documentSnapshot['URL']}")),
                     ],
                   ),
                 ),
