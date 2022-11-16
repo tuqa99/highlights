@@ -48,6 +48,8 @@ dependencies:
   file_picker: ^5.2.2
   image_picker: ^0.8.6
   flutter_settings_screens: ^0.3.3-null-safety+2
+  firebase_messaging: ^14.1.0
+  firebase_analytics: ^10.0.5
 
 dev_dependencies:
   flutter_test:
