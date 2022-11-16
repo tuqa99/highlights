@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:highlights/specialist/SpicialistVeiwuser.dart';
 
 class SpecialistList extends StatelessWidget {
   SpecialistList({
@@ -47,7 +48,17 @@ class SpecialistList extends StatelessWidget {
                 children: List.generate(snapshot.data!.docs.length, (index) {
                   DocumentSnapshot document = snapshot.data!.docs[index];
                   return InkWell(
-                    onTap: (() {}),
+                    onTap: (() {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => Specialistprofileforuser(
+                              firstname: document['full name'],
+                              email: document['email'],
+                              // career: document['service']),
+                            ),
+                          ));
+                    }),
                     child: Container(
                         margin: const EdgeInsets.all(10),
                         child: Column(

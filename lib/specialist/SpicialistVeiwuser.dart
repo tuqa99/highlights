@@ -4,22 +4,18 @@ import 'compantsspecialist/continarprofile.dart';
 import 'compantsspecialist/read.dart';
 import 'compantsspecialist/viewimage.dart';
 
-class Specialistprofileforuser extends StatefulWidget {
-  Specialistprofileforuser(
-      {required firstname,
-      required email,
-      required profilephotpurl,
-      required career});
+class Specialistprofileforuser extends StatelessWidget {
+  Specialistprofileforuser({
+    required this.firstname,
+    required this.email,
+    // required profilephotpurl,
+    // required career
+  });
   String? firstname;
   String? email;
   String? profilephotpurl;
-  String? career;
+  List? career;
   @override
-  State<Specialistprofileforuser> createState() =>
-      _SpecialistprofileforuserState();
-}
-
-class _SpecialistprofileforuserState extends State<Specialistprofileforuser> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,10 +23,10 @@ class _SpecialistprofileforuserState extends State<Specialistprofileforuser> {
         body: Stack(
           children: [
             Continarprfileview(
-              career: widget.career,
-              email: widget.email,
-              firstname: widget.firstname,
-              profilephotpurl: widget.profilephotpurl,
+              // career: career,
+              email: email,
+              firstname: firstname,
+              // profilephotpurl: widget.profilephotpurl,
             ),
             Padding(
               padding: const EdgeInsets.only(top: 175),

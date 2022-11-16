@@ -255,21 +255,18 @@ class _ContinarprfileState extends State<Continarprfile> {
   }
 }
 
-class Continarprfileview extends StatefulWidget {
-  Continarprfileview(
-      {required firstname,
-      required email,
-      required profilephotpurl,
-      required career});
+class Continarprfileview extends StatelessWidget {
+  Continarprfileview({
+    required this.firstname,
+    required this.email,
+    // required profilephotpurl,
+    // required this.career,
+  });
   String? firstname;
   String? email;
-  String? profilephotpurl;
-  String? career;
+  // String? profilephotpurl;
+  // List? career;
   @override
-  State<Continarprfileview> createState() => _ContinarprfileviewState();
-}
-
-class _ContinarprfileviewState extends State<Continarprfileview> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -285,14 +282,12 @@ class _ContinarprfileviewState extends State<Continarprfileview> {
                   children: [
                     CircleAvatar(
                       radius: 40,
-                      backgroundImage:
-                          NetworkImage('${widget.profilephotpurl}'),
                     ),
                   ],
                 ),
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                   Text(
-                    '${widget.firstname}',
+                    firstname!,
                     style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
@@ -301,8 +296,9 @@ class _ContinarprfileviewState extends State<Continarprfileview> {
                   SizedBox(
                     height: 13,
                   ),
-                  Text(
-                    '${widget.career}',
+                  Text(""
+                    // career!.toString(),
+                    ,
                     style: TextStyle(
                         fontSize: 17,
                         fontWeight: FontWeight.bold,
@@ -319,7 +315,7 @@ class _ContinarprfileviewState extends State<Continarprfileview> {
                       width: 12,
                     ),
                     Text(
-                      '${widget.email}',
+                      email!,
                       style: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.bold,

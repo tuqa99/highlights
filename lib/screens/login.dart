@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:highlights/UserScreens/HomePageComp/homemodels.dart/hairspecialist.dart';
 import 'package:highlights/UserScreens/userProfile/button_widget.dart';
 import 'package:highlights/screens/resetPass.dart';
 import 'package:highlights/signInGoogle/FirebaseServices.dart';
@@ -98,7 +99,6 @@ class _LoginPageState extends State<LoginPage> {
                                     Icons.email,
                                     color: Colors.pinkAccent,
                                   ),
-                                  
                                   hintText: "Enter your email",
                                   hintStyle: TextStyle(color: Colors.grey),
                                   border: InputBorder.none),
@@ -137,7 +137,7 @@ class _LoginPageState extends State<LoginPage> {
                                 await authin.signInWithEmailAndPassword(
                                     email: nameController.text,
                                     password: passwordController.text);
-                            if (emailCheck(nameController.text) == true) {
+                            if (await emailCheck(nameController.text)) {
                               print(emailCheck(nameController.text));
                               Navigator.push(context, MaterialPageRoute(
                                 builder: (context) {
@@ -147,7 +147,7 @@ class _LoginPageState extends State<LoginPage> {
                             } else {
                               Navigator.push(context, MaterialPageRoute(
                                 builder: (context) {
-                                  return MainPage(); //change this for specialist homepage
+                                  return Specialistprofileforedit(); //change this for specialist homepage
                                 },
                               ));
                             }

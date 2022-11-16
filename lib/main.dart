@@ -6,6 +6,7 @@ import 'package:highlights/profiledrawer/AccountSettings.dart';
 import 'package:highlights/screens/SignUpSpecialist.dart';
 import 'package:highlights/screens/SplashScreen.dart';
 import 'package:highlights/screens/login.dart';
+import 'package:highlights/screens/specialistList.dart';
 import 'package:highlights/specialist/specialistprofile.dart';
 import 'firebase_options.dart';
 
@@ -36,6 +37,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SignUpSpecialist();
+    return LoginPage();
   }
 }
