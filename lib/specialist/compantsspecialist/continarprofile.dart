@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -54,12 +56,12 @@ class _ContinarprfileState extends State<Continarprfile> {
             if (snapshot.hasError) return Text('Error = ${snapshot.error}');
 
             if (snapshot.hasData) {
+              var snap = snapshot.data!.get('service');
               var data = snapshot.data!.data();
-              var _fname = data!['first name'];
-              var _lname = data['last name'];
+              var _fname = data!['full name'];
               var _email = data['email'];
               var _service = data['service'];
-
+              // var ab = json.decode(_service).cast().toList();
               return Container(
                 height: 200,
                 color: Color.fromARGB(255, 250, 91, 165),
@@ -100,8 +102,8 @@ class _ContinarprfileState extends State<Continarprfile> {
                                   },
                                   child: CircleAvatar(
                                     radius: 40,
-                                    backgroundImage: FileImage(
-                                        File(selectedDirectory!.path!)),
+                                    // backgroundImage: FileImage(
+                                    //     File(selectedDirectory!.path!)),
                                   ),
                                 ),
                               IconButton(
@@ -148,7 +150,9 @@ class _ContinarprfileState extends State<Continarprfile> {
                                         TextButton(
                                           onPressed: () {
                                             setState(() {
-                                              firstname = admineName.text;
+                                              collection.doc('$doc_id').update({
+                                                'full name': admineName.text
+                                              });
                                             });
 
                                             Navigator.of(ctx).pop();
@@ -163,7 +167,7 @@ class _ContinarprfileState extends State<Continarprfile> {
                                   );
                                 },
                                 child: Text(
-                                  _fname + " " + _lname,
+                                  _fname,
                                   style: TextStyle(
                                       fontSize: 20,
                                       fontWeight: FontWeight.bold,
@@ -174,41 +178,51 @@ class _ContinarprfileState extends State<Continarprfile> {
                                 height: 13,
                               ),
                               GestureDetector(
-                                onTap: () {
-                                  showDialog(
-                                    context: context,
-                                    builder: (ctx) => AlertDialog(
-                                      title: const Text("chang your career"),
-                                      content: Container(
-                                          child: TextField(
-                                        controller: careercontroller,
-                                      )),
-                                      actions: <Widget>[
-                                        TextButton(
-                                          onPressed: () {
-                                            setState(() {
-                                              career = careercontroller.text;
-                                            });
+                                  onTap: () {
+                                    showDialog(
+                                      context: context,
+                                      builder: (ctx) => AlertDialog(
+                                        title: const Text("chang your career"),
+                                        // content: ListView.builder(
+                                        //   itemCount: ab.length,
+                                        //   itemBuilder: (context, index) {
+                                        //     return ListView(
+                                        //       children: [
+                                        //         ListTile(
+                                        //           title: Text(ab[0]),
+                                        //         )
+                                        //       ],
+                                        //     );
+                                        //   },
+                                        // ),
+                                        // content: Container(
+                                        //     child: TextField(
+                                        //   controller: careercontroller,
+                                        // )),
+                                        actions: <Widget>[
+                                          TextButton(
+                                            onPressed: () {
+                                              setState(() {
+                                                collection
+                                                    .doc('$doc_id')
+                                                    .update({
+                                                  'service':
+                                                      careercontroller.text
+                                                });
+                                              });
 
-                                            Navigator.of(ctx).pop();
-                                          },
-                                          child: Container(
-                                            padding: const EdgeInsets.all(14),
-                                            child: const Text("Upadte"),
+                                              Navigator.of(ctx).pop();
+                                            },
+                                            child: Container(
+                                              padding: const EdgeInsets.all(14),
+                                              child: const Text("Upadte"),
+                                            ),
                                           ),
-                                        ),
-                                      ],
-                                    ),
-                                  );
-                                },
-                                child: Text(
-                                  "${_service}",
-                                  style: TextStyle(
-                                      fontSize: 17,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.white),
-                                ),
-                              ),
+                                        ],
+                                      ),
+                                    );
+                                  },
+                                  child: Text('change your services')),
                               SizedBox(
                                 height: 13,
                               ),
@@ -255,92 +269,104 @@ class _ContinarprfileState extends State<Continarprfile> {
   }
 }
 
-class Continarprfileview extends StatelessWidget {
-  Continarprfileview({
-    required this.firstname,
-    required this.email,
-    // required profilephotpurl,
-    // required this.career,
-  });
+// edit
+class Continarprfileview extends StatefulWidget {
+  Continarprfileview(
+      {required firstname,
+      required email,
+      // required profilephotpurl,
+      required career});
   String? firstname;
   String? email;
   // String? profilephotpurl;
-  // List? career;
+  String? career;
   @override
+  State<Continarprfileview> createState() => _ContinarprfileviewState();
+}
+
+class _ContinarprfileviewState extends State<Continarprfileview> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 200,
-      color: Color.fromARGB(255, 250, 91, 165),
-      child: Padding(
-        padding: const EdgeInsets.all(30),
-        child: Column(
-          children: [
-            Row(
+    var collection = FirebaseFirestore.instance.collection('specialist');
+    return FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
+      builder: (context, snapshot) {
+        return Container(
+          height: 200,
+          color: Color.fromARGB(255, 250, 91, 165),
+          child: Padding(
+            padding: const EdgeInsets.all(30),
+            child: Column(
               children: [
-                Column(
-                  children: [
-                    CircleAvatar(
-                      radius: 40,
-                    ),
-                  ],
-                ),
-                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                  Text(
-                    firstname!,
-                    style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white),
-                  ),
-                  SizedBox(
-                    height: 13,
-                  ),
-                  Text(""
-                    // career!.toString(),
-                    ,
-                    style: TextStyle(
-                        fontSize: 17,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white),
-                  ),
-                ]),
-                SizedBox(
-                  height: 13,
-                ),
                 Row(
                   children: [
-                    Icon(Icons.email, color: Colors.white),
-                    SizedBox(
-                      width: 12,
+                    Column(
+                      children: [
+                        CircleAvatar(
+                          radius: 40,
+                          // backgroundImage:
+                          //     NetworkImage('${widget.profilephotpurl}'),
+                        ),
+                      ],
                     ),
-                    Text(
-                      email!,
-                      style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white),
+                    Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            '${widget.firstname}',
+                            style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white),
+                          ),
+                          SizedBox(
+                            height: 13,
+                          ),
+                          Text(
+                            '${widget.career}',
+                            style: TextStyle(
+                                fontSize: 17,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white),
+                          ),
+                        ]),
+                    SizedBox(
+                      height: 13,
+                    ),
+                    Row(
+                      children: [
+                        Icon(Icons.email, color: Colors.white),
+                        SizedBox(
+                          width: 12,
+                        ),
+                        Text(
+                          '${widget.email}',
+                          style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    RatingBarIndicator(
+                      rating: 4.75,
+                      itemBuilder: (context, index) => Icon(
+                        Icons.star,
+                        color: Colors.amber,
+                      ),
+                      itemCount: 5,
+                      itemSize: 25.0,
+                      direction: Axis.horizontal,
                     ),
                   ],
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                RatingBarIndicator(
-                  rating: 4.75,
-                  itemBuilder: (context, index) => Icon(
-                    Icons.star,
-                    color: Colors.amber,
-                  ),
-                  itemCount: 5,
-                  itemSize: 25.0,
-                  direction: Axis.horizontal,
-                ),
+                )
               ],
-            )
-          ],
-        ),
-      ),
+            ),
+          ),
+        );
+      },
     );
   }
 }

@@ -228,7 +228,13 @@ class _AccountInformationState extends State<AccountInformation> {
                         settingKey: keylocation,
                         title: 'Location',
                         initialValue: "$_location",
-                        onChange: (About) {},
+                        onChange: (About) {
+                          setState(() {
+                            collection
+                                .doc('$doc_id')
+                                .update({'location': About});
+                          });
+                        },
                       ),
                     ]),
                   ],

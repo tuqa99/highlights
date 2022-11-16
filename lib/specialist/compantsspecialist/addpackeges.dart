@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
@@ -14,68 +15,49 @@ class Addpackegs extends StatefulWidget {
 }
 
 class _AddpackegsState extends State<Addpackegs> {
+  File? myFile;
+  var imagePick = ImagePicker();
+  String? packages;
+  String? decs;
+  uploadImageProcess() async {
+    var theImageThatIHavePicked =
+        await imagePick.pickImage(source: ImageSource.gallery);
+
+    if (imagePick != null) {
+      var fileName = basename(theImageThatIHavePicked!.path);
+      myFile = File(theImageThatIHavePicked.path);
+      var refrenceforMyStorage =
+          FirebaseStorage.instance.ref("mypackages/$fileName");
+      await refrenceforMyStorage.putFile(myFile!);
+      var Url1 = await refrenceforMyStorage.getDownloadURL();
+      print('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@');
+      print(Url1);
+
+      packages = Url1;
+      AddPackages(packages!, decs!);
+    }
+  }
+
+  Future AddPackages(String packages, String decs) async {
+    var auth = FirebaseAuth.instance;
+    Map mymap = {decs: packages};
+    await FirebaseFirestore.instance
+        .collection('specialist')
+        .doc(auth.currentUser!.uid)
+        .update({
+      "packages": FieldValue.arrayUnion([mymap])
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     TextEditingController descriptionpackeg = TextEditingController();
     TextEditingController imagenet = TextEditingController();
-
+    var auth = FirebaseAuth.instance;
     TextEditingController courseController = TextEditingController();
     PlatformFile? selectedDirectory;
     File IMge;
     String imageurl = '';
-    // Future getimage() async {
-    //   final ImagePicker _picker = ImagePicker();
-    //   final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
-    //   setState(() {
-    //     IMge = image as File;
-    //   });
-    // }
-
-    // Future Uplode() async {
-    //   final path = 'url/${selectedDirectory!.name}';
-    //   final file = File(selectedDirectory.path!);
-    //   final ref = FirebaseStorage.instance.ref().child(path);
-    //   final task = ref.putFile(file);
-
-    //   imageurl = await ref.getDownloadURL();
-    //   print(
-    //       '////////////////////////////////this a link $imageurl///////////////////////////////////////////////////////');
-    // }
-
-    File? myFile;
-
-    var imagePick = ImagePicker();
-
-    uploadImageProcess() async {
-      var theImageThatIHavePicked =
-          await imagePick.pickImage(source: ImageSource.gallery);
-
-      if (imagePick != null) {
-        var fileName = basename(theImageThatIHavePicked!.path);
-        myFile = File(theImageThatIHavePicked.path);
-
-        var refrenceforMyStorage =
-            FirebaseStorage.instance.ref("mypackges/$fileName");
-
-        await refrenceforMyStorage.putFile(myFile!);
-
-        var Url1 = await refrenceforMyStorage.getDownloadURL();
-        print('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@');
-        print(Url1);
-        CollectionReference addimages =
-            FirebaseFirestore.instance.collection("addpackeges");
-        addimages.add({'URL': Url1});
-      }
-    }
-
-    // Future slecteFile() async {
-    //   final result = await FilePicker.platform.pickFiles();
-    //   if (result == null) return;
-    //   setState(() {
-    //     selectedDirectory = result.files.first;
-    //   });
-    // }
-
     return AlertDialog(
       title: const Text("create your packeg"),
       content: Column(
@@ -93,9 +75,6 @@ class _AddpackegsState extends State<Addpackegs> {
         TextButton(onPressed: uploadImageProcess, child: Text('Select photo')),
         TextButton(
           onPressed: () async {
-            CollectionReference studentRef =
-                FirebaseFirestore.instance.collection("packges");
-            await studentRef.add({'description': descriptionpackeg.text});
             Navigator.of(context).pop();
           },
           child: Container(
