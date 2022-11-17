@@ -17,7 +17,7 @@ class Read_component extends StatelessWidget {
           if (snapshot.hasError) return Text('Error = ${snapshot.error}');
           if (snapshot.hasData) {
             var data = snapshot.data!.data();
-            List<String> images = List.from(data!['packages']);
+            List<String> images = (data!['packages']);
             return ListView.builder(
               itemCount: images.length,
               itemBuilder: (context, index) {

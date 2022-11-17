@@ -31,8 +31,8 @@ class _LoginPageState extends State<LoginPage> {
         width: double.infinity,
         decoration: BoxDecoration(
             gradient: LinearGradient(begin: Alignment.topCenter, colors: [
-          Color.fromARGB(255, 241, 17, 92),
-          Color.fromARGB(255, 247, 90, 142),
+          Color.fromARGB(255, 167, 73, 184),
+          Color.fromARGB(255, 186, 104, 200),
           Color.fromARGB(255, 240, 198, 213)
         ])),
         child: Column(
@@ -97,7 +97,7 @@ class _LoginPageState extends State<LoginPage> {
                               decoration: InputDecoration(
                                   suffixIcon: Icon(
                                     Icons.email,
-                                    color: Colors.pinkAccent,
+                                    color: Color.fromARGB(255, 186, 104, 200),
                                   ),
                                   hintText: "Enter your email",
                                   hintStyle: TextStyle(color: Colors.grey),
@@ -116,7 +116,7 @@ class _LoginPageState extends State<LoginPage> {
                               decoration: InputDecoration(
                                   suffixIcon: Icon(
                                     Icons.lock_person,
-                                    color: Colors.pinkAccent,
+                                    color: Color.fromARGB(255, 186, 104, 200),
                                   ),
                                   hintText: "Enter your Password",
                                   hintStyle: TextStyle(color: Colors.grey),
@@ -172,8 +172,9 @@ class _LoginPageState extends State<LoginPage> {
                         },
                         child: const Text(
                           'Forgot Password',
-                          style:
-                              TextStyle(fontSize: 15, color: Colors.pinkAccent),
+                          style: TextStyle(
+                              fontSize: 15,
+                              color: Color.fromARGB(255, 186, 104, 200)),
                         ),
                       ),
                       Row(
@@ -193,7 +194,7 @@ class _LoginPageState extends State<LoginPage> {
                               style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 15,
-                                  color: Color.fromARGB(255, 240, 110, 153)),
+                                  color: Color.fromARGB(255, 186, 104, 200)),
                             ),
                             onPressed: () {
                               Navigator.push(

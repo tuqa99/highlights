@@ -14,7 +14,7 @@ class ButtonWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
-        backgroundColor: Colors.pink,
+        backgroundColor: Color.fromARGB(255, 186, 104, 200),
         padding: EdgeInsets.symmetric(horizontal: 50, vertical: 14),
         shape: StadiumBorder(),
         // onPrimary: Colors.white,

@@ -19,6 +19,8 @@ class _AddpackegsState extends State<Addpackegs> {
   var imagePick = ImagePicker();
   String? packages;
   String? decs;
+  TextEditingController descriptionpackeg = TextEditingController();
+  TextEditingController imagenet = TextEditingController();
   uploadImageProcess() async {
     var theImageThatIHavePicked =
         await imagePick.pickImage(source: ImageSource.gallery);
@@ -34,13 +36,13 @@ class _AddpackegsState extends State<Addpackegs> {
       print(Url1);
 
       packages = Url1;
-      AddPackages(packages!, decs!);
+      AddPackages(packages!, descriptionpackeg.text.trim());
     }
   }
 
   Future AddPackages(String packages, String decs) async {
     var auth = FirebaseAuth.instance;
-    Map mymap = {decs: packages};
+    Map mymap = {'description': decs, 'packageURL': packages};
     await FirebaseFirestore.instance
         .collection('specialist')
         .doc(auth.currentUser!.uid)
@@ -51,8 +53,6 @@ class _AddpackegsState extends State<Addpackegs> {
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController descriptionpackeg = TextEditingController();
-    TextEditingController imagenet = TextEditingController();
     var auth = FirebaseAuth.instance;
     TextEditingController courseController = TextEditingController();
     PlatformFile? selectedDirectory;

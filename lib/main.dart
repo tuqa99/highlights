@@ -1,13 +1,8 @@
 import "package:flutter/material.dart";
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_settings_screens/flutter_settings_screens.dart';
-import 'package:highlights/UserScreens/allscreens.dart';
 import 'package:highlights/profiledrawer/AccountSettings.dart';
-import 'package:highlights/screens/SignUpSpecialist.dart';
-import 'package:highlights/screens/SplashScreen.dart';
 import 'package:highlights/screens/login.dart';
-import 'package:highlights/screens/specialistList.dart';
-import 'package:highlights/specialist/specialistprofile.dart';
 import 'firebase_options.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';

@@ -270,21 +270,18 @@ class _ContinarprfileState extends State<Continarprfile> {
 }
 
 // edit
-class Continarprfileview extends StatefulWidget {
-  Continarprfileview(
-      {required firstname,
-      required email,
-      // required profilephotpurl,
-      required career});
+class Continarprfileview extends StatelessWidget {
+  Continarprfileview({
+    required this.firstname,
+    required this.email,
+    // required profilephotpurl,
+    // required career,
+  });
   String? firstname;
   String? email;
   // String? profilephotpurl;
-  String? career;
-  @override
-  State<Continarprfileview> createState() => _ContinarprfileviewState();
-}
-
-class _ContinarprfileviewState extends State<Continarprfileview> {
+  // String? career;
+  
   @override
   Widget build(BuildContext context) {
     var collection = FirebaseFirestore.instance.collection('specialist');
@@ -312,7 +309,7 @@ class _ContinarprfileviewState extends State<Continarprfileview> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            '${widget.firstname}',
+                            firstname!,
                             style: TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold,
@@ -322,7 +319,7 @@ class _ContinarprfileviewState extends State<Continarprfileview> {
                             height: 13,
                           ),
                           Text(
-                            '${widget.career}',
+                            "",
                             style: TextStyle(
                                 fontSize: 17,
                                 fontWeight: FontWeight.bold,
@@ -339,7 +336,7 @@ class _ContinarprfileviewState extends State<Continarprfileview> {
                           width: 12,
                         ),
                         Text(
-                          '${widget.email}',
+                          email!,
                           style: TextStyle(
                               fontSize: 15,
                               fontWeight: FontWeight.bold,

@@ -54,7 +54,7 @@ class SpecialistList extends StatelessWidget {
                           MaterialPageRoute(
                             builder: (context) => Specialistprofileforuser(
                               firstname: document['full name'],
-                              email: document['email'], career: '',
+                              email: document['email'],
                               // career: document['service']),
                             ),
                           ));
