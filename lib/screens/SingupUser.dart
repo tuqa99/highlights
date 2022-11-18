@@ -20,7 +20,7 @@ class SignupPageuser extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: true,
       backgroundColor: Colors.white,
       appBar: AppBar(
         elevation: 0,
@@ -40,9 +40,9 @@ class SignupPageuser extends StatelessWidget {
         width: double.infinity,
         decoration: BoxDecoration(
             gradient: LinearGradient(begin: Alignment.topCenter, colors: [
-          Colors.pink.shade500,
-          Colors.pink.shade300,
-          Colors.pink.shade100,
+          Color.fromARGB(255, 186, 104, 200),
+          Color.fromARGB(255, 218, 178, 226),
+          Color.fromARGB(255, 240, 198, 213)
         ])),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -92,7 +92,7 @@ class SignupPageuser extends StatelessWidget {
                             borderRadius: BorderRadius.circular(10),
                             boxShadow: [
                               BoxShadow(
-                                  color: Color.fromRGBO(225, 95, 27, .3),
+                                  color: Color.fromARGB(255, 218, 178, 226),
                                   blurRadius: 20,
                                   offset: Offset(0, 10))
                             ]),
@@ -203,7 +203,7 @@ class SignupPageuser extends StatelessWidget {
                           Text(
                             "Login",
                             style: TextStyle(
-                                color: Colors.pinkAccent,
+                                color: Color.fromARGB(255, 186, 104, 200),
                                 fontWeight: FontWeight.w600,
                                 fontSize: 18),
                           ),

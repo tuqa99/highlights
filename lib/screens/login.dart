@@ -31,8 +31,8 @@ class _LoginPageState extends State<LoginPage> {
         width: double.infinity,
         decoration: BoxDecoration(
             gradient: LinearGradient(begin: Alignment.topCenter, colors: [
-          Color.fromARGB(255, 167, 73, 184),
           Color.fromARGB(255, 186, 104, 200),
+          Color.fromARGB(255, 218, 178, 226),
           Color.fromARGB(255, 240, 198, 213)
         ])),
         child: Column(
@@ -81,7 +81,7 @@ class _LoginPageState extends State<LoginPage> {
                             borderRadius: BorderRadius.circular(10),
                             boxShadow: [
                               BoxShadow(
-                                  color: Color.fromRGBO(225, 95, 27, .3),
+                                  color: Color.fromARGB(255, 218, 178, 226),
                                   blurRadius: 20,
                                   offset: Offset(0, 10))
                             ]),
@@ -173,8 +173,9 @@ class _LoginPageState extends State<LoginPage> {
                         child: const Text(
                           'Forgot Password',
                           style: TextStyle(
-                              fontSize: 15,
-                              color: Color.fromARGB(255, 186, 104, 200)),
+                            fontSize: 15,
+                            color: Color.fromARGB(255, 186, 104, 200),
+                          ),
                         ),
                       ),
                       Row(
@@ -192,9 +193,10 @@ class _LoginPageState extends State<LoginPage> {
                             child: const Text(
                               'Sign Up',
                               style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 15,
-                                  color: Color.fromARGB(255, 186, 104, 200)),
+                                fontWeight: FontWeight.bold,
+                                fontSize: 15,
+                                color: Color.fromARGB(255, 186, 104, 200),
+                              ),
                             ),
                             onPressed: () {
                               Navigator.push(

@@ -33,8 +33,8 @@ class _ResetPasswordState extends State<ResetPassword> {
         width: double.infinity,
         decoration: BoxDecoration(
             gradient: LinearGradient(begin: Alignment.topCenter, colors: [
-          Color.fromARGB(255, 241, 17, 92),
-          Color.fromARGB(255, 247, 90, 142),
+          Color.fromARGB(255, 186, 104, 200),
+          Color.fromARGB(255, 218, 178, 226),
           Color.fromARGB(255, 240, 198, 213)
         ])),
         child: Column(
@@ -84,7 +84,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                               borderRadius: BorderRadius.circular(10),
                               boxShadow: [
                                 BoxShadow(
-                                    color: Color.fromRGBO(225, 95, 27, .3),
+                                    color: Color.fromARGB(255, 218, 178, 226),
                                     blurRadius: 20,
                                     offset: Offset(0, 10))
                               ]),
@@ -100,7 +100,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                                 decoration: InputDecoration(
                                     suffixIcon: Icon(
                                       Icons.email,
-                                      color: Colors.pinkAccent,
+                                      color: Color.fromARGB(255, 186, 104, 200),
                                     ),
                                     hintText:
                                         "Enter your email to reset your password",
@@ -130,7 +130,9 @@ class _ResetPasswordState extends State<ResetPassword> {
                               child: const Text(
                                 'Go back to Log In',
                                 style: TextStyle(
-                                    fontSize: 15, color: Colors.pinkAccent),
+                                  fontSize: 15,
+                                  color: Color.fromARGB(255, 186, 104, 200),
+                                ),
                               ),
                             ),
                             SizedBox(
@@ -150,59 +152,3 @@ class _ResetPasswordState extends State<ResetPassword> {
     );
   }
 }
-//       body: Padding(
-//         padding: const EdgeInsets.all(30),
-//         child: Center(
-//           child: Container(
-//             child: Column(
-//               children: [
-//                 const SizedBox(
-//                   height: 40,
-//                 ),
-//                 Text(
-//                   "Enter your Email to Reset Password",
-//                   style: Theme.of(context).textTheme.headline5!,
-//                 ),
-//                 const SizedBox(
-//                   height: 40,
-//                 ),
-//                 Container(
-//                   padding: EdgeInsets.all(10),
-//                   decoration: BoxDecoration(
-//                       border: Border(
-//                           bottom: BorderSide(color: Colors.grey.shade200))),
-//                   child: TextField(
-                    
-//                     controller: Email,
-//                     decoration: InputDecoration(
-//                       suffixIcon: Icon(
-//                         Icons.email,
-//                         color: Colors.pinkAccent,
-//                       ),
-//                       hintText: "Email",
-//                       hintStyle: TextStyle(color: Colors.grey),
-//                       prefixIcon: const Icon(Icons.email),
-//                       contentPadding:
-//                           EdgeInsets.symmetric(vertical: 0, horizontal: 10),
-//                     ),
-//                   ),
-//                 ),
-
-//                 //------------------------------------------------------------------------------
-
-//                 ElevatedButton(
-//                   style: ElevatedButton.styleFrom(
-//                       backgroundColor: Colors.pink[300]),
-//                   onPressed: () {
-//                     passwordReset();
-//                   },
-//                   child: Text("Set"),
-//                 ),
-//               ],
-//             ),
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }

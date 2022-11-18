@@ -50,7 +50,7 @@ dependencies:
   flutter_settings_screens: ^0.3.3-null-safety+2
   firebase_messaging: ^14.1.0
   firebase_analytics: ^10.0.5
-
+  google_fonts: ^3.0.1
 dev_dependencies:
   flutter_test:
     sdk: flutter

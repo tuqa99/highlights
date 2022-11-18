@@ -2,6 +2,7 @@ import 'dart:collection';
 
 import 'package:flutter/material.dart';
 import 'package:highlights/screens/SingupUser.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:highlights/screens/login.dart';
 import 'package:highlights/screens/signupspecialist.dart';
 import 'package:video_player/video_player.dart';
@@ -76,12 +77,18 @@ class _VideoAppState extends State<VideoApp> {
                       ),
                       child: Column(
                         children: [
+                          SizedBox(
+                            height: 20,
+                          ),
                           Text(
                             "SignUp to ?",
-                            style: TextStyle(
-                                fontSize: 20,
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold),
+                            style: GoogleFonts.playfairDisplay(
+                              textStyle: TextStyle(
+                                  fontSize: 20,
+                                  letterSpacing: .5,
+                                  color: Colors.white70,
+                                  fontWeight: FontWeight.bold),
+                            ),
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -97,31 +104,34 @@ class _VideoAppState extends State<VideoApp> {
                                 child: Column(
                                   children: [
                                     SizedBox(
-                                      height: 40,
-                                    ),
-                                    Image(
-                                      height: 50,
-                                      width: 50,
-                                      image: NetworkImage(
-                                        'https://cdn-icons-png.flaticon.com/128/1057/1057470.png',
-                                      ),
-                                    ),
-                                    SizedBox(
                                       height: 10,
                                     ),
-                                    Text(
-                                      'Find a service',
-                                      style: TextStyle(
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.bold,
-                                          color: Color.fromARGB(
-                                              255, 233, 60, 117)),
-                                    ),
+                                    Container(
+                                      alignment: Alignment.center,
+                                      decoration: BoxDecoration(
+                                          border: Border.all(
+                                            width: 2,
+                                            color: Color.fromARGB(
+                                                255, 186, 104, 200),
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
+                                      width: 120,
+                                      height: 100,
+                                      child: Text(
+                                        'Find services',
+                                        textAlign: TextAlign.center,
+                                        style: GoogleFonts.playfairDisplay(
+                                          textStyle: TextStyle(
+                                              fontSize: 25,
+                                              letterSpacing: .5,
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.white70),
+                                        ),
+                                      ),
+                                    )
                                   ],
                                 ),
-                              ),
-                              SizedBox(
-                                width: 55,
                               ),
                               GestureDetector(
                                 onTap: () {
@@ -133,46 +143,56 @@ class _VideoAppState extends State<VideoApp> {
                                 },
                                 child: Column(
                                   children: [
-                                    Image(
-                                      height: 100,
-                                      width: 100,
-                                      image: NetworkImage(
-                                        'https://cdn-icons-png.flaticon.com/128/4514/4514262.png',
-                                      ),
+                                    SizedBox(
+                                      height: 10,
                                     ),
-                                    Text(
-                                      'Providing service',
-                                      style: TextStyle(
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.bold,
-                                          color: Color.fromARGB(
-                                              255, 233, 60, 117)),
+                                    Container(
+                                      alignment: Alignment.center,
+                                      decoration: BoxDecoration(
+                                          border: Border.all(
+                                            width: 2,
+                                            color: Color.fromARGB(
+                                                255, 186, 104, 200),
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
+                                      width: 120,
+                                      height: 100,
+                                      child: Text(
+                                        'Provide services',
+                                        textAlign: TextAlign.center,
+                                        style: GoogleFonts.playfairDisplay(
+                                          textStyle: TextStyle(
+                                              fontSize: 25,
+                                              letterSpacing: .5,
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.white70),
+                                        ),
+                                      ),
                                     )
                                   ],
                                 ),
                               ),
                             ],
                           ),
-                          SizedBox(
-                            height: 22,
-                          ),
-                          Row(
-                            children: [
-                              TextButton(
-                                  onPressed: () {
-                                    Navigator.push(context, MaterialPageRoute(
-                                      builder: (context) {
-                                        return LoginPage();
-                                      },
-                                    ));
-                                  },
-                                  child: Text(
-                                    'Sign in',
-                                    style: TextStyle(
-                                        color: Color.fromARGB(255, 201, 6, 136),
-                                        fontSize: 22),
-                                  ))
-                            ],
+                          Container(
+                            alignment: Alignment.center,
+                            child: TextButton(
+                                onPressed: () {
+                                  Navigator.push(context, MaterialPageRoute(
+                                    builder: (context) {
+                                      return LoginPage();
+                                    },
+                                  ));
+                                },
+                                child: Text('Sign in',
+                                    style: GoogleFonts.playfairDisplay(
+                                      textStyle: TextStyle(
+                                          letterSpacing: .5,
+                                          color: Color.fromARGB(
+                                              255, 186, 104, 200),
+                                          fontSize: 22),
+                                    ))),
                           )
                         ],
                       ),
