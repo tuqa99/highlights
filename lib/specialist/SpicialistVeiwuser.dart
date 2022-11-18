@@ -8,11 +8,13 @@ class Specialistprofileforuser extends StatelessWidget {
   Specialistprofileforuser({
     required this.firstname,
     required this.email,
+    required this.profilephotpurl,
     // required this.career,
   });
   String? firstname;
   String? email;
   String? career;
+  String? profilephotpurl;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +26,7 @@ class Specialistprofileforuser extends StatelessWidget {
               // career: career,
               email: email,
               firstname: firstname,
-              // profilephotpurl: widget.profilephotpurl,
+              profilephotpurl: profilephotpurl,
             ),
             Padding(
               padding: const EdgeInsets.only(top: 175),

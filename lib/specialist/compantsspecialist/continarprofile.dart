@@ -17,11 +17,10 @@ class Continarprfile extends StatefulWidget {
 
 class _ContinarprfileState extends State<Continarprfile> {
   final admineName = TextEditingController();
-  String firstname = 'Tuqa Omar Abu Dahab';
   final email = TextEditingController();
-  String emaild = '123@123.com';
-  String career = 'makeup artiste';
   final careercontroller = TextEditingController();
+
+  String imageprofileurl = '';
   PlatformFile? selectedDirectory;
 
   Future Uplode() async {
@@ -33,7 +32,17 @@ class _ContinarprfileState extends State<Continarprfile> {
     final storageSnapshot = uploadTask.snapshot;
     final downloadUrl = await storageSnapshot.ref.getDownloadURL();
     print('this a link $downloadUrl');
+    SaveData(downloadUrl);
+    Navigator.of(context).pop();
     return downloadUrl;
+  }
+
+  Future SaveData(String images) async {
+    var auth = FirebaseAuth.instance;
+    await FirebaseFirestore.instance
+        .collection('specialist')
+        .doc(auth.currentUser!.uid)
+        .update({"imageprofileurl": (images)});
   }
 
   Future slecteFile() async {
@@ -61,6 +70,7 @@ class _ContinarprfileState extends State<Continarprfile> {
               var _fname = data!['full name'];
               var _email = data['email'];
               var _service = data['service'];
+              var _profileimage = data['imageprofileurl'];
               // var ab = json.decode(_service).cast().toList();
               return Container(
                 height: 200,
@@ -82,8 +92,7 @@ class _ContinarprfileState extends State<Continarprfile> {
                                         title: const Text("chang your photo"),
                                         content: Container(
                                             child: Image(
-                                          image: FileImage(
-                                              File(selectedDirectory!.path!)),
+                                          image: NetworkImage('$_profileimage'),
                                         )),
                                         actions: <Widget>[
                                           ElevatedButton(
@@ -102,8 +111,8 @@ class _ContinarprfileState extends State<Continarprfile> {
                                   },
                                   child: CircleAvatar(
                                     radius: 40,
-                                    // backgroundImage: FileImage(
-                                    //     File(selectedDirectory!.path!)),
+                                    backgroundImage:
+                                        NetworkImage('$_profileimage'),
                                   ),
                                 ),
                               IconButton(
@@ -274,14 +283,14 @@ class Continarprfileview extends StatelessWidget {
   Continarprfileview({
     required this.firstname,
     required this.email,
-    // required profilephotpurl,
+    required this.profilephotpurl,
     // required career,
   });
   String? firstname;
   String? email;
-  // String? profilephotpurl;
+  String? profilephotpurl;
   // String? career;
-  
+
   @override
   Widget build(BuildContext context) {
     var collection = FirebaseFirestore.instance.collection('specialist');
@@ -300,8 +309,7 @@ class Continarprfileview extends StatelessWidget {
                       children: [
                         CircleAvatar(
                           radius: 40,
-                          // backgroundImage:
-                          //     NetworkImage('${widget.profilephotpurl}'),
+                          backgroundImage: NetworkImage('$profilephotpurl'),
                         ),
                       ],
                     ),

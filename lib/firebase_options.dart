@@ -50,6 +50,7 @@ class DefaultFirebaseOptions {
     projectId: 'highlights-e68cb',
     authDomain: 'highlights-e68cb.firebaseapp.com',
     storageBucket: 'highlights-e68cb.appspot.com',
+    measurementId: 'G-C65BNN4GZ4',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
@@ -66,8 +67,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '862637067519',
     projectId: 'highlights-e68cb',
     storageBucket: 'highlights-e68cb.appspot.com',
-    iosClientId:
-        '862637067519-e8lqb9id66ilprqja2mr17in9c9kq8p5.apps.googleusercontent.com',
+    androidClientId: '862637067519-u6j8nv29i93cjshd78lmvpbk636b0o1u.apps.googleusercontent.com',
+    iosClientId: '862637067519-e8lqb9id66ilprqja2mr17in9c9kq8p5.apps.googleusercontent.com',
     iosBundleId: 'com.example.highlights',
   );
 
@@ -77,8 +78,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '862637067519',
     projectId: 'highlights-e68cb',
     storageBucket: 'highlights-e68cb.appspot.com',
-    iosClientId:
-        '862637067519-e8lqb9id66ilprqja2mr17in9c9kq8p5.apps.googleusercontent.com',
+    androidClientId: '862637067519-u6j8nv29i93cjshd78lmvpbk636b0o1u.apps.googleusercontent.com',
+    iosClientId: '862637067519-e8lqb9id66ilprqja2mr17in9c9kq8p5.apps.googleusercontent.com',
     iosBundleId: 'com.example.highlights',
   );
 }
