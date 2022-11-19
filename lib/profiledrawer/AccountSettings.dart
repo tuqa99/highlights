@@ -3,6 +3,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_settings_screens/flutter_settings_screens.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../screens/login.dart';
 import 'Widget/icon_widget.dart';
 
@@ -34,127 +35,127 @@ class AccountSettings extends StatelessWidget {
     return StreamBuilder(
         stream: FirebaseFirestore.instance.collection('users').snapshots(),
         builder: (context, snapshot) {
-          return Scaffold(
-            appBar: AppBar(
-              title: const Text(
-                "Seetings",
-                style: TextStyle(color: Colors.black),
-              ),
-              titleSpacing: 00.0,
-              centerTitle: true,
-              toolbarHeight: 60.2,
-              toolbarOpacity: 0.8,
-              shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.only(
-                    bottomRight: Radius.circular(25),
-                    bottomLeft: Radius.circular(25)),
-              ),
-              elevation: 0.00,
-              backgroundColor:
-                  Color.fromARGB(255, 225, 223, 224).withOpacity(.6),
-            ),
-            body: SafeArea(
-              child: ListView(
-                padding: EdgeInsets.all(24),
-                children: [
-                  AccountInformation(),
-                  SettingsGroup(
-                    title: '',
-                    children: <Widget>[
-                      //===========================Dark Mode=====================================
+          return SafeArea(
+            child: ListView(
+              padding: EdgeInsets.all(24),
+              children: [
+                AccountInformation(),
+                Divider(
+                  thickness: 2,
+                ),
+                SettingsGroup(
+                  title: 'Dark Mode',
+                  children: <Widget>[
+                    //===========================Dark Mode=====================================
 
-                      SwitchSettingsTile(
-                        title: 'Dark Mode',
-                        settingKey: KeyDarkMode,
-                        leading: IconWidget(
-                          icon: Icons.dark_mode,
-                          color: mycolor,
-                        ),
-                        onChange: (_) {},
+                    SwitchSettingsTile(
+                      title: 'Dark Mode',
+                      settingKey: KeyDarkMode,
+                      leading: IconWidget(
+                        icon: Icons.dark_mode,
+                        color: mycolor,
                       ),
-                    ],
-                  ),
-                  SettingsGroup(
-                    title: 'General',
-                    children: <Widget>[
-                      //===========================AccountDetails=====================================
-
-                      // AccountDetails(),
-
-                      //===========================logout=====================================
-                      SimpleSettingsTile(
-                        title: 'Logout',
-                        leading: IconWidget(
-                          icon: Icons.logout,
-                          color: mycolor,
-                        ),
-                        subtitle: '',
-                        onTap: () {
-                          signOut();
-                        },
+                      onChange: (_) {},
+                    ),
+                  ],
+                ),
+                SettingsGroup(
+                  title: 'General',
+                  children: <Widget>[
+                    //===========================logout=====================================
+                    SimpleSettingsTile(
+                      title: 'Logout',
+                      leading: IconWidget(
+                        icon: Icons.logout,
+                        color: mycolor,
                       ),
-                      //===========================DeleteAccount=====================================
-                      SimpleSettingsTile(
-                        title: 'Delete Account',
-                        leading: IconWidget(
-                          icon: Icons.delete,
-                          color: mycolor,
-                        ),
-                        subtitle: '',
-                        onTap: () {
-                          showDialog(
-                            context: context,
-                            builder: (context) {
-                              return AlertDialog(
-                                  title: Text(
-                                      "Are you sure you want to Delete your Account??"),
-                                  content: const Text(":("),
-                                  actions: <Widget>[
-                                    TextButton(
-                                      onPressed: () {
-                                        Navigator.of(context).pop();
-                                      },
-                                      child: Text("Cancel"),
+                      subtitle: '',
+                      onTap: () {
+                        signOut();
+                      },
+                    ),
+                    //===========================DeleteAccount=====================================
+                    SimpleSettingsTile(
+                      title: 'Delete Account',
+                      leading: IconWidget(
+                        icon: Icons.delete,
+                        color: mycolor,
+                      ),
+                      subtitle: '',
+                      onTap: () {
+                        showDialog(
+                          context: context,
+                          builder: (context) {
+                            return AlertDialog(
+                                title: Text(
+                                    "Are you sure you want to Delete your Account??"),
+                                content: const Text(":("),
+                                actions: <Widget>[
+                                  TextButton(
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                    child: Text("Cancel"),
+                                  ),
+                                  TextButton(
+                                    onPressed: () async {
+                                      var delete = FirebaseAuth
+                                          .instance.currentUser
+                                          ?.delete();
+                                      db.doc(auth!.uid).delete();
+                                      await FirebaseAuth.instance.signOut();
+                                      Navigator.pushReplacement(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  LoginPage()));
+                                    },
+                                    child: Text(
+                                      "Delete my account",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color: mycolor),
                                     ),
-                                    TextButton(
-                                      onPressed: () async {
-                                        var delete = FirebaseAuth
-                                            .instance.currentUser
-                                            ?.delete();
-                                        db.doc(auth!.uid).delete();
-                                        await FirebaseAuth.instance.signOut();
-                                        Navigator.pushReplacement(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    LoginPage()));
-                                      },
-                                      child: Text(
-                                        "Delete my account",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            color: mycolor),
-                                      ),
-                                    )
-                                  ]);
-                            },
-                          );
-                        },
+                                  )
+                                ]);
+                          },
+                        );
+                      },
+                    ),
+                    //===========================inforamtion about the app=====================================
+                    SimpleSettingsTile(
+                      title: 'Info',
+                      leading: IconWidget(
+                        icon: Icons.info_outline_rounded,
+                        color: mycolor,
                       ),
-                      //===========================inforamtion about the app=====================================
-                      SimpleSettingsTile(
-                        title: 'Info',
-                        leading: IconWidget(
-                          icon: Icons.info_outline_rounded,
-                          color: mycolor,
-                        ),
-                        subtitle: '',
-                        onTap: () {},
-                      ),
-                    ],
-                  ),
-                ],
-              ),
+                      subtitle: '',
+                      onTap: () {
+                        showDialog(
+                          context: context,
+                          builder: (context) {
+                            return AlertDialog(
+                                title: Text("This App was created by: "),
+                                content: const Text(
+                                    "\n Bayan Swalhah \n Sara Al-Massimi \n Tuqa Abu Dahab \n Amer Melhem"),
+                                actions: <Widget>[
+                                  TextButton(
+                                    onPressed: () async {},
+                                    child: Text(
+                                      "Ok",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color: mycolor),
+                                    ),
+                                  )
+                                ]);
+                          },
+                        );
+                      },
+                    ),
+                  ],
+                ),
+              ],
             ),
           );
         });
@@ -182,34 +183,62 @@ class _AccountInformationState extends State<AccountInformation> {
 
         if (snapshot.hasData) {
           var data = snapshot.data!.data();
-          var _fname = data!['first name'];
+          var _flname = data!['full name'];
           var _lname = data['last name'];
           var _email = data['email'];
           var _phone = data['phone number'];
-          return Card(
-            shape: BeveledRectangleBorder(
-              borderRadius: BorderRadius.circular(10.0),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+          return Container(
+            width: 250,
+            height: 200,
+            child: Column(
               children: [
+                SizedBox(
+                  height: 20,
+                ),
                 CircleAvatar(
                   radius: 50,
                   backgroundImage: AssetImage("images/profile.jpg"),
                 ),
-                Column(
-                  children: [
-                    Container(
-                        alignment: Alignment.bottomCenter,
-                        child: Text("Name: $_fname $_lname")),
-                    Container(
-                        alignment: Alignment.bottomCenter,
-                        child: Text("Email: $_email ")),
-                    Container(
-                        alignment: Alignment.bottomCenter,
-                        child: Text("Phone:$_phone ")),
-                  ],
+                Container(
+                  alignment: Alignment.bottomCenter,
+                  child: Text(
+                    "$_flname",
+                    style: GoogleFonts.lato(
+                      textStyle: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: .5),
+                    ),
+                  ),
                 ),
+                SizedBox(
+                  height: 7,
+                ),
+                Container(
+                    alignment: Alignment.bottomCenter,
+                    child: Text(
+                      " $_email ",
+                      style: GoogleFonts.lato(
+                        textStyle: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            letterSpacing: .5),
+                      ),
+                    )),
+                SizedBox(
+                  height: 7,
+                ),
+                Container(
+                    alignment: Alignment.bottomCenter,
+                    child: Text(
+                      "$_phone ",
+                      style: GoogleFonts.lato(
+                        textStyle: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            letterSpacing: .5),
+                      ),
+                    )),
               ],
             ),
           );

@@ -6,6 +6,10 @@ import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
+import '../../chat/messages.dart';
+import '../../chat/new_message.dart';
+import '../../screens/chat_screen.dart';
+
 class Continarprfile extends StatefulWidget {
   const Continarprfile({super.key});
 
@@ -390,78 +394,59 @@ class Continarprfileview extends StatelessWidget {
     return FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
       builder: (context, snapshot) {
         return Container(
-          height: 200,
+          height: 300,
           color: Color.fromARGB(255, 250, 91, 165),
-          child: Padding(
-            padding: const EdgeInsets.all(30),
-            child: Column(
-              children: [
-                Row(
-                  children: [
-                    Column(
-                      children: [
-                        CircleAvatar(
-                          radius: 40,
-                          backgroundImage: NetworkImage('$profilephotpurl'),
-                        ),
-                      ],
-                    ),
-                    Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            firstname!,
-                            style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white),
-                          ),
-                          SizedBox(
-                            height: 13,
-                          ),
-                          Text(
-                            "",
-                            style: TextStyle(
-                                fontSize: 17,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white),
-                          ),
-                        ]),
-                    SizedBox(
-                      height: 13,
-                    ),
-                    Row(
-                      children: [
-                        Icon(Icons.email, color: Colors.white),
-                        SizedBox(
-                          width: 12,
-                        ),
-                        Text(
-                          email!,
-                          style: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white),
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    RatingBarIndicator(
-                      rating: 4.75,
-                      itemBuilder: (context, index) => Icon(
-                        Icons.star,
-                        color: Colors.amber,
-                      ),
-                      itemCount: 5,
-                      itemSize: 25.0,
-                      direction: Axis.horizontal,
-                    ),
-                  ],
-                )
-              ],
-            ),
+          child: Column(
+            children: [
+              CircleAvatar(
+                radius: 40,
+                backgroundImage: NetworkImage('$profilephotpurl'),
+              ),
+              Text(
+                firstname!,
+                style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white),
+              ),
+              Row(
+                children: [
+                  SizedBox(
+                    width: 70,
+                  ),
+                  Icon(Icons.email, color: Colors.white),
+                  SizedBox(
+                    width: 12,
+                  ),
+                  Text(
+                    email!,
+                    style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white),
+                  ),
+                  IconButton(
+                      onPressed: () {
+                        Navigator.push(context, MaterialPageRoute(
+                          builder: (context) {
+                            return ChatScreen();
+                          },
+                        ));
+                      },
+                      icon: Icon(Icons.chat_bubble))
+                ],
+              ),
+              RatingBarIndicator(
+                rating: 4.75,
+                itemBuilder: (context, index) => Icon(
+                  Icons.star,
+                  color: Colors.amber,
+                ),
+                itemCount: 5,
+                itemSize: 25.0,
+                direction: Axis.horizontal,
+              ),
+            ],
           ),
         );
       },
