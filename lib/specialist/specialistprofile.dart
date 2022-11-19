@@ -40,14 +40,6 @@ class _SpecialistprofileforeditState extends State<Specialistprofileforedit> {
     });
   }
 
-  // Future deletfile() async {
-  //   final path = 'files/${selectedDirectory!.path!}';
-  //   final file = File(selectedDirectory!.path!);
-  //   final ref = FirebaseStorage.instance.ref().child(path);
-
-  //   await ref.delete();
-  // }
-
   final admineName = TextEditingController();
   String firstname = 'Tuqa Omar Abu Dahab';
   final email = TextEditingController();
@@ -57,19 +49,10 @@ class _SpecialistprofileforeditState extends State<Specialistprofileforedit> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        drawer: Drawer(
+          child: AccountSpecial(),
+        ),
         appBar: AppBar(
-          leading: IconButton(
-              onPressed: () {
-                Navigator.push(context, MaterialPageRoute(
-                  builder: (context) {
-                    return AccountSpecial();
-                  },
-                ));
-              },
-              icon: Icon(
-                Icons.settings,
-                color: Colors.black,
-              )),
           title: const Text(
             "Specialist",
             style: TextStyle(color: Colors.black),
