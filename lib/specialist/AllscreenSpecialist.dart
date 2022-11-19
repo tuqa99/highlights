@@ -1,19 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:highlights/UserScreens/userProfile/profile.dart';
 import 'package:highlights/screens/chat_screen.dart';
+import 'package:highlights/specialist/specialistprofile.dart';
 import 'package:sliding_clipped_nav_bar/sliding_clipped_nav_bar.dart';
-import 'AppBar/FirstPage.dart';
-import 'Appointments.dart';
-import 'HomePageComp/HomePage.dart';
 
-class MainPage extends StatefulWidget {
-  const MainPage({Key? key}) : super(key: key);
+class SpecialistMain extends StatefulWidget {
+  const SpecialistMain({Key? key}) : super(key: key);
 
   @override
-  _MainPageState createState() => _MainPageState();
+  _SpecialistMainState createState() => _SpecialistMainState();
 }
 
-class _MainPageState extends State<MainPage> {
+class _SpecialistMainState extends State<SpecialistMain> {
   late PageController _pageController;
   int selectedIndex = 0;
   @override
@@ -59,10 +57,6 @@ class _MainPageState extends State<MainPage> {
             icon: Icons.chat,
             title: 'Chat',
           ),
-          BarItem(
-            icon: Icons.person,
-            title: 'Profile',
-          ),
         ],
       ),
     );
@@ -73,7 +67,6 @@ class _MainPageState extends State<MainPage> {
 // icons size: 30 for MaterialIcons
 
 List<Widget> _listOfWidget = <Widget>[
-  NewHome(),
+  Specialistprofileforedit(),
   ChatScreen(),
-  UserProfile(),
 ];
