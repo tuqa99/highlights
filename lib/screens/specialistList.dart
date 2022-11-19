@@ -7,6 +7,12 @@ import 'package:highlights/specialist/SpicialistVeiwuser.dart';
 class SpecialistList extends StatefulWidget {
   SpecialistList(this.CollectionName);
   String? CollectionName;
+
+  @override
+  State<SpecialistList> createState() => _SpecialistsListState();
+}
+
+class _SpecialistsListState extends State<SpecialistList> {
   @override
   Widget build(BuildContext context) {
     final color = Theme.of(context).colorScheme.primary;
@@ -140,28 +146,28 @@ class SpecialistList extends StatefulWidget {
                                   color: Color(0xff880e4f),
                                 ),
                               ),
-                            ),
-                            const SizedBox(
-                              height: 5,
-                            ),
-                            RatingBar.builder(
-                              itemSize: 20,
-                              initialRating: 3,
-                              minRating: 1,
-                              direction: Axis.horizontal,
-                              allowHalfRating: false,
-                              itemCount: 5,
-                              itemPadding:
-                                  const EdgeInsets.symmetric(horizontal: 4.0),
-                              itemBuilder: (context, _) {
-                                return const Icon(
+                              const SizedBox(
+                                height: 5,
+                              ),
+                              RatingBarIndicator(
+                                itemSize: 21,
+                                rating: double.parse("${document['rating']}"),
+                                itemBuilder: (context, index) => const Icon(
                                   Icons.star,
                                   color: Color(0xffbc477b),
-                                );
-                              },
-                              onRatingUpdate: (value) {},
-                            ),
-                          ],
+                                ),
+                              ),
+                              SizedBox(
+                                height: 5,
+                              ),
+                              TextButton(
+                                  onPressed: () async {
+                                    await updatte(document);
+                                  },
+                                  child: Text("Rate us",
+                                      style: TextStyle(color: Colors.black)))
+                            ],
+                          ),
                         )),
                   );
                 }),

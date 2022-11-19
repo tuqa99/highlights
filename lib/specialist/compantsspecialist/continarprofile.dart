@@ -81,40 +81,38 @@ class _ContinarprfileState extends State<Continarprfile> {
                         children: [
                           Column(
                             children: [
-                              // if (selectedDirectory != null)
-                              GestureDetector(
-                                onTap: () {
-                                  showDialog(
-                                    context: context,
-                                    builder: (ctx) => AlertDialog(
-                                      title: const Text("chang your photo"),
-                                      content: Container(
-                                          child: Image(
-                                        image: NetworkImage('$_profileimage'),
-                                      )),
-                                      actions: <Widget>[
-                                        ElevatedButton(
-                                            onPressed: slecteFile,
-                                            child: Text('select photo')),
-                                        TextButton(
-                                          onPressed: Uplode,
-                                          child: Container(
-                                            padding: const EdgeInsets.all(14),
-                                            child: const Text("Update"),
+                              if (selectedDirectory != null)
+                                GestureDetector(
+                                  onTap: () {
+                                    showDialog(
+                                      context: context,
+                                      builder: (ctx) => AlertDialog(
+                                        title: const Text("chang your photo"),
+                                        content: Container(
+                                            child: Image(
+                                          image: NetworkImage('$_profileimage'),
+                                        )),
+                                        actions: <Widget>[
+                                          ElevatedButton(
+                                              onPressed: slecteFile,
+                                              child: Text('select photo')),
+                                          TextButton(
+                                            onPressed: Uplode,
+                                            child: Container(
+                                              padding: const EdgeInsets.all(14),
+                                              child: const Text("Update"),
+                                            ),
                                           ),
-                                        ),
-                                      ],
-                                    ),
-                                  );
-                                },
-                                child: CircleAvatar(
-                                  radius: 40,
-                                  backgroundImage: _profileimage != null
-                                      ? NetworkImage('$_profileimage')
-                                      : NetworkImage(
-                                          'https://media.istockphoto.com/id/587805156/vector/profile-picture-vector-illustration.jpg?s=612x612&w=0&k=20&c=gkvLDCgsHH-8HeQe7JsjhlOY6vRBJk_sKW9lyaLgmLo='),
+                                        ],
+                                      ),
+                                    );
+                                  },
+                                  child: CircleAvatar(
+                                    radius: 40,
+                                    backgroundImage:
+                                        NetworkImage('$_profileimage'),
+                                  ),
                                 ),
-                              ),
                               IconButton(
                                   onPressed: () {
                                     showDialog(
@@ -192,6 +190,22 @@ class _ContinarprfileState extends State<Continarprfile> {
                                       context: context,
                                       builder: (ctx) => AlertDialog(
                                         title: const Text("chang your career"),
+                                        // content: ListView.builder(
+                                        //   itemCount: ab.length,
+                                        //   itemBuilder: (context, index) {
+                                        //     return ListView(
+                                        //       children: [
+                                        //         ListTile(
+                                        //           title: Text(ab[0]),
+                                        //         )
+                                        //       ],
+                                        //     );
+                                        //   },
+                                        // ),
+                                        // content: Container(
+                                        //     child: TextField(
+                                        //   controller: careercontroller,
+                                        // )),
                                         actions: <Widget>[
                                           TextButton(
                                             onPressed: () {
@@ -322,12 +336,56 @@ class Continarprfileview extends StatelessWidget {
       FirebaseFirestore.instance.collection('specialist');
 
   // String? career;
-  double? rating;
+
   @override
   Widget build(BuildContext context) {
-    var collection = FirebaseFirestore.instance.collection('specialist');
+    Future<void> updatte([DocumentSnapshot? myDoc]) async {
+      if (myDoc != null) {
+        rating = myDoc['rating'];
+      }
+      await showModalBottomSheet(
+          isScrollControlled: true,
+          context: context,
+          builder: (BuildContext ctx) {
+            return Padding(
+              padding: EdgeInsets.only(
+                  top: 20,
+                  left: 20,
+                  right: 20,
+                  bottom: MediaQuery.of(ctx).viewInsets.bottom + 20),
+              child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    TextField(
+                      keyboardType:
+                          const TextInputType.numberWithOptions(decimal: true),
+                      controller: rating,
+                      decoration: const InputDecoration(labelText: 'rating'),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    ElevatedButton(
+                      child: const Text('Add'),
+                      onPressed: () async {
+                        final double? myrating = double.tryParse(rating.text);
+                        if (myrating != null) {
+                          await collection
+                              .doc(myDoc!.id)
+                              .update({'rating': myrating});
+                          rating.text = '';
+                        }
+                      },
+                    )
+                  ]),
+            );
+          });
+    }
+
     return FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
       builder: (context, snapshot) {
+
         return Container(
           height: 200,
           color: Color.fromARGB(255, 250, 91, 165),
@@ -387,26 +445,16 @@ class Continarprfileview extends StatelessWidget {
                     SizedBox(
                       height: 10,
                     ),
-                    RatingBar.builder(
-                      itemSize: 20,
-                      initialRating: 0,
-                      minRating: 1,
-                      direction: Axis.horizontal,
-                      allowHalfRating: false,
+                 
+                    RatingBarIndicator(
+                      rating: 4.75,
+                      itemBuilder: (context, index) => Icon(
+                        Icons.star,
+                        color: Colors.amber,
+                      ),
                       itemCount: 5,
-                      itemPadding: const EdgeInsets.symmetric(horizontal: 4.0),
-                      itemBuilder: (context, _) {
-                        return const Icon(
-                          Icons.star,
-                          color: Colors.orange,
-                        );
-                      },
-                      onRatingUpdate: (value) async {
-                        int count = 0;
-                        count++;
-                        rating = value;
-                        await collection.add({'rating': rating});
-                      },
+                      itemSize: 25.0,
+                      direction: Axis.horizontal,
                     ),
                   ],
                 )
