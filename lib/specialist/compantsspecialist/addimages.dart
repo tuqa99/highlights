@@ -36,7 +36,10 @@ class _addimagesState extends State<addimages> {
       var Url1 = await refrenceforMyStorage.getDownloadURL();
       print('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@');
       print(Url1);
-
+      images.add(Url1);
+      SaveData(images);
+    } else {
+      var Url1 = 'add new work';
       images.add(Url1);
       SaveData(images);
     }

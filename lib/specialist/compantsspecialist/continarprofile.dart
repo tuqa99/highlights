@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -83,38 +81,40 @@ class _ContinarprfileState extends State<Continarprfile> {
                         children: [
                           Column(
                             children: [
-                              if (selectedDirectory != null)
-                                GestureDetector(
-                                  onTap: () {
-                                    showDialog(
-                                      context: context,
-                                      builder: (ctx) => AlertDialog(
-                                        title: const Text("chang your photo"),
-                                        content: Container(
-                                            child: Image(
-                                          image: NetworkImage('$_profileimage'),
-                                        )),
-                                        actions: <Widget>[
-                                          ElevatedButton(
-                                              onPressed: slecteFile,
-                                              child: Text('select photo')),
-                                          TextButton(
-                                            onPressed: Uplode,
-                                            child: Container(
-                                              padding: const EdgeInsets.all(14),
-                                              child: const Text("Update"),
-                                            ),
+                              // if (selectedDirectory != null)
+                              GestureDetector(
+                                onTap: () {
+                                  showDialog(
+                                    context: context,
+                                    builder: (ctx) => AlertDialog(
+                                      title: const Text("chang your photo"),
+                                      content: Container(
+                                          child: Image(
+                                        image: NetworkImage('$_profileimage'),
+                                      )),
+                                      actions: <Widget>[
+                                        ElevatedButton(
+                                            onPressed: slecteFile,
+                                            child: Text('select photo')),
+                                        TextButton(
+                                          onPressed: Uplode,
+                                          child: Container(
+                                            padding: const EdgeInsets.all(14),
+                                            child: const Text("Update"),
                                           ),
-                                        ],
-                                      ),
-                                    );
-                                  },
-                                  child: CircleAvatar(
-                                    radius: 40,
-                                    backgroundImage:
-                                        NetworkImage('$_profileimage'),
-                                  ),
+                                        ),
+                                      ],
+                                    ),
+                                  );
+                                },
+                                child: CircleAvatar(
+                                  radius: 40,
+                                  backgroundImage: _profileimage != null
+                                      ? NetworkImage('$_profileimage')
+                                      : NetworkImage(
+                                          'https://media.istockphoto.com/id/587805156/vector/profile-picture-vector-illustration.jpg?s=612x612&w=0&k=20&c=gkvLDCgsHH-8HeQe7JsjhlOY6vRBJk_sKW9lyaLgmLo='),
                                 ),
+                              ),
                               IconButton(
                                   onPressed: () {
                                     showDialog(
@@ -192,22 +192,6 @@ class _ContinarprfileState extends State<Continarprfile> {
                                       context: context,
                                       builder: (ctx) => AlertDialog(
                                         title: const Text("chang your career"),
-                                        // content: ListView.builder(
-                                        //   itemCount: ab.length,
-                                        //   itemBuilder: (context, index) {
-                                        //     return ListView(
-                                        //       children: [
-                                        //         ListTile(
-                                        //           title: Text(ab[0]),
-                                        //         )
-                                        //       ],
-                                        //     );
-                                        //   },
-                                        // ),
-                                        // content: Container(
-                                        //     child: TextField(
-                                        //   controller: careercontroller,
-                                        // )),
                                         actions: <Widget>[
                                           TextButton(
                                             onPressed: () {
@@ -278,6 +262,50 @@ class _ContinarprfileState extends State<Continarprfile> {
   }
 }
 
+// class ContainerProfileView extends StatefulWidget {
+//   ContainerProfileView({
+//     required this.firstname,
+//     required this.email,
+//     required this.profilephotpurl,
+//     // required career,
+//   });
+//   String? firstname;
+//   String? email;
+//   String? profilephotpurl;
+//   double? rating;
+//   CollectionReference collection =
+//       FirebaseFirestore.instance.collection('specialist');
+
+//   Future<void> updatte([DocumentSnapshot? myDoc]) async {
+//     if (myDoc != null) {
+//       rating = myDoc['rating'];
+//     }
+//     await showModalBottomSheet(
+//         isScrollControlled: true,
+//         context: context,
+//         builder: (BuildContext ctx) {
+//           return Padding(
+//               padding: EdgeInsets.only(
+//                   top: 20,
+//                   left: 20,
+//                   right: 20,
+//                   bottom: MediaQuery.of(ctx).viewInsets.bottom + 20),child: Column(children: [
+
+//                   ]),);
+//         });
+//   }
+
+//   @override
+//   State<ContainerProfileView> createState() => _ContainerProfileViewState();
+// }
+
+// class _ContainerProfileViewState extends State<ContainerProfileView> {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container();
+//   }
+// }
+
 // edit
 class Continarprfileview extends StatelessWidget {
   Continarprfileview({
@@ -289,12 +317,15 @@ class Continarprfileview extends StatelessWidget {
   String? firstname;
   String? email;
   String? profilephotpurl;
+  TextEditingController rating = TextEditingController();
+  CollectionReference collection =
+      FirebaseFirestore.instance.collection('specialist');
+
   // String? career;
   double? rating;
   @override
   Widget build(BuildContext context) {
-    CollectionReference collection =
-        FirebaseFirestore.instance.collection('specialist');
+    var collection = FirebaseFirestore.instance.collection('specialist');
     return FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
       builder: (context, snapshot) {
         return Container(

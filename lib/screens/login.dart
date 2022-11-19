@@ -29,7 +29,7 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       body: Container(
         width: double.infinity,
-        decoration: BoxDecoration(
+        decoration:const  BoxDecoration(
             gradient: LinearGradient(begin: Alignment.topCenter, colors: [
           Color.fromARGB(255, 186, 104, 200),
           Color.fromARGB(255, 218, 178, 226),
@@ -38,14 +38,14 @@ class _LoginPageState extends State<LoginPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(
+            const SizedBox(
               height: 80,
             ),
             Padding(
               padding: EdgeInsets.all(20),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
+                children: const[
                   Text(
                     "Login",
                     style: TextStyle(fontSize: 40, color: Colors.white),
@@ -62,24 +62,24 @@ class _LoginPageState extends State<LoginPage> {
             ),
             Expanded(
                 child: Container(
-              decoration: BoxDecoration(
+              decoration:const BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(60),
                     topRight: Radius.circular(60),
                   )),
               child: Padding(
-                  padding: EdgeInsets.all(20),
+                  padding:const EdgeInsets.all(20),
                   child: SingleChildScrollView(
                     child: Column(children: [
-                      SizedBox(
+                      const SizedBox(
                         height: 40,
                       ),
                       Container(
                         decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(10),
-                            boxShadow: [
+                            boxShadow:const [
                               BoxShadow(
                                   color: Color.fromARGB(255, 218, 178, 226),
                                   blurRadius: 20,
@@ -87,14 +87,14 @@ class _LoginPageState extends State<LoginPage> {
                             ]),
                         child: Column(children: [
                           Container(
-                            padding: EdgeInsets.all(10),
+                            padding:const EdgeInsets.all(10),
                             decoration: BoxDecoration(
                                 border: Border(
                                     bottom: BorderSide(
                                         color: Colors.grey.shade200))),
                             child: TextField(
                               controller: nameController,
-                              decoration: InputDecoration(
+                              decoration:const InputDecoration(
                                   suffixIcon: Icon(
                                     Icons.email,
                                     color: Color.fromARGB(255, 186, 104, 200),
@@ -113,7 +113,7 @@ class _LoginPageState extends State<LoginPage> {
                             child: TextField(
                               obscureText: true,
                               controller: passwordController,
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                   suffixIcon: Icon(
                                     Icons.lock_person,
                                     color: Color.fromARGB(255, 186, 104, 200),
@@ -125,7 +125,7 @@ class _LoginPageState extends State<LoginPage> {
                           )
                         ]),
                       ),
-                      SizedBox(
+                     const SizedBox(
                         height: 40,
                       ),
                       ButtonWidget(
@@ -159,7 +159,7 @@ class _LoginPageState extends State<LoginPage> {
                           }
                         },
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 40,
                       ),
                       TextButton(
@@ -213,7 +213,7 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
+                        children:const [
                           Text(
                             '0r Login using ',
                             style: TextStyle(
@@ -221,14 +221,14 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                         ],
                       ),
-                      SizedBox(
+                     const SizedBox(
                         height: 25,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           GestureDetector(
-                            child: Image(
+                            child:const Image(
                                 height: 30,
                                 width: 30,
                                 image: NetworkImage(
@@ -249,17 +249,17 @@ class _LoginPageState extends State<LoginPage> {
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) {
-                                    return HomePage();
+                                    return const HomePage();
                                   },
                                 ),
                               );
                             },
                           ),
-                          SizedBox(
+                         const SizedBox(
                             width: 50,
                           ),
                           GestureDetector(
-                            child: Image(
+                            child:const Image(
                                 height: 30,
                                 width: 30,
                                 image: NetworkImage(
