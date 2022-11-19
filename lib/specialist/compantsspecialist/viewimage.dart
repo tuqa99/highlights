@@ -8,8 +8,8 @@ class Viewimages extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     User? auth = FirebaseAuth.instance.currentUser;
-    final doc_id = auth!.uid;
-    var ref = FirebaseFirestore.instance.collection('specialist').doc(doc_id);
+    final docId = auth!.uid;
+    var ref = FirebaseFirestore.instance.collection('specialist').doc(docId);
     return FutureBuilder(
       future: ref.get(),
       builder: (context, snapshot) {
@@ -37,7 +37,7 @@ class Viewimages extends StatelessWidget {
                               var collection = FirebaseFirestore.instance
                                   .collection('specialist');
 
-                              collection.doc(doc_id).update({
+                              collection.doc(docId).update({
                                 'url': FieldValue.arrayRemove([images[index]])
                               });
                             },
@@ -54,7 +54,7 @@ class Viewimages extends StatelessWidget {
             );
           }
         }
-        return Center(child: CircularProgressIndicator());
+        return const Center(child: CircularProgressIndicator());
       },
     );
   }
