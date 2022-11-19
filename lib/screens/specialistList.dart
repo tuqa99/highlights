@@ -115,6 +115,7 @@ class _SpecialistsListState extends State<SpecialistList> {
                             builder: (context) => Specialistprofileforuser(
                               firstname: document['full name'],
                               email: document['email'], profilephotpurl: '',
+                              
 
                               // career: document['service']),
                             ),

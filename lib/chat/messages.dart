@@ -18,6 +18,7 @@ class Messages extends StatelessWidget {
               'createdAt',
               descending: true,
             )
+            // .where('userId', isEqualTo: docId)
             .snapshots(),
         builder: (context, AsyncSnapshot chatSnapshot) {
           if (chatSnapshot.connectionState == ConnectionState.waiting &&

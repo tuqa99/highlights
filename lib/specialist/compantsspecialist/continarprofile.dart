@@ -328,8 +328,10 @@ class Continarprfileview extends StatelessWidget {
     required this.firstname,
     required this.email,
     required this.profilephotpurl,
+    this.specialistId
     // required career,
   });
+  String ?specialistId;
   String? firstname;
   String? email;
   String? profilephotpurl;
