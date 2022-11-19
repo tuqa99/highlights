@@ -62,6 +62,8 @@ class _SpecialistsListState extends State<SpecialistList> {
                     TextButton(
                         onPressed: () async {
                           final int myrating = rating!;
+                          int counter = 0;
+                          counter += myrating;
                           if (myrating != null) {
                             await ref
                                 .doc(myDoc!.id)
@@ -115,7 +117,6 @@ class _SpecialistsListState extends State<SpecialistList> {
                             builder: (context) => Specialistprofileforuser(
                               firstname: document['full name'],
                               email: document['email'], profilephotpurl: '',
-                              
 
                               // career: document['service']),
                             ),
