@@ -327,6 +327,7 @@ Future addUserInfo(
     'location': location,
     'phone number': phoneNumber,
     'service': selectedService!,
+    'rating': 0,
   });
   if (selectedService.contains("HairCut")) {
     await FirebaseFirestore.instance
@@ -340,6 +341,7 @@ Future addUserInfo(
       'location': location,
       'phone number': phoneNumber,
       'service': 'Hair Cut',
+      'rating': 0
     });
   }
   if (selectedService.contains("Coloring")) {
@@ -354,6 +356,7 @@ Future addUserInfo(
       'location': location,
       'phone number': phoneNumber,
       'service': 'Coloring',
+      'rating': 0
     });
   }
   if (selectedService.contains("Styling")) {
@@ -368,6 +371,7 @@ Future addUserInfo(
       'location': location,
       'phone number': phoneNumber,
       'service': 'Styling',
+      'rating': 0
     });
   }
   if (selectedService.contains("Extensions")) {
@@ -382,6 +386,7 @@ Future addUserInfo(
       'location': location,
       'phone number': phoneNumber,
       'service': 'Extensions',
+      'rating': 0
     });
   }
   if (selectedService.contains("Nails")) {
@@ -396,6 +401,7 @@ Future addUserInfo(
       'location': location,
       'phone number': phoneNumber,
       'service': 'Nails',
+      'rating': 0
     });
   }
   if (selectedService.contains("Facials")) {
@@ -410,6 +416,7 @@ Future addUserInfo(
       'location': location,
       'phone number': phoneNumber,
       'service': 'Facials',
+      'rating': 0
     });
   }
   if (selectedService.contains("MakeUp")) {
@@ -424,6 +431,7 @@ Future addUserInfo(
       'location': location,
       'phone number': phoneNumber,
       'service': 'Make Up',
+      'rating': 0
     });
   }
   if (selectedService.contains("Photography")) {
@@ -438,6 +446,7 @@ Future addUserInfo(
       'location': location,
       'phone number': phoneNumber,
       'service': 'Photography',
+      'rating': 0
     });
   }
 }

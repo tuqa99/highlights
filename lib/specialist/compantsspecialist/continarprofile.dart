@@ -290,10 +290,11 @@ class Continarprfileview extends StatelessWidget {
   String? email;
   String? profilephotpurl;
   // String? career;
-
+  double? rating;
   @override
   Widget build(BuildContext context) {
-    var collection = FirebaseFirestore.instance.collection('specialist');
+    CollectionReference collection =
+        FirebaseFirestore.instance.collection('specialist');
     return FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
       builder: (context, snapshot) {
         return Container(
@@ -355,15 +356,26 @@ class Continarprfileview extends StatelessWidget {
                     SizedBox(
                       height: 10,
                     ),
-                    RatingBarIndicator(
-                      rating: 4.75,
-                      itemBuilder: (context, index) => Icon(
-                        Icons.star,
-                        color: Colors.amber,
-                      ),
-                      itemCount: 5,
-                      itemSize: 25.0,
+                    RatingBar.builder(
+                      itemSize: 20,
+                      initialRating: 0,
+                      minRating: 1,
                       direction: Axis.horizontal,
+                      allowHalfRating: false,
+                      itemCount: 5,
+                      itemPadding: const EdgeInsets.symmetric(horizontal: 4.0),
+                      itemBuilder: (context, _) {
+                        return const Icon(
+                          Icons.star,
+                          color: Colors.orange,
+                        );
+                      },
+                      onRatingUpdate: (value) async {
+                        int count = 0;
+                        count++;
+                        rating = value;
+                        await collection.add({'rating': rating});
+                      },
                     ),
                   ],
                 )
