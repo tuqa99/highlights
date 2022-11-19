@@ -20,7 +20,7 @@ class _ContinarprfileState extends State<Continarprfile> {
 
   String imageprofileurl = '';
   PlatformFile? selectedDirectory;
-
+  String? downloadUrl;
   Future Uplode() async {
     final path = 'test/${selectedDirectory!.name}';
     final file = File(selectedDirectory!.path!);
@@ -28,9 +28,9 @@ class _ContinarprfileState extends State<Continarprfile> {
     ref.putFile(file);
     UploadTask uploadTask = ref.putFile(file);
     final storageSnapshot = uploadTask.snapshot;
-    final downloadUrl = await storageSnapshot.ref.getDownloadURL();
+    downloadUrl = await storageSnapshot.ref.getDownloadURL();
     print('this a link $downloadUrl');
-    SaveData(downloadUrl);
+    SaveData(downloadUrl!);
     Navigator.of(context).pop();
     return downloadUrl;
   }
@@ -112,7 +112,7 @@ class _ContinarprfileState extends State<Continarprfile> {
                                   backgroundImage: _profileimage != null
                                       ? NetworkImage('$_profileimage')
                                       : NetworkImage(
-                                          'https://media.istockphoto.com/id/587805156/vector/profile-picture-vector-illustration.jpg?s=612x612&w=0&k=20&c=gkvLDCgsHH-8HeQe7JsjhlOY6vRBJk_sKW9lyaLgmLo='),
+                                          'https://media.istockphoto.com/id/1223671392/vector/default-profile-picture-avatar-photo-placeholder-vector-illustration.jpg?s=612x612&w=0&k=20&c=s0aTdmT5aU6b8ot7VKm11DeID6NctRCpB755rA1BIP0='),
                                 ),
                               ),
                               IconButton(
@@ -192,6 +192,22 @@ class _ContinarprfileState extends State<Continarprfile> {
                                       context: context,
                                       builder: (ctx) => AlertDialog(
                                         title: const Text("chang your career"),
+                                        // content: ListView.builder(
+                                        //   itemCount: ab.length,
+                                        //   itemBuilder: (context, index) {
+                                        //     return ListView(
+                                        //       children: [
+                                        //         ListTile(
+                                        //           title: Text(ab[0]),
+                                        //         )
+                                        //       ],
+                                        //     );
+                                        //   },
+                                        // ),
+                                        // content: Container(
+                                        //     child: TextField(
+                                        //   controller: careercontroller,
+                                        // )),
                                         actions: <Widget>[
                                           TextButton(
                                             onPressed: () {
