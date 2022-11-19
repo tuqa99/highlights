@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -278,6 +276,50 @@ class _ContinarprfileState extends State<Continarprfile> {
   }
 }
 
+// class ContainerProfileView extends StatefulWidget {
+//   ContainerProfileView({
+//     required this.firstname,
+//     required this.email,
+//     required this.profilephotpurl,
+//     // required career,
+//   });
+//   String? firstname;
+//   String? email;
+//   String? profilephotpurl;
+//   double? rating;
+//   CollectionReference collection =
+//       FirebaseFirestore.instance.collection('specialist');
+
+//   Future<void> updatte([DocumentSnapshot? myDoc]) async {
+//     if (myDoc != null) {
+//       rating = myDoc['rating'];
+//     }
+//     await showModalBottomSheet(
+//         isScrollControlled: true,
+//         context: context,
+//         builder: (BuildContext ctx) {
+//           return Padding(
+//               padding: EdgeInsets.only(
+//                   top: 20,
+//                   left: 20,
+//                   right: 20,
+//                   bottom: MediaQuery.of(ctx).viewInsets.bottom + 20),child: Column(children: [
+
+//                   ]),);
+//         });
+//   }
+
+//   @override
+//   State<ContainerProfileView> createState() => _ContainerProfileViewState();
+// }
+
+// class _ContainerProfileViewState extends State<ContainerProfileView> {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container();
+//   }
+// }
+
 // edit
 class Continarprfileview extends StatelessWidget {
   Continarprfileview({
@@ -289,13 +331,61 @@ class Continarprfileview extends StatelessWidget {
   String? firstname;
   String? email;
   String? profilephotpurl;
+  TextEditingController rating = TextEditingController();
+  CollectionReference collection =
+      FirebaseFirestore.instance.collection('specialist');
+
   // String? career;
 
   @override
   Widget build(BuildContext context) {
-    var collection = FirebaseFirestore.instance.collection('specialist');
+    Future<void> updatte([DocumentSnapshot? myDoc]) async {
+      if (myDoc != null) {
+        rating = myDoc['rating'];
+      }
+      await showModalBottomSheet(
+          isScrollControlled: true,
+          context: context,
+          builder: (BuildContext ctx) {
+            return Padding(
+              padding: EdgeInsets.only(
+                  top: 20,
+                  left: 20,
+                  right: 20,
+                  bottom: MediaQuery.of(ctx).viewInsets.bottom + 20),
+              child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    TextField(
+                      keyboardType:
+                          const TextInputType.numberWithOptions(decimal: true),
+                      controller: rating,
+                      decoration: const InputDecoration(labelText: 'rating'),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    ElevatedButton(
+                      child: const Text('Add'),
+                      onPressed: () async {
+                        final double? myrating = double.tryParse(rating.text);
+                        if (myrating != null) {
+                          await collection
+                              .doc(myDoc!.id)
+                              .update({'rating': myrating});
+                          rating.text = '';
+                        }
+                      },
+                    )
+                  ]),
+            );
+          });
+    }
+
     return FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
       builder: (context, snapshot) {
+
         return Container(
           height: 200,
           color: Color.fromARGB(255, 250, 91, 165),
@@ -355,6 +445,7 @@ class Continarprfileview extends StatelessWidget {
                     SizedBox(
                       height: 10,
                     ),
+                 
                     RatingBarIndicator(
                       rating: 4.75,
                       itemBuilder: (context, index) => Icon(

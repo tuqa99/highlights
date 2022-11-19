@@ -76,22 +76,22 @@ class Categories extends StatelessWidget {
                   Navigator.push(context, MaterialPageRoute(builder: (context) {
                     if (categories1[index]["text"] == "HairCut") {
                       return SpecialistList(
-                        CollectionName: "HairCut",
+                         "HairCut",
                       );
                     }
                     if (categories1[index]["text"] == "Coloring") {
                       return SpecialistList(
-                        CollectionName: "Coloring",
+                        "Coloring",
                       );
                     }
                     if (categories1[index]["text"] == "Styling") {
                       return SpecialistList(
-                        CollectionName: "Styling",
+                       "Styling",
                       );
                     }
 
                     return SpecialistList(
-                      CollectionName: "Extensions",
+                     "Extensions",
                     );
                   }));
                 },
@@ -119,21 +119,21 @@ class Categories extends StatelessWidget {
                     builder: (context) {
                       if (categories2[index]["text"] == "Nails") {
                         return SpecialistList(
-                          CollectionName: "Nails",
+                           "Nails",
                         );
                       }
                       if (categories2[index]["text"] == "Facials") {
                         return SpecialistList(
-                          CollectionName: "Facials",
+                           "Facials",
                         );
                       }
                       if (categories2[index]["text"] == "MakeUp") {
                         return SpecialistList(
-                          CollectionName: "MakeUp",
+                           "MakeUp",
                         );
                       }
                       return SpecialistList(
-                        CollectionName: "Photography",
+                         "Photography",
                       );
                     },
                   ));
