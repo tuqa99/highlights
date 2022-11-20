@@ -18,13 +18,15 @@ class _SpecialistsListState extends State<SpecialistList> {
     final color = Theme.of(context).colorScheme.primary;
     int? rating;
 
+    List allRatings = [];
+    double? ava;
+
     CollectionReference ref =
         FirebaseFirestore.instance.collection(widget.CollectionName!);
+
     var documents = ref.get();
     Future<void> updatte([DocumentSnapshot? myDoc]) async {
-      if (myDoc != null) {
-        rating = myDoc['rating'];
-      }
+      if (myDoc != null) {}
       await showModalBottomSheet(
           isScrollControlled: true,
           context: context,
@@ -61,13 +63,31 @@ class _SpecialistsListState extends State<SpecialistList> {
                     ),
                     TextButton(
                         onPressed: () async {
+                          double sumRating = 0;
                           final int myrating = rating!;
+                          List sumlist = [];
+                          sumlist.add(myrating);
+
+                          // for (var i = 0; i < rating.length; i++) {
+                          //   sumRating += rating[i];
+                          // }
+
+                          // var average = (sumRating / rating.length);
+                          // print(average);
+                          // print(rating);
                           if (myrating != null) {
-                            await ref
-                                .doc(myDoc!.id)
-                                .update({'rating': myrating});
+                            await ref.doc(myDoc!.id).update(
+                                {'rating': FieldValue.arrayUnion(sumlist)});
+
                             // rating. = myrating;
                           }
+                          int length = allRatings.length;
+                          double sum = 0;
+                          for (int i = 0; i < allRatings.length; i++) {
+                            sum += allRatings[i];
+                          }
+                          ava = sum / length;
+
                           Navigator.pop(context);
                         },
                         child: Text("Submit"))
@@ -151,7 +171,7 @@ class _SpecialistsListState extends State<SpecialistList> {
                               ),
                               RatingBarIndicator(
                                 itemSize: 21,
-                                rating: double.parse("${document['rating']}"),
+                                rating: ava!,
                                 itemBuilder: (context, index) => const Icon(
                                   Icons.star,
                                   color: Color(0xffbc477b),
@@ -163,6 +183,7 @@ class _SpecialistsListState extends State<SpecialistList> {
                               TextButton(
                                   onPressed: () async {
                                     await updatte(document);
+                                    allRatings = document['rating'];
                                   },
                                   child: Text("Rate us",
                                       style: TextStyle(color: Colors.black)))
@@ -172,6 +193,7 @@ class _SpecialistsListState extends State<SpecialistList> {
                   );
                 }),
               );
+              //  double.parse("${document['rating']}")
             }
             return Center(
               child: CircularProgressIndicator(),
