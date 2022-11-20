@@ -1,5 +1,6 @@
 import 'dart:io';
 import "package:flutter/material.dart";
+import 'package:highlights/screens/chat_screen.dart';
 import 'compantsspecialist/continarprofile.dart';
 import 'compantsspecialist/read.dart';
 import 'compantsspecialist/viewimage.dart';
@@ -25,6 +26,10 @@ class Specialistprofileforuser extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        floatingActionButton: FloatingActionButton(onPressed: () {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => ChatScreen()));
+        }),
         appBar: AppBar(backgroundColor: Color.fromARGB(255, 202, 68, 255)),
         body: Stack(
           children: [

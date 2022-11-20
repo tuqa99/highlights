@@ -446,18 +446,7 @@ class _ContainerProfileViewState extends State<Continarprfileview> {
     return StreamBuilder<QuerySnapshot>(
       stream: documents,
       builder: (context, snapshot) {
-        print("=====================================");
-        print(widget.CollectionName);
-
-        print(widget.index);
-        print(widget.email);
-        print(widget.profilephotpurl);
-        print(widget.firstname);
-
-        print("=====================================");
-
         DocumentSnapshot document = snapshot.data!.docs[widget.index!];
-
         return Container(
           height: 300,
           color: Color.fromARGB(255, 250, 91, 165),

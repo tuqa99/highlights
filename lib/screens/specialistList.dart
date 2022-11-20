@@ -134,7 +134,7 @@ class _SpecialistsListState extends State<SpecialistList> {
                   );
                 }),
               );
-              //  double.parse("${document['rating']}")
+              
             }
             return Center(
               child: CircularProgressIndicator(),
