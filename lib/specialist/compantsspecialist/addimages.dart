@@ -58,13 +58,12 @@ class _addimagesState extends State<addimages> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: const Text("chang your photo"),
+      title: const Text("add images of your work"),
       actions: <Widget>[
-        TextButton(
+        ElevatedButton(
           onPressed: uploadImageProcess,
           child: Container(
-            padding: const EdgeInsets.all(14),
-            child: const Text("Upadte"),
+            child: const Text("add"),
           ),
         ),
         ElevatedButton(

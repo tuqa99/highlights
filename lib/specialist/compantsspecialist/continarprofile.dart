@@ -6,6 +6,10 @@ import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
+import '../../chat/messages.dart';
+import '../../chat/new_message.dart';
+import '../../screens/chat_screen.dart';
+
 class Continarprfile extends StatefulWidget {
   const Continarprfile({super.key});
 
@@ -20,7 +24,7 @@ class _ContinarprfileState extends State<Continarprfile> {
 
   String imageprofileurl = '';
   PlatformFile? selectedDirectory;
-
+  String? downloadUrl;
   Future Uplode() async {
     final path = 'test/${selectedDirectory!.name}';
     final file = File(selectedDirectory!.path!);
@@ -28,9 +32,9 @@ class _ContinarprfileState extends State<Continarprfile> {
     ref.putFile(file);
     UploadTask uploadTask = ref.putFile(file);
     final storageSnapshot = uploadTask.snapshot;
-    final downloadUrl = await storageSnapshot.ref.getDownloadURL();
+    downloadUrl = await storageSnapshot.ref.getDownloadURL();
     print('this a link $downloadUrl');
-    SaveData(downloadUrl);
+    SaveData(downloadUrl!);
     Navigator.of(context).pop();
     return downloadUrl;
   }
@@ -103,15 +107,17 @@ class _ContinarprfileState extends State<Continarprfile> {
                                               child: const Text("Update"),
                                             ),
                                           ),
-                                        ],
-                                      ),
-                                    );
-                                  },
-                                  child: CircleAvatar(
-                                    radius: 40,
-                                    backgroundImage:
-                                        NetworkImage('$_profileimage'),
-                                  ),
+                                        ),
+                                      ],
+                                    ),
+                                  );
+                                },
+                                child: CircleAvatar(
+                                  radius: 40,
+                                  backgroundImage: _profileimage != null
+                                      ? NetworkImage('$_profileimage')
+                                      : NetworkImage(
+                                          'https://media.istockphoto.com/id/587805156/vector/profile-picture-vector-illustration.jpg?s=612x612&w=0&k=20&c=gkvLDCgsHH-8HeQe7JsjhlOY6vRBJk_sKW9lyaLgmLo='),
                                 ),
                               IconButton(
                                   onPressed: () {
@@ -190,22 +196,6 @@ class _ContinarprfileState extends State<Continarprfile> {
                                       context: context,
                                       builder: (ctx) => AlertDialog(
                                         title: const Text("chang your career"),
-                                        // content: ListView.builder(
-                                        //   itemCount: ab.length,
-                                        //   itemBuilder: (context, index) {
-                                        //     return ListView(
-                                        //       children: [
-                                        //         ListTile(
-                                        //           title: Text(ab[0]),
-                                        //         )
-                                        //       ],
-                                        //     );
-                                        //   },
-                                        // ),
-                                        // content: Container(
-                                        //     child: TextField(
-                                        //   controller: careercontroller,
-                                        // )),
                                         actions: <Widget>[
                                           TextButton(
                                             onPressed: () {
@@ -387,7 +377,7 @@ class Continarprfileview extends StatelessWidget {
       builder: (context, snapshot) {
 
         return Container(
-          height: 200,
+          height: 300,
           color: Color.fromARGB(255, 250, 91, 165),
           child: Padding(
             padding: const EdgeInsets.all(30),
@@ -445,7 +435,6 @@ class Continarprfileview extends StatelessWidget {
                     SizedBox(
                       height: 10,
                     ),
-                 
                     RatingBarIndicator(
                       rating: 4.75,
                       itemBuilder: (context, index) => Icon(

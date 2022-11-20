@@ -40,14 +40,6 @@ class _SpecialistprofileforeditState extends State<Specialistprofileforedit> {
     });
   }
 
-  // Future deletfile() async {
-  //   final path = 'files/${selectedDirectory!.path!}';
-  //   final file = File(selectedDirectory!.path!);
-  //   final ref = FirebaseStorage.instance.ref().child(path);
-
-  //   await ref.delete();
-  // }
-
   final admineName = TextEditingController();
   String firstname = 'Tuqa Omar Abu Dahab';
   final email = TextEditingController();
@@ -57,19 +49,10 @@ class _SpecialistprofileforeditState extends State<Specialistprofileforedit> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        drawer: Drawer(
+          child: AccountSpecial(),
+        ),
         appBar: AppBar(
-          leading: IconButton(
-              onPressed: () {
-                Navigator.push(context, MaterialPageRoute(
-                  builder: (context) {
-                    return AccountSpecial();
-                  },
-                ));
-              },
-              icon: Icon(
-                Icons.settings,
-                color: Colors.black,
-              )),
           title: const Text(
             "Specialist",
             style: TextStyle(color: Colors.black),
@@ -99,69 +82,62 @@ class _SpecialistprofileforeditState extends State<Specialistprofileforedit> {
                     borderRadius: BorderRadius.only(
                         topRight: Radius.circular(30),
                         topLeft: Radius.circular(30))),
-                child: SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Row(
-                      children: [
-                        Column(
+                child: Column(
+                  children: [
+                    ElevatedButton(
+                        onPressed: () {
+                          showDialog(
+                              context: context, builder: (ctx) => addimages());
+                        },
+                        child: Text('add images')),
+                    SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
                           children: [
+                            // Column(
+                            //   children: [
+                            //     Row(
+                            //       children: [
+                            //         SizedBox(
+                            //           width: 55,
+                            //         ),
+                            //         Text(
+                            //           'My packeges',
+                            //           style: TextStyle(
+                            //               color: Colors.black,
+                            //               fontSize: 18,
+                            //               fontWeight: FontWeight.bold),
+                            //         ),
+                            //         IconButton(
+                            //             onPressed: () {
+                            //               showDialog(
+                            //                   context: context,
+                            //                   builder: (ctx) => Addpackegs());
+                            //             },
+                            //             icon: const Icon(Icons.add))
+                            //       ],
+                            //     ),
+                            //     SizedBox(
+                            //       height: 18,
+                            //     ),
+                            //     Container(
+                            //       height: 300,
+                            //       width: 300,
+                            //       child: Read_component(),
+                            //     ),
+                            //     Divider(
+                            //       thickness: 3,
+                            //       height: 6,
+                            //       color: Colors.grey,
+                            //     ),
+                            //   ],
+                            // ),
+
                             Row(
                               children: [
                                 SizedBox(
                                   width: 55,
                                 ),
-                                Text(
-                                  'My packeges',
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                IconButton(
-                                    onPressed: () {
-                                      showDialog(
-                                          context: context,
-                                          builder: (ctx) => Addpackegs());
-                                    },
-                                    icon: const Icon(Icons.add))
-                              ],
-                            ),
-                            SizedBox(
-                              height: 18,
-                            ),
-                            Container(
-                              height: 300,
-                              width: 300,
-                              child: Read_component(),
-                            ),
-                            Divider(
-                              thickness: 3,
-                              height: 6,
-                              color: Colors.grey,
-                            ),
-                          ],
-                        ),
-                        Column(
-                          children: [
-                            Row(
-                              children: [
-                                SizedBox(
-                                  width: 55,
-                                ),
-                                Text(
-                                  'My work',
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                IconButton(
-                                    onPressed: () {
-                                      showDialog(
-                                          context: context,
-                                          builder: (ctx) => addimages());
-                                    },
-                                    icon: const Icon(Icons.add))
                               ],
                             ),
                             SizedBox(
@@ -178,9 +154,9 @@ class _SpecialistprofileforeditState extends State<Specialistprofileforedit> {
                               color: Colors.grey,
                             ),
                           ],
-                        ),
-                      ],
-                    )),
+                        )),
+                  ],
+                ),
               ),
             ),
             Divider(
