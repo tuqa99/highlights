@@ -18,82 +18,24 @@ class _SpecialistsListState extends State<SpecialistList> {
     final color = Theme.of(context).colorScheme.primary;
     int? rating;
 
-    List allRatings = [];
-    double? ava;
-
     CollectionReference ref =
         FirebaseFirestore.instance.collection(widget.CollectionName!);
 
-    var documents = ref.get();
-    Future<void> updatte([DocumentSnapshot? myDoc]) async {
-      if (myDoc != null) {}
-      await showModalBottomSheet(
-          isScrollControlled: true,
-          context: context,
-          builder: (BuildContext ctx) {
-            return Padding(
-              padding: EdgeInsets.only(
-                  top: 20,
-                  left: 20,
-                  right: 20,
-                  bottom: MediaQuery.of(ctx).viewInsets.bottom + 20),
-              child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    RatingBar.builder(
-                      itemSize: 20,
-                      initialRating: 3,
-                      minRating: 1,
-                      direction: Axis.horizontal,
-                      allowHalfRating: false,
-                      itemCount: 5,
-                      itemPadding: const EdgeInsets.symmetric(horizontal: 4.0),
-                      itemBuilder: (context, _) {
-                        return const Icon(
-                          Icons.star,
-                          color: Color(0xffbc477b),
-                        );
-                      },
-                      onRatingUpdate: (value) {
-                        setState(() {
-                          rating = value.toInt();
-                        });
-                      },
-                    ),
-                    TextButton(
-                        onPressed: () async {
-                          double sumRating = 0;
-                          final int myrating = rating!;
-                          List sumlist = [];
-                          sumlist.add(myrating);
-
-                          // for (var i = 0; i < rating.length; i++) {
-                          //   sumRating += rating[i];
-                          // }
-
-                          // var average = (sumRating / rating.length);
-                          // print(average);
-                          // print(rating);
-                          if (myrating != null) {
-                            await ref.doc(myDoc!.id).update(
-                                {'rating': FieldValue.arrayUnion(sumlist)});
-
-                            // rating. = myrating;
-                          }
-                          int length = allRatings.length;
-                          double sum = 0;
-                          for (int i = 0; i < allRatings.length; i++) {
-                            sum += allRatings[i];
-                          }
-                          ava = sum / length;
-
-                          Navigator.pop(context);
-                        },
-                        child: Text("Submit"))
-                  ]),
-            );
-          });
+    var documents = ref.snapshots();
+    ratingAva(DocumentSnapshot document) {
+      List allRatings = document['rating'];
+      int length = allRatings.length;
+      if (length > 1) {
+        length = length - 1;
+      }
+      int sum = 0;
+      print(length);
+      for (int i = 0; i < allRatings.length; i++) {
+        int index = allRatings[i];
+        sum += index;
+      }
+      double ava = sum / length;
+      return ava;
     }
 
     return Scaffold(
@@ -117,8 +59,8 @@ class _SpecialistsListState extends State<SpecialistList> {
         ),
         backgroundColor: Color.fromARGB(255, 154, 53, 104).withOpacity(.6),
       ),
-      body: FutureBuilder<QuerySnapshot>(
-          future: documents,
+      body: StreamBuilder<QuerySnapshot>(
+          stream: documents,
           builder: (context, AsyncSnapshot snapshot) {
             // print(snapshot.data);
             if (snapshot.hasData) {
@@ -126,70 +68,69 @@ class _SpecialistsListState extends State<SpecialistList> {
                 crossAxisCount: 2,
                 children: List.generate(snapshot.data!.docs.length, (index) {
                   DocumentSnapshot document = snapshot.data!.docs[index];
-
+                  ratingAva(document);
+                  print(ratingAva(document));
                   return InkWell(
                     onTap: (() {
+                      // print(ratingAva());
+
                       Navigator.push(
                           context,
                           MaterialPageRoute(
                             builder: (context) => Specialistprofileforuser(
                               firstname: document['full name'],
                               email: document['email'], profilephotpurl: '',
+                              CollectionName: widget.CollectionName,
+                              index: index,
 
                               // career: document['service']),
                             ),
                           ));
                     }),
                     child: Container(
-                        margin: const EdgeInsets.all(10),
-                        child: SingleChildScrollView(
-                          child: Column(
-                            children: [
-                              Container(
-                                width: double.infinity,
-                                margin: const EdgeInsets.only(top: 5),
-                                // height: 110,
-                                child: const Image(
-                                  height: 100,
-                                  image: AssetImage("images/avatar.webp"),
-                                  fit: BoxFit.contain,
-                                ),
+                      margin: const EdgeInsets.all(10),
+                      child: SingleChildScrollView(
+                        child: Column(
+                          children: [
+                            Container(
+                              width: double.infinity,
+                              margin: const EdgeInsets.only(top: 5),
+                              // height: 110,
+                              child: const Image(
+                                height: 100,
+                                image: AssetImage("images/avatar.webp"),
+                                fit: BoxFit.contain,
                               ),
-                              const SizedBox(
-                                height: 5,
+                            ),
+                            const SizedBox(
+                              height: 5,
+                            ),
+                            Text(
+                              document['full name']!,
+                              style: TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold,
+                                color: Color(0xff880e4f),
                               ),
-                              Text(
-                                document['full name']!,
-                                style: TextStyle(
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.bold,
-                                  color: Color(0xff880e4f),
-                                ),
+                            ),
+                            const SizedBox(
+                              height: 5,
+                            ),
+                            RatingBarIndicator(
+                              itemSize: 21,
+                              rating: ratingAva(document),
+                              itemBuilder: (context, index) => const Icon(
+                                Icons.star,
+                                color: Color(0xffbc477b),
                               ),
-                              const SizedBox(
-                                height: 5,
-                              ),
-                              RatingBarIndicator(
-                                itemSize: 21,
-                                rating: ava!,
-                                itemBuilder: (context, index) => const Icon(
-                                  Icons.star,
-                                  color: Color(0xffbc477b),
-                                ),
-                              ),
-                              SizedBox(
-                                height: 5,
-                              ),
-                              TextButton(
-                                  onPressed: () async {
-                                    await updatte(document);
-                                    allRatings = document['rating'];
-                                  },
-                                  child: Text("Rate us",
-                                      style: TextStyle(color: Colors.black)))
-                            ],
-                          ),
-                        )),
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
                   );
                 }),
               );

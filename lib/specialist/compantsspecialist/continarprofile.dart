@@ -85,27 +85,26 @@ class _ContinarprfileState extends State<Continarprfile> {
                         children: [
                           Column(
                             children: [
-                              if (selectedDirectory != null)
-                                GestureDetector(
-                                  onTap: () {
-                                    showDialog(
-                                      context: context,
-                                      builder: (ctx) => AlertDialog(
-                                        title: const Text("chang your photo"),
-                                        content: Container(
-                                            child: Image(
-                                          image: NetworkImage('$_profileimage'),
-                                        )),
-                                        actions: <Widget>[
-                                          ElevatedButton(
-                                              onPressed: slecteFile,
-                                              child: Text('select photo')),
-                                          TextButton(
-                                            onPressed: Uplode,
-                                            child: Container(
-                                              padding: const EdgeInsets.all(14),
-                                              child: const Text("Update"),
-                                            ),
+                              // if (selectedDirectory != null)
+                              GestureDetector(
+                                onTap: () {
+                                  showDialog(
+                                    context: context,
+                                    builder: (ctx) => AlertDialog(
+                                      title: const Text("chang your photo"),
+                                      content: Container(
+                                          child: Image(
+                                        image: NetworkImage('$_profileimage'),
+                                      )),
+                                      actions: <Widget>[
+                                        ElevatedButton(
+                                            onPressed: slecteFile,
+                                            child: Text('select photo')),
+                                        TextButton(
+                                          onPressed: Uplode,
+                                          child: Container(
+                                            padding: const EdgeInsets.all(14),
+                                            child: const Text("Update"),
                                           ),
                                         ),
                                       ],
@@ -117,8 +116,9 @@ class _ContinarprfileState extends State<Continarprfile> {
                                   backgroundImage: _profileimage != null
                                       ? NetworkImage('$_profileimage')
                                       : NetworkImage(
-                                          'https://media.istockphoto.com/id/587805156/vector/profile-picture-vector-illustration.jpg?s=612x612&w=0&k=20&c=gkvLDCgsHH-8HeQe7JsjhlOY6vRBJk_sKW9lyaLgmLo='),
+                                          'https://media.istockphoto.com/id/1223671392/vector/default-profile-picture-avatar-photo-placeholder-vector-illustration.jpg?s=612x612&w=0&k=20&c=s0aTdmT5aU6b8ot7VKm11DeID6NctRCpB755rA1BIP0='),
                                 ),
+                              ),
                               IconButton(
                                   onPressed: () {
                                     showDialog(
@@ -196,6 +196,22 @@ class _ContinarprfileState extends State<Continarprfile> {
                                       context: context,
                                       builder: (ctx) => AlertDialog(
                                         title: const Text("chang your career"),
+                                        // content: ListView.builder(
+                                        //   itemCount: ab.length,
+                                        //   itemBuilder: (context, index) {
+                                        //     return ListView(
+                                        //       children: [
+                                        //         ListTile(
+                                        //           title: Text(ab[0]),
+                                        //         )
+                                        //       ],
+                                        //     );
+                                        //   },
+                                        // ),
+                                        // content: Container(
+                                        //     child: TextField(
+                                        //   controller: careercontroller,
+                                        // )),
                                         actions: <Widget>[
                                           TextButton(
                                             onPressed: () {
@@ -311,28 +327,59 @@ class _ContinarprfileState extends State<Continarprfile> {
 // }
 
 // edit
-class Continarprfileview extends StatelessWidget {
+
+class Continarprfileview extends StatefulWidget {
   Continarprfileview({
     required this.firstname,
     required this.email,
     required this.profilephotpurl,
+    required this.CollectionName,
+    required this.index,
+
     // required career,
   });
+  String? CollectionName;
   String? firstname;
   String? email;
   String? profilephotpurl;
+  int? index;
   TextEditingController rating = TextEditingController();
   CollectionReference collection =
       FirebaseFirestore.instance.collection('specialist');
 
-  // String? career;
+  @override
+  State<Continarprfileview> createState() => _ContainerProfileViewState();
 
+  // String? career;
+}
+
+class _ContainerProfileViewState extends State<Continarprfileview> {
   @override
   Widget build(BuildContext context) {
-    Future<void> updatte([DocumentSnapshot? myDoc]) async {
-      if (myDoc != null) {
-        rating = myDoc['rating'];
+    int? rating;
+
+    CollectionReference ref =
+        FirebaseFirestore.instance.collection(widget.CollectionName!);
+
+    var documents = ref.snapshots();
+    ratingAva(DocumentSnapshot document) {
+      List allRatings = document['rating'];
+      int length = allRatings.length;
+      if (length > 1) {
+        length = length - 1;
       }
+      int sum = 0;
+      print(length);
+      for (int i = 0; i < allRatings.length; i++) {
+        int index = allRatings[i];
+        sum += index;
+      }
+      double ava = sum / length;
+      return ava;
+    }
+
+    Future<void> updatte([DocumentSnapshot? myDoc]) async {
+      if (myDoc != null) {}
       await showModalBottomSheet(
           isScrollControlled: true,
           context: context,
@@ -347,108 +394,140 @@ class Continarprfileview extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    TextField(
-                      keyboardType:
-                          const TextInputType.numberWithOptions(decimal: true),
-                      controller: rating,
-                      decoration: const InputDecoration(labelText: 'rating'),
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    ElevatedButton(
-                      child: const Text('Add'),
-                      onPressed: () async {
-                        final double? myrating = double.tryParse(rating.text);
-                        if (myrating != null) {
-                          await collection
-                              .doc(myDoc!.id)
-                              .update({'rating': myrating});
-                          rating.text = '';
-                        }
+                    RatingBar.builder(
+                      itemSize: 20,
+                      initialRating: 3,
+                      minRating: 1,
+                      direction: Axis.horizontal,
+                      allowHalfRating: false,
+                      itemCount: 5,
+                      itemPadding: const EdgeInsets.symmetric(horizontal: 4.0),
+                      itemBuilder: (context, _) {
+                        return const Icon(
+                          Icons.star,
+                          color: Color(0xffbc477b),
+                        );
                       },
-                    )
+                      onRatingUpdate: (value) {
+                        setState(() {
+                          rating = value.toInt();
+                        });
+                      },
+                    ),
+                    TextButton(
+                        onPressed: () async {
+                          double sumRating = 0;
+                          final int myrating = rating!;
+                          List sumlist = [];
+                          sumlist.add(myrating);
+
+                          // for (var i = 0; i < rating.length; i++) {
+                          //   sumRating += rating[i];
+                          // }
+
+                          // var average = (sumRating / rating.length);
+                          // print(average);
+                          // print(rating);
+                          if (myrating != null) {
+                            await ref.doc(myDoc!.id).update(
+                                {'rating': FieldValue.arrayUnion(sumlist)});
+
+                            // rating. = myrating;
+                          }
+
+                          Navigator.pop(context);
+                        },
+                        child: Text("Submit"))
                   ]),
             );
           });
     }
 
-    return FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
+    return StreamBuilder<QuerySnapshot>(
+      stream: documents,
       builder: (context, snapshot) {
+        print("=====================================");
+        print(widget.CollectionName);
+
+        print(widget.index);
+        print(widget.email);
+        print(widget.profilephotpurl);
+        print(widget.firstname);
+
+        print("=====================================");
+
+        DocumentSnapshot document = snapshot.data!.docs[widget.index!];
 
         return Container(
           height: 300,
           color: Color.fromARGB(255, 250, 91, 165),
-          child: Padding(
-            padding: const EdgeInsets.all(30),
-            child: Column(
-              children: [
-                Row(
-                  children: [
-                    Column(
-                      children: [
-                        CircleAvatar(
-                          radius: 40,
-                          backgroundImage: NetworkImage('$profilephotpurl'),
-                        ),
-                      ],
-                    ),
-                    Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            firstname!,
-                            style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white),
-                          ),
-                          SizedBox(
-                            height: 13,
-                          ),
-                          Text(
-                            "",
-                            style: TextStyle(
-                                fontSize: 17,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white),
-                          ),
-                        ]),
-                    SizedBox(
-                      height: 13,
-                    ),
-                    Row(
-                      children: [
-                        Icon(Icons.email, color: Colors.white),
-                        SizedBox(
-                          width: 12,
-                        ),
-                        Text(
-                          email!,
-                          style: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white),
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    RatingBarIndicator(
-                      rating: 4.75,
-                      itemBuilder: (context, index) => Icon(
-                        Icons.star,
-                        color: Colors.amber,
-                      ),
-                      itemCount: 5,
-                      itemSize: 25.0,
-                      direction: Axis.horizontal,
-                    ),
-                  ],
-                )
-              ],
-            ),
+          child: Column(
+            children: [
+              CircleAvatar(
+                radius: 40,
+                backgroundImage: NetworkImage(
+                    'https://tse2.mm.bing.net/th?id=OIP.Hxzx1qKwcGv4KY4rUXEoFgHaFj&pid=Api&P=0'),
+              ),
+              Text(
+                "${widget.firstname}",
+                style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white),
+              ),
+              Row(
+                children: [
+                  SizedBox(
+                    width: 70,
+                  ),
+                  Icon(Icons.email, color: Colors.white),
+                  SizedBox(
+                    width: 12,
+                  ),
+                  Text(
+                    "${widget.email}",
+                    style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white),
+                  ),
+                  IconButton(
+                      onPressed: () {
+                        Navigator.push(context, MaterialPageRoute(
+                          builder: (context) {
+                            return ChatScreen();
+                          },
+                        ));
+                      },
+                      icon: Icon(Icons.chat_bubble))
+                ],
+              ),
+              RatingBarIndicator(
+                itemSize: 21,
+                rating: ratingAva(document),
+                itemBuilder: (context, index) => const Icon(
+                  Icons.star,
+                  color: Colors.amber,
+                ),
+              ),
+              SizedBox(
+                height: 5,
+              ),
+              Center(
+                child: TextButton(
+                  style: TextButton.styleFrom(
+                    backgroundColor: Colors.white,
+                  ),
+                  onPressed: () async {
+                    await updatte(document);
+                  },
+                  child: Text(
+                    "Rate us",
+                    style: TextStyle(color: Colors.black),
+                  ),
+                ),
+              )
+            ],
           ),
         );
       },

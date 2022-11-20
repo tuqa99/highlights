@@ -9,12 +9,18 @@ class Specialistprofileforuser extends StatelessWidget {
     required this.firstname,
     required this.email,
     required this.profilephotpurl,
+        required this.CollectionName,
+    required this.index,
+
     // required this.career,
   });
   String? firstname;
   String? email;
   String? career;
   String? profilephotpurl;
+    String? CollectionName;
+    int? index;
+
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +33,8 @@ class Specialistprofileforuser extends StatelessWidget {
               email: email,
               firstname: firstname,
               profilephotpurl: profilephotpurl,
+              CollectionName: CollectionName,
+              index: index,
             ),
             Padding(
               padding: const EdgeInsets.only(top: 175),
