@@ -484,7 +484,11 @@ class _ContainerProfileViewState extends State<Continarprfileview> {
                       onPressed: () {
                         Navigator.push(context, MaterialPageRoute(
                           builder: (context) {
-                            return ChatScreen();
+                            return ChatScreen(
+                              email: widget.email,
+                              name: widget.firstname,
+                              docid: document.id,
+                            );
                           },
                         ));
                       },

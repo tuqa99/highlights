@@ -23,8 +23,10 @@ class SearchTextField extends StatelessWidget {
           Text(
             'Search for a specialist Or a Catergory',
             style: GoogleFonts.lato(
-                textStyle:
-                    TextStyle(fontWeight: FontWeight.bold, letterSpacing: .5)),
+                textStyle: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: .5,
+                    color: Colors.black)),
           ),
           IconButton(
               onPressed: () {
@@ -33,7 +35,10 @@ class SearchTextField extends StatelessWidget {
                   delegate: MySeachDelegate(),
                 );
               },
-              icon: Icon(Icons.search)),
+              icon: Icon(
+                Icons.search,
+                color: Colors.black,
+              )),
         ],
       ),
     );

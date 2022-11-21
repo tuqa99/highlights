@@ -42,6 +42,7 @@ Future<void> main() async {
               accentColor: Colors.white,
               scaffoldBackgroundColor: Colors.black,
               canvasColor: Colors.black,
+              cardColor: Colors.black,
             )
           : ThemeData.light().copyWith(accentColor: Colors.black),
       debugShowCheckedModeBanner: false,

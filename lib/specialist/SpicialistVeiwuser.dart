@@ -10,7 +10,7 @@ class Specialistprofileforuser extends StatelessWidget {
     required this.firstname,
     required this.email,
     required this.profilephotpurl,
-        required this.CollectionName,
+    required this.CollectionName,
     required this.index,
 
     // required this.career,
@@ -19,16 +19,20 @@ class Specialistprofileforuser extends StatelessWidget {
   String? email;
   String? career;
   String? profilephotpurl;
-    String? CollectionName;
-    int? index;
-
+  String? CollectionName;
+  int? index;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         floatingActionButton: FloatingActionButton(onPressed: () {
           Navigator.push(
-              context, MaterialPageRoute(builder: (context) => ChatScreen()));
+              context,
+              MaterialPageRoute(
+                  builder: (context) => ChatScreen(
+                        email: email,
+                        name: firstname,
+                      )));
         }),
         appBar: AppBar(backgroundColor: Color.fromARGB(255, 202, 68, 255)),
         body: Stack(

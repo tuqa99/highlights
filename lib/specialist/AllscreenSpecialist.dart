@@ -1,8 +1,11 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:highlights/UserScreens/userProfile/profile.dart';
 import 'package:highlights/screens/chat_screen.dart';
 import 'package:highlights/specialist/specialistprofile.dart';
 import 'package:sliding_clipped_nav_bar/sliding_clipped_nav_bar.dart';
+
+import '../chat/ChatMain.dart';
 
 class SpecialistMain extends StatefulWidget {
   const SpecialistMain({Key? key}) : super(key: key);
@@ -12,6 +15,8 @@ class SpecialistMain extends StatefulWidget {
 }
 
 class _SpecialistMainState extends State<SpecialistMain> {
+  User? auth = FirebaseAuth.instance.currentUser;
+
   late PageController _pageController;
   int selectedIndex = 0;
   @override
@@ -66,7 +71,4 @@ class _SpecialistMainState extends State<SpecialistMain> {
 // icon size:24 for fontAwesomeIcons
 // icons size: 30 for MaterialIcons
 
-List<Widget> _listOfWidget = <Widget>[
-  Specialistprofileforedit(),
-  ChatScreen(),
-];
+List<Widget> _listOfWidget = <Widget>[Specialistprofileforedit(), ChatMain1()];
