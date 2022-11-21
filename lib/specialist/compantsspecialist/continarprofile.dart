@@ -86,40 +86,40 @@ class _ContinarprfileState extends State<Continarprfile> {
                         children: [
                           Column(
                             children: [
-                              // if (selectedDirectory != null)
-                              GestureDetector(
-                                onTap: () {
-                                  showDialog(
-                                    context: context,
-                                    builder: (ctx) => AlertDialog(
-                                      title: const Text("chang your photo"),
-                                      content: Container(
-                                          child: Image(
-                                        image: NetworkImage('$_profileimage'),
-                                      )),
-                                      actions: <Widget>[
-                                        ElevatedButton(
-                                            onPressed: slecteFile,
-                                            child: Text('select photo')),
-                                        TextButton(
-                                          onPressed: Uplode,
-                                          child: Container(
-                                            padding: const EdgeInsets.all(14),
-                                            child: const Text("Update"),
+                              if (selectedDirectory != null)
+                                GestureDetector(
+                                  onTap: () {
+                                    showDialog(
+                                      context: context,
+                                      builder: (ctx) => AlertDialog(
+                                        title: const Text("chang your photo"),
+                                        content: Container(
+                                            child: Image(
+                                          image: NetworkImage('$_profileimage'),
+                                        )),
+                                        actions: <Widget>[
+                                          ElevatedButton(
+                                              onPressed: slecteFile,
+                                              child: Text('select photo')),
+                                          TextButton(
+                                            onPressed: Uplode,
+                                            child: Container(
+                                              padding: const EdgeInsets.all(14),
+                                              child: const Text("Update"),
+                                            ),
                                           ),
-                                        ),
-                                      ],
-                                    ),
-                                  );
-                                },
-                                child: CircleAvatar(
-                                  radius: 40,
-                                  backgroundImage: _profileimage != null
-                                      ? NetworkImage('$_profileimage')
-                                      : NetworkImage(
-                                          'https://media.istockphoto.com/id/1223671392/vector/default-profile-picture-avatar-photo-placeholder-vector-illustration.jpg?s=612x612&w=0&k=20&c=s0aTdmT5aU6b8ot7VKm11DeID6NctRCpB755rA1BIP0='),
+                                        ],
+                                      ),
+                                    );
+                                  },
+                                  child: CircleAvatar(
+                                    radius: 40,
+                                    backgroundImage: _profileimage != null
+                                        ? NetworkImage('$_profileimage')
+                                        : NetworkImage(
+                                            'https://media.istockphoto.com/id/587805156/vector/profile-picture-vector-illustration.jpg?s=612x612&w=0&k=20&c=gkvLDCgsHH-8HeQe7JsjhlOY6vRBJk_sKW9lyaLgmLo='),
+                                  ),
                                 ),
-                              ),
                               IconButton(
                                   onPressed: () {
                                     showDialog(
@@ -197,22 +197,6 @@ class _ContinarprfileState extends State<Continarprfile> {
                                       context: context,
                                       builder: (ctx) => AlertDialog(
                                         title: const Text("chang your career"),
-                                        // content: ListView.builder(
-                                        //   itemCount: ab.length,
-                                        //   itemBuilder: (context, index) {
-                                        //     return ListView(
-                                        //       children: [
-                                        //         ListTile(
-                                        //           title: Text(ab[0]),
-                                        //         )
-                                        //       ],
-                                        //     );
-                                        //   },
-                                        // ),
-                                        // content: Container(
-                                        //     child: TextField(
-                                        //   controller: careercontroller,
-                                        // )),
                                         actions: <Widget>[
                                           TextButton(
                                             onPressed: () {
