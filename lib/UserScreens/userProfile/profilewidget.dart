@@ -25,7 +25,7 @@ class ProfileWidget extends StatelessWidget {
   }
 
   Widget buildImage() {
-    final image = NetworkImage(imagePath);
+    final image = AssetImage("images/profile.jpg");
     return ClipOval(
       child: Material(
         color: Colors.transparent,
@@ -46,7 +46,7 @@ class ProfileWidget extends StatelessWidget {
         color: Colors.white,
         all: 2,
         child: buildCircle(
-          color: Color(0xFF880e4f),
+          color: Color.fromARGB(255, 186, 104, 200),
           all: 0,
           child: IconButton(
             onPressed: onClicked,

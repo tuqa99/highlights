@@ -6,30 +6,35 @@ class MyTile extends StatelessWidget {
   String? text;
   IconData? leadIcon;
   IconData? traiIcon;
-
   Function()? ontap1;
   MyTile({Key? key, this.leadIcon, this.text, this.ontap1, this.traiIcon})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => ontap1!(),
-      child: ListTile(
-        // title: Text(titleText),
-
-        // onTap: (){ontap();},
-        trailing: Icon(traiIcon),
-
-        title: Text(
-          "$text",
-          style: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
+    return Column(
+      children: [
+        Divider(thickness: 2),
+        ListTile(
+          trailing: GestureDetector(
+              onTap: ontap1,
+              child: Icon(
+                traiIcon,
+                color: Colors.black,
+              )),
+          title: Text(
+            "$text",
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          leading: Icon(
+            leadIcon,
+            color: Colors.black,
           ),
         ),
-        leading: Icon(leadIcon),
-      ),
+      ],
     );
   }
 }

@@ -34,7 +34,11 @@ class Specialistprofileforuser extends StatelessWidget {
                         name: firstname,
                       )));
         }),
-        appBar: AppBar(backgroundColor: Color.fromARGB(255, 202, 68, 255)),
+        appBar: AppBar(
+          backgroundColor: Color.fromARGB(255, 225, 223, 224),
+          shadowColor: Color.fromARGB(255, 225, 223, 224),
+          elevation: .1,
+        ),
         body: Stack(
           children: [
             Continarprfileview(
@@ -46,47 +50,48 @@ class Specialistprofileforuser extends StatelessWidget {
               index: index,
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 175),
+              padding: const EdgeInsets.only(top: 120),
               child: Container(
                 height: double.infinity,
                 width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.only(
-                        topRight: Radius.circular(30),
-                        topLeft: Radius.circular(30))),
+                  color: Colors.white,
+                  // borderRadius: BorderRadius.only(
+                  //     topRight: Radius.circular(30),
+                  //     topLeft: Radius.circular(30)),
+                ),
                 child: SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
                     child: Row(
                       children: [
-                        Column(
-                          children: [
-                            Row(
-                              children: [
-                                SizedBox(
-                                  width: 55,
-                                ),
-                                Text(
-                                  'The packeges',
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ],
-                            ),
-                            Container(
-                              height: 300,
-                              width: 300,
-                              child: Readbackgesforuser(),
-                            ),
-                            Divider(
-                              thickness: 3,
-                              height: 6,
-                              color: Colors.grey,
-                            ),
-                          ],
-                        ),
+                        // Column(
+                        //   children: [
+                        //     Row(
+                        //       children: [
+                        //         SizedBox(
+                        //           width: 55,
+                        //         ),
+                        //         Text(
+                        //           'The packeges',
+                        //           style: TextStyle(
+                        //               color: Colors.black,
+                        //               fontSize: 18,
+                        //               fontWeight: FontWeight.bold),
+                        //         ),
+                        //       ],
+                        //     ),
+                        //     Container(
+                        //       height: 300,
+                        //       width: 300,
+                        //       child: Readbackgesforuser(),
+                        //     ),
+                        //     Divider(
+                        //       thickness: 3,
+                        //       height: 6,
+                        //       color: Colors.grey,
+                        //     ),
+                        //   ],
+                        // ),
                         Column(
                           children: [
                             Row(

@@ -66,7 +66,7 @@ class _NewHomeState extends State<NewHome> {
         ),
         Expanded(
           child: Padding(
-            padding: EdgeInsets.all(20),
+            padding: EdgeInsets.all(10),
             child: SingleChildScrollView(
               child: Column(children: [
                 Container(

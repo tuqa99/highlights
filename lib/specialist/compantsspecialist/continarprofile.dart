@@ -5,6 +5,7 @@ import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../chat/messages.dart';
 import '../../chat/new_message.dart';
@@ -85,40 +86,40 @@ class _ContinarprfileState extends State<Continarprfile> {
                         children: [
                           Column(
                             children: [
-                              // if (selectedDirectory != null)
-                              GestureDetector(
-                                onTap: () {
-                                  showDialog(
-                                    context: context,
-                                    builder: (ctx) => AlertDialog(
-                                      title: const Text("chang your photo"),
-                                      content: Container(
-                                          child: Image(
-                                        image: NetworkImage('$_profileimage'),
-                                      )),
-                                      actions: <Widget>[
-                                        ElevatedButton(
-                                            onPressed: slecteFile,
-                                            child: Text('select photo')),
-                                        TextButton(
-                                          onPressed: Uplode,
-                                          child: Container(
-                                            padding: const EdgeInsets.all(14),
-                                            child: const Text("Update"),
+                              if (selectedDirectory != null)
+                                GestureDetector(
+                                  onTap: () {
+                                    showDialog(
+                                      context: context,
+                                      builder: (ctx) => AlertDialog(
+                                        title: const Text("chang your photo"),
+                                        content: Container(
+                                            child: Image(
+                                          image: NetworkImage('$_profileimage'),
+                                        )),
+                                        actions: <Widget>[
+                                          ElevatedButton(
+                                              onPressed: slecteFile,
+                                              child: Text('select photo')),
+                                          TextButton(
+                                            onPressed: Uplode,
+                                            child: Container(
+                                              padding: const EdgeInsets.all(14),
+                                              child: const Text("Update"),
+                                            ),
                                           ),
-                                        ),
-                                      ],
-                                    ),
-                                  );
-                                },
-                                child: CircleAvatar(
-                                  radius: 40,
-                                  backgroundImage: _profileimage != null
-                                      ? NetworkImage('$_profileimage')
-                                      : NetworkImage(
-                                          'https://media.istockphoto.com/id/1223671392/vector/default-profile-picture-avatar-photo-placeholder-vector-illustration.jpg?s=612x612&w=0&k=20&c=s0aTdmT5aU6b8ot7VKm11DeID6NctRCpB755rA1BIP0='),
+                                        ],
+                                      ),
+                                    );
+                                  },
+                                  child: CircleAvatar(
+                                    radius: 40,
+                                    backgroundImage: _profileimage != null
+                                        ? NetworkImage('$_profileimage')
+                                        : NetworkImage(
+                                            'https://media.istockphoto.com/id/587805156/vector/profile-picture-vector-illustration.jpg?s=612x612&w=0&k=20&c=gkvLDCgsHH-8HeQe7JsjhlOY6vRBJk_sKW9lyaLgmLo='),
+                                  ),
                                 ),
-                              ),
                               IconButton(
                                   onPressed: () {
                                     showDialog(
@@ -196,22 +197,6 @@ class _ContinarprfileState extends State<Continarprfile> {
                                       context: context,
                                       builder: (ctx) => AlertDialog(
                                         title: const Text("chang your career"),
-                                        // content: ListView.builder(
-                                        //   itemCount: ab.length,
-                                        //   itemBuilder: (context, index) {
-                                        //     return ListView(
-                                        //       children: [
-                                        //         ListTile(
-                                        //           title: Text(ab[0]),
-                                        //         )
-                                        //       ],
-                                        //     );
-                                        //   },
-                                        // ),
-                                        // content: Container(
-                                        //     child: TextField(
-                                        //   controller: careercontroller,
-                                        // )),
                                         actions: <Widget>[
                                           TextButton(
                                             onPressed: () {
@@ -357,7 +342,7 @@ class _ContainerProfileViewState extends State<Continarprfileview> {
   @override
   Widget build(BuildContext context) {
     int? rating;
-
+    String? _profileimage;
     CollectionReference ref =
         FirebaseFirestore.instance.collection(widget.CollectionName!);
 
@@ -405,7 +390,7 @@ class _ContainerProfileViewState extends State<Continarprfileview> {
                       itemBuilder: (context, _) {
                         return const Icon(
                           Icons.star,
-                          color: Color(0xffbc477b),
+                          color: Colors.black,
                         );
                       },
                       onRatingUpdate: (value) {
@@ -448,78 +433,102 @@ class _ContainerProfileViewState extends State<Continarprfileview> {
       builder: (context, snapshot) {
         DocumentSnapshot document = snapshot.data!.docs[widget.index!];
         return Container(
-          height: 300,
-          color: Color.fromARGB(255, 250, 91, 165),
+          width: double.infinity,
+          decoration: const BoxDecoration(
+            color: Color.fromARGB(255, 225, 223, 224),
+          ),
+          height: 130,
           child: Column(
             children: [
-              CircleAvatar(
-                radius: 40,
-                backgroundImage: NetworkImage(
-                    'https://tse2.mm.bing.net/th?id=OIP.Hxzx1qKwcGv4KY4rUXEoFgHaFj&pid=Api&P=0'),
-              ),
-              Text(
-                "${widget.firstname}",
-                style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white),
-              ),
               Row(
                 children: [
                   SizedBox(
-                    width: 70,
+                    width: 20,
                   ),
-                  Icon(Icons.email, color: Colors.white),
+                  CircleAvatar(
+                    radius: 40,
+                    backgroundImage: _profileimage != null
+                        ? NetworkImage('$_profileimage')
+                        : NetworkImage(
+                            'https://media.istockphoto.com/id/587805156/vector/profile-picture-vector-illustration.jpg?s=612x612&w=0&k=20&c=gkvLDCgsHH-8HeQe7JsjhlOY6vRBJk_sKW9lyaLgmLo='),
+                  ),
                   SizedBox(
-                    width: 12,
+                    width: 30,
                   ),
-                  Text(
-                    "${widget.email}",
-                    style: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white),
+                  Container(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                          height: 15,
+                        ),
+                        Text(
+                          "${widget.firstname!.toUpperCase()}",
+                          style: GoogleFonts.playfairDisplay(
+                            textStyle: TextStyle(
+                                wordSpacing: 2,
+                                letterSpacing: 2,
+                                fontSize: 17,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 7,
+                        ),
+                        SizedBox(
+                          height: 15,
+                        ),
+                        Row(
+                          children: [
+                            RatingBarIndicator(
+                              itemSize: 21,
+                              rating: ratingAva(document),
+                              itemBuilder: (context, index) => Icon(
+                                Icons.star,
+                                color: Colors.black,
+                              ),
+                            ),
+                            SizedBox(
+                              width: 15,
+                            ),
+                            TextButton(
+                              style: TextButton.styleFrom(
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(20)),
+                                backgroundColor: Colors.black,
+                              ),
+                              onPressed: () async {
+                                await updatte(document);
+                              },
+                              child: Text(
+                                "Rate Now",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 10,
+                                ),
+                              ),
+                            ),
+                            // Row(
+                            //   children: [
+                            //     IconButton(
+                            //         onPressed: () {
+                            //           Navigator.push(context, MaterialPageRoute(
+                            //             builder: (context) {
+                            //               return ChatScreen();
+                            //             },
+                            //           ));
+                            //         },
+                            //         icon: Icon(Icons.chat_bubble))
+                            //   ],
+                            // ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
-                  IconButton(
-                      onPressed: () {
-                        Navigator.push(context, MaterialPageRoute(
-                          builder: (context) {
-                            return ChatScreen(
-                              email: widget.email,
-                              name: widget.firstname,
-                              docid: document.id,
-                            );
-                          },
-                        ));
-                      },
-                      icon: Icon(Icons.chat_bubble))
                 ],
               ),
-              RatingBarIndicator(
-                itemSize: 21,
-                rating: ratingAva(document),
-                itemBuilder: (context, index) => const Icon(
-                  Icons.star,
-                  color: Colors.amber,
-                ),
-              ),
-              SizedBox(
-                height: 5,
-              ),
-              Center(
-                child: TextButton(
-                  style: TextButton.styleFrom(
-                    backgroundColor: Colors.white,
-                  ),
-                  onPressed: () async {
-                    await updatte(document);
-                  },
-                  child: Text(
-                    "Rate us",
-                    style: TextStyle(color: Colors.black),
-                  ),
-                ),
-              )
             ],
           ),
         );
