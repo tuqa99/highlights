@@ -388,7 +388,10 @@ class Continarprfileview extends StatelessWidget {
                       children: [
                         CircleAvatar(
                           radius: 40,
-                          backgroundImage: NetworkImage('$profilephotpurl'),
+                          backgroundImage: profilephotpurl != null
+                              ? NetworkImage('$profilephotpurl')
+                              : NetworkImage(
+                                  'https://media.istockphoto.com/id/587805156/vector/profile-picture-vector-illustration.jpg?s=612x612&w=0&k=20&c=gkvLDCgsHH-8HeQe7JsjhlOY6vRBJk_sKW9lyaLgmLo='),
                         ),
                       ],
                     ),

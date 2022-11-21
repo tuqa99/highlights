@@ -42,34 +42,34 @@ class Specialistprofileforuser extends StatelessWidget {
                     scrollDirection: Axis.horizontal,
                     child: Row(
                       children: [
-                        Column(
-                          children: [
-                            Row(
-                              children: [
-                                SizedBox(
-                                  width: 55,
-                                ),
-                                Text(
-                                  'The packeges',
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ],
-                            ),
-                            Container(
-                              height: 300,
-                              width: 300,
-                              child: Readbackgesforuser(),
-                            ),
-                            Divider(
-                              thickness: 3,
-                              height: 6,
-                              color: Colors.grey,
-                            ),
-                          ],
-                        ),
+                        // Column(
+                        //   children: [
+                        //     Row(
+                        //       children: [
+                        //         SizedBox(
+                        //           width: 55,
+                        //         ),
+                        //         Text(
+                        //           'The packeges',
+                        //           style: TextStyle(
+                        //               color: Colors.black,
+                        //               fontSize: 18,
+                        //               fontWeight: FontWeight.bold),
+                        //         ),
+                        //       ],
+                        //     ),
+                        //     Container(
+                        //       height: 300,
+                        //       width: 300,
+                        //       child: Readbackgesforuser(),
+                        //     ),
+                        //     Divider(
+                        //       thickness: 3,
+                        //       height: 6,
+                        //       color: Colors.grey,
+                        //     ),
+                        //   ],
+                        // ),
                         Column(
                           children: [
                             Row(
