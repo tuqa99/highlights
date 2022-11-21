@@ -13,28 +13,37 @@ class CategoryCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: press,
-      child: SizedBox(
-        width: 55,
-        child: Column(
-          children: [
-            AspectRatio(
-              aspectRatio: 1,
-              child: Container(
+      child: Padding(
+        padding: EdgeInsets.only(top: 15),
+        child: SizedBox(
+          width: 80,
+          child: Column(
+            children: [
+              // AspectRatio(
+              // aspectRatio: 1,
+              // child:
+              Container(
+                width: 55,
                 decoration: BoxDecoration(
-                  color: Color.fromARGB(255, 225, 223, 224).withOpacity(.6),
+                  // color: Color.fromARGB(255, 225, 223, 224).withOpacity(.4),
                   borderRadius: BorderRadius.circular(10),
                 ),
-                child: Image.asset(icon),
+                child: Image.asset(
+                  icon,
+                  
+                  // color: Color.fromARGB(255, 186, 104, 200)
+                ),
               ),
-            ),
-            SizedBox(
-              height: 5,
-            ),
-            Text(
-              text,
-              textAlign: TextAlign.center,
-            )
-          ],
+              // ),
+              SizedBox(
+                height: 5,
+              ),
+              Text(
+                text,
+                textAlign: TextAlign.center,
+              )
+            ],
+          ),
         ),
       ),
     );
@@ -76,7 +85,7 @@ class Categories extends StatelessWidget {
                   Navigator.push(context, MaterialPageRoute(builder: (context) {
                     if (categories1[index]["text"] == "HairCut") {
                       return SpecialistList(
-                         "HairCut",
+                        "HairCut",
                       );
                     }
                     if (categories1[index]["text"] == "Coloring") {
@@ -86,12 +95,12 @@ class Categories extends StatelessWidget {
                     }
                     if (categories1[index]["text"] == "Styling") {
                       return SpecialistList(
-                       "Styling",
+                        "Styling",
                       );
                     }
 
                     return SpecialistList(
-                     "Extensions",
+                      "Extensions",
                     );
                   }));
                 },
@@ -119,21 +128,21 @@ class Categories extends StatelessWidget {
                     builder: (context) {
                       if (categories2[index]["text"] == "Nails") {
                         return SpecialistList(
-                           "Nails",
+                          "Nails",
                         );
                       }
                       if (categories2[index]["text"] == "Facials") {
                         return SpecialistList(
-                           "Facials",
+                          "Facials",
                         );
                       }
                       if (categories2[index]["text"] == "MakeUp") {
                         return SpecialistList(
-                           "MakeUp",
+                          "MakeUp",
                         );
                       }
                       return SpecialistList(
-                         "Photography",
+                        "Photography",
                       );
                     },
                   ));

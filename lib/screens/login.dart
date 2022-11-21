@@ -233,8 +233,7 @@ class _LoginPageState extends State<LoginPage> {
                             child: const Image(
                                 height: 30,
                                 width: 30,
-                                image: NetworkImage(
-                                    'https://cdn-icons-png.flaticon.com/128/300/300221.png')),
+                                image: AssetImage('images/google.png')),
                             onTap: () async {
                               await FirebaseServices().signInWithGoogle();
 
@@ -264,8 +263,7 @@ class _LoginPageState extends State<LoginPage> {
                             child: const Image(
                                 height: 30,
                                 width: 30,
-                                image: NetworkImage(
-                                    'https://cdn-icons-png.flaticon.com/128/5968/5968764.png')),
+                                image: AssetImage('images/facebook.png')),
                             onTap: () {},
                           )
                         ],
