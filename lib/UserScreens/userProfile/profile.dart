@@ -109,6 +109,7 @@ class _ProfileInfoState extends State<ProfileInfo> {
                   MyTile(
                     leadIcon: Icons.location_pin,
                     text: "Location",
+                    traiIcon: LineIcons.arrowRight,
                     ontap1: () {
                       showDialog(
                         context: context,
@@ -127,34 +128,6 @@ class _ProfileInfoState extends State<ProfileInfo> {
                       );
                     },
                   ),
-                  Container(
-                      height: 50,
-                      width: double.infinity,
-                      alignment: Alignment.centerLeft,
-                      margin: EdgeInsets.only(left: 20),
-                      child: Text(
-                        "My Services",
-                        style: TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.bold),
-                      )),
-                  SingleChildScrollView(
-                    physics: BouncingScrollPhysics(),
-                    scrollDirection: Axis.horizontal,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        MyContainer(),
-                        MyContainer(),
-                        MyContainer(),
-                        MyContainer(),
-                        MyContainer(),
-                        MyContainer(),
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  )
                 ],
               ),
             ),
