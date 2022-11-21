@@ -81,24 +81,26 @@ class Viewimages extends StatelessWidget {
 }
 
 class Viewimagesforuser extends StatelessWidget {
-  const Viewimagesforuser({super.key});
-
+  Viewimagesforuser({required this.emial});
+  String? emial;
   @override
   Widget build(BuildContext context) {
     User? auth = FirebaseAuth.instance.currentUser;
     final doc_id = auth!.uid;
-    var ref = FirebaseFirestore.instance.collection('specialist').doc(doc_id);
+    var ref = FirebaseFirestore.instance
+        .collection('specialist')
+        .where('email', isEqualTo: emial);
     return FutureBuilder(
       future: ref.get(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
           if (snapshot.hasError) return Text('Error = ${snapshot.error}');
           if (snapshot.hasData) {
-            var data = snapshot.data!.data();
-            List<String> images = List.from(data!['url']);
             return ListView.builder(
-              itemCount: images.length,
+              itemCount: snapshot.data!.docs.length,
               itemBuilder: (context, index) {
+                List<String> images =
+                    List.from(snapshot.data!.docs[index]['url']);
                 return Padding(
                   padding: const EdgeInsets.only(right: 22, left: 22),
                   child: Container(

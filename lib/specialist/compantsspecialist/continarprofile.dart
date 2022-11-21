@@ -344,7 +344,7 @@ class _ContainerProfileViewState extends State<Continarprfileview> {
     int? rating;
     String? _profileimage;
     CollectionReference ref =
-        FirebaseFirestore.instance.collection(widget.CollectionName!);
+        FirebaseFirestore.instance.collection('specialist');
 
     var documents = ref.snapshots();
     ratingAva(DocumentSnapshot document) {
@@ -437,7 +437,7 @@ class _ContainerProfileViewState extends State<Continarprfileview> {
           decoration: const BoxDecoration(
             color: Color.fromARGB(255, 225, 223, 224),
           ),
-          height: 130,
+          height: 150,
           child: Column(
             children: [
               Row(
@@ -459,10 +459,6 @@ class _ContainerProfileViewState extends State<Continarprfileview> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        CircleAvatar(
-                          radius: 40,
-                          backgroundImage: NetworkImage('$profilephotpurl'),
-                        ),
                         Text(
                           "${widget.firstname!.toUpperCase()}",
                           style: GoogleFonts.playfairDisplay(

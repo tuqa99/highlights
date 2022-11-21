@@ -114,7 +114,9 @@ class Specialistprofileforuser extends StatelessWidget {
                             Container(
                               height: 300,
                               width: 300,
-                              child: Viewimagesforuser(),
+                              child: Viewimagesforuser(
+                                emial: email,
+                              ),
                             ),
                             Divider(
                               thickness: 3,
