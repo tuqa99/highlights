@@ -406,7 +406,7 @@ class _ContainerProfileViewState extends State<Continarprfileview> {
                       itemBuilder: (context, _) {
                         return const Icon(
                           Icons.star,
-                          color: Color(0xffbc477b),
+                          color: Colors.black,
                         );
                       },
                       onRatingUpdate: (value) {
@@ -451,11 +451,7 @@ class _ContainerProfileViewState extends State<Continarprfileview> {
         return Container(
           width: double.infinity,
           decoration: const BoxDecoration(
-            gradient: LinearGradient(begin: Alignment.topCenter, colors: [
-              Color.fromARGB(255, 186, 104, 200),
-              Color.fromARGB(255, 218, 178, 226),
-              Color.fromARGB(255, 240, 198, 213)
-            ]),
+            color: Color.fromARGB(255, 241, 237, 239),
           ),
           height: 200,
           child: Column(
@@ -470,8 +466,7 @@ class _ContainerProfileViewState extends State<Continarprfileview> {
                   ),
                   CircleAvatar(
                     radius: 50,
-                    backgroundImage: NetworkImage(
-                        'https://tse2.mm.bing.net/th?id=OIP.Hxzx1qKwcGv4KY4rUXEoFgHaFj&pid=Api&P=0'),
+                    backgroundImage: AssetImage("images/profile.jpg"),
                   ),
                   SizedBox(
                     width: 30,
@@ -491,86 +486,12 @@ class _ContainerProfileViewState extends State<Continarprfileview> {
                                 letterSpacing: 2,
                                 fontSize: 17,
                                 fontWeight: FontWeight.bold,
-                                color: Colors.white),
+                                color: Colors.black),
                           ),
                         ),
                         SizedBox(
                           height: 7,
                         ),
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            SizedBox(
-                              width: 40,
-                            ),
-                            Column(
-                              children: [
-                                Text(
-                                  "2",
-                                  style: TextStyle(
-                                      fontSize: 12,
-                                      color: Colors.grey.shade800),
-                                ),
-                                SizedBox(
-                                  height: 5,
-                                ),
-                                Text(
-                                  "Posts",
-                                  style: TextStyle(
-                                      fontSize: 10,
-                                      color: Colors.white70,
-                                      fontWeight: FontWeight.bold),
-                                )
-                              ],
-                            ),
-                            SizedBox(
-                              width: 20,
-                            ),
-                            Column(
-                              children: [
-                                Text(
-                                  "2",
-                                  style: TextStyle(
-                                      fontSize: 12,
-                                      color: Colors.grey.shade800),
-                                ),
-                                SizedBox(
-                                  height: 5,
-                                ),
-                                Text(
-                                  "Packages",
-                                  style: TextStyle(
-                                      fontSize: 10,
-                                      color: Colors.white70,
-                                      fontWeight: FontWeight.bold),
-                                )
-                              ],
-                            )
-                          ],
-                        ),
-
-                        // Row(
-                        //   children: [
-                        //     SizedBox(
-                        //       width: 5,
-                        //     ),
-                        //     Icon(
-                        //       Icons.email,
-                        //       color: Colors.grey.shade800,
-                        //       size: 12,
-                        //     ),
-                        //     SizedBox(
-                        //       width: 9,
-                        //     ),
-                        //     Text(
-                        //       "${widget.email}",
-                        //       style: TextStyle(
-                        //           fontSize: 11,
-                        //           fontWeight: FontWeight.normal,
-                        //           color: Colors.grey.shade800),
-                        //     ),
-                        //   ],
-                        // ),
                         SizedBox(
                           height: 15,
                         ),
@@ -591,8 +512,7 @@ class _ContainerProfileViewState extends State<Continarprfileview> {
                               style: TextButton.styleFrom(
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(20)),
-                                backgroundColor:
-                                    Color.fromARGB(255, 200, 187, 202),
+                                backgroundColor: Colors.black,
                               ),
                               onPressed: () async {
                                 await updatte(document);
@@ -600,7 +520,7 @@ class _ContainerProfileViewState extends State<Continarprfileview> {
                               child: Text(
                                 "Rate Now",
                                 style: TextStyle(
-                                  color: Color.fromARGB(255, 153, 77, 167),
+                                  color: Colors.white,
                                   fontSize: 10,
                                 ),
                               ),

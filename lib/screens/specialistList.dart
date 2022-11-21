@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:highlights/specialist/SpicialistVeiwuser.dart';
 
 class SpecialistList extends StatefulWidget {
@@ -41,7 +42,7 @@ class _SpecialistsListState extends State<SpecialistList> {
     return Scaffold(
       appBar: AppBar(
         iconTheme: IconThemeData(
-          color: Colors.black,
+          color: Colors.white,
         ),
         titleSpacing: 00.0,
         centerTitle: true,
@@ -49,15 +50,16 @@ class _SpecialistsListState extends State<SpecialistList> {
         toolbarOpacity: 0.8,
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
-              bottomRight: Radius.circular(25),
-              bottomLeft: Radius.circular(25)),
+            bottomRight: Radius.circular(20),
+            bottomLeft: Radius.circular(20),
+          ),
         ),
         elevation: 0.00,
         title: Text(
           "${widget.CollectionName}",
-          style: TextStyle(color: Colors.black),
+          style: TextStyle(color: Colors.white),
         ),
-        backgroundColor: Color.fromARGB(255, 154, 53, 104).withOpacity(.6),
+        backgroundColor: Colors.grey.shade600,
       ),
       body: StreamBuilder<QuerySnapshot>(
           stream: documents,
@@ -68,6 +70,7 @@ class _SpecialistsListState extends State<SpecialistList> {
                 crossAxisCount: 2,
                 children: List.generate(snapshot.data!.docs.length, (index) {
                   DocumentSnapshot document = snapshot.data!.docs[index];
+                  String fullName = document['full name'];
                   ratingAva(document);
                   print(ratingAva(document));
                   return InkWell(
@@ -88,40 +91,48 @@ class _SpecialistsListState extends State<SpecialistList> {
                           ));
                     }),
                     child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(3),
+                        border: Border.all(
+                          width: .5,
+                          color: Color.fromRGBO(117, 117, 117, 1),
+                        ),
+                        color: Color.fromARGB(255, 241, 237, 239),
+                      ),
                       margin: const EdgeInsets.all(10),
                       child: SingleChildScrollView(
                         child: Column(
                           children: [
-                            Container(
-                              width: double.infinity,
-                              margin: const EdgeInsets.only(top: 5),
-                              // height: 110,
-                              child: const Image(
-                                height: 100,
-                                image: AssetImage("images/avatar.webp"),
-                                fit: BoxFit.contain,
-                              ),
+                            SizedBox(
+                              height: 7,
+                            ),
+                            CircleAvatar(
+                              radius: 50,
+                              backgroundImage: AssetImage("images/profile.jpg"),
                             ),
                             const SizedBox(
-                              height: 5,
+                              height: 10,
                             ),
                             Text(
-                              document['full name']!,
-                              style: TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.bold,
-                                color: Color(0xff880e4f),
+                              fullName.toUpperCase(),
+                              style: GoogleFonts.playfairDisplay(
+                                textStyle: TextStyle(
+                                    wordSpacing: 1,
+                                    letterSpacing: 1,
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.grey.shade900),
                               ),
                             ),
                             const SizedBox(
-                              height: 5,
+                              height: 10,
                             ),
                             RatingBarIndicator(
                               itemSize: 21,
                               rating: ratingAva(document),
-                              itemBuilder: (context, index) => const Icon(
+                              itemBuilder: (context, index) => Icon(
                                 Icons.star,
-                                color: Color(0xffbc477b),
+                                color: Colors.black,
                               ),
                             ),
                             SizedBox(
@@ -134,7 +145,6 @@ class _SpecialistsListState extends State<SpecialistList> {
                   );
                 }),
               );
-              
             }
             return Center(
               child: CircularProgressIndicator(),

@@ -35,7 +35,7 @@ class Specialistprofileforuser extends StatelessWidget {
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => ChatScreen()));
             }),
-        appBar: AppBar(backgroundColor: Color.fromARGB(255, 153, 77, 167)),
+        // appBar: AppBar(backgroundColor: Color.fromARGB(255, 153, 77, 167)),
         body: Stack(
           children: [
             Continarprfileview(
