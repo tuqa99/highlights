@@ -342,6 +342,7 @@ class _ContainerProfileViewState extends State<Continarprfileview> {
   @override
   Widget build(BuildContext context) {
     int? rating;
+    String? profilephotpurl;
 
     CollectionReference ref =
         FirebaseFirestore.instance.collection(widget.CollectionName!);
@@ -443,92 +444,124 @@ class _ContainerProfileViewState extends State<Continarprfileview> {
               SizedBox(
                 height: 25,
               ),
-              Row(
-                children: [
+              Row(children: [
+                SizedBox(
+                  width: 30,
+                ),
+                CircleAvatar(
+                  radius: 50,
+                  backgroundImage: AssetImage("images/profile.jpg"),
+                ),
+                SizedBox(
+                  width: 30,
+                ),
+                Container(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      CircleAvatar(
+                        radius: 40,
+                        backgroundImage: profilephotpurl != null
+                            ? NetworkImage('$profilephotpurl')
+                            : NetworkImage(
+                                'https://media.istockphoto.com/id/587805156/vector/profile-picture-vector-illustration.jpg?s=612x612&w=0&k=20&c=gkvLDCgsHH-8HeQe7JsjhlOY6vRBJk_sKW9lyaLgmLo='),
+                      ),
+                    ],
+                  ),
+                ),
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                  Text(
+                    widget.firstname!,
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white),
+                  ),
                   SizedBox(
-                    width: 30,
+                    height: 13,
                   ),
-                  CircleAvatar(
-                    radius: 50,
-                    backgroundImage: AssetImage("images/profile.jpg"),
+                  Text(
+                    "",
+                    style: TextStyle(
+                        fontSize: 17,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white),
                   ),
-                  SizedBox(
-                    width: 30,
-                  ),
-                  Container(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                ]),
+                SizedBox(
+                  height: 13,
+                ),
+                Row(
+                  children: [
+                    Icon(Icons.email, color: Colors.white),
+                    SizedBox(
+                      height: 15,
+                    ),
+                    Text(
+                      "${widget.firstname!.toUpperCase()}",
+                      style: GoogleFonts.playfairDisplay(
+                        textStyle: TextStyle(
+                            wordSpacing: 2,
+                            letterSpacing: 2,
+                            fontSize: 17,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 7,
+                    ),
+                    SizedBox(
+                      height: 15,
+                    ),
+                    Row(
                       children: [
-                        SizedBox(
-                          height: 15,
-                        ),
-                        Text(
-                          "${widget.firstname!.toUpperCase()}",
-                          style: GoogleFonts.playfairDisplay(
-                            textStyle: TextStyle(
-                                wordSpacing: 2,
-                                letterSpacing: 2,
-                                fontSize: 17,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black),
+                        RatingBarIndicator(
+                          itemSize: 21,
+                          rating: ratingAva(document),
+                          itemBuilder: (context, index) => Icon(
+                            Icons.star,
+                            color: Colors.black,
                           ),
                         ),
                         SizedBox(
-                          height: 7,
+                          width: 15,
                         ),
-                        SizedBox(
-                          height: 15,
+                        TextButton(
+                          style: TextButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20)),
+                            backgroundColor: Colors.black,
+                          ),
+                          onPressed: () async {
+                            await updatte(document);
+                          },
+                          child: Text(
+                            "Rate Now",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 10,
+                            ),
+                          ),
                         ),
-                        Row(
-                          children: [
-                            RatingBarIndicator(
-                              itemSize: 21,
-                              rating: ratingAva(document),
-                              itemBuilder: (context, index) => Icon(
-                                Icons.star,
-                                color: Colors.black,
-                              ),
-                            ),
-                            SizedBox(
-                              width: 15,
-                            ),
-                            TextButton(
-                              style: TextButton.styleFrom(
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(20)),
-                                backgroundColor: Colors.black,
-                              ),
-                              onPressed: () async {
-                                await updatte(document);
-                              },
-                              child: Text(
-                                "Rate Now",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 10,
-                                ),
-                              ),
-                            ),
-                            // Row(
-                            //   children: [
-                            //     IconButton(
-                            //         onPressed: () {
-                            //           Navigator.push(context, MaterialPageRoute(
-                            //             builder: (context) {
-                            //               return ChatScreen();
-                            //             },
-                            //           ));
-                            //         },
-                            //         icon: Icon(Icons.chat_bubble))
-                            //   ],
-                            // ),
-                          ],
-                        ),
+                        // Row(
+                        //   children: [
+                        //     IconButton(
+                        //         onPressed: () {
+                        //           Navigator.push(context, MaterialPageRoute(
+                        //             builder: (context) {
+                        //               return ChatScreen();
+                        //             },
+                        //           ));
+                        //         },
+                        //         icon: Icon(Icons.chat_bubble))
+                        //   ],
+                        // ),
                       ],
                     ),
-                  ),
-                ],
-              ),
+                  ],
+                ),
+              ]),
             ],
           ),
         );
