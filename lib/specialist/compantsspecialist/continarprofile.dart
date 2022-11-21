@@ -459,8 +459,9 @@ class _ContainerProfileViewState extends State<Continarprfileview> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        SizedBox(
-                          height: 15,
+                        CircleAvatar(
+                          radius: 40,
+                          backgroundImage: NetworkImage('$profilephotpurl'),
                         ),
                         Text(
                           "${widget.firstname!.toUpperCase()}",
