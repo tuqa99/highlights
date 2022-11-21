@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:highlights/screens/login.dart';
 
 import '../UserScreens/userProfile/button_widget.dart';
@@ -33,15 +34,15 @@ class _ResetPasswordState extends State<ResetPassword> {
         width: double.infinity,
         decoration: BoxDecoration(
             gradient: LinearGradient(begin: Alignment.topCenter, colors: [
-          Color.fromARGB(255, 186, 104, 200),
-          Color.fromARGB(255, 218, 178, 226),
-          Color.fromARGB(255, 240, 198, 213)
+          Color.fromARGB(255, 138, 138, 138),
+          Color.fromARGB(255, 202, 200, 201),
+          Color.fromARGB(255, 225, 223, 224),
         ])),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(
-              height: 80,
+              height: 30,
             ),
             Padding(
               padding: EdgeInsets.all(20),
@@ -50,14 +51,29 @@ class _ResetPasswordState extends State<ResetPassword> {
                 children: [
                   Text(
                     "Reset Password",
-                    style: TextStyle(fontSize: 40, color: Colors.white),
+                    style: GoogleFonts.playfairDisplay(
+                      textStyle: TextStyle(
+                        fontSize: 35,
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                   ),
                   SizedBox(
                     height: 10,
                   ),
                   Text(
                     "We are here to help you!",
-                    style: TextStyle(fontSize: 18, color: Colors.white),
+                    style: GoogleFonts.playfairDisplay(
+                      textStyle: TextStyle(
+                        fontSize: 25,
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20,
                   )
                 ],
               ),
@@ -84,7 +100,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                               borderRadius: BorderRadius.circular(10),
                               boxShadow: [
                                 BoxShadow(
-                                    color: Color.fromARGB(255, 218, 178, 226),
+                                    color: Colors.grey.shade700,
                                     blurRadius: 20,
                                     offset: Offset(0, 10))
                               ]),
@@ -94,17 +110,17 @@ class _ResetPasswordState extends State<ResetPassword> {
                               decoration: BoxDecoration(
                                   border: Border(
                                       bottom: BorderSide(
-                                          color: Colors.grey.shade200))),
+                                          color: Colors.grey.shade400))),
                               child: TextField(
                                 controller: Email,
                                 decoration: InputDecoration(
                                     suffixIcon: Icon(
                                       Icons.email,
-                                      color: Color.fromARGB(255, 186, 104, 200),
+                                      color: Colors.black,
                                     ),
                                     hintText:
                                         "Enter your email to reset your password",
-                                    hintStyle: TextStyle(color: Colors.grey),
+                                    hintStyle: TextStyle(color: Colors.black),
                                     border: InputBorder.none),
                               ),
                             ),
@@ -131,7 +147,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                                 'Go back to Log In',
                                 style: TextStyle(
                                   fontSize: 15,
-                                  color: Color.fromARGB(255, 186, 104, 200),
+                                  color: Colors.black,
                                 ),
                               ),
                             ),

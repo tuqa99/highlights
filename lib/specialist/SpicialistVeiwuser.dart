@@ -26,7 +26,7 @@ class Specialistprofileforuser extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         floatingActionButton: FloatingActionButton(
-            backgroundColor: Color.fromARGB(255, 153, 77, 167),
+            backgroundColor: Colors.grey.shade800,
             child: Icon(
               Icons.chat,
               color: Colors.white,
@@ -35,11 +35,12 @@ class Specialistprofileforuser extends StatelessWidget {
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => ChatScreen()));
             }),
-        // appBar: AppBar(backgroundColor: Color.fromARGB(255, 153, 77, 167)),
+        appBar: AppBar(
+          backgroundColor: Color.fromARGB(255, 241, 237, 239),
+        ),
         body: Stack(
           children: [
             Continarprfileview(
-              // career: career,
               email: email,
               firstname: firstname,
               profilephotpurl: profilephotpurl,
@@ -68,20 +69,20 @@ class Specialistprofileforuser extends StatelessWidget {
                                 SizedBox(
                                   width: 55,
                                 ),
-                                Text(
-                                  'The packeges',
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold),
-                                ),
+                                // Text(
+                                //   'The packeges',
+                                //   style: TextStyle(
+                                //       color: Colors.black,
+                                //       fontSize: 18,
+                                //       fontWeight: FontWeight.bold),
+                                // ),
                               ],
                             ),
-                            Container(
-                              height: 300,
-                              width: 300,
-                              child: Readbackgesforuser(),
-                            ),
+                            // Container(
+                            //   height: 300,
+                            //   width: 300,
+                            //   child: Readbackgesforuser(),
+                            // ),
                             Divider(
                               thickness: 3,
                               height: 6,

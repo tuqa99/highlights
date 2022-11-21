@@ -1,9 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:highlights/UserScreens/HomePageComp/HomePage.dart';
 
 import '../UserScreens/userProfile/button_widget.dart';
+import 'login.dart';
 
 class SignupPageuser extends StatelessWidget {
   TextEditingController email = TextEditingController();
@@ -40,16 +42,16 @@ class SignupPageuser extends StatelessWidget {
         width: double.infinity,
         decoration: BoxDecoration(
             gradient: LinearGradient(begin: Alignment.topCenter, colors: [
-          Color.fromARGB(255, 186, 104, 200),
-          Color.fromARGB(255, 218, 178, 226),
-          Color.fromARGB(255, 240, 198, 213)
+          Color.fromARGB(255, 138, 138, 138),
+          Color.fromARGB(255, 202, 200, 201),
+          Color.fromARGB(255, 225, 223, 224),
         ])),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SizedBox(
-              height: 40,
+              height: 30,
             ),
             Padding(
               padding: EdgeInsets.only(left: 20, bottom: 40),
@@ -58,15 +60,30 @@ class SignupPageuser extends StatelessWidget {
                 children: [
                   Text(
                     "Sign Up",
-                    style: TextStyle(fontSize: 40, color: Colors.white),
+                    style: GoogleFonts.playfairDisplay(
+                      textStyle: TextStyle(
+                        fontSize: 35,
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                   ),
                   SizedBox(
                     height: 10,
                   ),
                   Text(
                     "Create an account it's free",
-                    style: TextStyle(fontSize: 18, color: Colors.white),
-                  )
+                    style: GoogleFonts.playfairDisplay(
+                      textStyle: TextStyle(
+                        fontSize: 25,
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
                 ],
               ),
             ),
@@ -92,7 +109,7 @@ class SignupPageuser extends StatelessWidget {
                             borderRadius: BorderRadius.circular(10),
                             boxShadow: [
                               BoxShadow(
-                                  color: Color.fromARGB(255, 218, 178, 226),
+                                  color: Colors.grey.shade700,
                                   blurRadius: 20,
                                   offset: Offset(0, 10))
                             ]),
@@ -102,7 +119,7 @@ class SignupPageuser extends StatelessWidget {
                             decoration: BoxDecoration(
                                 border: Border(
                                     bottom: BorderSide(
-                                        color: Colors.grey.shade200))),
+                                        color: Colors.grey.shade400))),
                             child: makeInput(firstName, label: "First Name"),
                           ),
                           Container(
@@ -110,7 +127,7 @@ class SignupPageuser extends StatelessWidget {
                             decoration: BoxDecoration(
                                 border: Border(
                                     bottom: BorderSide(
-                                        color: Colors.grey.shade200))),
+                                        color: Colors.grey.shade400))),
                             child: makeInput(lastName, label: "Last Name"),
                           ),
                           Container(
@@ -118,7 +135,7 @@ class SignupPageuser extends StatelessWidget {
                             decoration: BoxDecoration(
                                 border: Border(
                                     bottom: BorderSide(
-                                        color: Colors.grey.shade200))),
+                                        color: Colors.grey.shade400))),
                             child: makeInput(email, label: "Email"),
                           ),
                           Container(
@@ -126,7 +143,7 @@ class SignupPageuser extends StatelessWidget {
                             decoration: BoxDecoration(
                                 border: Border(
                                     bottom: BorderSide(
-                                        color: Colors.grey.shade200))),
+                                        color: Colors.grey.shade400))),
                             child: makeInput(phoneNumber, label: "numberphone"),
                           ),
                           Container(
@@ -134,7 +151,7 @@ class SignupPageuser extends StatelessWidget {
                             decoration: BoxDecoration(
                                 border: Border(
                                     bottom: BorderSide(
-                                        color: Colors.grey.shade200))),
+                                        color: Colors.grey.shade400))),
                             child: makeInput(location, label: "Your location"),
                           ),
                           Container(
@@ -142,7 +159,7 @@ class SignupPageuser extends StatelessWidget {
                             decoration: BoxDecoration(
                                 border: Border(
                                     bottom: BorderSide(
-                                        color: Colors.grey.shade200))),
+                                        color: Colors.grey.shade400))),
                             child: makeInput(password,
                                 label: "Password", obsureText: true),
                           ),
@@ -200,12 +217,21 @@ class SignupPageuser extends StatelessWidget {
                           SizedBox(
                             width: 5,
                           ),
-                          Text(
-                            "Login",
-                            style: TextStyle(
-                                color: Color.fromARGB(255, 186, 104, 200),
-                                fontWeight: FontWeight.w600,
-                                fontSize: 18),
+                          TextButton(
+                            child: Text(
+                              "Login",
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16),
+                            ),
+                            onPressed: () {
+                              Navigator.push(context, MaterialPageRoute(
+                                builder: (context) {
+                                  return LoginPage();
+                                },
+                              ));
+                            },
                           ),
                         ],
                       ),
@@ -242,7 +268,7 @@ Widget makeInput(TextEditingController controller,
     controller: controller,
     obscureText: obsureText,
     decoration: InputDecoration(
-      hintStyle: TextStyle(color: Colors.grey),
+      hintStyle: TextStyle(color: Colors.black),
       border: InputBorder.none,
       hintText: label,
       contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),

@@ -111,8 +111,7 @@ class _VideoAppState extends State<VideoApp> {
                                       decoration: BoxDecoration(
                                           border: Border.all(
                                             width: 2,
-                                            color: Color.fromARGB(
-                                                255, 186, 104, 200),
+                                            color: Colors.black,
                                           ),
                                           borderRadius:
                                               BorderRadius.circular(10)),
@@ -126,7 +125,7 @@ class _VideoAppState extends State<VideoApp> {
                                               fontSize: 25,
                                               letterSpacing: .5,
                                               fontWeight: FontWeight.bold,
-                                              color: Colors.white70),
+                                              color: Colors.grey.shade800),
                                         ),
                                       ),
                                     )
@@ -151,8 +150,7 @@ class _VideoAppState extends State<VideoApp> {
                                       decoration: BoxDecoration(
                                           border: Border.all(
                                             width: 2,
-                                            color: Color.fromARGB(
-                                                255, 186, 104, 200),
+                                            color: Colors.black,
                                           ),
                                           borderRadius:
                                               BorderRadius.circular(10)),
@@ -166,7 +164,7 @@ class _VideoAppState extends State<VideoApp> {
                                               fontSize: 25,
                                               letterSpacing: .5,
                                               fontWeight: FontWeight.bold,
-                                              color: Colors.white70),
+                                              color: Colors.grey.shade800),
                                         ),
                                       ),
                                     )
@@ -174,6 +172,9 @@ class _VideoAppState extends State<VideoApp> {
                                 ),
                               ),
                             ],
+                          ),
+                          SizedBox(
+                            height: 10,
                           ),
                           Container(
                             alignment: Alignment.center,
@@ -189,8 +190,7 @@ class _VideoAppState extends State<VideoApp> {
                                     style: GoogleFonts.playfairDisplay(
                                       textStyle: TextStyle(
                                           letterSpacing: .5,
-                                          color: Color.fromARGB(
-                                              255, 186, 104, 200),
+                                          color: Colors.white,
                                           fontSize: 22),
                                     ))),
                           )
