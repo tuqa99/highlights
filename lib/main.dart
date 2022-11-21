@@ -4,6 +4,7 @@ import 'package:flutter_settings_screens/flutter_settings_screens.dart';
 import 'package:highlights/UserScreens/HomePageComp/HomePage.dart';
 
 import 'package:highlights/profiledrawer/AccountSettings.dart';
+import 'package:highlights/screens/login.dart';
 
 import 'firebase_options.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -57,6 +58,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return HomePage();
+    return LoginPage();
   }
 }

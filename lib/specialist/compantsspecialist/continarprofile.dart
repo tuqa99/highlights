@@ -107,17 +107,17 @@ class _ContinarprfileState extends State<Continarprfile> {
                                               child: const Text("Update"),
                                             ),
                                           ),
-                                        ),
-                                      ],
-                                    ),
-                                  );
-                                },
-                                child: CircleAvatar(
-                                  radius: 40,
-                                  backgroundImage: _profileimage != null
-                                      ? NetworkImage('$_profileimage')
-                                      : NetworkImage(
-                                          'https://media.istockphoto.com/id/587805156/vector/profile-picture-vector-illustration.jpg?s=612x612&w=0&k=20&c=gkvLDCgsHH-8HeQe7JsjhlOY6vRBJk_sKW9lyaLgmLo='),
+                                        ],
+                                      ),
+                                    );
+                                  },
+                                  child: CircleAvatar(
+                                    radius: 40,
+                                    backgroundImage: _profileimage != null
+                                        ? NetworkImage('$_profileimage')
+                                        : NetworkImage(
+                                            'https://media.istockphoto.com/id/587805156/vector/profile-picture-vector-illustration.jpg?s=612x612&w=0&k=20&c=gkvLDCgsHH-8HeQe7JsjhlOY6vRBJk_sKW9lyaLgmLo='),
+                                  ),
                                 ),
                               IconButton(
                                   onPressed: () {
@@ -375,7 +375,6 @@ class Continarprfileview extends StatelessWidget {
 
     return FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
       builder: (context, snapshot) {
-
         return Container(
           height: 300,
           color: Color.fromARGB(255, 250, 91, 165),

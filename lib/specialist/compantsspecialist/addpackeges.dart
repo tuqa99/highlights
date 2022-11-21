@@ -19,6 +19,7 @@ class _AddpackegsState extends State<Addpackegs> {
   var imagePick = ImagePicker();
   String? packages;
   String? decs;
+
   TextEditingController descriptionpackeg = TextEditingController();
   TextEditingController imagenet = TextEditingController();
   uploadImageProcess() async {
@@ -31,33 +32,41 @@ class _AddpackegsState extends State<Addpackegs> {
       var refrenceforMyStorage =
           FirebaseStorage.instance.ref("mypackages/$fileName");
       await refrenceforMyStorage.putFile(myFile!);
-      var Url1 = await refrenceforMyStorage.getDownloadURL();
+      var Urlpakeges = await refrenceforMyStorage.getDownloadURL();
       print('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@');
-      print(Url1);
+      print(Urlpakeges);
+      // addpackeges.add(Urlpakeges);
+      var auth = FirebaseAuth.instance;
+      CollectionReference addpackeges11 = await FirebaseFirestore.instance
+          .collection('specialist')
+          .doc(auth.currentUser!.uid)
+          .collection('addpakeges');
+      addpackeges11.add({"imagepakegurl": Urlpakeges});
 
-      packages = Url1;
-      AddPackages(packages!, descriptionpackeg.text.trim());
+      //   AddPackages(addpackeges);
+      // } else {
+      //   var Urlpakeges = 'add new work';
+      //   addpackeges.add(Urlpakeges);
+      //   AddPackages(addpackeges);
     }
   }
 
-  Future AddPackages(String packages, String decs) async {
-    var auth = FirebaseAuth.instance;
-    Map mymap = {'description': decs, 'packageURL': packages};
-    await FirebaseFirestore.instance
-        .collection('specialist')
-        .doc(auth.currentUser!.uid)
-        .update({
-      "packages": FieldValue.arrayUnion([mymap])
-    });
-  }
+  // Future AddPackages(List<String> addpackeges) async {
+  //   var auth = FirebaseAuth.instance;
+  //   await FirebaseFirestore.instance
+  //       .collection('specialist')
+  //       .doc(auth.currentUser!.uid)
+  //       .update({
+  //     "packagesurl": FieldValue.arrayUnion([addpackeges])
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
     var auth = FirebaseAuth.instance;
     TextEditingController courseController = TextEditingController();
     PlatformFile? selectedDirectory;
-    File IMge;
-    String imageurl = '';
+
     return AlertDialog(
       title: const Text("create your packeg"),
       content: Column(
@@ -75,6 +84,12 @@ class _AddpackegsState extends State<Addpackegs> {
         TextButton(onPressed: uploadImageProcess, child: Text('Select photo')),
         TextButton(
           onPressed: () async {
+            var auth = FirebaseAuth.instance;
+            CollectionReference addpackeges11 = await FirebaseFirestore.instance
+                .collection('specialist')
+                .doc(auth.currentUser!.uid)
+                .collection('addpakeges');
+            addpackeges11.add({"descripution": descriptionpackeg.text});
             Navigator.of(context).pop();
           },
           child: Container(
