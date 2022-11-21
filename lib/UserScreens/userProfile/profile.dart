@@ -1,5 +1,9 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:highlights/UserScreens/userProfile/profilewidget.dart';
 import 'package:highlights/UserScreens/userProfile/text_field_widget.dart';
@@ -18,11 +22,35 @@ class UserProfile extends StatefulWidget {
 }
 
 class _UserProfileState extends State<UserProfile> {
+  String imageprofileurl = '';
+  PlatformFile? selectedDirectory;
+  String? downloadUrl;
+  Future Uplode() async {
+    final path = 'test/${selectedDirectory!.name}';
+    final file = File(selectedDirectory!.path!);
+    final ref = FirebaseStorage.instance.ref().child(path);
+    ref.putFile(file);
+    UploadTask uploadTask = ref.putFile(file);
+    final storageSnapshot = uploadTask.snapshot;
+    downloadUrl = await storageSnapshot.ref.getDownloadURL();
+    print('this a link $downloadUrl');
+    SaveData(downloadUrl!);
+    Navigator.of(context).pop();
+    return downloadUrl;
+  }
+
+  Future SaveData(String images) async {
+    var auth = FirebaseAuth.instance;
+    await FirebaseFirestore.instance
+        .collection('user')
+        .doc(auth.currentUser!.uid)
+        .update({"imageprofileurl": (images)});
+  }
+
   @override
   Widget build(BuildContext context) {
     final user = UserPrefernces.myUser;
     return Scaffold(
-      // appBar: buildAppBar(context),
       body: Container(
         child: Column(children: [
           Container(

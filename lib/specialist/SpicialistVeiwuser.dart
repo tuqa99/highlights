@@ -33,7 +33,7 @@ class Specialistprofileforuser extends StatelessWidget {
             ),
             onPressed: () {
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => ChatScreen()));
+                  MaterialPageRoute(builder: (context) => ChatScreen(email: email,name: firstname,)));
             }),
         appBar: AppBar(
           backgroundColor: Color.fromARGB(255, 241, 237, 239),
@@ -48,7 +48,7 @@ class Specialistprofileforuser extends StatelessWidget {
               index: index,
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 175),
+              padding: const EdgeInsets.only(top: 120),
               child: Container(
                 height: double.infinity,
                 width: MediaQuery.of(context).size.width,

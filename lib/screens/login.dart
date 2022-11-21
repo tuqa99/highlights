@@ -11,6 +11,7 @@ import 'package:highlights/screens/viewscreen.dart';
 import 'package:highlights/signInGoogle/database.dart';
 import 'package:highlights/specialist/specialistprofile.dart';
 import 'package:line_icons/line_icons.dart';
+import '../UserScreens/AppBar/FirstPage.dart';
 import '../UserScreens/allscreens.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
@@ -272,16 +273,6 @@ class _LoginPageState extends State<LoginPage> {
                               );
                             },
                           ),
-                          const SizedBox(
-                            width: 50,
-                          ),
-                          GestureDetector(
-                            child: const Image(
-                                height: 30,
-                                width: 30,
-                                image: AssetImage('images/facebook.png')),
-                            onTap: () {},
-                          )
                         ],
                       ),
                     ]),

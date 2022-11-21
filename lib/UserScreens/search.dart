@@ -3,7 +3,10 @@ import 'dart:math';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:highlights/screens/specialistList.dart';
+
+import '../specialist/SpicialistVeiwuser.dart';
 
 class Search extends StatelessWidget {
   const Search({super.key});
@@ -40,6 +43,7 @@ class MySeachDelegate extends SearchDelegate {
     'Photography',
     'Styling'
   ];
+  String? _profileimage;
   CollectionReference _services =
       FirebaseFirestore.instance.collection('specialist');
   @override
@@ -62,6 +66,22 @@ class MySeachDelegate extends SearchDelegate {
             icon: Icon(Icons.clear))
       ];
 
+  ratingAva(DocumentSnapshot document) {
+    List allRatings = document['rating'];
+    int length = allRatings.length;
+    if (length > 1) {
+      length = length - 1;
+    }
+    int sum = 0;
+    print(length);
+    for (int i = 0; i < allRatings.length; i++) {
+      int index = allRatings[i];
+      sum += index;
+    }
+    double ava = sum / length;
+    return ava;
+  }
+
   @override
   Widget buildResults(BuildContext context) {
     if (servicelist.contains(query)) {
@@ -80,55 +100,81 @@ class MySeachDelegate extends SearchDelegate {
                 itemCount: snapshot.data!.docs.length,
                 itemBuilder: (context, index) {
                   return InkWell(
-                    onTap: (() {}),
+                    onTap: (() {
+                      // print(ratingAva());
+
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => Specialistprofileforuser(
+                              firstname: snapshot.data!.docs[index]
+                                  ['first name'],
+                              email: snapshot.data!.docs[index]['email'],
+                              profilephotpurl: '',
+                              CollectionName: snapshot.data!.docs[index]
+                                  ['service'][0],
+                              index: index,
+
+                              // career: document['service']),
+                            ),
+                          ));
+                    }),
                     child: Container(
-                        margin: const EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(3),
+                        border: Border.all(
+                          width: .5,
+                          color: Color.fromRGBO(117, 117, 117, 1),
+                        ),
+                        color: Color.fromARGB(255, 241, 237, 239),
+                      ),
+                      margin: const EdgeInsets.all(10),
+                      child: SingleChildScrollView(
                         child: Column(
                           children: [
-                            Container(
-                              width: double.infinity,
-                              margin: const EdgeInsets.only(top: 5),
-                              child: const Image(
-                                height: 100,
-                                image: AssetImage("images/avatar.webp"),
-                                fit: BoxFit.contain,
+                            SizedBox(
+                              height: 7,
+                            ),
+                            CircleAvatar(
+                              radius: 40,
+                              backgroundImage: _profileimage != null
+                                  ? NetworkImage('$_profileimage')
+                                  : NetworkImage(
+                                      'https://media.istockphoto.com/id/587805156/vector/profile-picture-vector-illustration.jpg?s=612x612&w=0&k=20&c=gkvLDCgsHH-8HeQe7JsjhlOY6vRBJk_sKW9lyaLgmLo='),
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Text(
+                              snapshot.data!.docs[index]['first name']
+                                  .toUpperCase(),
+                              style: GoogleFonts.playfairDisplay(
+                                textStyle: TextStyle(
+                                    wordSpacing: 1,
+                                    letterSpacing: 1,
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.grey.shade900),
                               ),
                             ),
                             const SizedBox(
-                              height: 5,
+                              height: 10,
                             ),
-                            Text(
-                              "${snapshot.data!.docs[index]['first name']}+${snapshot.data!.docs[index]['last name']}",
-                              style: TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.bold,
-                                color: Color(0xff880e4f),
+                            RatingBarIndicator(
+                              itemSize: 21,
+                              rating: ratingAva(snapshot.data!.docs[index]),
+                              itemBuilder: (context, index) => Icon(
+                                Icons.star,
+                                color: Colors.black,
                               ),
                             ),
-                            Text(
-                                "Services: ${snapshot.data!.docs[index]['service']} "),
-                            const SizedBox(
+                            SizedBox(
                               height: 5,
-                            ),
-                            RatingBar.builder(
-                              itemSize: 20,
-                              initialRating: 3,
-                              minRating: 1,
-                              direction: Axis.horizontal,
-                              allowHalfRating: false,
-                              itemCount: 5,
-                              itemPadding:
-                                  const EdgeInsets.symmetric(horizontal: 4.0),
-                              itemBuilder: (context, _) {
-                                return const Icon(
-                                  Icons.star,
-                                  color: Color(0xffbc477b),
-                                );
-                              },
-                              onRatingUpdate: (value) {},
                             ),
                           ],
-                        )),
+                        ),
+                      ),
+                    ),
                   );
                 },
               );
@@ -160,55 +206,81 @@ class MySeachDelegate extends SearchDelegate {
                 itemCount: snapshot.data!.docs.length,
                 itemBuilder: (context, index) {
                   return InkWell(
-                    onTap: (() {}),
+                    onTap: (() {
+                      // print(ratingAva());
+
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => Specialistprofileforuser(
+                              firstname: snapshot.data!.docs[index]
+                                  ['first name'],
+                              email: snapshot.data!.docs[index]['email'],
+                              profilephotpurl: '',
+                              CollectionName: snapshot.data!.docs[index]
+                                  ['service'][0],
+                              index: index,
+
+                              // career: document['service']),
+                            ),
+                          ));
+                    }),
                     child: Container(
-                        margin: const EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(3),
+                        border: Border.all(
+                          width: .5,
+                          color: Color.fromRGBO(117, 117, 117, 1),
+                        ),
+                        color: Color.fromARGB(255, 241, 237, 239),
+                      ),
+                      margin: const EdgeInsets.all(10),
+                      child: SingleChildScrollView(
                         child: Column(
                           children: [
-                            Container(
-                              width: double.infinity,
-                              margin: const EdgeInsets.only(top: 5),
-                              child: const Image(
-                                height: 100,
-                                image: AssetImage("images/avatar.webp"),
-                                fit: BoxFit.contain,
+                            SizedBox(
+                              height: 7,
+                            ),
+                            CircleAvatar(
+                              radius: 40,
+                              backgroundImage: _profileimage != null
+                                  ? NetworkImage('$_profileimage')
+                                  : NetworkImage(
+                                      'https://media.istockphoto.com/id/587805156/vector/profile-picture-vector-illustration.jpg?s=612x612&w=0&k=20&c=gkvLDCgsHH-8HeQe7JsjhlOY6vRBJk_sKW9lyaLgmLo='),
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Text(
+                              snapshot.data!.docs[index]['first name']
+                                  .toUpperCase(),
+                              style: GoogleFonts.playfairDisplay(
+                                textStyle: TextStyle(
+                                    wordSpacing: 1,
+                                    letterSpacing: 1,
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.grey.shade900),
                               ),
                             ),
                             const SizedBox(
-                              height: 5,
+                              height: 10,
                             ),
-                            Text(
-                              "${snapshot.data!.docs[index]['first name']}+${snapshot.data!.docs[index]['last name']}",
-                              style: TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.bold,
-                                color: Color(0xff880e4f),
+                            RatingBarIndicator(
+                              itemSize: 21,
+                              rating: ratingAva(snapshot.data!.docs[index]),
+                              itemBuilder: (context, index) => Icon(
+                                Icons.star,
+                                color: Colors.black,
                               ),
                             ),
-                            Text(
-                                "Services: ${snapshot.data!.docs[index]['service']} "),
-                            const SizedBox(
+                            SizedBox(
                               height: 5,
-                            ),
-                            RatingBar.builder(
-                              itemSize: 20,
-                              initialRating: 3,
-                              minRating: 1,
-                              direction: Axis.horizontal,
-                              allowHalfRating: false,
-                              itemCount: 5,
-                              itemPadding:
-                                  const EdgeInsets.symmetric(horizontal: 4.0),
-                              itemBuilder: (context, _) {
-                                return const Icon(
-                                  Icons.star,
-                                  color: Color(0xffbc477b),
-                                );
-                              },
-                              onRatingUpdate: (value) {},
                             ),
                           ],
-                        )),
+                        ),
+                      ),
+                    ),
                   );
                 },
               );

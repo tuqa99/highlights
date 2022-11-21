@@ -18,7 +18,7 @@ class _SpecialistsListState extends State<SpecialistList> {
   Widget build(BuildContext context) {
     final color = Theme.of(context).colorScheme.primary;
     int? rating;
-
+    String? _profileimage;
     CollectionReference ref =
         FirebaseFirestore.instance.collection(widget.CollectionName!);
 
@@ -42,7 +42,7 @@ class _SpecialistsListState extends State<SpecialistList> {
     return Scaffold(
       appBar: AppBar(
         iconTheme: IconThemeData(
-          color: Colors.white,
+          color: Colors.black,
         ),
         titleSpacing: 00.0,
         centerTitle: true,
@@ -57,9 +57,9 @@ class _SpecialistsListState extends State<SpecialistList> {
         elevation: 0.00,
         title: Text(
           "${widget.CollectionName}",
-          style: TextStyle(color: Colors.white),
+          style: TextStyle(color: Colors.black),
         ),
-        backgroundColor: Colors.grey.shade600,
+        backgroundColor: Color.fromARGB(255, 225, 223, 224),
       ),
       body: StreamBuilder<QuerySnapshot>(
           stream: documents,
@@ -109,8 +109,11 @@ class _SpecialistsListState extends State<SpecialistList> {
                               height: 7,
                             ),
                             CircleAvatar(
-                              radius: 50,
-                              backgroundImage: AssetImage("images/profile.jpg"),
+                              radius: 40,
+                              backgroundImage: _profileimage != null
+                                  ? NetworkImage('$_profileimage')
+                                  : NetworkImage(
+                                      'https://media.istockphoto.com/id/587805156/vector/profile-picture-vector-illustration.jpg?s=612x612&w=0&k=20&c=gkvLDCgsHH-8HeQe7JsjhlOY6vRBJk_sKW9lyaLgmLo='),
                             ),
                             const SizedBox(
                               height: 10,

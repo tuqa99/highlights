@@ -20,7 +20,7 @@ class MyTile extends StatelessWidget {
               onTap: ontap1,
               child: Icon(
                 traiIcon,
-                color: Color.fromARGB(255, 186, 104, 200),
+                color: Colors.black,
               )),
           title: Text(
             "$text",
@@ -31,7 +31,7 @@ class MyTile extends StatelessWidget {
           ),
           leading: Icon(
             leadIcon,
-            color: Color.fromARGB(255, 186, 104, 200),
+            color: Colors.black,
           ),
         ),
       ],

@@ -58,6 +58,7 @@ Future<void> main() async {
               //     onSurface: Colors.blue),
               scaffoldBackgroundColor: Colors.black,
               canvasColor: Colors.black,
+              cardColor: Colors.black,
             )
           : ThemeData.light().copyWith(accentColor: Colors.black),
       debugShowCheckedModeBanner: false,
@@ -71,6 +72,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return NewHome();
+    return LoginPage();
   }
 }
