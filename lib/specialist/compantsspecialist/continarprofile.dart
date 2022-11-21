@@ -5,6 +5,7 @@ import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../chat/messages.dart';
 import '../../chat/new_message.dart';
@@ -448,74 +449,182 @@ class _ContainerProfileViewState extends State<Continarprfileview> {
       builder: (context, snapshot) {
         DocumentSnapshot document = snapshot.data!.docs[widget.index!];
         return Container(
-          height: 300,
-          color: Color.fromARGB(255, 250, 91, 165),
+          width: double.infinity,
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(begin: Alignment.topCenter, colors: [
+              Color.fromARGB(255, 186, 104, 200),
+              Color.fromARGB(255, 218, 178, 226),
+              Color.fromARGB(255, 240, 198, 213)
+            ]),
+          ),
+          height: 200,
           child: Column(
             children: [
-              CircleAvatar(
-                radius: 40,
-                backgroundImage: NetworkImage(
-                    'https://tse2.mm.bing.net/th?id=OIP.Hxzx1qKwcGv4KY4rUXEoFgHaFj&pid=Api&P=0'),
-              ),
-              Text(
-                "${widget.firstname}",
-                style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white),
+              SizedBox(
+                height: 25,
               ),
               Row(
                 children: [
                   SizedBox(
-                    width: 70,
+                    width: 30,
                   ),
-                  Icon(Icons.email, color: Colors.white),
+                  CircleAvatar(
+                    radius: 50,
+                    backgroundImage: NetworkImage(
+                        'https://tse2.mm.bing.net/th?id=OIP.Hxzx1qKwcGv4KY4rUXEoFgHaFj&pid=Api&P=0'),
+                  ),
                   SizedBox(
-                    width: 12,
+                    width: 30,
                   ),
-                  Text(
-                    "${widget.email}",
-                    style: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white),
+                  Container(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                          height: 15,
+                        ),
+                        Text(
+                          "${widget.firstname!.toUpperCase()}",
+                          style: GoogleFonts.playfairDisplay(
+                            textStyle: TextStyle(
+                                wordSpacing: 2,
+                                letterSpacing: 2,
+                                fontSize: 17,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 7,
+                        ),
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            SizedBox(
+                              width: 40,
+                            ),
+                            Column(
+                              children: [
+                                Text(
+                                  "2",
+                                  style: TextStyle(
+                                      fontSize: 12,
+                                      color: Colors.grey.shade800),
+                                ),
+                                SizedBox(
+                                  height: 5,
+                                ),
+                                Text(
+                                  "Posts",
+                                  style: TextStyle(
+                                      fontSize: 10,
+                                      color: Colors.white70,
+                                      fontWeight: FontWeight.bold),
+                                )
+                              ],
+                            ),
+                            SizedBox(
+                              width: 20,
+                            ),
+                            Column(
+                              children: [
+                                Text(
+                                  "2",
+                                  style: TextStyle(
+                                      fontSize: 12,
+                                      color: Colors.grey.shade800),
+                                ),
+                                SizedBox(
+                                  height: 5,
+                                ),
+                                Text(
+                                  "Packages",
+                                  style: TextStyle(
+                                      fontSize: 10,
+                                      color: Colors.white70,
+                                      fontWeight: FontWeight.bold),
+                                )
+                              ],
+                            )
+                          ],
+                        ),
+
+                        // Row(
+                        //   children: [
+                        //     SizedBox(
+                        //       width: 5,
+                        //     ),
+                        //     Icon(
+                        //       Icons.email,
+                        //       color: Colors.grey.shade800,
+                        //       size: 12,
+                        //     ),
+                        //     SizedBox(
+                        //       width: 9,
+                        //     ),
+                        //     Text(
+                        //       "${widget.email}",
+                        //       style: TextStyle(
+                        //           fontSize: 11,
+                        //           fontWeight: FontWeight.normal,
+                        //           color: Colors.grey.shade800),
+                        //     ),
+                        //   ],
+                        // ),
+                        SizedBox(
+                          height: 15,
+                        ),
+                        Row(
+                          children: [
+                            RatingBarIndicator(
+                              itemSize: 21,
+                              rating: ratingAva(document),
+                              itemBuilder: (context, index) => Icon(
+                                Icons.star,
+                                color: Colors.black,
+                              ),
+                            ),
+                            SizedBox(
+                              width: 15,
+                            ),
+                            TextButton(
+                              style: TextButton.styleFrom(
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(20)),
+                                backgroundColor:
+                                    Color.fromARGB(255, 200, 187, 202),
+                              ),
+                              onPressed: () async {
+                                await updatte(document);
+                              },
+                              child: Text(
+                                "Rate Now",
+                                style: TextStyle(
+                                  color: Color.fromARGB(255, 153, 77, 167),
+                                  fontSize: 10,
+                                ),
+                              ),
+                            ),
+                            // Row(
+                            //   children: [
+                            //     IconButton(
+                            //         onPressed: () {
+                            //           Navigator.push(context, MaterialPageRoute(
+                            //             builder: (context) {
+                            //               return ChatScreen();
+                            //             },
+                            //           ));
+                            //         },
+                            //         icon: Icon(Icons.chat_bubble))
+                            //   ],
+                            // ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
-                  IconButton(
-                      onPressed: () {
-                        Navigator.push(context, MaterialPageRoute(
-                          builder: (context) {
-                            return ChatScreen();
-                          },
-                        ));
-                      },
-                      icon: Icon(Icons.chat_bubble))
                 ],
               ),
-              RatingBarIndicator(
-                itemSize: 21,
-                rating: ratingAva(document),
-                itemBuilder: (context, index) => const Icon(
-                  Icons.star,
-                  color: Colors.amber,
-                ),
-              ),
-              SizedBox(
-                height: 5,
-              ),
-              Center(
-                child: TextButton(
-                  style: TextButton.styleFrom(
-                    backgroundColor: Colors.white,
-                  ),
-                  onPressed: () async {
-                    await updatte(document);
-                  },
-                  child: Text(
-                    "Rate us",
-                    style: TextStyle(color: Colors.black),
-                  ),
-                ),
-              )
             ],
           ),
         );

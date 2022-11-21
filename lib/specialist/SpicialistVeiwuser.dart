@@ -10,7 +10,7 @@ class Specialistprofileforuser extends StatelessWidget {
     required this.firstname,
     required this.email,
     required this.profilephotpurl,
-        required this.CollectionName,
+    required this.CollectionName,
     required this.index,
 
     // required this.career,
@@ -19,18 +19,23 @@ class Specialistprofileforuser extends StatelessWidget {
   String? email;
   String? career;
   String? profilephotpurl;
-    String? CollectionName;
-    int? index;
-
+  String? CollectionName;
+  int? index;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        floatingActionButton: FloatingActionButton(onPressed: () {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => ChatScreen()));
-        }),
-        appBar: AppBar(backgroundColor: Color.fromARGB(255, 202, 68, 255)),
+        floatingActionButton: FloatingActionButton(
+            backgroundColor: Color.fromARGB(255, 153, 77, 167),
+            child: Icon(
+              Icons.chat,
+              color: Colors.white,
+            ),
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => ChatScreen()));
+            }),
+        appBar: AppBar(backgroundColor: Color.fromARGB(255, 153, 77, 167)),
         body: Stack(
           children: [
             Continarprfileview(
@@ -47,10 +52,11 @@ class Specialistprofileforuser extends StatelessWidget {
                 height: double.infinity,
                 width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.only(
-                        topRight: Radius.circular(30),
-                        topLeft: Radius.circular(30))),
+                  color: Colors.white,
+                  // borderRadius: BorderRadius.only(
+                  //     topRight: Radius.circular(30),
+                  //     topLeft: Radius.circular(30)),
+                ),
                 child: SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
                     child: Row(
