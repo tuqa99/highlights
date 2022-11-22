@@ -13,7 +13,7 @@ class ProfileWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final color = Theme.of(context).colorScheme.primary;
+    final color = Theme.of(context).primaryColor;
     return Center(
       child: Stack(
         children: [
@@ -46,7 +46,7 @@ class ProfileWidget extends StatelessWidget {
         color: Colors.white,
         all: 2,
         child: buildCircle(
-          color: Color.fromARGB(255, 186, 104, 200),
+          color: color,
           all: 0,
           child: IconButton(
             onPressed: onClicked,

@@ -14,13 +14,15 @@ class MyTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Divider(thickness: 2),
+        Divider(
+          thickness: 2,
+        ),
         ListTile(
           trailing: GestureDetector(
               onTap: ontap1,
               child: Icon(
                 traiIcon,
-                color: Colors.black,
+                color: Theme.of(context).primaryColor,
               )),
           title: Text(
             "$text",
@@ -31,7 +33,7 @@ class MyTile extends StatelessWidget {
           ),
           leading: Icon(
             leadIcon,
-            color: Colors.black,
+            color: Theme.of(context).primaryColor,
           ),
         ),
       ],
