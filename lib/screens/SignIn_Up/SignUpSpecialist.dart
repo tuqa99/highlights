@@ -3,10 +3,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:highlights/UserScreens/allscreens.dart';
 import 'package:highlights/UserScreens/userProfile/button_widget.dart';
-import 'package:highlights/screens/login.dart';
-import 'package:highlights/specialist/SpicialistVeiwuser.dart';
-import 'package:highlights/specialist/specialistprofile.dart';
+import 'package:highlights/screens/SignIn_Up/login.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+
+import '../../specialist/SpecialSide/specialistprofile.dart';
 
 class SignUpSpecialist extends StatefulWidget {
   const SignUpSpecialist({super.key});

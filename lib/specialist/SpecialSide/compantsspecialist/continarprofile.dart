@@ -7,9 +7,9 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../chat/messages.dart';
-import '../../chat/new_message.dart';
-import '../../screens/chat_screen.dart';
+import '../../../chat/messages.dart';
+import '../../../chat/new_message.dart';
+import '../../../screens/chat_screen.dart';
 
 class Continarprfile extends StatefulWidget {
   const Continarprfile({super.key});

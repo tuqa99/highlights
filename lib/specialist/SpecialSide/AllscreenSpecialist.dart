@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:highlights/UserScreens/userProfile/profile.dart';
 import 'package:highlights/chat/ChatSpecial.dart';
 import 'package:highlights/screens/chat_screen.dart';
-import 'package:highlights/specialist/specialistprofile.dart';
+import 'package:highlights/specialist/SpecialSide/specialistprofile.dart';
 import 'package:sliding_clipped_nav_bar/sliding_clipped_nav_bar.dart';
 
 class SpecialistMain extends StatefulWidget {
