@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import "package:flutter/material.dart";
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import '../UserScreens/userProfile/button_widget.dart';
 import '../profiledrawer/AccountSpecial.dart';
 import 'compantsspecialist/addimages.dart';
 import 'compantsspecialist/addpackeges.dart';
@@ -85,12 +86,16 @@ class _SpecialistprofileforeditState extends State<Specialistprofileforedit> {
                         topLeft: Radius.circular(30))),
                 child: Column(
                   children: [
-                    ElevatedButton(
-                        onPressed: () {
-                          showDialog(
-                              context: context, builder: (ctx) => addimages());
-                        },
-                        child: Text('add images')),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    ButtonWidget(
+                      text: 'add images',
+                      onClicked: () {
+                        showDialog(
+                            context: context, builder: (ctx) => addimages());
+                      },
+                    ),
                     SingleChildScrollView(
                         scrollDirection: Axis.horizontal,
                         child: Row(
@@ -107,12 +112,13 @@ class _SpecialistprofileforeditState extends State<Specialistprofileforedit> {
                             ),
                           ],
                         )),
-                    ElevatedButton(
-                        onPressed: () {
-                          showDialog(
-                              context: context, builder: (ctx) => Addpackegs());
-                        },
-                        child: Text('add Packeges')),
+                    ButtonWidget(
+                      text: 'add Packeges',
+                      onClicked: () {
+                        showDialog(
+                            context: context, builder: (ctx) => Addpackegs());
+                      },
+                    ),
                   ],
                 ),
               ),

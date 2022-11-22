@@ -6,12 +6,11 @@ import 'package:highlights/UserScreens/HomePageComp/homemodels.dart/hairspeciali
 import 'package:highlights/UserScreens/userProfile/button_widget.dart';
 import 'package:highlights/screens/resetPass.dart';
 import 'package:highlights/signInGoogle/FirebaseServices.dart';
-import 'package:highlights/UserScreens/HomePageComp/HomePage.dart';
 import 'package:highlights/screens/viewscreen.dart';
 import 'package:highlights/signInGoogle/database.dart';
 import 'package:highlights/specialist/specialistprofile.dart';
 import 'package:line_icons/line_icons.dart';
-import '../UserScreens/AppBar/FirstPage.dart';
+import '../UserScreens/HomePageComp/FirstPage.dart';
 import '../UserScreens/allscreens.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
@@ -270,7 +269,7 @@ class _LoginPageState extends State<LoginPage> {
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) {
-                                    return const HomePage();
+                                    return const MainPage();
                                   },
                                 ),
                               );

@@ -5,9 +5,9 @@ import 'package:highlights/UserScreens/AppBar/theme.dart';
 import 'package:highlights/UserScreens/HomePageComp/homemodels.dart/hairspecialist.dart';
 
 import '../../profiledrawer/AccountSettings.dart';
-import '../HomePageComp/categories.dart';
-import '../HomePageComp/homemodels.dart/title_section.dart';
-import '../HomePageComp/packages.dart';
+import 'categories.dart';
+import 'homemodels.dart/title_section.dart';
+import 'packages.dart';
 
 class NewHome extends StatefulWidget {
   const NewHome({Key? key}) : super(key: key);
@@ -25,8 +25,8 @@ class _NewHomeState extends State<NewHome> {
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 225, 223, 224),
-        shadowColor: Color.fromARGB(255, 225, 223, 224),
+        backgroundColor: Color.fromARGB(255, 162, 212, 244),
+        shadowColor: Color.fromARGB(255, 162, 212, 244),
         elevation: .1,
       ),
       drawer: Drawer(
@@ -37,7 +37,7 @@ class _NewHomeState extends State<NewHome> {
           height: height * 0.20,
           width: double.infinity,
           decoration: const BoxDecoration(
-              color: Color.fromARGB(255, 225, 223, 224),
+              color: Color.fromARGB(255, 162, 212, 244),
               borderRadius: BorderRadius.only(
                   bottomRight: Radius.circular(40),
                   bottomLeft: Radius.circular(40))),
@@ -75,33 +75,33 @@ class _NewHomeState extends State<NewHome> {
                       child: Column(
                         children: [
                           //title for packages
-                          // TitleSection(
-                          //   text: "\t Prepared Packages",
-                          //   press: () {},
-                          // ),
-                          // SizedBox(
-                          //   height: 10,
-                          // ),
+                          TitleSection(
+                            text: "\t Prepared Packages",
+                            press: () {},
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
                           // packages
-                          // SingleChildScrollView(
-                          //   scrollDirection: Axis.horizontal,
-                          //   child: Row(
-                          //     children: [
-                          //       Packages(
-                          //         image: "images/1.jpg",
-                          //         category: "Bridal",
-                          //         numOfOffers: 5,
-                          //         press: () {},
-                          //       ),
-                          //       Packages(
-                          //         image: "images/1.jpg",
-                          //         category: "Bridal",
-                          //         numOfOffers: 8,
-                          //         press: () {},
-                          //       ),
-                          //     ],
-                          //   ),
-                          // ), //For packages
+                          SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: Row(
+                              children: [
+                                Packages(
+                                  image: "images/grad.jpg",
+                                  category: "Bridal",
+                                  numOfOffers: 5,
+                                  press: () {},
+                                ),
+                                Packages(
+                                  image: "images/wedding.jpg",
+                                  category: "Bridal",
+                                  numOfOffers: 8,
+                                  press: () {},
+                                ),
+                              ],
+                            ),
+                          ), //For packages
                           SizedBox(
                             height: 20,
                           ),

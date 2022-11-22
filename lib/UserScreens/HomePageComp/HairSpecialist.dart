@@ -27,7 +27,7 @@ class Specialists extends StatelessWidget {
                 child: Container(
                   padding: EdgeInsets.all(10),
                   decoration: BoxDecoration(
-                    color: Color(0xffc38a9e).withOpacity(0.4),
+                    color: Color.fromARGB(255, 162, 212, 244),
                     borderRadius: BorderRadius.circular(15),
                   ),
                   child: Image.asset(specialist.images[0]),

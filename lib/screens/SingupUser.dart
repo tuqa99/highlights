@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:highlights/UserScreens/HomePageComp/HomePage.dart';
+import 'package:highlights/UserScreens/HomePageComp/FirstPage.dart';
 
 import '../UserScreens/userProfile/button_widget.dart';
 import 'login.dart';
@@ -196,7 +196,7 @@ class SignupPageuser extends StatelessWidget {
                                 const SnackBar(content: Text("its added")));
                             Navigator.push(context, MaterialPageRoute(
                               builder: (context) {
-                                return HomePage();
+                                return NewHome();
                               },
                             ));
                           } catch (e) {
