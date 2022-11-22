@@ -3,12 +3,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import "package:flutter/material.dart";
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import '../UserScreens/userProfile/button_widget.dart';
-import '../profiledrawer/AccountSpecial.dart';
+
+import '../../UserScreens/userProfile/button_widget.dart';
+import '../../profiledrawer/AccountSpecial.dart';
 import 'compantsspecialist/addimages.dart';
 import 'compantsspecialist/addpackeges.dart';
 import 'compantsspecialist/continarprofile.dart';
-import 'compantsspecialist/read.dart';
 import 'compantsspecialist/viewimage.dart';
 
 class Specialistprofileforedit extends StatefulWidget {

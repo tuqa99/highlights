@@ -1,9 +1,9 @@
 import 'dart:io';
 import "package:flutter/material.dart";
 import 'package:highlights/screens/chat_screen.dart';
-import 'compantsspecialist/continarprofile.dart';
-import 'compantsspecialist/read.dart';
-import 'compantsspecialist/viewimage.dart';
+import 'SpecialSide/compantsspecialist/continarprofile.dart';
+import 'SpecialSide/compantsspecialist/read.dart';
+import 'SpecialSide/compantsspecialist/viewimage.dart';
 
 class Specialistprofileforuser extends StatelessWidget {
   Specialistprofileforuser({

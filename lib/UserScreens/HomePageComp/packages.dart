@@ -33,29 +33,23 @@ class Packages extends StatelessWidget {
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
                     colors: [
-                      Color.fromARGB(255, 162, 212, 244).withOpacity(.5),
+                      Color.fromARGB(255, 162, 212, 244).withOpacity(.3),
                       Color.fromARGB(255, 194, 225, 244).withOpacity(.5),
                       Colors.white.withOpacity(.5)
                     ]),
               ),
             ),
             Padding(
-              padding: EdgeInsets.all(15),
+              padding: EdgeInsets.fromLTRB(20, 40, 0, 0),
               child: Text.rich(
                 TextSpan(children: [
                   TextSpan(
-                    text: "$category Package\n \n",
+                    text: "$category Packages\n \n",
                     style: TextStyle(
-                        fontSize: 18,
+                        fontSize: 25,
                         fontWeight: FontWeight.bold,
                         color: Colors.white),
                   ),
-                  TextSpan(
-                      text: "\t \tThis packge includes:$numOfOffers items",
-                      style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white)),
                 ]),
               ),
             )

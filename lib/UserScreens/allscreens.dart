@@ -45,7 +45,7 @@ class _MainPageState extends State<MainPage> {
         ],
       ),
       bottomNavigationBar: SlidingClippedNavBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).primaryColor,
         onButtonPressed: onButtonPressed,
         iconSize: 30,
         activeColor: Colors.black,

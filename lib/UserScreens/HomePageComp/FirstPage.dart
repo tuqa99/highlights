@@ -25,8 +25,8 @@ class _NewHomeState extends State<NewHome> {
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 162, 212, 244),
-        shadowColor: Color.fromARGB(255, 162, 212, 244),
+        backgroundColor: Theme.of(context).primaryColor,
+        // shadowColor: Color.fromARGB(255, 225, 223, 224),
         elevation: .1,
       ),
       drawer: Drawer(
@@ -36,8 +36,8 @@ class _NewHomeState extends State<NewHome> {
         Container(
           height: height * 0.20,
           width: double.infinity,
-          decoration: const BoxDecoration(
-              color: Color.fromARGB(255, 162, 212, 244),
+          decoration: BoxDecoration(
+              color: Theme.of(context).primaryColor,
               borderRadius: BorderRadius.only(
                   bottomRight: Radius.circular(40),
                   bottomLeft: Radius.circular(40))),
@@ -89,13 +89,31 @@ class _NewHomeState extends State<NewHome> {
                               children: [
                                 Packages(
                                   image: "images/grad.jpg",
-                                  category: "Bridal",
+                                  category: "Graduation",
                                   numOfOffers: 5,
                                   press: () {},
                                 ),
                                 Packages(
                                   image: "images/wedding.jpg",
                                   category: "Bridal",
+                                  numOfOffers: 8,
+                                  press: () {},
+                                ),
+                                Packages(
+                                  image: "images/birthday.jpg",
+                                  category: "Birthday",
+                                  numOfOffers: 8,
+                                  press: () {},
+                                ),
+                                Packages(
+                                  image: "images/party.jpg",
+                                  category: "Party",
+                                  numOfOffers: 8,
+                                  press: () {},
+                                ),
+                                Packages(
+                                  image: "images/regular.jpg",
+                                  category: "Regular",
                                   numOfOffers: 8,
                                   press: () {},
                                 ),

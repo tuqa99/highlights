@@ -3,11 +3,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_settings_screens/flutter_settings_screens.dart';
 import 'package:highlights/profiledrawer/AccountSettings.dart';
 import 'package:highlights/screens/SplashScreen.dart';
-import 'package:highlights/screens/login.dart';
-import 'package:highlights/screens/viewscreen.dart';
-import 'package:highlights/specialist/SpicialistVeiwuser.dart';
-import 'package:highlights/specialist/specialistprofile.dart';
-import 'UserScreens/HomePageComp/FirstPage.dart';
 import 'firebase_options.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
@@ -43,25 +38,24 @@ Future<void> main() async {
     builder: (_, isDarkMode, __) => MaterialApp(
       theme: isDarkMode
           ? ThemeData.dark().copyWith(
+              scaffoldBackgroundColor: Colors.grey.shade900,
               primaryColor: Colors.teal,
-              accentColor: Colors.white,
-              // colorScheme: ColorScheme(
-              //     brightness: Brightness.dark,
-              //     primary: Colors.teal,
-              //     onPrimary: Colors.teal,
-              //     secondary: Colors.white,
-              //     onSecondary: Colors.white,
-              //     error: Colors.red,
-              //     onError: Colors.red,
-              //     background: Colors.teal,
-              //     onBackground: Colors.blue,
-              //     surface: Colors.teal,
-              //     onSurface: Colors.blue),
-              scaffoldBackgroundColor: Colors.black,
-              canvasColor: Colors.black,
+              colorScheme: ColorScheme.dark(),
               cardColor: Colors.black,
+              highlightColor: Colors.teal,
+              backgroundColor: Colors.grey.shade900,
+
+              // canvasColor: Colors.black,
+              // cardColor: Colors.black,
             )
-          : ThemeData.light().copyWith(accentColor: Colors.black),
+          : ThemeData.light().copyWith(
+              backgroundColor:
+                  Color.fromARGB(255, 225, 223, 224).withOpacity(.6),
+              scaffoldBackgroundColor: Colors.white,
+              primaryColor: Color.fromARGB(255, 162, 212, 244),
+              cardColor: Colors.white,
+              highlightColor: Colors.black,
+              colorScheme: ColorScheme.light()),
       debugShowCheckedModeBanner: false,
       home: MyApp(),
     ),

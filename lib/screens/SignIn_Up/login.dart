@@ -8,13 +8,12 @@ import 'package:highlights/screens/resetPass.dart';
 import 'package:highlights/signInGoogle/FirebaseServices.dart';
 import 'package:highlights/screens/viewscreen.dart';
 import 'package:highlights/signInGoogle/database.dart';
-import 'package:highlights/specialist/specialistprofile.dart';
 import 'package:line_icons/line_icons.dart';
-import '../UserScreens/HomePageComp/FirstPage.dart';
-import '../UserScreens/allscreens.dart';
+import '../../UserScreens/HomePageComp/FirstPage.dart';
+import '../../UserScreens/allscreens.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
-import '../specialist/AllscreenSpecialist.dart';
+import '../../specialist/SpecialSide/AllscreenSpecialist.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -57,7 +56,6 @@ class _LoginPageState extends State<LoginPage> {
                     style: GoogleFonts.playfairDisplay(
                       textStyle: TextStyle(
                         fontSize: 45,
-                        color: Colors.black,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -70,7 +68,6 @@ class _LoginPageState extends State<LoginPage> {
                     style: GoogleFonts.playfairDisplay(
                       textStyle: TextStyle(
                         fontSize: 20,
-                        color: Colors.black,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -84,7 +81,7 @@ class _LoginPageState extends State<LoginPage> {
             Expanded(
                 child: Container(
               decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: Theme.of(context).scaffoldBackgroundColor,
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(60),
                     topRight: Radius.circular(60),
@@ -98,7 +95,7 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       Container(
                         decoration: BoxDecoration(
-                            color: Colors.white,
+                            color: Theme.of(context).cardColor,
                             borderRadius: BorderRadius.circular(10),
                             boxShadow: [
                               BoxShadow(
@@ -121,7 +118,6 @@ class _LoginPageState extends State<LoginPage> {
                                     color: Colors.grey.shade800,
                                   ),
                                   hintText: "Enter your email",
-                                  hintStyle: TextStyle(color: Colors.black),
                                   border: InputBorder.none),
                             ),
                           ),
@@ -140,7 +136,7 @@ class _LoginPageState extends State<LoginPage> {
                                     color: Colors.grey.shade800,
                                   ),
                                   hintText: "Enter your Password",
-                                  hintStyle: TextStyle(color: Colors.black),
+                                  // hintStyle: TextStyle(color: Colors.black),
                                   border: InputBorder.none),
                             ),
                           )

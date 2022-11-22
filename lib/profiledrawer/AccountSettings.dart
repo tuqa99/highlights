@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_settings_screens/flutter_settings_screens.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../screens/login.dart';
+import '../screens/SignIn_Up/login.dart';
 import 'Widget/icon_widget.dart';
 
 class AccountSettings extends StatelessWidget {
@@ -55,7 +55,9 @@ class AccountSettings extends StatelessWidget {
                         icon: Icons.dark_mode,
                         color: mycolor,
                       ),
-                      onChange: (_) {},
+                      onChange: (_) {
+                        
+                      },
                     ),
                   ],
                 ),

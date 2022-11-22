@@ -196,7 +196,7 @@ class _PrfileHeaderState extends State<PrfileHeader> {
           return Container(
             alignment: Alignment.bottomLeft,
             // color: Colors.red,
-            height: 46,
+            height: 60,
             child: Column(
               children: [
                 Text(
@@ -213,7 +213,6 @@ class _PrfileHeaderState extends State<PrfileHeader> {
                   child: Text(
                     _email,
                     style: TextStyle(
-                      color: Colors.black54,
                       fontSize: 12,
                     ),
                   ),
