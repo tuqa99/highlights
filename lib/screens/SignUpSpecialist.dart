@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:highlights/UserScreens/HomePageComp/HomePage.dart';
 import 'package:highlights/UserScreens/allscreens.dart';
 import 'package:highlights/UserScreens/userProfile/button_widget.dart';
@@ -33,7 +34,7 @@ class _SignUpSpecialistState extends State<SignUpSpecialist> {
     "MakeUp",
     "Photography",
   ];
-  Color kActiveColor = Color.fromARGB(255, 186, 104, 200);
+  Color kActiveColor = Color.fromARGB(255, 162, 212, 244);
   List<String>? selectedService = [];
 
   bool confirmedPassword() {
@@ -52,7 +53,7 @@ class _SignUpSpecialistState extends State<SignUpSpecialist> {
       appBar: AppBar(
         elevation: 0,
         brightness: Brightness.light,
-        backgroundColor: Colors.white,
+        backgroundColor: Color.fromARGB(255, 162, 212, 244),
         leading: IconButton(
             onPressed: () {
               Navigator.pop(context);
@@ -67,16 +68,16 @@ class _SignUpSpecialistState extends State<SignUpSpecialist> {
         width: double.infinity,
         decoration: BoxDecoration(
             gradient: LinearGradient(begin: Alignment.topCenter, colors: [
-          Color.fromARGB(255, 186, 104, 200),
-          Color.fromARGB(255, 218, 178, 226),
-          Color.fromARGB(255, 240, 198, 213)
+          Color.fromARGB(255, 162, 212, 244),
+          Color.fromARGB(255, 194, 225, 244),
+          Colors.white
         ])),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SizedBox(
-              height: 40,
+              height: 30,
             ),
             Padding(
               padding: EdgeInsets.only(left: 20, bottom: 40),
@@ -85,15 +86,30 @@ class _SignUpSpecialistState extends State<SignUpSpecialist> {
                 children: [
                   Text(
                     "Sign Up",
-                    style: TextStyle(fontSize: 40, color: Colors.white),
+                    style: GoogleFonts.playfairDisplay(
+                      textStyle: TextStyle(
+                        fontSize: 35,
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                   ),
                   SizedBox(
                     height: 10,
                   ),
                   Text(
                     "Create an account it's free",
-                    style: TextStyle(fontSize: 18, color: Colors.white),
-                  )
+                    style: GoogleFonts.playfairDisplay(
+                      textStyle: TextStyle(
+                        fontSize: 25,
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
                 ],
               ),
             ),
@@ -119,8 +135,7 @@ class _SignUpSpecialistState extends State<SignUpSpecialist> {
                                     borderRadius: BorderRadius.circular(10),
                                     boxShadow: [
                                       BoxShadow(
-                                          color: Color.fromARGB(
-                                              255, 218, 178, 226),
+                                          color: Colors.grey.shade700,
                                           blurRadius: 20,
                                           offset: Offset(0, 10))
                                     ]),
@@ -160,14 +175,21 @@ class _SignUpSpecialistState extends State<SignUpSpecialist> {
                                     SizedBox(
                                       height: 30,
                                     ),
-                                    Text(
-                                      "Select The service - services you want to provide:",
-                                      style: TextStyle(
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.bold,
-                                        color:
-                                            Color.fromARGB(255, 186, 104, 200),
-                                      ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          "Select The service - services you want to provide:",
+                                          style: GoogleFonts.playfairDisplay(
+                                            textStyle: TextStyle(
+                                              fontSize: 15,
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                     SizedBox(
                                       height: 20,
@@ -211,18 +233,16 @@ class _SignUpSpecialistState extends State<SignUpSpecialist> {
                                                       border: Border.all(
                                                           color: isSelected
                                                               ? kActiveColor
-                                                              : Colors.white,
+                                                              : Colors.grey
+                                                                  .shade500,
                                                           width: 2)),
                                                   child: Text(
                                                     service,
                                                     style: TextStyle(
                                                         color: isSelected
                                                             ? kActiveColor
-                                                            : Color.fromARGB(
-                                                                255,
-                                                                186,
-                                                                104,
-                                                                200),
+                                                            : Colors
+                                                                .grey.shade700,
                                                         fontSize: 14),
                                                   ),
                                                 )),
@@ -287,13 +307,22 @@ class _SignUpSpecialistState extends State<SignUpSpecialist> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Text("Already have an account? "),
-                                  Text(
-                                    "Login",
-                                    style: TextStyle(
-                                        color:
-                                            Color.fromARGB(255, 186, 104, 200),
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 18),
+                                  TextButton(
+                                    child: Text(
+                                      "Login",
+                                      style: TextStyle(
+                                          color: Color.fromARGB(
+                                              255, 162, 212, 244),
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 16),
+                                    ),
+                                    onPressed: () {
+                                      Navigator.push(context, MaterialPageRoute(
+                                        builder: (context) {
+                                          return LoginPage();
+                                        },
+                                      ));
+                                    },
                                   ),
                                 ],
                               )
@@ -447,7 +476,7 @@ Widget fieldContainer(Widget child) {
     child: child,
     padding: EdgeInsets.all(10),
     decoration: BoxDecoration(
-        border: Border(bottom: BorderSide(color: Colors.grey.shade200))),
+        border: Border(bottom: BorderSide(color: Colors.grey.shade400))),
   );
 }
 
@@ -457,7 +486,7 @@ Widget makeInput(TextEditingController controller,
     controller: controller,
     obscureText: obsureText,
     decoration: InputDecoration(
-      hintStyle: TextStyle(color: Colors.grey),
+      hintStyle: TextStyle(color: Colors.black),
       border: InputBorder.none,
       hintText: label,
       contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),

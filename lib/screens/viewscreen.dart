@@ -111,8 +111,7 @@ class _VideoAppState extends State<VideoApp> {
                                       decoration: BoxDecoration(
                                           border: Border.all(
                                             width: 2,
-                                            color: Color.fromARGB(
-                                                255, 186, 104, 200),
+                                            color: Colors.black,
                                           ),
                                           borderRadius:
                                               BorderRadius.circular(10)),
@@ -123,10 +122,12 @@ class _VideoAppState extends State<VideoApp> {
                                         textAlign: TextAlign.center,
                                         style: GoogleFonts.playfairDisplay(
                                           textStyle: TextStyle(
-                                              fontSize: 25,
-                                              letterSpacing: .5,
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.white70),
+                                            fontSize: 25,
+                                            letterSpacing: .5,
+                                            fontWeight: FontWeight.bold,
+                                            color: Color.fromARGB(
+                                                255, 141, 204, 243),
+                                          ),
                                         ),
                                       ),
                                     )
@@ -151,8 +152,7 @@ class _VideoAppState extends State<VideoApp> {
                                       decoration: BoxDecoration(
                                           border: Border.all(
                                             width: 2,
-                                            color: Color.fromARGB(
-                                                255, 186, 104, 200),
+                                            color: Colors.black,
                                           ),
                                           borderRadius:
                                               BorderRadius.circular(10)),
@@ -163,10 +163,12 @@ class _VideoAppState extends State<VideoApp> {
                                         textAlign: TextAlign.center,
                                         style: GoogleFonts.playfairDisplay(
                                           textStyle: TextStyle(
-                                              fontSize: 25,
-                                              letterSpacing: .5,
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.white70),
+                                            fontSize: 25,
+                                            letterSpacing: .5,
+                                            fontWeight: FontWeight.bold,
+                                            color: Color.fromARGB(
+                                                255, 141, 204, 243),
+                                          ),
                                         ),
                                       ),
                                     )
@@ -175,6 +177,7 @@ class _VideoAppState extends State<VideoApp> {
                               ),
                             ],
                           ),
+                          SizedBox(),
                           Container(
                             alignment: Alignment.center,
                             child: TextButton(
@@ -189,8 +192,7 @@ class _VideoAppState extends State<VideoApp> {
                                     style: GoogleFonts.playfairDisplay(
                                       textStyle: TextStyle(
                                           letterSpacing: .5,
-                                          color: Color.fromARGB(
-                                              255, 186, 104, 200),
+                                          color: Colors.white,
                                           fontSize: 22),
                                     ))),
                           )

@@ -95,45 +95,6 @@ class _SpecialistprofileforeditState extends State<Specialistprofileforedit> {
                         scrollDirection: Axis.horizontal,
                         child: Row(
                           children: [
-                            // Column(
-                            //   children: [
-                            //     Row(
-                            //       children: [
-                            //         SizedBox(
-                            //           width: 55,
-                            //         ),
-                            //         Text(
-                            //           'My packeges',
-                            //           style: TextStyle(
-                            //               color: Colors.black,
-                            //               fontSize: 18,
-                            //               fontWeight: FontWeight.bold),
-                            //         ),
-                            //         IconButton(
-                            //             onPressed: () {
-                            //               showDialog(
-                            //                   context: context,
-                            //                   builder: (ctx) => Addpackegs());
-                            //             },
-                            //             icon: const Icon(Icons.add))
-                            //       ],
-                            //     ),
-                            //     SizedBox(
-                            //       height: 18,
-                            //     ),
-                            //     Container(
-                            //       height: 300,
-                            //       width: 300,
-                            //       child: Read_component(),
-                            //     ),
-                            //     Divider(
-                            //       thickness: 3,
-                            //       height: 6,
-                            //       color: Colors.grey,
-                            //     ),
-                            //   ],
-                            // ),
-
                             Container(
                               height: 300,
                               width: 300,
@@ -146,24 +107,12 @@ class _SpecialistprofileforeditState extends State<Specialistprofileforedit> {
                             ),
                           ],
                         )),
-                    // ElevatedButton(
-                    //     onPressed: () {
-                    //       showDialog(
-                    //           context: context, builder: (ctx) => Addpackegs());
-                    //     },
-                    //     child: Text('add Packeges')),
-                    // SingleChildScrollView(
-                    //   scrollDirection: Axis.horizontal,
-                    //   child: Row(
-                    //     children: [
-                    //       Container(
-                    //         height: 300,
-                    //         width: 300,
-                    //         child: Read_component1(),
-                    //       ),
-                    //     ],
-                    //   ),
-                    // )
+                    ElevatedButton(
+                        onPressed: () {
+                          showDialog(
+                              context: context, builder: (ctx) => Addpackegs());
+                        },
+                        child: Text('add Packeges')),
                   ],
                 ),
               ),

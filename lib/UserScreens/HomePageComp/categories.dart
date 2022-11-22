@@ -25,12 +25,12 @@ class CategoryCard extends StatelessWidget {
               Container(
                 width: 55,
                 decoration: BoxDecoration(
-                  // color: Color.fromARGB(255, 225, 223, 224).withOpacity(.4),
-                  borderRadius: BorderRadius.circular(10),
-                ),
+                    // color: Color.fromARGB(255, 225, 223, 224).withOpacity(.4),
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(color: Colors.green, width: 2)),
                 child: Image.asset(
                   icon,
-                  
+
                   // color: Color.fromARGB(255, 186, 104, 200)
                 ),
               ),

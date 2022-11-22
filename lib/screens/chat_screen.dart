@@ -56,7 +56,7 @@ class ChatScreen1 extends StatelessWidget {
                 email: email,
               ),
             ),
-            NewMessage(
+            NewMessages1(
               name: name,
               email: email,
               docid: docid,

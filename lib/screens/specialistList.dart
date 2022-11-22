@@ -71,6 +71,7 @@ class _SpecialistsListState extends State<SpecialistList> {
                 children: List.generate(snapshot.data!.docs.length, (index) {
                   DocumentSnapshot document = snapshot.data!.docs[index];
                   String fullName = document['full name'];
+
                   ratingAva(document);
                   print(ratingAva(document));
                   return InkWell(

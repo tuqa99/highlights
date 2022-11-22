@@ -342,9 +342,10 @@ class _ContainerProfileViewState extends State<Continarprfileview> {
   @override
   Widget build(BuildContext context) {
     int? rating;
-    String? _profileimage;
+    String? profilephotpurl;
+
     CollectionReference ref =
-        FirebaseFirestore.instance.collection('specialist');
+        FirebaseFirestore.instance.collection(widget.CollectionName!);
 
     var documents = ref.snapshots();
     ratingAva(DocumentSnapshot document) {
@@ -433,13 +434,15 @@ class _ContainerProfileViewState extends State<Continarprfileview> {
       builder: (context, snapshot) {
         DocumentSnapshot document = snapshot.data!.docs[widget.index!];
         return Container(
-          width: double.infinity,
-          decoration: const BoxDecoration(
-            color: Color.fromARGB(255, 225, 223, 224),
-          ),
-          height: 150,
-          child: Column(
-            children: [
+            width: double.infinity,
+            decoration: const BoxDecoration(
+              color: Color.fromARGB(255, 241, 237, 239),
+            ),
+            height: 160,
+            child: Column(children: [
+              SizedBox(
+                height: 25,
+              ),
               Row(
                 children: [
                   SizedBox(
@@ -447,88 +450,93 @@ class _ContainerProfileViewState extends State<Continarprfileview> {
                   ),
                   CircleAvatar(
                     radius: 40,
-                    backgroundImage: _profileimage != null
-                        ? NetworkImage('$_profileimage')
+                    backgroundImage: profilephotpurl != null
+                        ? NetworkImage('$profilephotpurl')
                         : NetworkImage(
                             'https://media.istockphoto.com/id/587805156/vector/profile-picture-vector-illustration.jpg?s=612x612&w=0&k=20&c=gkvLDCgsHH-8HeQe7JsjhlOY6vRBJk_sKW9lyaLgmLo='),
                   ),
                   SizedBox(
-                    width: 30,
+                    width: 20,
                   ),
-                  Container(
-                    child: Column(
+                  Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          "${widget.firstname!.toUpperCase()}",
-                          style: GoogleFonts.playfairDisplay(
-                            textStyle: TextStyle(
-                                wordSpacing: 2,
-                                letterSpacing: 2,
-                                fontSize: 17,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black),
-                          ),
-                        ),
                         SizedBox(
-                          height: 7,
+                          height: 20,
                         ),
-                        SizedBox(
-                          height: 15,
-                        ),
-                        Row(
-                          children: [
-                            RatingBarIndicator(
-                              itemSize: 21,
-                              rating: ratingAva(document),
-                              itemBuilder: (context, index) => Icon(
-                                Icons.star,
-                                color: Colors.black,
-                              ),
-                            ),
-                            SizedBox(
-                              width: 15,
-                            ),
-                            TextButton(
-                              style: TextButton.styleFrom(
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(20)),
-                                backgroundColor: Colors.black,
-                              ),
-                              onPressed: () async {
-                                await updatte(document);
-                              },
-                              child: Text(
-                                "Rate Now",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 10,
+                        Container(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "${widget.firstname!.toUpperCase()}",
+                                style: GoogleFonts.playfairDisplay(
+                                  textStyle: TextStyle(
+                                      wordSpacing: 2,
+                                      letterSpacing: 2,
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black),
                                 ),
                               ),
-                            ),
-                            // Row(
-                            //   children: [
-                            //     IconButton(
-                            //         onPressed: () {
-                            //           Navigator.push(context, MaterialPageRoute(
-                            //             builder: (context) {
-                            //               return ChatScreen();
-                            //             },
-                            //           ));
-                            //         },
-                            //         icon: Icon(Icons.chat_bubble))
-                            //   ],
-                            // ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
+                              SizedBox(
+                                height: 7,
+                              ),
+                              SizedBox(
+                                height: 15,
+                              ),
+                              Row(children: [
+                                RatingBarIndicator(
+                                  itemSize: 21,
+                                  rating: ratingAva(document),
+                                  itemBuilder: (context, index) => Icon(
+                                    Icons.star,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 15,
+                                ),
+                                TextButton(
+                                  style: TextButton.styleFrom(
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(20)),
+                                    backgroundColor: Colors.black,
+                                  ),
+                                  onPressed: () async {
+                                    await updatte(document);
+                                  },
+                                  child: Text(
+                                    "Rate Now",
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 10,
+                                    ),
+                                  ),
+                                ),
+                              ]),
+
+                              // Row(
+                              //   children: [
+                              //     IconButton(
+                              //         onPressed: () {
+                              //           Navigator.push(context, MaterialPageRoute(
+                              //             builder: (context) {
+                              //               return ChatScreen();
+                              //             },
+                              //           ));
+                              //         },
+                              //         icon: Icon(Icons.chat_bubble))
+                              //   ],
+                              // ),
+                            ],
+                          ),
+                        )
+                      ]),
                 ],
               ),
-            ],
-          ),
-        );
+            ]));
       },
     );
   }

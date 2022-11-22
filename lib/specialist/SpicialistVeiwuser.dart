@@ -25,24 +25,27 @@ class Specialistprofileforuser extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        floatingActionButton: FloatingActionButton(onPressed: () {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => ChatScreen(
-                        email: email,
-                        name: firstname,
-                      )));
-        }),
+        floatingActionButton: FloatingActionButton(
+            backgroundColor: Colors.grey.shade800,
+            child: Icon(
+              Icons.chat,
+              color: Colors.white,
+            ),
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => ChatScreen(
+                            email: email,
+                            name: firstname,
+                          )));
+            }),
         appBar: AppBar(
-          backgroundColor: Color.fromARGB(255, 225, 223, 224),
-          shadowColor: Color.fromARGB(255, 225, 223, 224),
-          elevation: .1,
+          backgroundColor: Color.fromARGB(255, 241, 237, 239),
         ),
         body: Stack(
           children: [
             Continarprfileview(
-              // career: career,
               email: email,
               firstname: firstname,
               profilephotpurl: profilephotpurl,
@@ -50,48 +53,17 @@ class Specialistprofileforuser extends StatelessWidget {
               index: index,
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 120),
+              padding: const EdgeInsets.only(top: 175),
               child: Container(
                 height: double.infinity,
                 width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
                   color: Colors.white,
-                  // borderRadius: BorderRadius.only(
-                  //     topRight: Radius.circular(30),
-                  //     topLeft: Radius.circular(30)),
                 ),
                 child: SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
                     child: Row(
                       children: [
-                        // Column(
-                        //   children: [
-                        //     Row(
-                        //       children: [
-                        //         SizedBox(
-                        //           width: 55,
-                        //         ),
-                        //         Text(
-                        //           'The packeges',
-                        //           style: TextStyle(
-                        //               color: Colors.black,
-                        //               fontSize: 18,
-                        //               fontWeight: FontWeight.bold),
-                        //         ),
-                        //       ],
-                        //     ),
-                        //     Container(
-                        //       height: 300,
-                        //       width: 300,
-                        //       child: Readbackgesforuser(),
-                        //     ),
-                        //     Divider(
-                        //       thickness: 3,
-                        //       height: 6,
-                        //       color: Colors.grey,
-                        //     ),
-                        //   ],
-                        // ),
                         Column(
                           children: [
                             Row(
@@ -99,8 +71,31 @@ class Specialistprofileforuser extends StatelessWidget {
                                 SizedBox(
                                   width: 55,
                                 ),
+                                // Text(
+                                //   'The packeges',
+                                //   style: TextStyle(
+                                //       color: Colors.black,
+                                //       fontSize: 18,
+                                //       fontWeight: FontWeight.bold),
+                                // ),
+                              ],
+                            ),
+                            Divider(
+                              thickness: 3,
+                              height: 6,
+                              color: Colors.grey,
+                            ),
+                          ],
+                        ),
+                        Column(
+                          children: [
+                            Row(
+                              children: [
+                                SizedBox(
+                                  width: 60,
+                                ),
                                 Text(
-                                  'My work',
+                                  'Gallery',
                                   style: TextStyle(
                                       color: Colors.black,
                                       fontSize: 18,

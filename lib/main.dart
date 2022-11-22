@@ -3,7 +3,9 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_settings_screens/flutter_settings_screens.dart';
 import 'package:highlights/UserScreens/HomePageComp/HomePage.dart';
 import 'package:highlights/profiledrawer/AccountSettings.dart';
+import 'package:highlights/screens/SplashScreen.dart';
 import 'package:highlights/screens/login.dart';
+import 'package:highlights/screens/viewscreen.dart';
 import 'package:highlights/specialist/SpicialistVeiwuser.dart';
 import 'package:highlights/specialist/specialistprofile.dart';
 import 'UserScreens/AppBar/FirstPage.dart';
@@ -72,6 +74,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LoginPage();
+    return SplashScree();
   }
 }

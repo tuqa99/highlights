@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:highlights/Chat/messages.dart';
+import 'package:highlights/UserScreens/Appointments.dart';
 import 'package:highlights/chat/messages.dart';
 
 import '../screens/chat_screen.dart';
@@ -12,7 +13,6 @@ class ChatMain extends StatefulWidget {
 }
 
 User? auth = FirebaseAuth.instance.currentUser;
-User? auth2 = FirebaseAuth.instance.currentUser;
 
 class _ChatMainState extends State<ChatMain> {
   @override
@@ -20,7 +20,7 @@ class _ChatMainState extends State<ChatMain> {
     var collection = FirebaseFirestore.instance.collection('chat');
 
     return FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
-      future: collection.doc(auth2!.uid).get(),
+      future: collection.doc(auth!.uid).get(),
       builder: (BuildContext context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
           if (snapshot.hasError) {
@@ -89,58 +89,6 @@ class _ChatMainState extends State<ChatMain> {
                   );
                 },
               ),
-            );
-          }
-        }
-        return Center(child: CircularProgressIndicator());
-      },
-    );
-  }
-}
-
-class ChatMain1 extends StatefulWidget {
-  @override
-  _ChatMain1State createState() => _ChatMain1State();
-}
-
-class _ChatMain1State extends State<ChatMain> {
-  @override
-  Widget build(BuildContext context) {
-    var collection =
-        FirebaseFirestore.instance.collection('chat').doc(auth!.email);
-
-    return FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
-      future: collection.get(),
-      builder: (BuildContext context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.done) {
-          if (snapshot.hasError) {
-            return Center(
-              child: Text(
-                '${snapshot.error} occurred',
-                style: TextStyle(fontSize: 18),
-              ),
-            );
-          } else if (snapshot.hasData) {
-            var data = snapshot.data!.data();
-            List _emails = data!['specialemail'];
-            List _names = data['specialname'];
-            return ListView.builder(
-              itemCount: _emails.length,
-              itemBuilder: (context, index) {
-                return ListTile(
-                  title: Text(_emails[index]),
-                  onTap: () {
-                    Navigator.push(context, MaterialPageRoute(
-                      builder: (context) {
-                        return ChatScreen1(
-                          email: _emails[index],
-                          name: _names[index],
-                        );
-                      },
-                    ));
-                  },
-                );
-              },
             );
           }
         }
