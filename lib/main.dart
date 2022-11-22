@@ -52,7 +52,7 @@ Future<void> main() async {
               backgroundColor:
                   Color.fromARGB(255, 225, 223, 224).withOpacity(.6),
               scaffoldBackgroundColor: Colors.white,
-              primaryColor: Colors.blueAccent,
+              primaryColor: Color.fromARGB(255, 162, 212, 244),
               cardColor: Colors.white,
               highlightColor: Colors.black,
               colorScheme: ColorScheme.light()),

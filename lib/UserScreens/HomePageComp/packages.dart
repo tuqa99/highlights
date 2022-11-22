@@ -40,22 +40,16 @@ class Packages extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: EdgeInsets.all(15),
+              padding: EdgeInsets.fromLTRB(30, 40, 0, 0),
               child: Text.rich(
                 TextSpan(children: [
                   TextSpan(
                     text: "$category Package\n \n",
                     style: TextStyle(
-                        fontSize: 18,
+                        fontSize: 25,
                         fontWeight: FontWeight.bold,
                         color: Colors.white),
                   ),
-                  TextSpan(
-                      text: "\t \tThis packge includes:$numOfOffers items",
-                      style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white)),
                 ]),
               ),
             )
