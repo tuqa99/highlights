@@ -74,7 +74,7 @@ class _SpecialistprofileforeditState extends State<Specialistprofileforedit> {
           children: [
             Continarprfile(),
             Padding(
-              padding: const EdgeInsets.only(top: 175),
+              padding: const EdgeInsets.only(top: 160),
               child: Container(
                 height: double.infinity,
                 width: MediaQuery.of(context).size.width,
@@ -135,7 +135,7 @@ class _SpecialistprofileforeditState extends State<Specialistprofileforedit> {
                             // ),
 
                             Container(
-                              height: 300,
+                              height: 100,
                               width: 300,
                               child: Viewimages(),
                             ),
@@ -146,12 +146,12 @@ class _SpecialistprofileforeditState extends State<Specialistprofileforedit> {
                             ),
                           ],
                         )),
-                    // ElevatedButton(
-                    //     onPressed: () {
-                    //       showDialog(
-                    //           context: context, builder: (ctx) => Addpackegs());
-                    //     },
-                    //     child: Text('add Packeges')),
+                    ElevatedButton(
+                        onPressed: () {
+                          showDialog(
+                              context: context, builder: (ctx) => Addpackegs());
+                        },
+                        child: Text('add Packeges')),
                     // SingleChildScrollView(
                     //   scrollDirection: Axis.horizontal,
                     //   child: Row(

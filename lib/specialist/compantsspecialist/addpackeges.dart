@@ -20,6 +20,10 @@ class _AddpackegsState extends State<Addpackegs> {
   String? packages;
   String? decs;
 
+  String? Typepackge;
+  String? myselectedITems;
+  List myitemss = ['Bridal', 'Party', 'Birthday', 'Graduation', 'Regualr'];
+  TextEditingController discount = TextEditingController();
   TextEditingController descriptionpackeg = TextEditingController();
   TextEditingController imagenet = TextEditingController();
   uploadImageProcess() async {
@@ -42,24 +46,15 @@ class _AddpackegsState extends State<Addpackegs> {
           .doc(auth.currentUser!.uid)
           .collection('addpakeges');
       addpackeges11.add({"imagepakegurl": Urlpakeges});
-
-      //   AddPackages(addpackeges);
-      // } else {
-      //   var Urlpakeges = 'add new work';
-      //   addpackeges.add(Urlpakeges);
-      //   AddPackages(addpackeges);
     }
   }
 
-  // Future AddPackages(List<String> addpackeges) async {
-  //   var auth = FirebaseAuth.instance;
-  //   await FirebaseFirestore.instance
-  //       .collection('specialist')
-  //       .doc(auth.currentUser!.uid)
-  //       .update({
-  //     "packagesurl": FieldValue.arrayUnion([addpackeges])
-  //   });
-  // }
+  @override
+  void initState() {
+    super.initState();
+    Typepackge = 'Bridal';
+    myselectedITems = "images/wedding.jpg";
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -67,18 +62,116 @@ class _AddpackegsState extends State<Addpackegs> {
     TextEditingController courseController = TextEditingController();
     PlatformFile? selectedDirectory;
 
+    String myselectedITems = "images/wedding.jpg";
+
+    List myitem = [
+      'images/wedding.jpg',
+      'images/party.jpg',
+      'images/birthday.jpg',
+      'images/grad.jpg',
+      'images/regular.jpg'
+    ];
     return AlertDialog(
-      title: const Text("create your packeg"),
-      content: Column(
-        children: [
-          Container(
+      title: const Text("Create your package"),
+      content: SingleChildScrollView(
+        child: Column(
+          children: [
+            Text("Type of package:"),
+            SizedBox(
+              height: 10,
+            ),
+            DropdownButton(
+                // isExpanded: true,
+                dropdownColor: Color.fromARGB(255, 246, 172, 196),
+                value: Typepackge,
+                items: myitemss
+                    .map((e) => DropdownMenuItem(value: e, child: Text('$e')))
+                    .toList(),
+                onChanged: ((val) {
+                  setState(() {
+                    Typepackge = val.toString();
+                  });
+                })),
+            SizedBox(
+              height: 30,
+            ),
+            Text("Description"),
+            SizedBox(
+              height: 10,
+            ),
+            Container(
               child: TextField(
-            decoration: InputDecoration(
-                border: OutlineInputBorder(
-                    borderSide: new BorderSide(color: Colors.teal))),
-            controller: descriptionpackeg,
-          )),
-        ],
+                decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                        borderSide: new BorderSide(color: Colors.teal))),
+                controller: descriptionpackeg,
+              ),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Text("Set a discount"),
+            SizedBox(
+              height: 10,
+            ),
+            Container(
+              child: TextField(
+                decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                        borderSide: new BorderSide(color: Colors.teal))),
+                controller: discount,
+              ),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Text("Pick or upload a photo"),
+            SizedBox(
+              height: 10,
+            ),
+            DropdownButton(
+                isExpanded: true,
+                dropdownColor: Color.fromARGB(255, 246, 172, 196),
+                value: myselectedITems,
+                items: myitem
+                    .map((e) => DropdownMenuItem(
+                          value: e,
+                          child: Container(
+                            alignment: Alignment.center,
+                            child: Image.asset(
+                              '$e',
+                              width: 40,
+                              height: 40,
+                            ),
+                          ),
+                        ))
+                    .toList(),
+                onChanged: ((value) {
+                  setState(() {
+                    Typepackge = value.toString();
+                  });
+                })),
+            SizedBox(
+              height: 20,
+            ),
+            ElevatedButton(
+                onPressed: () async {
+                  var auth = FirebaseAuth.instance;
+                  CollectionReference addpackeges11 = await FirebaseFirestore
+                      .instance
+                      .collection('specialist')
+                      .doc(auth.currentUser!.email)
+                      .collection('addpakeges');
+                  addpackeges11.add({
+                    "descripution": descriptionpackeg.text,
+                    "TypePackge": Typepackge,
+                    "discount": discount.text,
+                  });
+                  Navigator.of(context).pop();
+                },
+                child: Text("Add package"))
+          ],
+        ),
       ),
       actions: <Widget>[
         TextButton(onPressed: uploadImageProcess, child: Text('Select photo')),
@@ -89,7 +182,11 @@ class _AddpackegsState extends State<Addpackegs> {
                 .collection('specialist')
                 .doc(auth.currentUser!.uid)
                 .collection('addpakeges');
-            addpackeges11.add({"descripution": descriptionpackeg.text});
+            addpackeges11.add({
+              "descripution": descriptionpackeg.text,
+              "TypePackge": Typepackge,
+              "discount": discount.text,
+            });
             Navigator.of(context).pop();
           },
           child: Container(
