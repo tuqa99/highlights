@@ -79,7 +79,7 @@ class _ContinarprfileState extends State<Continarprfile> {
               // var ab = json.decode(_service).cast().toList();
               return Container(
                 height: 200,
-                color: Color.fromARGB(255, 204, 199, 201),
+                color: Color.fromARGB(255, 162, 212, 244),
                 child: Padding(
                   padding: const EdgeInsets.all(30),
                   child: Column(
@@ -122,6 +122,32 @@ class _ContinarprfileState extends State<Continarprfile> {
                                             'https://media.istockphoto.com/id/587805156/vector/profile-picture-vector-illustration.jpg?s=612x612&w=0&k=20&c=gkvLDCgsHH-8HeQe7JsjhlOY6vRBJk_sKW9lyaLgmLo='),
                                   ),
                                 ),
+                              IconButton(
+                                  onPressed: () {
+                                    showDialog(
+                                      context: context,
+                                      builder: (ctx) => AlertDialog(
+                                        title: const Text("chang your photo"),
+                                        content: Container(
+                                            child: Image(
+                                          image: NetworkImage('$_profileimage'),
+                                        )),
+                                        actions: <Widget>[
+                                          ElevatedButton(
+                                              onPressed: slecteFile,
+                                              child: Text('select photo')),
+                                          TextButton(
+                                            onPressed: Uplode,
+                                            child: Container(
+                                              padding: const EdgeInsets.all(14),
+                                              child: const Text("Update"),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    );
+                                  },
+                                  icon: Icon(Icons.edit))
                             ],
                           ),
                           SizedBox(
