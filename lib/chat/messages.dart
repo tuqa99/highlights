@@ -11,15 +11,13 @@ class Messages extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final docId = auth!.uid;
-
     return StreamBuilder(
         stream: FirebaseFirestore.instance
             .collection('chat')
-            .doc(docId)
+            .doc(auth!.email)
             .collection('messages')
             .where('useremail', isEqualTo: auth!.email)
-            .where('specialemail', isEqualTo: email)
+            .where('serviceemail', isEqualTo: email)
             .get()
             .asStream(),
         builder: (context, AsyncSnapshot chatSnapshot) {

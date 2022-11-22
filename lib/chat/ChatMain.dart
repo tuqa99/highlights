@@ -32,8 +32,8 @@ class _ChatMainState extends State<ChatMain> {
             );
           } else if (snapshot.hasData) {
             var data = snapshot.data!.data();
-            List _emails = data!['specialemail'];
-            List _names = data['specialname'];
+            List _emails = data!['serviceemail'];
+            List _names = data['servicename'];
             return Scaffold(
               appBar: AppBar(
                 automaticallyImplyLeading: false,
@@ -54,8 +54,7 @@ class _ChatMainState extends State<ChatMain> {
                   "Chat",
                   style: TextStyle(color: Colors.black),
                 ),
-                backgroundColor:
-                    Color.fromARGB(255, 225, 223, 224).withOpacity(.6),
+                backgroundColor: Color.fromARGB(255, 162, 212, 244),
               ),
               body: ListView.separated(
                 itemCount: _emails.length,
@@ -68,7 +67,7 @@ class _ChatMainState extends State<ChatMain> {
                 itemBuilder: (context, index) {
                   return ListTile(
                     leading: CircleAvatar(
-                      backgroundColor: Color.fromARGB(255, 225, 223, 224),
+                      backgroundColor: Color.fromARGB(255, 162, 212, 244),
                       child: Text(
                         '${_emails[index][0]}',
                         style: TextStyle(color: Colors.black),
@@ -89,6 +88,10 @@ class _ChatMainState extends State<ChatMain> {
                   );
                 },
               ),
+            );
+          } else {
+            Center(
+              child: Text("You dont Have any chats yet "),
             );
           }
         }

@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:highlights/UserScreens/HomePageComp/HomePage.dart';
+import 'package:highlights/UserScreens/HomePageComp/FirstPage.dart';
 
 import '../UserScreens/userProfile/button_widget.dart';
 import 'login.dart';
@@ -191,12 +191,12 @@ class SignupPageuser extends StatelessWidget {
                               phoneNumber.text.trim(),
                               location.text.trim(),
                             );
-
+                            Addchat(firstName.text.trim());
                             ScaffoldMessenger.of(context).showSnackBar(
                                 const SnackBar(content: Text("its added")));
                             Navigator.push(context, MaterialPageRoute(
                               builder: (context) {
-                                return HomePage();
+                                return NewHome();
                               },
                             ));
                           } catch (e) {
@@ -274,4 +274,21 @@ Widget makeInput(TextEditingController controller,
       contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
     ),
   );
+}
+
+Addchat(
+  String firstName,
+) async {
+  List usersemail = [];
+  List usersname = [];
+  var authin = FirebaseAuth.instance;
+  await FirebaseFirestore.instance
+      .collection('chat')
+      .doc(authin.currentUser!.email)
+      .set({
+    "serviceemail": usersemail,
+    "servicename": usersname,
+    "usersemail": authin.currentUser!.email,
+    "usersname": firstName,
+  });
 }

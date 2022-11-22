@@ -79,7 +79,7 @@ class _ContinarprfileState extends State<Continarprfile> {
               // var ab = json.decode(_service).cast().toList();
               return Container(
                 height: 200,
-                color: Color.fromARGB(255, 204, 199, 201),
+                color: Color.fromARGB(255, 162, 212, 244),
                 child: Padding(
                   padding: const EdgeInsets.all(30),
                   child: Column(
@@ -163,9 +163,9 @@ class _ContinarprfileState extends State<Continarprfile> {
                                 child: Text(
                                   _fname,
                                   style: TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
-                                      color: Color.fromARGB(255, 5, 5, 5)),
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                               ),
                               SizedBox(
@@ -215,17 +215,17 @@ class _ContinarprfileState extends State<Continarprfile> {
                               ),
                               Row(
                                 children: [
-                                  // Icon(Icons.email, color: Colors.white),
-                                  // SizedBox(
-                                  //   width: 12,
-                                  // ),
-                                  // Text(
-                                  //   _email,
-                                  //   style: TextStyle(
-                                  //       fontSize: 15,
-                                  //       fontWeight: FontWeight.bold,
-                                  //       color: Colors.white),
-                                  // ),
+                                  Icon(Icons.email),
+                                  SizedBox(
+                                    width: 12,
+                                  ),
+                                  Text(
+                                    _email,
+                                    style: TextStyle(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
                                 ],
                               ),
                               SizedBox(

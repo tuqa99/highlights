@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:highlights/UserScreens/HomePageComp/HomePage.dart';
 import 'package:highlights/UserScreens/allscreens.dart';
 import 'package:highlights/UserScreens/userProfile/button_widget.dart';
 import 'package:highlights/screens/login.dart';
@@ -282,6 +281,7 @@ class _SignUpSpecialistState extends State<SignUpSpecialist> {
                                         location.text.trim(),
                                         selectedService,
                                       );
+                                      Addchat(FirstName.text.trim());
                                       Navigator.push(context, MaterialPageRoute(
                                         builder: (context) {
                                           return Specialistprofileforedit();
@@ -359,6 +359,7 @@ Future addUserInfo(
     'phone number': phoneNumber,
     'service': selectedService!,
   });
+
   if (selectedService.contains("HairCut")) {
     await FirebaseFirestore.instance
         .collection("HairCut")
@@ -494,4 +495,21 @@ Widget makeInput(TextEditingController controller,
       contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
     ),
   );
+}
+
+Addchat(
+  String firstName,
+) async {
+  List usersemail = [];
+  List usersname = [];
+  var authin = FirebaseAuth.instance;
+  await FirebaseFirestore.instance
+      .collection('chat')
+      .doc(authin.currentUser!.email)
+      .set({
+    "usersemail": usersemail,
+    "usersname": usersname,
+    "serviceemail": authin.currentUser!.email,
+    "servicename": firstName,
+  });
 }

@@ -33,8 +33,9 @@ class Packages extends StatelessWidget {
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
                     colors: [
-                      Color(0xfff8bbd0).withOpacity(0.4),
-                      Color(0xff880e4f).withOpacity(0.7),
+                      Color.fromARGB(255, 162, 212, 244).withOpacity(.5),
+                      Color.fromARGB(255, 194, 225, 244).withOpacity(.5),
+                      Colors.white.withOpacity(.5)
                     ]),
               ),
             ),

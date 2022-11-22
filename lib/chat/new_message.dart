@@ -30,21 +30,22 @@ class _NewMessageState extends State<NewMessage> {
 
     FirebaseFirestore.instance
         .collection('chat')
-        .doc(user.uid)
+        .doc(user.email)
         .collection('messages')
         .add({
       'text': _enteredMessage,
       'createdAt': Timestamp.now(),
       'useremail': user.email,
       'username': userData['first name'],
-      'specialemail': widget.email,
-      'specialname': widget.name
+      'serviceemail': widget.email,
+      'servicename': widget.name
     });
     specialemails.add(widget.email);
     specialnames.add(widget.name);
-    FirebaseFirestore.instance.collection('chat').doc(user.uid).update({
-      'specialemail': FieldValue.arrayUnion(specialemails),
-      'specialname': FieldValue.arrayUnion(specialnames),
+
+    FirebaseFirestore.instance.collection('chat').doc(user.email).update({
+      'serviceemail': FieldValue.arrayUnion(specialemails),
+      'servicename': FieldValue.arrayUnion(specialnames),
     });
 
     FirebaseFirestore.instance
