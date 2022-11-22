@@ -448,10 +448,7 @@ class _ContainerProfileViewState extends State<Continarprfileview> {
                 SizedBox(
                   width: 30,
                 ),
-                CircleAvatar(
-                  radius: 50,
-                  backgroundImage: AssetImage("images/profile.jpg"),
-                ),
+              
                 SizedBox(
                   width: 30,
                 ),
