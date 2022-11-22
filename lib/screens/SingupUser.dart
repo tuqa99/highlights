@@ -191,7 +191,7 @@ class SignupPageuser extends StatelessWidget {
                               phoneNumber.text.trim(),
                               location.text.trim(),
                             );
-
+                            Addchat(firstName.text.trim());
                             ScaffoldMessenger.of(context).showSnackBar(
                                 const SnackBar(content: Text("its added")));
                             Navigator.push(context, MaterialPageRoute(
@@ -274,4 +274,21 @@ Widget makeInput(TextEditingController controller,
       contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
     ),
   );
+}
+
+Addchat(
+  String firstName,
+) async {
+  List usersemail = [];
+  List usersname = [];
+  var authin = FirebaseAuth.instance;
+  await FirebaseFirestore.instance
+      .collection('chat')
+      .doc(authin.currentUser!.email)
+      .set({
+    "usersemail": usersemail,
+    "usersname": usersname,
+    "serviceemail": authin.currentUser!.email,
+    "servicename": firstName,
+  });
 }

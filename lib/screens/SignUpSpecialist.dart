@@ -279,6 +279,7 @@ class _SignUpSpecialistState extends State<SignUpSpecialist> {
                                         location.text.trim(),
                                         selectedService,
                                       );
+                                      Addchat(FirstName.text.trim());
                                       Navigator.push(context, MaterialPageRoute(
                                         builder: (context) {
                                           return Specialistprofileforedit();
@@ -356,6 +357,7 @@ Future addUserInfo(
     'phone number': phoneNumber,
     'service': selectedService!,
   });
+
   if (selectedService.contains("HairCut")) {
     await FirebaseFirestore.instance
         .collection("HairCut")
@@ -491,4 +493,21 @@ Widget makeInput(TextEditingController controller,
       contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
     ),
   );
+}
+
+Addchat(
+  String firstName,
+) async {
+  List usersemail = [];
+  List usersname = [];
+  var authin = FirebaseAuth.instance;
+  await FirebaseFirestore.instance
+      .collection('chat')
+      .doc(authin.currentUser!.email)
+      .set({
+    "usersemail": usersemail,
+    "usersname": usersname,
+    "serviceemail": authin.currentUser!.email,
+    "servicename": firstName,
+  });
 }

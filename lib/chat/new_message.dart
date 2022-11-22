@@ -42,6 +42,7 @@ class _NewMessageState extends State<NewMessage> {
     });
     specialemails.add(widget.email);
     specialnames.add(widget.name);
+
     FirebaseFirestore.instance.collection('chat').doc(user.email).update({
       'specialemail': FieldValue.arrayUnion(specialemails),
       'specialname': FieldValue.arrayUnion(specialnames),
