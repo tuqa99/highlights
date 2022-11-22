@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -120,28 +122,6 @@ class _ContinarprfileState extends State<Continarprfile> {
                                             'https://media.istockphoto.com/id/587805156/vector/profile-picture-vector-illustration.jpg?s=612x612&w=0&k=20&c=gkvLDCgsHH-8HeQe7JsjhlOY6vRBJk_sKW9lyaLgmLo='),
                                   ),
                                 ),
-                              IconButton(
-                                  onPressed: () {
-                                    showDialog(
-                                      context: context,
-                                      builder: (ctx) => AlertDialog(
-                                        title: const Text("chang your photo"),
-                                        actions: <Widget>[
-                                          ElevatedButton(
-                                              onPressed: slecteFile,
-                                              child: Text('select photo')),
-                                          TextButton(
-                                            onPressed: Uplode,
-                                            child: Container(
-                                              padding: const EdgeInsets.all(14),
-                                              child: const Text("Upadte"),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    );
-                                  },
-                                  icon: Icon(Icons.edit)),
                             ],
                           ),
                           SizedBox(
@@ -213,14 +193,23 @@ class _ContinarprfileState extends State<Continarprfile> {
                                             },
                                             child: Container(
                                               padding: const EdgeInsets.all(14),
-                                              child: const Text("Upadte"),
+                                              child: const Text(
+                                                "Upadte",
+                                                style: TextStyle(
+                                                    color: Color.fromARGB(
+                                                        255, 2, 2, 2)),
+                                              ),
                                             ),
                                           ),
                                         ],
                                       ),
                                     );
                                   },
-                                  child: Text('change your services')),
+                                  child: Text(
+                                    '$_service',
+                                    style: TextStyle(
+                                        color: Color.fromARGB(255, 2, 2, 2)),
+                                  )),
                               SizedBox(
                                 height: 13,
                               ),
