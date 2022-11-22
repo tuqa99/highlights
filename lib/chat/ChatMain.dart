@@ -19,8 +19,8 @@ class _ChatMainState extends State<ChatMain> {
   Widget build(BuildContext context) {
     var collection = FirebaseFirestore.instance.collection('chat');
 
-    return FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
-      future: collection.doc(auth!.uid).get(),
+    return StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
+      stream: collection.doc(auth!.uid).snapshots(),
       builder: (BuildContext context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
           if (snapshot.hasError) {

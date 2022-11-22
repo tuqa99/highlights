@@ -58,7 +58,6 @@ class _LoginPageState extends State<LoginPage> {
                     style: GoogleFonts.playfairDisplay(
                       textStyle: TextStyle(
                         fontSize: 45,
-                        color: Colors.black,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -71,7 +70,6 @@ class _LoginPageState extends State<LoginPage> {
                     style: GoogleFonts.playfairDisplay(
                       textStyle: TextStyle(
                         fontSize: 20,
-                        color: Colors.black,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -85,7 +83,7 @@ class _LoginPageState extends State<LoginPage> {
             Expanded(
                 child: Container(
               decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: Theme.of(context).scaffoldBackgroundColor,
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(60),
                     topRight: Radius.circular(60),
@@ -99,7 +97,7 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       Container(
                         decoration: BoxDecoration(
-                            color: Colors.white,
+                            color: Theme.of(context).cardColor,
                             borderRadius: BorderRadius.circular(10),
                             boxShadow: [
                               BoxShadow(
@@ -122,7 +120,6 @@ class _LoginPageState extends State<LoginPage> {
                                     color: Colors.grey.shade800,
                                   ),
                                   hintText: "Enter your email",
-                                  hintStyle: TextStyle(color: Colors.black),
                                   border: InputBorder.none),
                             ),
                           ),
@@ -141,7 +138,7 @@ class _LoginPageState extends State<LoginPage> {
                                     color: Colors.grey.shade800,
                                   ),
                                   hintText: "Enter your Password",
-                                  hintStyle: TextStyle(color: Colors.black),
+                                  // hintStyle: TextStyle(color: Colors.black),
                                   border: InputBorder.none),
                             ),
                           )

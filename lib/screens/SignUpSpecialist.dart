@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:highlights/UserScreens/HomePageComp/HomePage.dart';
 import 'package:highlights/UserScreens/allscreens.dart';
@@ -51,9 +52,10 @@ class _SignUpSpecialistState extends State<SignUpSpecialist> {
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
       appBar: AppBar(
+        systemOverlayStyle: SystemUiOverlayStyle.light,
         elevation: 0,
-        brightness: Brightness.light,
-        backgroundColor: Color.fromARGB(255, 162, 212, 244),
+        // brightness: Brightness.light,
+        backgroundColor: Theme.of(context).primaryColor,
         leading: IconButton(
             onPressed: () {
               Navigator.pop(context);

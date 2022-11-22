@@ -55,7 +55,9 @@ class AccountSettings extends StatelessWidget {
                         icon: Icons.dark_mode,
                         color: mycolor,
                       ),
-                      onChange: (_) {},
+                      onChange: (_) {
+                        
+                      },
                     ),
                   ],
                 ),

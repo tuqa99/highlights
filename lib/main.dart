@@ -44,25 +44,24 @@ Future<void> main() async {
     builder: (_, isDarkMode, __) => MaterialApp(
       theme: isDarkMode
           ? ThemeData.dark().copyWith(
+              scaffoldBackgroundColor: Colors.grey.shade900,
               primaryColor: Colors.teal,
-              accentColor: Colors.white,
-              // colorScheme: ColorScheme(
-              //     brightness: Brightness.dark,
-              //     primary: Colors.teal,
-              //     onPrimary: Colors.teal,
-              //     secondary: Colors.white,
-              //     onSecondary: Colors.white,
-              //     error: Colors.red,
-              //     onError: Colors.red,
-              //     background: Colors.teal,
-              //     onBackground: Colors.blue,
-              //     surface: Colors.teal,
-              //     onSurface: Colors.blue),
-              scaffoldBackgroundColor: Colors.black,
-              canvasColor: Colors.black,
+              colorScheme: ColorScheme.dark(),
               cardColor: Colors.black,
+              highlightColor: Colors.teal,
+              backgroundColor: Colors.grey.shade900,
+
+              // canvasColor: Colors.black,
+              // cardColor: Colors.black,
             )
-          : ThemeData.light().copyWith(accentColor: Colors.black),
+          : ThemeData.light().copyWith(
+              backgroundColor:
+                  Color.fromARGB(255, 225, 223, 224).withOpacity(.6),
+              scaffoldBackgroundColor: Colors.white,
+              primaryColor: Colors.blueAccent,
+              cardColor: Colors.white,
+              highlightColor: Colors.black,
+              colorScheme: ColorScheme.light()),
       debugShowCheckedModeBanner: false,
       home: MyApp(),
     ),
