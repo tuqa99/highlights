@@ -81,42 +81,54 @@ class Viewimages extends StatelessWidget {
 }
 
 class Viewimagesforuser extends StatelessWidget {
-  const Viewimagesforuser({super.key});
-
+  Viewimagesforuser({required this.emial});
+  String? emial;
   @override
   Widget build(BuildContext context) {
+    List<String> names = [];
+
     User? auth = FirebaseAuth.instance.currentUser;
     final doc_id = auth!.uid;
-    var ref = FirebaseFirestore.instance.collection('specialist').doc(doc_id);
+    var ref = FirebaseFirestore.instance
+        .collection('specialist')
+        .where('email', isEqualTo: emial);
     return FutureBuilder(
       future: ref.get(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
           if (snapshot.hasError) return Text('Error = ${snapshot.error}');
           if (snapshot.hasData) {
-            var data = snapshot.data!.data();
-            List<String> images = List.from(data!['url']);
+            if (snapshot.data!.docs.isEmpty) {
+              return Center(
+                child: Text("Doesn't have any work yet"),
+              );
+            }
+
+            var x = FirebaseFirestore.instance
+                .collection('specialist')
+                .where('email', isEqualTo: emial)
+                .get()
+                .then((value) => value.docs.forEach((element) {
+                      names.add(element['url']);
+                    }));
+            print("@@@@@@@@@@@@@@@");
+            print(names);
+            print(x);
             return ListView.builder(
-              itemCount: images.length,
+              itemCount: names.length,
               itemBuilder: (context, index) {
+                var images = snapshot.data!.docs[index]['url'];
                 return Padding(
                   padding: const EdgeInsets.only(right: 22, left: 22),
                   child: Container(
-                    width: 100,
-                    height: 200,
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Colors.blueAccent),
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Image(
-                            height: 100,
-                            width: 100,
-                            image: NetworkImage("${images[index]}")),
-                      ],
-                    ),
-                  ),
+                      height: 200,
+                      width: 200,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15.0),
+                      ),
+                      child: Image(
+                          image: NetworkImage(names[index]),
+                          fit: BoxFit.cover)),
                 );
               },
             );

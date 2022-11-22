@@ -19,11 +19,8 @@ class _AddpackegsState extends State<Addpackegs> {
   var imagePick = ImagePicker();
   String? packages;
   String? decs;
-
-  String? Typepackge;
-  String? myselectedITems;
-  List myitemss = ['Bridal', 'Party', 'Birthday', 'Graduation', 'Regualr'];
-  TextEditingController discount = TextEditingController();
+  String? typepackges;
+  String? imagepacges;
   TextEditingController descriptionpackeg = TextEditingController();
   TextEditingController imagenet = TextEditingController();
   uploadImageProcess() async {
@@ -51,18 +48,20 @@ class _AddpackegsState extends State<Addpackegs> {
 
   @override
   void initState() {
+    // TODO: implement initState
     super.initState();
-    Typepackge = 'Bridal';
-    myselectedITems = "images/wedding.jpg";
+    typepackges = "Bridal";
+    imagepacges = "images/wedding.jpg";
   }
 
   @override
   Widget build(BuildContext context) {
     var auth = FirebaseAuth.instance;
-    TextEditingController courseController = TextEditingController();
+    TextEditingController discount = TextEditingController();
+    TextEditingController discription = TextEditingController();
     PlatformFile? selectedDirectory;
 
-    String myselectedITems = "images/wedding.jpg";
+    List myitemss = ['Bridal', 'Party', 'Birthday', 'Graduation', 'Regualr'];
 
     List myitem = [
       'images/wedding.jpg',
@@ -81,15 +80,15 @@ class _AddpackegsState extends State<Addpackegs> {
               height: 10,
             ),
             DropdownButton(
-                // isExpanded: true,
+                isExpanded: true,
                 dropdownColor: Color.fromARGB(255, 246, 172, 196),
-                value: Typepackge,
+                value: typepackges,
                 items: myitemss
-                    .map((e) => DropdownMenuItem(value: e, child: Text('$e')))
+                    .map((e) => DropdownMenuItem(value: e, child: Text(e)))
                     .toList(),
-                onChanged: ((val) {
+                onChanged: ((value) {
                   setState(() {
-                    Typepackge = val.toString();
+                    typepackges = value.toString();
                   });
                 })),
             SizedBox(
@@ -132,23 +131,24 @@ class _AddpackegsState extends State<Addpackegs> {
             DropdownButton(
                 isExpanded: true,
                 dropdownColor: Color.fromARGB(255, 246, 172, 196),
-                value: myselectedITems,
+                value: imagepacges,
                 items: myitem
                     .map((e) => DropdownMenuItem(
                           value: e,
                           child: Container(
-                            alignment: Alignment.center,
-                            child: Image.asset(
-                              '$e',
-                              width: 40,
-                              height: 40,
-                            ),
-                          ),
+                              alignment: Alignment.center,
+                              child: Image(
+                                image: AssetImage(
+                                  '$e',
+                                ),
+                                width: 40,
+                                height: 40,
+                              )),
                         ))
                     .toList(),
                 onChanged: ((value) {
                   setState(() {
-                    Typepackge = value.toString();
+                    typepackges = value.toString();
                   });
                 })),
             SizedBox(
@@ -164,10 +164,10 @@ class _AddpackegsState extends State<Addpackegs> {
                       .collection('addpakeges');
                   addpackeges11.add({
                     "descripution": descriptionpackeg.text,
-                    "TypePackge": Typepackge,
-                    "discount": discount.text,
+                    'typepackges': typepackges,
+                    'discount': discount.text,
+                    'imagepacges': imagepacges
                   });
-                  Navigator.of(context).pop();
                 },
                 child: Text("Add package"))
           ],
@@ -184,8 +184,9 @@ class _AddpackegsState extends State<Addpackegs> {
                 .collection('addpakeges');
             addpackeges11.add({
               "descripution": descriptionpackeg.text,
-              "TypePackge": Typepackge,
-              "discount": discount.text,
+              'typepackges': typepackges,
+              'discount': discount.text,
+              'imagepacges': imagepacges
             });
             Navigator.of(context).pop();
           },

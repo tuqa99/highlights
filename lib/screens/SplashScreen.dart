@@ -13,7 +13,7 @@ class _SplashScreeState extends State<SplashScree> {
   @override
   void initState() {
     //set time to loade the new page
-    Future.delayed(Duration(seconds: 3), () {
+    Future.delayed(Duration(seconds: 7), () {
       Navigator.pushReplacement(
           context,
           MaterialPageRoute(
@@ -35,14 +35,13 @@ class _SplashScreeState extends State<SplashScree> {
             SizedBox(
                 width: 300,
                 height: 300,
-                child: Lottie.network(
-                    'https://assets6.lottiefiles.com/packages/lf20_j6nmheu0.json')),
+                child: Image.asset(
+                  "images/111.gif",
+                  height: double.infinity,
+                  width: double.infinity,
+                )),
             SizedBox(
               height: 20,
-            ),
-            Text(
-              'High Lights',
-              style: TextStyle(fontSize: 22, color: Colors.pinkAccent),
             ),
           ],
         ),

@@ -30,21 +30,22 @@ class _NewMessageState extends State<NewMessage> {
 
     FirebaseFirestore.instance
         .collection('chat')
-        .doc(user.uid)
+        .doc(user.email)
         .collection('messages')
         .add({
       'text': _enteredMessage,
       'createdAt': Timestamp.now(),
       'useremail': user.email,
       'username': userData['first name'],
-      'specialemail': widget.email,
-      'specialname': widget.name
+      'serviceemail': widget.email,
+      'servicename': widget.name
     });
     specialemails.add(widget.email);
     specialnames.add(widget.name);
-    FirebaseFirestore.instance.collection('chat').doc(user.uid).update({
-      'specialemail': FieldValue.arrayUnion(specialemails),
-      'specialname': FieldValue.arrayUnion(specialnames),
+
+    FirebaseFirestore.instance.collection('chat').doc(user.email).update({
+      'serviceemail': FieldValue.arrayUnion(specialemails),
+      'servicename': FieldValue.arrayUnion(specialnames),
     });
 
     FirebaseFirestore.instance
@@ -54,10 +55,10 @@ class _NewMessageState extends State<NewMessage> {
         .add({
       'text': _enteredMessage,
       'createdAt': Timestamp.now(),
-      'specialemail': user.email,
-      'specialname': userData['first name'],
-      'usersemail': widget.email,
-      'usersname': widget.name
+      'specialemail': widget.email,
+      'specialname': widget.name,
+      'usersemail': user.email,
+      'usersname': userData['first name']
     });
     usersemails.add(user.email);
     usersnames.add(widget.name);
@@ -99,16 +100,16 @@ class _NewMessageState extends State<NewMessage> {
   }
 }
 
-class NewMessages extends StatefulWidget {
-  NewMessages({required this.email, required this.name, this.docid});
+class NewMessages1 extends StatefulWidget {
+  NewMessages1({required this.email, required this.name, this.docid});
   String? email;
   String? name;
   String? docid;
   @override
-  _NewMessagesState createState() => _NewMessagesState();
+  _NewMessages1State createState() => _NewMessages1State();
 }
 
-class _NewMessagesState extends State<NewMessages> {
+class _NewMessages1State extends State<NewMessages1> {
   final _controller = new TextEditingController();
   var _enteredMessage = '';
   List specialemails = [];
@@ -126,7 +127,7 @@ class _NewMessagesState extends State<NewMessages> {
         .get();
     FirebaseFirestore.instance
         .collection('chat')
-        .doc(doc)
+        .doc(user.email)
         .collection('messages')
         .add({
       'text': _enteredMessage,
@@ -134,7 +135,7 @@ class _NewMessagesState extends State<NewMessages> {
       'specialemail': user.email,
       'specialname': userData['first name'],
       'usersemail': widget.email,
-      'usersname': widget.name
+      'usersname': widget.name,
     });
     usersemails.add(widget.email);
     usersnames.add(widget.name);

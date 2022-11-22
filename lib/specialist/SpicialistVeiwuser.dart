@@ -32,8 +32,13 @@ class Specialistprofileforuser extends StatelessWidget {
               color: Colors.white,
             ),
             onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => ChatScreen(email: email,name: firstname,)));
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => ChatScreen(
+                            email: email,
+                            name: firstname,
+                          )));
             }),
         appBar: AppBar(
           backgroundColor: Color.fromARGB(255, 241, 237, 239),
@@ -48,15 +53,12 @@ class Specialistprofileforuser extends StatelessWidget {
               index: index,
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 120),
+              padding: const EdgeInsets.only(top: 175),
               child: Container(
                 height: double.infinity,
                 width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
                   color: Colors.white,
-                  // borderRadius: BorderRadius.only(
-                  //     topRight: Radius.circular(30),
-                  //     topLeft: Radius.circular(30)),
                 ),
                 child: SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
@@ -78,11 +80,6 @@ class Specialistprofileforuser extends StatelessWidget {
                                 // ),
                               ],
                             ),
-                            // Container(
-                            //   height: 300,
-                            //   width: 300,
-                            //   child: Readbackgesforuser(),
-                            // ),
                             Divider(
                               thickness: 3,
                               height: 6,
@@ -95,10 +92,10 @@ class Specialistprofileforuser extends StatelessWidget {
                             Row(
                               children: [
                                 SizedBox(
-                                  width: 55,
+                                  width: 60,
                                 ),
                                 Text(
-                                  'My work',
+                                  'Gallery',
                                   style: TextStyle(
                                       color: Colors.black,
                                       fontSize: 18,
@@ -112,7 +109,9 @@ class Specialistprofileforuser extends StatelessWidget {
                             Container(
                               height: 300,
                               width: 300,
-                              child: Viewimagesforuser(),
+                              child: Viewimagesforuser(
+                                emial: email,
+                              ),
                             ),
                             Divider(
                               thickness: 3,
@@ -132,6 +131,7 @@ class Specialistprofileforuser extends StatelessWidget {
             Container(
               child: Row(
                 children: [
+                  Readbackgesforuser(emial: email),
                   SizedBox(
                     width: 55,
                   )

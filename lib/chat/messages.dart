@@ -11,15 +11,13 @@ class Messages extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final docId = auth!.uid;
-
     return StreamBuilder(
         stream: FirebaseFirestore.instance
             .collection('chat')
-            .doc(docId)
+            .doc(auth!.email)
             .collection('messages')
             .where('useremail', isEqualTo: auth!.email)
-            .where('specialemail', isEqualTo: email)
+            .where('serviceemail', isEqualTo: email)
             .get()
             .asStream(),
         builder: (context, AsyncSnapshot chatSnapshot) {
@@ -56,7 +54,10 @@ class Messagespecial extends StatelessWidget {
     return StreamBuilder(
         stream: FirebaseFirestore.instance
             .collection('chat')
-            .where('specialemail', arrayContains: email)
+            .doc(auth!.email)
+            .collection('messages')
+            .where('usersemail', isEqualTo: email)
+            .where('specialemail', isEqualTo: auth!.email)
             .get()
             .asStream(),
         builder: (context, AsyncSnapshot chatSnapshot) {
@@ -73,7 +74,7 @@ class Messagespecial extends StatelessWidget {
             itemBuilder: (ctx, index) => MessageBubble(
               chatDocs[index]['text'],
               chatDocs[index]['username'],
-              chatDocs[index]['useremail'] == auth!.email,
+              chatDocs[index]['usersemail'] == email,
               key: ValueKey(chatDocs[index].id),
             ),
           );

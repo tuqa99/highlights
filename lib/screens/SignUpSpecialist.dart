@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:highlights/UserScreens/HomePageComp/HomePage.dart';
 import 'package:highlights/UserScreens/allscreens.dart';
 import 'package:highlights/UserScreens/userProfile/button_widget.dart';
 import 'package:highlights/screens/login.dart';
@@ -34,7 +33,7 @@ class _SignUpSpecialistState extends State<SignUpSpecialist> {
     "MakeUp",
     "Photography",
   ];
-  Color kActiveColor = Colors.black;
+  Color kActiveColor = Color.fromARGB(255, 162, 212, 244);
   List<String>? selectedService = [];
 
   bool confirmedPassword() {
@@ -53,7 +52,7 @@ class _SignUpSpecialistState extends State<SignUpSpecialist> {
       appBar: AppBar(
         elevation: 0,
         brightness: Brightness.light,
-        backgroundColor: Colors.white,
+        backgroundColor: Color.fromARGB(255, 162, 212, 244),
         leading: IconButton(
             onPressed: () {
               Navigator.pop(context);
@@ -68,9 +67,9 @@ class _SignUpSpecialistState extends State<SignUpSpecialist> {
         width: double.infinity,
         decoration: BoxDecoration(
             gradient: LinearGradient(begin: Alignment.topCenter, colors: [
-          Color.fromARGB(255, 138, 138, 138),
-          Color.fromARGB(255, 202, 200, 201),
-          Color.fromARGB(255, 225, 223, 224),
+          Color.fromARGB(255, 162, 212, 244),
+          Color.fromARGB(255, 194, 225, 244),
+          Colors.white
         ])),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -280,6 +279,7 @@ class _SignUpSpecialistState extends State<SignUpSpecialist> {
                                         location.text.trim(),
                                         selectedService,
                                       );
+                                      Addchat(FirstName.text.trim());
                                       Navigator.push(context, MaterialPageRoute(
                                         builder: (context) {
                                           return Specialistprofileforedit();
@@ -311,7 +311,8 @@ class _SignUpSpecialistState extends State<SignUpSpecialist> {
                                     child: Text(
                                       "Login",
                                       style: TextStyle(
-                                          color: Colors.black,
+                                          color: Color.fromARGB(
+                                              255, 162, 212, 244),
                                           fontWeight: FontWeight.bold,
                                           fontSize: 16),
                                     ),
@@ -356,6 +357,7 @@ Future addUserInfo(
     'phone number': phoneNumber,
     'service': selectedService!,
   });
+
   if (selectedService.contains("HairCut")) {
     await FirebaseFirestore.instance
         .collection("HairCut")
@@ -491,4 +493,21 @@ Widget makeInput(TextEditingController controller,
       contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
     ),
   );
+}
+
+Addchat(
+  String firstName,
+) async {
+  List usersemail = [];
+  List usersname = [];
+  var authin = FirebaseAuth.instance;
+  await FirebaseFirestore.instance
+      .collection('chat')
+      .doc(authin.currentUser!.email)
+      .set({
+    "usersemail": usersemail,
+    "usersname": usersname,
+    "serviceemail": authin.currentUser!.email,
+    "servicename": firstName,
+  });
 }

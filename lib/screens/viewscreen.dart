@@ -122,10 +122,12 @@ class _VideoAppState extends State<VideoApp> {
                                         textAlign: TextAlign.center,
                                         style: GoogleFonts.playfairDisplay(
                                           textStyle: TextStyle(
-                                              fontSize: 25,
-                                              letterSpacing: .5,
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.grey.shade800),
+                                            fontSize: 25,
+                                            letterSpacing: .5,
+                                            fontWeight: FontWeight.bold,
+                                            color: Color.fromARGB(
+                                                255, 141, 204, 243),
+                                          ),
                                         ),
                                       ),
                                     )
@@ -161,10 +163,12 @@ class _VideoAppState extends State<VideoApp> {
                                         textAlign: TextAlign.center,
                                         style: GoogleFonts.playfairDisplay(
                                           textStyle: TextStyle(
-                                              fontSize: 25,
-                                              letterSpacing: .5,
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.grey.shade800),
+                                            fontSize: 25,
+                                            letterSpacing: .5,
+                                            fontWeight: FontWeight.bold,
+                                            color: Color.fromARGB(
+                                                255, 141, 204, 243),
+                                          ),
                                         ),
                                       ),
                                     )
@@ -173,9 +177,7 @@ class _VideoAppState extends State<VideoApp> {
                               ),
                             ],
                           ),
-                          SizedBox(
-                            height: 10,
-                          ),
+                          SizedBox(),
                           Container(
                             alignment: Alignment.center,
                             child: TextButton(

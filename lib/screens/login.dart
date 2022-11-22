@@ -6,12 +6,11 @@ import 'package:highlights/UserScreens/HomePageComp/homemodels.dart/hairspeciali
 import 'package:highlights/UserScreens/userProfile/button_widget.dart';
 import 'package:highlights/screens/resetPass.dart';
 import 'package:highlights/signInGoogle/FirebaseServices.dart';
-import 'package:highlights/UserScreens/HomePageComp/HomePage.dart';
 import 'package:highlights/screens/viewscreen.dart';
 import 'package:highlights/signInGoogle/database.dart';
 import 'package:highlights/specialist/specialistprofile.dart';
 import 'package:line_icons/line_icons.dart';
-import '../UserScreens/AppBar/FirstPage.dart';
+import '../UserScreens/HomePageComp/FirstPage.dart';
 import '../UserScreens/allscreens.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
@@ -35,9 +34,9 @@ class _LoginPageState extends State<LoginPage> {
         width: double.infinity,
         decoration: const BoxDecoration(
             gradient: LinearGradient(begin: Alignment.topCenter, colors: [
-          Color.fromARGB(255, 138, 138, 138),
-          Color.fromARGB(255, 202, 200, 201),
-          Color.fromARGB(255, 225, 223, 224),
+          Color.fromARGB(255, 162, 212, 244),
+          Color.fromARGB(255, 194, 225, 244),
+          Colors.white
         ])),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -50,6 +49,9 @@ class _LoginPageState extends State<LoginPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  SizedBox(
+                    height: 20,
+                  ),
                   Text(
                     "Login",
                     style: GoogleFonts.playfairDisplay(
@@ -193,7 +195,7 @@ class _LoginPageState extends State<LoginPage> {
                           'Forgot Password ?',
                           style: TextStyle(
                             fontSize: 15,
-                            color: Colors.black,
+                            color: Color.fromARGB(255, 141, 204, 243),
                           ),
                         ),
                       ),
@@ -214,7 +216,7 @@ class _LoginPageState extends State<LoginPage> {
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 15,
-                                color: Colors.black,
+                                color: Color.fromARGB(255, 141, 204, 243),
                               ),
                             ),
                             onPressed: () {
@@ -267,7 +269,7 @@ class _LoginPageState extends State<LoginPage> {
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) {
-                                    return const HomePage();
+                                    return const MainPage();
                                   },
                                 ),
                               );

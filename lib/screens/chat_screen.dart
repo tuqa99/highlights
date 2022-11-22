@@ -15,7 +15,7 @@ class ChatScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 225, 223, 224).withOpacity(.6),
+        backgroundColor: Color.fromARGB(255, 162, 212, 244),
       ),
       body: Container(
         child: Column(
@@ -56,7 +56,7 @@ class ChatScreen1 extends StatelessWidget {
                 email: email,
               ),
             ),
-            NewMessage(
+            NewMessages1(
               name: name,
               email: email,
               docid: docid,
