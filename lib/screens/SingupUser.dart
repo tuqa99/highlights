@@ -286,9 +286,9 @@ Addchat(
       .collection('chat')
       .doc(authin.currentUser!.email)
       .set({
-    "usersemail": usersemail,
-    "usersname": usersname,
-    "serviceemail": authin.currentUser!.email,
-    "servicename": firstName,
+    "serviceemail": usersemail,
+    "servicename": usersname,
+    "usersemail": authin.currentUser!.email,
+    "usersname": firstName,
   });
 }

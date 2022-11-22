@@ -37,15 +37,15 @@ class _NewMessageState extends State<NewMessage> {
       'createdAt': Timestamp.now(),
       'useremail': user.email,
       'username': userData['first name'],
-      'specialemail': widget.email,
-      'specialname': widget.name
+      'serviceemail': widget.email,
+      'servicename': widget.name
     });
     specialemails.add(widget.email);
     specialnames.add(widget.name);
 
     FirebaseFirestore.instance.collection('chat').doc(user.email).update({
-      'specialemail': FieldValue.arrayUnion(specialemails),
-      'specialname': FieldValue.arrayUnion(specialnames),
+      'serviceemail': FieldValue.arrayUnion(specialemails),
+      'servicename': FieldValue.arrayUnion(specialnames),
     });
 
     FirebaseFirestore.instance

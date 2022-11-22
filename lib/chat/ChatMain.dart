@@ -20,7 +20,7 @@ class _ChatMainState extends State<ChatMain> {
     var collection = FirebaseFirestore.instance.collection('chat');
 
     return FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
-      future: collection.doc(auth!.uid).get(),
+      future: collection.doc(auth!.email).get(),
       builder: (BuildContext context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
           if (snapshot.hasError) {
@@ -32,8 +32,8 @@ class _ChatMainState extends State<ChatMain> {
             );
           } else if (snapshot.hasData) {
             var data = snapshot.data!.data();
-            List _emails = data!['specialemail'];
-            List _names = data['specialname'];
+            List _emails = data!['serviceemail'];
+            List _names = data['servicename'];
             return Scaffold(
               appBar: AppBar(
                 automaticallyImplyLeading: false,
@@ -88,6 +88,10 @@ class _ChatMainState extends State<ChatMain> {
                   );
                 },
               ),
+            );
+          } else {
+            Center(
+              child: Text("You dont Have any chats yet "),
             );
           }
         }
