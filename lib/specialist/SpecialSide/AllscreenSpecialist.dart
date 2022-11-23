@@ -47,10 +47,10 @@ class _SpecialistMainState extends State<SpecialistMain> {
         ],
       ),
       bottomNavigationBar: SlidingClippedNavBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).primaryColor,
         onButtonPressed: onButtonPressed,
         iconSize: 30,
-        activeColor: const Color(0xFF560027),
+        activeColor: Theme.of(context).bottomAppBarColor,
         selectedIndex: selectedIndex,
         barItems: <BarItem>[
           BarItem(

@@ -31,12 +31,13 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       body: Container(
         width: double.infinity,
-        decoration: const BoxDecoration(
-            gradient: LinearGradient(begin: Alignment.topCenter, colors: [
-          Color.fromARGB(255, 162, 212, 244),
-          Color.fromARGB(255, 194, 225, 244),
-          Colors.white
-        ])),
+        decoration: BoxDecoration(color: Theme.of(context).primaryColor
+            //     gradient: LinearGradient(begin: Alignment.topCenter, colors: [
+            //   Color.fromARGB(255, 162, 212, 244),
+            //   Color.fromARGB(255, 194, 225, 244),
+            //   Colors.white
+            // ])
+            ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -99,7 +100,7 @@ class _LoginPageState extends State<LoginPage> {
                             borderRadius: BorderRadius.circular(10),
                             boxShadow: [
                               BoxShadow(
-                                  color: Colors.grey.shade700,
+                                  color: Theme.of(context).shadowColor,
                                   blurRadius: 20,
                                   offset: Offset(0, 10))
                             ]),
@@ -109,13 +110,14 @@ class _LoginPageState extends State<LoginPage> {
                             decoration: BoxDecoration(
                                 border: Border(
                                     bottom: BorderSide(
-                                        color: Colors.grey.shade400))),
+                              color: Theme.of(context).primaryColor,
+                            ))),
                             child: TextField(
                               controller: nameController,
                               decoration: InputDecoration(
                                   suffixIcon: Icon(
                                     Icons.email,
-                                    color: Colors.grey.shade800,
+                                    color: Theme.of(context).primaryColor,
                                   ),
                                   hintText: "Enter your email",
                                   border: InputBorder.none),
@@ -126,14 +128,15 @@ class _LoginPageState extends State<LoginPage> {
                             decoration: BoxDecoration(
                                 border: Border(
                                     bottom: BorderSide(
-                                        color: Colors.grey.shade700))),
+                              color: Theme.of(context).primaryColor,
+                            ))),
                             child: TextField(
                               obscureText: true,
                               controller: passwordController,
                               decoration: InputDecoration(
                                   suffixIcon: Icon(
                                     Icons.lock_person,
-                                    color: Colors.grey.shade800,
+                                    color: Theme.of(context).primaryColor,
                                   ),
                                   hintText: "Enter your Password",
                                   // hintStyle: TextStyle(color: Colors.black),
@@ -187,11 +190,11 @@ class _LoginPageState extends State<LoginPage> {
                             },
                           ));
                         },
-                        child: const Text(
+                        child: Text(
                           'Forgot Password ?',
                           style: TextStyle(
                             fontSize: 15,
-                            color: Color.fromARGB(255, 141, 204, 243),
+                            color: Theme.of(context).primaryColor,
                           ),
                         ),
                       ),
@@ -207,12 +210,12 @@ class _LoginPageState extends State<LoginPage> {
                                 fontSize: 15, fontWeight: FontWeight.bold),
                           ),
                           TextButton(
-                            child: const Text(
+                            child: Text(
                               'Sign Up',
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 15,
-                                color: Color.fromARGB(255, 141, 204, 243),
+                                color: Theme.of(context).primaryColor,
                               ),
                             ),
                             onPressed: () {

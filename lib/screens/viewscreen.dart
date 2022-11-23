@@ -33,6 +33,7 @@ class _VideoAppState extends State<VideoApp> {
     return MaterialApp(
       title: 'High Lights',
       home: Scaffold(
+        backgroundColor: Color.fromARGB(0, 255, 255, 255),
         body: Stack(
           children: [
             Center(

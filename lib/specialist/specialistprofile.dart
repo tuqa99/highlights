@@ -3,14 +3,14 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import "package:flutter/material.dart";
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import '../UserScreens/userProfile/button_widget.dart';
+import '../profiledrawer/AccountSpecial.dart';
 
-import '../../UserScreens/userProfile/button_widget.dart';
-import '../../profiledrawer/AccountSpecial.dart';
-import 'compantsspecialist/addimages.dart';
-import 'compantsspecialist/addpackeges.dart';
-import 'compantsspecialist/continarprofile.dart';
-import 'compantsspecialist/read.dart';
-import 'compantsspecialist/viewimage.dart';
+import 'SpecialSide/compantsspecialist/addimages.dart';
+import 'SpecialSide/compantsspecialist/addpackeges.dart';
+import 'SpecialSide/compantsspecialist/continarprofile.dart';
+import 'SpecialSide/compantsspecialist/read.dart';
+import 'SpecialSide/compantsspecialist/viewimage.dart';
 
 class Specialistprofileforedit extends StatefulWidget {
   const Specialistprofileforedit({super.key});
@@ -52,6 +52,7 @@ class _SpecialistprofileforeditState extends State<Specialistprofileforedit> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        resizeToAvoidBottomInset: false,
         drawer: Drawer(
           child: AccountSpecial(),
         ),
@@ -72,20 +73,21 @@ class _SpecialistprofileforeditState extends State<Specialistprofileforedit> {
           elevation: 0.00,
           backgroundColor: Color.fromARGB(255, 225, 223, 224).withOpacity(.6),
         ),
-        body: Container(
-          child: Stack(
-            children: [
-              Continarprfile(),
-              Padding(
-                padding: const EdgeInsets.only(top: 160),
-                child: Container(
-                  height: double.infinity,
-                  width: MediaQuery.of(context).size.width,
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.only(
-                          topRight: Radius.circular(30),
-                          topLeft: Radius.circular(30))),
+        body: Stack(
+          children: [
+            Continarprfile(),
+            Padding(
+              padding: const EdgeInsets.only(top: 160),
+              child: Container(
+                height: double.infinity,
+                width: MediaQuery.of(context).size.width,
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.only(
+                        topRight: Radius.circular(30),
+                        topLeft: Radius.circular(30))),
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.vertical,
                   child: Column(
                     children: [
                       SizedBox(
@@ -105,11 +107,11 @@ class _SpecialistprofileforeditState extends State<Specialistprofileforedit> {
                               SizedBox(
                                 height: 20,
                               ),
-                              Container(
-                                height: 200,
-                                width: 300,
-                                child: Viewimages(),
-                              ),
+                              // Container(
+                              //   height: 200,
+                              //   width: 300,
+                              //   child: Viewimages(),
+                              // ),
                               Divider(
                                 thickness: 3,
                                 height: 6,
@@ -140,8 +142,8 @@ class _SpecialistprofileforeditState extends State<Specialistprofileforedit> {
                   ),
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ));
   }
 }

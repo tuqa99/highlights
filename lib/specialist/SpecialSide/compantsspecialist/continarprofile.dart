@@ -87,7 +87,7 @@ class _ContinarprfileState extends State<Continarprfile> {
               // var ab = json.decode(_service).cast().toList();
               return Container(
                 height: 200,
-                color: Color.fromARGB(255, 162, 212, 244),
+                color: Theme.of(context).cardColor,
                 child: Padding(
                   padding: const EdgeInsets.all(30),
                   child: Column(
@@ -132,6 +132,32 @@ class _ContinarprfileState extends State<Continarprfile> {
                                             'https://media.istockphoto.com/id/587805156/vector/profile-picture-vector-illustration.jpg?s=612x612&w=0&k=20&c=gkvLDCgsHH-8HeQe7JsjhlOY6vRBJk_sKW9lyaLgmLo='),
                                   ),
                                 ),
+                              IconButton(
+                                  onPressed: () {
+                                    showDialog(
+                                      context: context,
+                                      builder: (ctx) => AlertDialog(
+                                        title: const Text("chang your photo"),
+                                        content: Container(
+                                            child: Image(
+                                          image: NetworkImage('$_profileimage'),
+                                        )),
+                                        actions: <Widget>[
+                                          ElevatedButton(
+                                              onPressed: slecteFile,
+                                              child: Text('select photo')),
+                                          TextButton(
+                                            onPressed: Uplode,
+                                            child: Container(
+                                              padding: const EdgeInsets.all(14),
+                                              child: const Text("Update"),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    );
+                                  },
+                                  icon: Icon(Icons.edit))
                             ],
                           ),
                           SizedBox(
@@ -203,12 +229,10 @@ class _ContinarprfileState extends State<Continarprfile> {
                                             },
                                             child: Container(
                                               padding: const EdgeInsets.all(14),
-                                              child: const Text(
-                                                "Upadte",
-                                                style: TextStyle(
-                                                    color: Color.fromARGB(
-                                                        255, 2, 2, 2)),
-                                              ),
+                                              child: Text("Upadte",
+                                                  style: TextStyle(
+                                                      color: Theme.of(context)
+                                                          .primaryColor)),
                                             ),
                                           ),
                                         ],
@@ -218,7 +242,7 @@ class _ContinarprfileState extends State<Continarprfile> {
                                   child: Text(
                                     '$_service',
                                     style: TextStyle(
-                                        color: Color.fromARGB(255, 2, 2, 2)),
+                                        color: Theme.of(context).primaryColor),
                                   )),
                               SizedBox(
                                 height: 13,
@@ -244,9 +268,8 @@ class _ContinarprfileState extends State<Continarprfile> {
                               RatingBarIndicator(
                                 rating: 4.75,
                                 itemBuilder: (context, index) => Icon(
-                                  Icons.star,
-                                  color: Colors.amber,
-                                ),
+                                    Icons.star,
+                                    color: Theme.of(context).primaryColor),
                                 itemCount: 5,
                                 itemSize: 25.0,
                                 direction: Axis.horizontal,
@@ -389,9 +412,9 @@ class _ContainerProfileViewState extends State<Continarprfileview> {
                       itemCount: 5,
                       itemPadding: const EdgeInsets.symmetric(horizontal: 4.0),
                       itemBuilder: (context, _) {
-                        return const Icon(
+                        return Icon(
                           Icons.star,
-                          color: Colors.black,
+                          color: Theme.of(context).primaryColor,
                         );
                       },
                       onRatingUpdate: (value) {
@@ -425,7 +448,11 @@ class _ContainerProfileViewState extends State<Continarprfileview> {
 
                           Navigator.pop(context);
                         },
-                        child: Text("Submit"))
+                        child: Text(
+                          "Submit",
+                          style:
+                              TextStyle(color: Theme.of(context).primaryColor),
+                        ))
                   ]),
             );
           });
@@ -437,9 +464,7 @@ class _ContainerProfileViewState extends State<Continarprfileview> {
         DocumentSnapshot document = snapshot.data!.docs[widget.index!];
         return Container(
             width: double.infinity,
-            decoration: const BoxDecoration(
-              color: Color.fromARGB(255, 241, 237, 239),
-            ),
+            decoration: BoxDecoration(color: Theme.of(context).cardColor),
             height: 160,
             child: Column(children: [
               SizedBox(
@@ -474,47 +499,48 @@ class _ContainerProfileViewState extends State<Continarprfileview> {
                                 "${widget.firstname!.toUpperCase()}",
                                 style: GoogleFonts.playfairDisplay(
                                   textStyle: TextStyle(
-                                      wordSpacing: 2,
-                                      letterSpacing: 2,
-                                      fontSize: 17,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                    wordSpacing: 2,
+                                    letterSpacing: 2,
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                               ),
                               SizedBox(
                                 height: 7,
                               ),
-                              SizedBox(
-                                height: 15,
-                              ),
+
                               Row(children: [
                                 RatingBarIndicator(
                                   itemSize: 21,
                                   rating: ratingAva(document),
                                   itemBuilder: (context, index) => Icon(
                                     Icons.star,
-                                    color: Colors.black,
+                                    color: Theme.of(context).primaryColor,
                                   ),
                                 ),
                                 SizedBox(
-                                  width: 15,
+                                  width: 18,
                                 ),
                                 TextButton(
                                   style: TextButton.styleFrom(
                                     shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(20)),
-                                    backgroundColor: Colors.black,
+                                        borderRadius: BorderRadius.only(
+                                            bottomRight: Radius.circular(20),
+                                            topLeft: Radius.circular(20),
+                                            topRight: Radius.circular(20))),
+                                    backgroundColor:
+                                        Theme.of(context).primaryColor,
                                   ),
                                   onPressed: () async {
                                     await updatte(document);
                                   },
                                   child: Text(
-                                    "Rate Now",
+                                    "Rate Me",
                                     style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 10,
-                                    ),
+                                        color: Colors.black,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold),
                                   ),
                                 ),
                               ]),

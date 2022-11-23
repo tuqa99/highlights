@@ -26,7 +26,7 @@ class Specialistprofileforuser extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         floatingActionButton: FloatingActionButton(
-            backgroundColor: Colors.grey.shade800,
+            backgroundColor: Theme.of(context).primaryColor,
             child: Icon(
               Icons.chat,
               color: Colors.white,
@@ -41,7 +41,7 @@ class Specialistprofileforuser extends StatelessWidget {
                           )));
             }),
         appBar: AppBar(
-          backgroundColor: Color.fromARGB(255, 241, 237, 239),
+          backgroundColor: Theme.of(context).primaryColor,
         ),
         body: Stack(
           children: [
@@ -58,85 +58,54 @@ class Specialistprofileforuser extends StatelessWidget {
                 height: double.infinity,
                 width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: Theme.of(context).cardColor,
                 ),
-                child: SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Row(
+                child: Row(
+                  children: [
+                    Column(
                       children: [
-                        Column(
-                          children: [
-                            Row(
-                              children: [
-                                SizedBox(
-                                  width: 55,
-                                ),
-                                // Text(
-                                //   'The packeges',
-                                //   style: TextStyle(
-                                //       color: Colors.black,
-                                //       fontSize: 18,
-                                //       fontWeight: FontWeight.bold),
-                                // ),
-                              ],
-                            ),
-                            Divider(
-                              thickness: 3,
-                              height: 6,
-                              color: Colors.grey,
-                            ),
-                          ],
+                        Text(
+                          'Gallery',
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold),
                         ),
-                        Column(
-                          children: [
-                            Row(
-                              children: [
-                                SizedBox(
-                                  width: 60,
-                                ),
-                                Text(
-                                  'Gallery',
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ],
-                            ),
-                            SizedBox(
-                              height: 18,
-                            ),
-                            Container(
-                              height: 300,
-                              width: 300,
-                              child: Viewimagesforuser(
-                                emial: email,
-                              ),
-                            ),
-                            Divider(
-                              thickness: 3,
-                              height: 6,
-                              color: Colors.grey,
-                            ),
-                          ],
+                        SizedBox(
+                          height: 18,
+                        ),
+                        Container(
+                          height: 300,
+                          width: 300,
+                          child: Viewimagesforuser(
+                            emial: email,
+                          ),
+                        ),
+                        Divider(
+                          thickness: 3,
+                          height: 6,
+                          color: Colors.grey,
                         ),
                       ],
-                    )),
+                    ),
+                  ],
+                ),
               ),
             ),
             Divider(
               height: 3,
               color: Colors.grey,
             ),
-            Container(
-              child: Row(
-                children: [
-                  SizedBox(
-                    width: 55,
-                  )
-                ],
-              ),
-            ),
+            // Container(
+            //   child: Row(
+            //     children: [
+            //       Readbackgesforuser(emial: email),
+            //       SizedBox(
+            //         width: 55,
+            //       )
+            //     ],
+            //   ),
+            // ),
           ],
         ));
   }
