@@ -64,13 +64,14 @@ class _SpecialistsListState extends State<SpecialistList> {
       body: StreamBuilder<QuerySnapshot>(
           stream: documents,
           builder: (context, AsyncSnapshot snapshot) {
-            // print(snapshot.data);
             if (snapshot.hasData) {
               return GridView.count(
                 crossAxisCount: 2,
                 children: List.generate(snapshot.data!.docs.length, (index) {
                   DocumentSnapshot document = snapshot.data!.docs[index];
                   String fullName = document['full name'];
+                  String image = document['imageprofileurl'];
+                  print(image);
 
                   ratingAva(document);
                   print(ratingAva(document));
@@ -83,7 +84,7 @@ class _SpecialistsListState extends State<SpecialistList> {
                           MaterialPageRoute(
                             builder: (context) => Specialistprofileforuser(
                               firstname: document['full name'],
-                              email: document['email'], profilephotpurl: '',
+                              email: document['email'], profilephotpurl: image,
                               CollectionName: widget.CollectionName,
                               index: index,
 
@@ -109,8 +110,8 @@ class _SpecialistsListState extends State<SpecialistList> {
                             ),
                             CircleAvatar(
                               radius: 40,
-                              backgroundImage: _profileimage != null
-                                  ? NetworkImage('$_profileimage')
+                              backgroundImage: document['imageprofileurl'] != ""
+                                  ? NetworkImage(image)
                                   : NetworkImage(
                                       'https://media.istockphoto.com/id/587805156/vector/profile-picture-vector-illustration.jpg?s=612x612&w=0&k=20&c=gkvLDCgsHH-8HeQe7JsjhlOY6vRBJk_sKW9lyaLgmLo='),
                             ),
@@ -157,6 +158,8 @@ class _SpecialistsListState extends State<SpecialistList> {
     );
   }
 }
+
+
 
 // class SpecialistList extends StatelessWidget {
 //   SpecialistList({

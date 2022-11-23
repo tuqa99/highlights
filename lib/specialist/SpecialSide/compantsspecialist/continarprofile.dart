@@ -49,6 +49,14 @@ class _ContinarprfileState extends State<Continarprfile> {
         .doc(auth.currentUser!.uid)
         .update({"imageprofileurl": (images)});
   }
+  //   Future SaveData(String images) async {
+  //   var auth = FirebaseAuth.instance;
+  //   await FirebaseFirestore.instance
+  //       .collection('specialist')
+  //       .doc(auth.currentUser!.uid)
+  //       .update({"imageprofileurl": (images)});
+  // }
+
 
   Future slecteFile() async {
     final result = await FilePicker.platform.pickFiles();
@@ -104,7 +112,9 @@ class _ContinarprfileState extends State<Continarprfile> {
                                               onPressed: slecteFile,
                                               child: Text('select photo')),
                                           TextButton(
-                                            onPressed: Uplode,
+                                            onPressed: () {
+                                              Uplode();
+                                            },
                                             child: Container(
                                               padding: const EdgeInsets.all(14),
                                               child: const Text("Update"),
@@ -331,10 +341,11 @@ class _ContainerProfileViewState extends State<Continarprfileview> {
   @override
   Widget build(BuildContext context) {
     int? rating;
-    String? profilephotpurl;
 
     CollectionReference ref =
         FirebaseFirestore.instance.collection(widget.CollectionName!);
+    CollectionReference ref2 =
+        FirebaseFirestore.instance.collection('specialist');
 
     var documents = ref.snapshots();
     ratingAva(DocumentSnapshot document) {
@@ -406,6 +417,8 @@ class _ContainerProfileViewState extends State<Continarprfileview> {
                           if (myrating != null) {
                             await ref.doc(myDoc!.id).update(
                                 {'rating': FieldValue.arrayUnion(sumlist)});
+                            ref2.doc(myDoc.id).update(
+                                {'rating': FieldValue.arrayUnion(sumlist)});
 
                             // rating. = myrating;
                           }
@@ -439,8 +452,8 @@ class _ContainerProfileViewState extends State<Continarprfileview> {
                   ),
                   CircleAvatar(
                     radius: 40,
-                    backgroundImage: profilephotpurl != null
-                        ? NetworkImage('$profilephotpurl')
+                    backgroundImage: widget.profilephotpurl != ""
+                        ? NetworkImage('${widget.profilephotpurl}')
                         : NetworkImage(
                             'https://media.istockphoto.com/id/587805156/vector/profile-picture-vector-illustration.jpg?s=612x612&w=0&k=20&c=gkvLDCgsHH-8HeQe7JsjhlOY6vRBJk_sKW9lyaLgmLo='),
                   ),
