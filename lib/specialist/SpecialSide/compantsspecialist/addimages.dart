@@ -47,8 +47,13 @@ class _addimagesState extends State<addimages> {
 
   Future SaveData(List<String> images) async {
     var auth = FirebaseAuth.instance;
+
     await FirebaseFirestore.instance
         .collection('specialist')
+        .doc(auth.currentUser!.uid)
+        .update({"url": FieldValue.arrayUnion(images)});
+    await FirebaseFirestore.instance
+        .collection('HairCut')
         .doc(auth.currentUser!.uid)
         .update({"url": FieldValue.arrayUnion(images)});
   }

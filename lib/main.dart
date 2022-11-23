@@ -2,6 +2,7 @@ import "package:flutter/material.dart";
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_settings_screens/flutter_settings_screens.dart';
 import 'package:highlights/profiledrawer/AccountSettings.dart';
+import 'package:highlights/screens/SignIn_Up/login.dart';
 import 'package:highlights/screens/SplashScreen.dart';
 import 'package:highlights/specialist/SpecialSide/specialistprofile.dart';
 import 'firebase_options.dart';
@@ -77,6 +78,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Specialistprofileforedit();
+    return LoginPage();
   }
 }

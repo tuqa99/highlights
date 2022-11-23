@@ -72,6 +72,10 @@ class Viewimages extends StatelessWidget {
                 );
               },
             );
+          } else {
+            return Container(
+              child: Text("Add new work"),
+            );
           }
         }
         return const Center(child: CircularProgressIndicator());
@@ -81,17 +85,17 @@ class Viewimages extends StatelessWidget {
 }
 
 class Viewimagesforuser extends StatelessWidget {
-  Viewimagesforuser({required this.emial});
+  Viewimagesforuser({required this.emial, required this.CollectionName});
   String? emial;
+  String? CollectionName;
   @override
   Widget build(BuildContext context) {
     List<String> names = [];
 
     User? auth = FirebaseAuth.instance.currentUser;
     final doc_id = auth!.uid;
-    var ref = FirebaseFirestore.instance
-        .collection('specialist')
-        .where('email', isEqualTo: emial);
+    var ref = FirebaseFirestore.instance.collection(CollectionName!);
+
     return FutureBuilder(
       future: ref.get(),
       builder: (context, snapshot) {
@@ -104,16 +108,6 @@ class Viewimagesforuser extends StatelessWidget {
               );
             }
 
-            var x = FirebaseFirestore.instance
-                .collection('specialist')
-                .where('email', isEqualTo: emial)
-                .get()
-                .then((value) => value.docs.forEach((element) {
-                      names.add(element['url']);
-                    }));
-            print("@@@@@@@@@@@@@@@");
-            print(names);
-            print(x);
             return ListView.builder(
               itemCount: names.length,
               itemBuilder: (context, index) {
