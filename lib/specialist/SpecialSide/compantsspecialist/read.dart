@@ -28,13 +28,14 @@ class Read_component1 extends StatelessWidget {
         }
         final packgeDocs = packgeSnapshot.data!.docs;
         return ListView.builder(
+          scrollDirection: Axis.horizontal,
           itemCount: packgeDocs.length,
           itemBuilder: (context, index) {
             return Padding(
               padding: const EdgeInsets.only(right: 22, left: 22),
               child: Container(
                 width: 100,
-                height: 200,
+                height: 100,
                 decoration: BoxDecoration(
                   border: Border.all(color: Colors.blueAccent),
                 ),
@@ -65,7 +66,8 @@ class Readbackgesforuser extends StatelessWidget {
     return StreamBuilder(
       stream: FirebaseFirestore.instance
           .collection('specialist')
-          .where('email', isEqualTo: emial)
+          .doc(emial)
+          .collection('addpakeges')
           .get()
           .asStream(),
       builder: (context, AsyncSnapshot packgeSnapshot) {
