@@ -30,16 +30,24 @@ class Messages extends StatelessWidget {
           final chatDocs = chatSnapshot.data.docs;
 
           return ListView.builder(
-              reverse: true,
+              reverse: false,
               itemCount: chatDocs.length,
               itemBuilder: (ctx, index) {
-                print(chatDocs[index]['serviceemail']);
-                return MessageBubble(
-                  chatDocs[index]['text'],
-                  chatDocs[index]['usersname'],
-                  chatDocs[index]['sender'],
-                  key: ValueKey(chatDocs[index].id),
-                );
+                if (chatDocs[index]['sender']) {
+                  return MessageBubble(
+                    chatDocs[index]['text'],
+                    chatDocs[index]['usersname'],
+                    chatDocs[index]['usersemail'] == auth!.email,
+                    key: ValueKey(chatDocs[index].id),
+                  );
+                } else {
+                  return MessageBubble(
+                    chatDocs[index]['text'],
+                    chatDocs[index]['usersname'],
+                    chatDocs[index]['serviceemail'] == auth!.email,
+                    key: ValueKey(chatDocs[index].id),
+                  );
+                }
               });
         });
   }
@@ -72,14 +80,25 @@ class Messagespecial extends StatelessWidget {
           }
           final chatDocs = chatSnapshot.data!.docs;
           return ListView.builder(
-            reverse: true,
-            itemCount: chatDocs.length,
-            itemBuilder: (ctx, index) => MessageBubble(
-              chatDocs[index]['text'],
-              chatDocs[index]['usersname'],
-              chatDocs[index]['sender'],
-            ),
-          );
+              reverse: false,
+              itemCount: chatDocs.length,
+              itemBuilder: (ctx, index) {
+                if (chatDocs[index]['sender']) {
+                  return MessageBubble(
+                    chatDocs[index]['text'],
+                    chatDocs[index]['usersname'],
+                    chatDocs[index]['serviceemail'] == auth!.email,
+                    key: ValueKey(chatDocs[index].id),
+                  );
+                } else {
+                  return MessageBubble(
+                    chatDocs[index]['text'],
+                    chatDocs[index]['usersname'],
+                    chatDocs[index]['usersemail'] == auth!.email,
+                    key: ValueKey(chatDocs[index].id),
+                  );
+                }
+              });
         });
   }
 }
