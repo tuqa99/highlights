@@ -19,7 +19,8 @@ class _AddpackegsState extends State<Addpackegs> {
   var imagePick = ImagePicker();
   String? packages;
   String? decs;
-
+  String? typepackges;
+  String? imagepacges;
   TextEditingController descriptionpackeg = TextEditingController();
   TextEditingController imagenet = TextEditingController();
   uploadImageProcess() async {
@@ -46,15 +47,21 @@ class _AddpackegsState extends State<Addpackegs> {
   }
 
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    typepackges = "Bridal";
+    imagepacges = "images/wedding.jpg";
+  }
+
+  @override
   Widget build(BuildContext context) {
     var auth = FirebaseAuth.instance;
-    TextEditingController courseController = TextEditingController();
+    TextEditingController discount = TextEditingController();
+    TextEditingController discription = TextEditingController();
     PlatformFile? selectedDirectory;
 
-    String myselectedITem = "Bridal";
-
     List myitemss = ['Bridal', 'Party', 'Birthday', 'Graduation', 'Regualr'];
-    String myselectedITems = "images/wedding.jpg";
 
     List myitem = [
       'images/wedding.jpg',
@@ -75,13 +82,13 @@ class _AddpackegsState extends State<Addpackegs> {
             DropdownButton(
                 isExpanded: true,
                 dropdownColor: Color.fromARGB(255, 246, 172, 196),
-                value: myselectedITem,
+                value: typepackges,
                 items: myitemss
                     .map((e) => DropdownMenuItem(value: e, child: Text(e)))
                     .toList(),
                 onChanged: ((value) {
                   setState(() {
-                    myselectedITem = value.toString();
+                    typepackges = value.toString();
                   });
                 })),
             SizedBox(
@@ -111,7 +118,7 @@ class _AddpackegsState extends State<Addpackegs> {
                 decoration: InputDecoration(
                     border: OutlineInputBorder(
                         borderSide: new BorderSide(color: Colors.teal))),
-                // controller: descriptionpackeg,
+                controller: discount,
               ),
             ),
             SizedBox(
@@ -124,23 +131,24 @@ class _AddpackegsState extends State<Addpackegs> {
             DropdownButton(
                 isExpanded: true,
                 dropdownColor: Color.fromARGB(255, 246, 172, 196),
-                value: myselectedITems,
+                value: imagepacges,
                 items: myitem
                     .map((e) => DropdownMenuItem(
                           value: e,
                           child: Container(
-                            alignment: Alignment.center,
-                            child: Image.asset(
-                              '$e',
-                              width: 40,
-                              height: 40,
-                            ),
-                          ),
+                              alignment: Alignment.center,
+                              child: Image(
+                                image: AssetImage(
+                                  '$e',
+                                ),
+                                width: 40,
+                                height: 40,
+                              )),
                         ))
                     .toList(),
                 onChanged: ((value) {
                   setState(() {
-                    myselectedITem = value.toString();
+                    typepackges = value.toString();
                   });
                 })),
             SizedBox(
@@ -154,8 +162,12 @@ class _AddpackegsState extends State<Addpackegs> {
                       .collection('specialist')
                       .doc(auth.currentUser!.email)
                       .collection('addpakeges');
-                  addpackeges11.add({"descripution": descriptionpackeg.text});
-                  Navigator.of(context).pop();
+                  addpackeges11.add({
+                    "descripution": descriptionpackeg.text,
+                    'typepackges': typepackges,
+                    'discount': discount.text,
+                    'imagepacges': imagepacges
+                  });
                 },
                 child: Text("Add package"))
           ],
@@ -170,7 +182,12 @@ class _AddpackegsState extends State<Addpackegs> {
                 .collection('specialist')
                 .doc(auth.currentUser!.uid)
                 .collection('addpakeges');
-            addpackeges11.add({"descripution": descriptionpackeg.text});
+            addpackeges11.add({
+              "descripution": descriptionpackeg.text,
+              'typepackges': typepackges,
+              'discount': discount.text,
+              'imagepacges': imagepacges
+            });
             Navigator.of(context).pop();
           },
           child: Container(

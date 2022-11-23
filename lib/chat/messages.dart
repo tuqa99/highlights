@@ -20,7 +20,7 @@ class Messages extends StatelessWidget {
             .get()
             .asStream(),
         builder: (context, AsyncSnapshot chatSnapshot) {
-          if (chatSnapshot.connectionState == ConnectionState.waiting &&
+          if (chatSnapshot.connectionState == ConnectionState.done &&
               !chatSnapshot.hasData) {
             return Center(
               child: CircularProgressIndicator(),

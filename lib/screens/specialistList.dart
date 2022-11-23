@@ -25,14 +25,14 @@ class _SpecialistsListState extends State<SpecialistList> {
     var documents = ref.snapshots();
     ratingAva(DocumentSnapshot document) {
       List allRatings = document['rating'];
-      int length = allRatings.length;
+      num length = allRatings.length;
       if (length > 1) {
         length = length - 1;
       }
-      int sum = 0;
+      num sum = 0;
       print(length);
       for (int i = 0; i < allRatings.length; i++) {
-        int index = allRatings[i];
+        num index = allRatings[i];
         sum += index;
       }
       double ava = sum / length;
@@ -64,7 +64,6 @@ class _SpecialistsListState extends State<SpecialistList> {
       body: StreamBuilder<QuerySnapshot>(
           stream: documents,
           builder: (context, AsyncSnapshot snapshot) {
-            // print(snapshot.data);
             if (snapshot.hasData) {
               return GridView.count(
                 crossAxisCount: 2,
@@ -76,14 +75,13 @@ class _SpecialistsListState extends State<SpecialistList> {
                   print(ratingAva(document));
                   return InkWell(
                     onTap: (() {
-                      // print(ratingAva());
-
                       Navigator.push(
                           context,
                           MaterialPageRoute(
                             builder: (context) => Specialistprofileforuser(
                               firstname: document['full name'],
-                              email: document['email'], profilephotpurl: '',
+                              email: document['email'],
+                              profilephotpurl: document['imageprofileurl'],
                               CollectionName: widget.CollectionName,
                               index: index,
 
@@ -108,12 +106,9 @@ class _SpecialistsListState extends State<SpecialistList> {
                               height: 7,
                             ),
                             CircleAvatar(
-                              radius: 40,
-                              backgroundImage: _profileimage != null
-                                  ? NetworkImage('$_profileimage')
-                                  : NetworkImage(
-                                      'https://media.istockphoto.com/id/587805156/vector/profile-picture-vector-illustration.jpg?s=612x612&w=0&k=20&c=gkvLDCgsHH-8HeQe7JsjhlOY6vRBJk_sKW9lyaLgmLo='),
-                            ),
+                                radius: 40,
+                                backgroundImage:
+                                    NetworkImage(document['imageprofileurl'])),
                             const SizedBox(
                               height: 10,
                             ),

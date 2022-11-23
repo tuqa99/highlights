@@ -38,6 +38,7 @@ class _ContinarprfileState extends State<Continarprfile> {
     downloadUrl = await storageSnapshot.ref.getDownloadURL();
     print('this a link $downloadUrl');
     SaveData(downloadUrl!);
+
     Navigator.of(context).pop();
     return downloadUrl;
   }
@@ -68,15 +69,39 @@ class _ContinarprfileState extends State<Continarprfile> {
         builder: (_, snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
             if (snapshot.hasError) return Text('Error = ${snapshot.error}');
+            var data = snapshot.data!.data();
+            List _service = data!['service'];
+            Future SaveData2(String images) async {
+              List _service = data!['service'];
+              for (var i = 0; i < _service.length; i++) {
+                String collectionname = _service[i].toString();
+                print(collectionname);
+                FirebaseFirestore.instance
+                    .collection(collectionname)
+                    .doc(auth.uid)
+                    .update({"imageprofileurl": (images)});
+              }
+            }
+
+            Future Uplode2() async {
+              final path = 'test/${selectedDirectory!.name}';
+              final file = File(selectedDirectory!.path!);
+              final ref = FirebaseStorage.instance.ref().child(path);
+              ref.putFile(file);
+              UploadTask uploadTask = ref.putFile(file);
+              final storageSnapshot = uploadTask.snapshot;
+              downloadUrl = await storageSnapshot.ref.getDownloadURL();
+              print('this a link $downloadUrl');
+              SaveData2(downloadUrl!);
+
+              Navigator.of(context).pop();
+              return downloadUrl;
+            }
 
             if (snapshot.hasData) {
-              var snap = snapshot.data!.get('service');
-              var data = snapshot.data!.data();
-              var _fname = data!['full name'];
+              var _fname = data['full name'];
               var _email = data['email'];
-              var _service = data['service'];
               var _profileimage = data['imageprofileurl'];
-              // var ab = json.decode(_service).cast().toList();
               return Container(
                 height: 200,
                 color: Theme.of(context).cardColor,
@@ -88,9 +113,41 @@ class _ContinarprfileState extends State<Continarprfile> {
                         children: [
                           Column(
                             children: [
-                              if (selectedDirectory != null)
-                                GestureDetector(
-                                  onTap: () {
+                              GestureDetector(
+                                onTap: () {
+                                  showDialog(
+                                    context: context,
+                                    builder: (ctx) => AlertDialog(
+                                      title: const Text("chang your photo"),
+                                      content: Container(
+                                          child: Image(
+                                        image: NetworkImage('$_profileimage'),
+                                      )),
+                                      actions: <Widget>[
+                                        ElevatedButton(
+                                            onPressed: slecteFile,
+                                            child: Text('select photo')),
+                                        TextButton(
+                                          onPressed: () {
+                                            Uplode();
+                                            Uplode2();
+                                          },
+                                          child: Container(
+                                            padding: const EdgeInsets.all(14),
+                                            child: const Text("Update"),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  );
+                                },
+                                child: CircleAvatar(
+                                    radius: 40,
+                                    backgroundImage:
+                                        NetworkImage('$_profileimage')),
+                              ),
+                              IconButton(
+                                  onPressed: () {
                                     showDialog(
                                       context: context,
                                       builder: (ctx) => AlertDialog(
@@ -104,7 +161,10 @@ class _ContinarprfileState extends State<Continarprfile> {
                                               onPressed: slecteFile,
                                               child: Text('select photo')),
                                           TextButton(
-                                            onPressed: Uplode,
+                                            onPressed: () {
+                                              Uplode;
+                                              Navigator.of(ctx).pop();
+                                            },
                                             child: Container(
                                               padding: const EdgeInsets.all(14),
                                               child: const Text("Update"),
@@ -114,14 +174,7 @@ class _ContinarprfileState extends State<Continarprfile> {
                                       ),
                                     );
                                   },
-                                  child: CircleAvatar(
-                                    radius: 40,
-                                    backgroundImage: _profileimage != null
-                                        ? NetworkImage('$_profileimage')
-                                        : NetworkImage(
-                                            'https://media.istockphoto.com/id/587805156/vector/profile-picture-vector-illustration.jpg?s=612x612&w=0&k=20&c=gkvLDCgsHH-8HeQe7JsjhlOY6vRBJk_sKW9lyaLgmLo='),
-                                  ),
-                                ),
+                                  icon: Icon(Icons.edit))
                             ],
                           ),
                           SizedBox(
@@ -220,7 +273,7 @@ class _ContinarprfileState extends State<Continarprfile> {
                                   Text(
                                     _email,
                                     style: TextStyle(
-                                      fontSize: 15,
+                                      fontSize: 12,
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
@@ -253,52 +306,6 @@ class _ContinarprfileState extends State<Continarprfile> {
   }
 }
 
-// class ContainerProfileView extends StatefulWidget {
-//   ContainerProfileView({
-//     required this.firstname,
-//     required this.email,
-//     required this.profilephotpurl,
-//     // required career,
-//   });
-//   String? firstname;
-//   String? email;
-//   String? profilephotpurl;
-//   double? rating;
-//   CollectionReference collection =
-//       FirebaseFirestore.instance.collection('specialist');
-
-//   Future<void> updatte([DocumentSnapshot? myDoc]) async {
-//     if (myDoc != null) {
-//       rating = myDoc['rating'];
-//     }
-//     await showModalBottomSheet(
-//         isScrollControlled: true,
-//         context: context,
-//         builder: (BuildContext ctx) {
-//           return Padding(
-//               padding: EdgeInsets.only(
-//                   top: 20,
-//                   left: 20,
-//                   right: 20,
-//                   bottom: MediaQuery.of(ctx).viewInsets.bottom + 20),child: Column(children: [
-
-//                   ]),);
-//         });
-//   }
-
-//   @override
-//   State<ContainerProfileView> createState() => _ContainerProfileViewState();
-// }
-
-// class _ContainerProfileViewState extends State<ContainerProfileView> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Container();
-//   }
-// }
-
-// edit
-
 class Continarprfileview extends StatefulWidget {
   Continarprfileview({
     required this.firstname,
@@ -328,7 +335,6 @@ class _ContainerProfileViewState extends State<Continarprfileview> {
   @override
   Widget build(BuildContext context) {
     int? rating;
-    String? profilephotpurl;
 
     CollectionReference ref =
         FirebaseFirestore.instance.collection(widget.CollectionName!);
@@ -336,14 +342,14 @@ class _ContainerProfileViewState extends State<Continarprfileview> {
     var documents = ref.snapshots();
     ratingAva(DocumentSnapshot document) {
       List allRatings = document['rating'];
-      int length = allRatings.length;
+      num length = allRatings.length;
       if (length > 1) {
         length = length - 1;
       }
-      int sum = 0;
+      num sum = 0;
       print(length);
       for (int i = 0; i < allRatings.length; i++) {
-        int index = allRatings[i];
+        num index = allRatings[i];
         sum += index;
       }
       double ava = sum / length;
@@ -393,18 +399,9 @@ class _ContainerProfileViewState extends State<Continarprfileview> {
                           List sumlist = [];
                           sumlist.add(myrating);
 
-                          // for (var i = 0; i < rating.length; i++) {
-                          //   sumRating += rating[i];
-                          // }
-
-                          // var average = (sumRating / rating.length);
-                          // print(average);
-                          // print(rating);
                           if (myrating != null) {
                             await ref.doc(myDoc!.id).update(
                                 {'rating': FieldValue.arrayUnion(sumlist)});
-
-                            // rating. = myrating;
                           }
 
                           Navigator.pop(context);
@@ -437,12 +434,9 @@ class _ContainerProfileViewState extends State<Continarprfileview> {
                     width: 20,
                   ),
                   CircleAvatar(
-                    radius: 40,
-                    backgroundImage: profilephotpurl != null
-                        ? NetworkImage('$profilephotpurl')
-                        : NetworkImage(
-                            'https://media.istockphoto.com/id/587805156/vector/profile-picture-vector-illustration.jpg?s=612x612&w=0&k=20&c=gkvLDCgsHH-8HeQe7JsjhlOY6vRBJk_sKW9lyaLgmLo='),
-                  ),
+                      radius: 40,
+                      backgroundImage:
+                          NetworkImage('${widget.profilephotpurl}')),
                   SizedBox(
                     width: 20,
                   ),
@@ -470,7 +464,6 @@ class _ContainerProfileViewState extends State<Continarprfileview> {
                               SizedBox(
                                 height: 7,
                               ),
-
                               Row(children: [
                                 RatingBarIndicator(
                                   itemSize: 21,
@@ -505,20 +498,6 @@ class _ContainerProfileViewState extends State<Continarprfileview> {
                                   ),
                                 ),
                               ]),
-
-                              // Row(
-                              //   children: [
-                              //     IconButton(
-                              //         onPressed: () {
-                              //           Navigator.push(context, MaterialPageRoute(
-                              //             builder: (context) {
-                              //               return ChatScreen();
-                              //             },
-                              //           ));
-                              //         },
-                              //         icon: Icon(Icons.chat_bubble))
-                              //   ],
-                              // ),
                             ],
                           ),
                         )

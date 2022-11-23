@@ -5,6 +5,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:highlights/UserScreens/userProfile/button_widget.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart';
 
@@ -65,17 +66,15 @@ class _addimagesState extends State<addimages> {
     return AlertDialog(
       title: const Text("add images of your work"),
       actions: <Widget>[
-        ElevatedButton(
-          onPressed: uploadImageProcess,
-          child: Container(
-            child: const Text("add"),
-          ),
+        ButtonWidget(
+          onClicked: uploadImageProcess,
+          text: "add",
         ),
-        ElevatedButton(
-            onPressed: () {
+        ButtonWidget(
+            onClicked: () {
               Navigator.pop(context);
             },
-            child: Text('ok'))
+            text: 'ok')
       ],
     );
   }

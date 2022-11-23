@@ -17,10 +17,11 @@ User? auth = FirebaseAuth.instance.currentUser;
 class _ChatMainState extends State<ChatMain> {
   @override
   Widget build(BuildContext context) {
-    var collection = FirebaseFirestore.instance.collection('chat');
-
     return StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
-      stream: collection.doc(auth!.uid).snapshots(),
+      stream: FirebaseFirestore.instance
+          .collection('chat')
+          .doc(auth!.email)
+          .snapshots(),
       builder: (BuildContext context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
           if (snapshot.hasError) {

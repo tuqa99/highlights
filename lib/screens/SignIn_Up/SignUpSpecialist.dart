@@ -6,8 +6,7 @@ import 'package:highlights/UserScreens/allscreens.dart';
 import 'package:highlights/UserScreens/userProfile/button_widget.dart';
 import 'package:highlights/screens/SignIn_Up/login.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-
-import '../../specialist/SpecialSide/specialistprofile.dart';
+import 'package:highlights/specialist/specialistprofile.dart';
 
 class SignUpSpecialist extends StatefulWidget {
   const SignUpSpecialist({super.key});
@@ -35,9 +34,11 @@ class _SignUpSpecialistState extends State<SignUpSpecialist> {
     "Photography",
   ];
   List<double>? rating = [0];
+  List<String>? url = [];
   Color kActiveColor = Color.fromARGB(255, 162, 212, 244);
   List<String>? selectedService = [];
-
+  String imageprofileurl =
+      "https://media.istockphoto.com/id/587805156/vector/profile-picture-vector-illustration.jpg?s=612x612&w=0&k=20&c=gkvLDCgsHH-8HeQe7JsjhlOY6vRBJk_sKW9lyaLgmLo=";
   bool confirmedPassword() {
     if (password.text.trim() == password2.text.trim()) {
       return true;
@@ -275,13 +276,16 @@ class _SignUpSpecialistState extends State<SignUpSpecialist> {
                                           .showSnackBar(const SnackBar(
                                               content: Text("its added")));
                                       addUserInfo(
-                                          FirstName.text.trim(),
-                                          LastName.text.trim(),
-                                          email.text.trim(),
-                                          phoneNumber.text.trim(),
-                                          location.text.trim(),
-                                          selectedService,
-                                          rating!);
+                                        FirstName.text.trim(),
+                                        LastName.text.trim(),
+                                        email.text.trim(),
+                                        phoneNumber.text.trim(),
+                                        location.text.trim(),
+                                        selectedService,
+                                        rating!,
+                                        url,
+                                        imageprofileurl,
+                                      );
                                       Addchat(FirstName.text.trim());
                                       Navigator.push(context, MaterialPageRoute(
                                         builder: (context) {
@@ -347,6 +351,8 @@ Future addUserInfo(
   String location,
   List<String>? selectedService,
   List<double>? ratings,
+  List<String>? url,
+  String? imageprofileurl,
 ) async {
   var authin = FirebaseAuth.instance;
   await FirebaseFirestore.instance
@@ -361,6 +367,8 @@ Future addUserInfo(
     'phone number': phoneNumber,
     'service': selectedService!,
     'rating': ratings,
+    'url': url,
+    "imageprofileurl": imageprofileurl
   });
 
   if (selectedService.contains("HairCut")) {
@@ -376,7 +384,8 @@ Future addUserInfo(
       'phone number': phoneNumber,
       'service': 'Hair Cut',
       'rating': ratings,
-      'url': []
+      'url': url,
+      "imageprofileurl": imageprofileurl
     });
   }
   if (selectedService.contains("Coloring")) {
@@ -392,7 +401,8 @@ Future addUserInfo(
       'phone number': phoneNumber,
       'service': 'Coloring',
       'rating': ratings,
-      'url': []
+      'url': url,
+      "imageprofileurl": imageprofileurl
     });
   }
   if (selectedService.contains("Styling")) {
@@ -408,7 +418,8 @@ Future addUserInfo(
       'phone number': phoneNumber,
       'service': 'Styling',
       'rating': ratings,
-      'url': []
+      'url': url,
+      "imageprofileurl": imageprofileurl
     });
   }
   if (selectedService.contains("Extensions")) {
@@ -424,7 +435,8 @@ Future addUserInfo(
       'phone number': phoneNumber,
       'service': 'Extensions',
       'rating': ratings,
-      'url': []
+      'url': url,
+      "imageprofileurl": imageprofileurl
     });
   }
   if (selectedService.contains("Nails")) {
@@ -440,7 +452,8 @@ Future addUserInfo(
       'phone number': phoneNumber,
       'service': 'Nails',
       'rating': ratings,
-      'url': []
+      'url': url,
+      "imageprofileurl": imageprofileurl
     });
   }
   if (selectedService.contains("Facials")) {
@@ -456,7 +469,8 @@ Future addUserInfo(
       'phone number': phoneNumber,
       'service': 'Facials',
       'rating': ratings,
-      'url': []
+      'url': url,
+      "imageprofileurl": imageprofileurl
     });
   }
   if (selectedService.contains("MakeUp")) {
@@ -472,7 +486,8 @@ Future addUserInfo(
       'phone number': phoneNumber,
       'service': 'Make Up',
       'rating': ratings,
-      'url': []
+      'url': url,
+      "imageprofileurl": imageprofileurl
     });
   }
   if (selectedService.contains("Photography")) {
@@ -488,7 +503,8 @@ Future addUserInfo(
       'phone number': phoneNumber,
       'service': 'Photography',
       'rating': ratings,
-      'url': []
+      'url': url,
+      "imageprofileurl": imageprofileurl
     });
   }
 }

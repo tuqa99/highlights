@@ -60,70 +60,61 @@ class Specialistprofileforuser extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: Theme.of(context).cardColor,
                 ),
-                child: SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Row(
+                child: Row(
+                  children: [
+                    Column(
                       children: [
-                        Column(
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Row(
                           children: [
-                            Row(
-                              children: [
-                                SizedBox(
-                                  width: 55,
-                                ),
-                                // Text(
-                                //   'The packeges',
-                                //   style: TextStyle(
-                                //       color: Colors.black,
-                                //       fontSize: 18,
-                                //       fontWeight: FontWeight.bold),
-                                // ),
-                              ],
+                            SizedBox(
+                              width: 70,
                             ),
-                            Divider(
-                              thickness: 3,
-                              height: 6,
-                              color: Colors.grey,
+                            Text(
+                              'Gallery',
+                              style: TextStyle(
+                                  fontSize: 18, fontWeight: FontWeight.bold),
                             ),
                           ],
                         ),
-                        Column(
-                          children: [
-                            Row(
-                              children: [
-                                SizedBox(
-                                  width: 60,
-                                ),
-                                Text(
-                                  'Gallery',
-                                  style: TextStyle(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ],
-                            ),
-                            SizedBox(
-                              height: 18,
-                            ),
-                            Container(
-                              height: 300,
-                              width: 300,
-                              child: Viewimagesforuser(
-                                CollectionName: CollectionName,
-                                emial: email,
-                              ),
-                            ),
-                            Divider(
-                              thickness: 3,
-                              height: 6,
-                              color: Colors.grey,
-                            ),
-                          ],
+                        SizedBox(
+                          height: 18,
+                        ),
+                        Container(
+                          height: 300,
+                          width: 300,
+                          child: Viewimagesforuser(
+                            CollectionName: CollectionName,
+                            emial: email,
+                          ),
+                        ),
+                        Divider(
+                          thickness: 3,
+                          height: 6,
+                          color: Colors.grey,
                         ),
                       ],
-                    )),
+                    ),
+                  ],
+                ),
               ),
             ),
+            Divider(
+              height: 3,
+              color: Colors.grey,
+            ),
+            // Container(
+            //   child: Row(
+            //     children: [
+            //       Readbackgesforuser(emial: email),
+            //       SizedBox(
+            //         width: 55,
+            //       )
+            //     ],
+            //   ),
+            // ),
           ],
         ));
   }

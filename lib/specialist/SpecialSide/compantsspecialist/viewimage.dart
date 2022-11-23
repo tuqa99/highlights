@@ -90,44 +90,48 @@ class Viewimagesforuser extends StatelessWidget {
   String? CollectionName;
   @override
   Widget build(BuildContext context) {
-    List<String> names = [];
-
     User? auth = FirebaseAuth.instance.currentUser;
     final doc_id = auth!.uid;
-    var ref = FirebaseFirestore.instance.collection(CollectionName!);
 
-    return FutureBuilder(
-      future: ref.get(),
+    return StreamBuilder(
+      stream: FirebaseFirestore.instance
+          .collection(CollectionName!)
+          .where("email", isEqualTo: emial)
+          .get()
+          .asStream(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
           if (snapshot.hasError) return Text('Error = ${snapshot.error}');
           if (snapshot.hasData) {
-            if (snapshot.data!.docs.isEmpty) {
-              return Center(
-                child: Text("Doesn't have any work yet"),
-              );
-            }
-
             return ListView.builder(
-              itemCount: names.length,
+              itemCount: snapshot.data!.docs.length,
               itemBuilder: (context, index) {
-                var images = snapshot.data!.docs[index]['url'];
-                return Padding(
-                  padding: const EdgeInsets.only(right: 22, left: 22),
-                  child: Container(
-                      height: 200,
-                      width: 200,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15.0),
-                      ),
-                      child: Image(
-                          image: NetworkImage(names[index]),
-                          fit: BoxFit.cover)),
-                );
+                List li = snapshot.data!.docs[index]['url'];
+                print(li);
+                for (var i = 0; i < li.length; i++) {
+                  return Padding(
+                    padding: const EdgeInsets.only(right: 22, left: 22),
+                    child: Row(
+                      children: [
+                        Container(
+                          height: 200,
+                          width: 200,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(15.0),
+                              image: DecorationImage(
+                                  image: NetworkImage(li[i]),
+                                  fit: BoxFit.cover)),
+                        ),
+                      ],
+                    ),
+                  );
+                }
+                return Center(child: Text("Doesnt HAVE ANY WORK YET"));
               },
             );
           }
         }
+
         return Center(child: CircularProgressIndicator());
       },
     );
