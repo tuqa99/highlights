@@ -9,7 +9,6 @@ import 'Widget/icon_widget.dart';
 
 class AccountSettings extends StatelessWidget {
   static const KeyDarkMode = 'key-dark-mode';
-  Color mycolor = Colors.black;
   static const KeyLanguage = 'key-language';
 
   User? auth = FirebaseAuth.instance.currentUser;
@@ -18,6 +17,8 @@ class AccountSettings extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Color mycolor = Theme.of(context).primaryColor;
+
     //signout function
     signOut() async {
       await _auth2.signOut();
@@ -44,6 +45,8 @@ class AccountSettings extends StatelessWidget {
                   thickness: 2,
                 ),
                 SettingsGroup(
+                  titleTextStyle:
+                      TextStyle(color: Theme.of(context).primaryColor),
                   title: 'Dark Mode',
                   children: <Widget>[
                     //===========================Dark Mode=====================================
@@ -55,15 +58,18 @@ class AccountSettings extends StatelessWidget {
                         icon: Icons.dark_mode,
                         color: mycolor,
                       ),
-                      onChange: (_) {
-                        
-                      },
+                      onChange: (_) {},
                     ),
                   ],
                 ),
                 SettingsGroup(
+                  titleTextStyle:
+                      TextStyle(color: Theme.of(context).primaryColor),
                   title: 'General',
                   children: <Widget>[
+                    SizedBox(
+                      height: 15,
+                    ),
                     //===========================logout=====================================
                     SimpleSettingsTile(
                       title: 'Logout',

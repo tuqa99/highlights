@@ -46,21 +46,27 @@ Future<void> main() async {
               scaffoldBackgroundColor: Colors.grey.shade900,
               primaryColor: Colors.teal,
               colorScheme: ColorScheme.dark(),
+              brightness: Brightness.dark,
+              //  Color(0xffbb86fc)
               cardColor: Colors.black,
               highlightColor: Colors.teal,
               backgroundColor: Colors.grey.shade900,
-
+              shadowColor: Color.fromARGB(137, 0, 150, 135),
+              hintColor: Colors.white
               // canvasColor: Colors.black,
               // cardColor: Colors.black,
-            )
+              )
           : ThemeData.light().copyWith(
+              splashColor: Colors.black,
+              brightness: Brightness.light,
+              shadowColor: Color.fromARGB(255, 141, 204, 243),
               backgroundColor:
                   Color.fromARGB(255, 225, 223, 224).withOpacity(.6),
               scaffoldBackgroundColor: Colors.white,
-              primaryColor: Colors.blueAccent,
-              cardColor: Colors.white,
+              primaryColor: Color.fromARGB(255, 141, 204, 243),
+              cardColor: Color.fromARGB(255, 241, 237, 239),
               highlightColor: Colors.black,
-              colorScheme: ColorScheme.light()),
+              colorScheme: ColorScheme.highContrastLight()),
       debugShowCheckedModeBanner: false,
       home: MyApp(),
     ),

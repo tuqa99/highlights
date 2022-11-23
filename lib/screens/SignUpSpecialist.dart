@@ -34,6 +34,7 @@ class _SignUpSpecialistState extends State<SignUpSpecialist> {
     "MakeUp",
     "Photography",
   ];
+    List<double>? rating = [0];
   Color kActiveColor = Color.fromARGB(255, 162, 212, 244);
   List<String>? selectedService = [];
 
@@ -280,6 +281,7 @@ class _SignUpSpecialistState extends State<SignUpSpecialist> {
                                         phoneNumber.text.trim(),
                                         location.text.trim(),
                                         selectedService,
+                                        rating!
                                       );
                                       Addchat(FirstName.text.trim());
                                       Navigator.push(context, MaterialPageRoute(
@@ -345,6 +347,8 @@ Future addUserInfo(
   String phoneNumber,
   String location,
   List<String>? selectedService,
+    List<double>? ratings,
+
 ) async {
   var authin = FirebaseAuth.instance;
   await FirebaseFirestore.instance
@@ -358,6 +362,8 @@ Future addUserInfo(
     'location': location,
     'phone number': phoneNumber,
     'service': selectedService!,
+    'rating' : ratings,
+    
   });
 
   if (selectedService.contains("HairCut")) {
@@ -372,6 +378,8 @@ Future addUserInfo(
       'location': location,
       'phone number': phoneNumber,
       'service': 'Hair Cut',
+          'rating' : ratings,
+
     });
   }
   if (selectedService.contains("Coloring")) {
@@ -386,6 +394,8 @@ Future addUserInfo(
       'location': location,
       'phone number': phoneNumber,
       'service': 'Coloring',
+          'rating' : ratings,
+
     });
   }
   if (selectedService.contains("Styling")) {
@@ -400,6 +410,8 @@ Future addUserInfo(
       'location': location,
       'phone number': phoneNumber,
       'service': 'Styling',
+          'rating' : ratings,
+
     });
   }
   if (selectedService.contains("Extensions")) {
@@ -414,6 +426,8 @@ Future addUserInfo(
       'location': location,
       'phone number': phoneNumber,
       'service': 'Extensions',
+          'rating' : ratings,
+
     });
   }
   if (selectedService.contains("Nails")) {
@@ -428,6 +442,8 @@ Future addUserInfo(
       'location': location,
       'phone number': phoneNumber,
       'service': 'Nails',
+          'rating' : ratings,
+
     });
   }
   if (selectedService.contains("Facials")) {
@@ -441,7 +457,8 @@ Future addUserInfo(
       'email': email,
       'location': location,
       'phone number': phoneNumber,
-      'service': 'Facials',
+      'service': 'Facials',    'rating' : ratings,
+
     });
   }
   if (selectedService.contains("MakeUp")) {
@@ -455,7 +472,8 @@ Future addUserInfo(
       'email': email,
       'location': location,
       'phone number': phoneNumber,
-      'service': 'Make Up',
+      'service': 'Make Up',    'rating' : ratings,
+
     });
   }
   if (selectedService.contains("Photography")) {
@@ -469,7 +487,8 @@ Future addUserInfo(
       'email': email,
       'location': location,
       'phone number': phoneNumber,
-      'service': 'Photography',
+      'service': 'Photography',    'rating' : ratings,
+
     });
   }
 }

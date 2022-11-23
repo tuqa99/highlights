@@ -378,9 +378,9 @@ class _ContainerProfileViewState extends State<Continarprfileview> {
                       itemCount: 5,
                       itemPadding: const EdgeInsets.symmetric(horizontal: 4.0),
                       itemBuilder: (context, _) {
-                        return const Icon(
+                        return Icon(
                           Icons.star,
-                          color: Colors.black,
+                          color: Theme.of(context).primaryColor,
                         );
                       },
                       onRatingUpdate: (value) {
@@ -412,7 +412,11 @@ class _ContainerProfileViewState extends State<Continarprfileview> {
 
                           Navigator.pop(context);
                         },
-                        child: Text("Submit"))
+                        child: Text(
+                          "Submit",
+                          style:
+                              TextStyle(color: Theme.of(context).primaryColor),
+                        ))
                   ]),
             );
           });
@@ -424,9 +428,7 @@ class _ContainerProfileViewState extends State<Continarprfileview> {
         DocumentSnapshot document = snapshot.data!.docs[widget.index!];
         return Container(
             width: double.infinity,
-            decoration: const BoxDecoration(
-              color: Color.fromARGB(255, 241, 237, 239),
-            ),
+            decoration: BoxDecoration(color: Theme.of(context).cardColor),
             height: 160,
             child: Column(children: [
               SizedBox(
@@ -461,47 +463,48 @@ class _ContainerProfileViewState extends State<Continarprfileview> {
                                 "${widget.firstname!.toUpperCase()}",
                                 style: GoogleFonts.playfairDisplay(
                                   textStyle: TextStyle(
-                                      wordSpacing: 2,
-                                      letterSpacing: 2,
-                                      fontSize: 17,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                    wordSpacing: 2,
+                                    letterSpacing: 2,
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                               ),
                               SizedBox(
                                 height: 7,
                               ),
-                              SizedBox(
-                                height: 15,
-                              ),
+
                               Row(children: [
                                 RatingBarIndicator(
                                   itemSize: 21,
                                   rating: ratingAva(document),
                                   itemBuilder: (context, index) => Icon(
                                     Icons.star,
-                                    color: Colors.black,
+                                    color: Theme.of(context).primaryColor,
                                   ),
                                 ),
                                 SizedBox(
-                                  width: 15,
+                                  width: 18,
                                 ),
                                 TextButton(
                                   style: TextButton.styleFrom(
                                     shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(20)),
-                                    backgroundColor: Colors.black,
+                                        borderRadius: BorderRadius.only(
+                                            bottomRight: Radius.circular(20),
+                                            topLeft: Radius.circular(20),
+                                            topRight: Radius.circular(20))),
+                                    backgroundColor:
+                                        Theme.of(context).primaryColor,
                                   ),
                                   onPressed: () async {
                                     await updatte(document);
                                   },
                                   child: Text(
-                                    "Rate Now",
+                                    "Rate Me",
                                     style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 10,
-                                    ),
+                                        color: Colors.black,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold),
                                   ),
                                 ),
                               ]),

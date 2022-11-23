@@ -26,7 +26,7 @@ class Specialistprofileforuser extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         floatingActionButton: FloatingActionButton(
-            backgroundColor: Colors.grey.shade800,
+            backgroundColor: Theme.of(context).primaryColor,
             child: Icon(
               Icons.chat,
               color: Colors.white,
@@ -41,7 +41,7 @@ class Specialistprofileforuser extends StatelessWidget {
                           )));
             }),
         appBar: AppBar(
-          backgroundColor: Color.fromARGB(255, 241, 237, 239),
+          backgroundColor: Theme.of(context).primaryColor,
         ),
         body: Stack(
           children: [
@@ -58,7 +58,7 @@ class Specialistprofileforuser extends StatelessWidget {
                 height: double.infinity,
                 width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: Theme.of(context).cardColor,
                 ),
                 child: SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
@@ -97,7 +97,6 @@ class Specialistprofileforuser extends StatelessWidget {
                                 Text(
                                   'Gallery',
                                   style: TextStyle(
-                                      color: Colors.black,
                                       fontSize: 18,
                                       fontWeight: FontWeight.bold),
                                 ),
@@ -122,19 +121,6 @@ class Specialistprofileforuser extends StatelessWidget {
                         ),
                       ],
                     )),
-              ),
-            ),
-            Divider(
-              height: 3,
-              color: Colors.grey,
-            ),
-            Container(
-              child: Row(
-                children: [
-                  SizedBox(
-                    width: 55,
-                  )
-                ],
               ),
             ),
           ],
