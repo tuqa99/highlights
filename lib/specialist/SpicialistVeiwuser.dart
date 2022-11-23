@@ -53,68 +53,63 @@ class Specialistprofileforuser extends StatelessWidget {
               index: index,
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 175),
+              padding: const EdgeInsets.only(top: 160),
               child: Container(
                 height: double.infinity,
                 width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
-                  color: Theme.of(context).cardColor,
-                ),
-                child: Row(
-                  children: [
-                    Column(
-                      children: [
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Row(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.only(
+                        topRight: Radius.circular(30),
+                        topLeft: Radius.circular(30))),
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.vertical,
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: 20,
+                        child: Text('Gallery'),
+                      ),
+                      SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Row(
+                            children: [
+                              SizedBox(
+                                height: 60,
+                              ),
+                              Container(
+                                padding: EdgeInsets.only(left: 20),
+                                alignment: Alignment.center,
+                                height: 200,
+                                width: 300,
+                                child: Viewimagesforuser(
+                                  emial: email,
+                                  CollectionName: CollectionName,
+                                ),
+                              )
+                            ],
+                          )),
+                      SizedBox(
+                        height: 60,
+                      ),
+                      Text('Packges'),
+                      SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
                           children: [
-                            SizedBox(
-                              width: 70,
-                            ),
-                            Text(
-                              'Gallery',
-                              style: TextStyle(
-                                  fontSize: 18, fontWeight: FontWeight.bold),
+                            Container(
+                              height: 300,
+                              width: 300,
+                              child: Readbackgesforuser(emial: email),
                             ),
                           ],
                         ),
-                        SizedBox(
-                          height: 18,
-                        ),
-                        Container(
-                          height: 300,
-                          width: 300,
-                          child: Viewimagesforuser(
-                            CollectionName: CollectionName,
-                            emial: email,
-                          ),
-                        ),
-                        Divider(
-                          thickness: 3,
-                          height: 6,
-                          color: Colors.grey,
-                        ),
-                      ],
-                    ),
-                  ],
+                      )
+                    ],
+                  ),
                 ),
               ),
             ),
-            Divider(
-              height: 3,
-              color: Colors.grey,
-            ),
-            // Container(
-            //   child: Row(
-            //     children: [
-            //       Readbackgesforuser(emial: email),
-            //       SizedBox(
-            //         width: 55,
-            //       )
-            //     ],
-            //   ),
-            // ),
           ],
         ));
   }

@@ -72,14 +72,14 @@ class _ContinarprfileState extends State<Continarprfile> {
     final doc_id = auth!.uid;
     var collection = FirebaseFirestore.instance.collection('specialist');
     return FutureBuilder(
-        future: collection.doc('$doc_id').get(),
+        future: collection.doc(doc_id).get(),
         builder: (_, snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
             if (snapshot.hasError) return Text('Error = ${snapshot.error}');
             var data = snapshot.data!.data();
             List _service = data!['service'];
             Future SaveData2(String images) async {
-              List _service = data!['service'];
+              List _service = data['service'];
               for (var i = 0; i < _service.length; i++) {
                 String collectionname = _service[i].toString();
                 print(collectionname);
@@ -170,6 +170,7 @@ class _ContinarprfileState extends State<Continarprfile> {
                                           TextButton(
                                             onPressed: () {
                                               Uplode;
+                                              Uplode2();
                                               Navigator.of(ctx).pop();
                                             },
                                             child: Container(
