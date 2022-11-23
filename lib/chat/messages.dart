@@ -55,8 +55,8 @@ class Messagespecial extends StatelessWidget {
             .collection('chat')
             .doc(auth!.email)
             .collection('messages')
+            .where('serviceemail', isEqualTo: auth!.email)
             .where('usersemail', isEqualTo: email)
-            .where('specialemail', isEqualTo: auth!.email)
             .get()
             .asStream(),
         builder: (context, AsyncSnapshot chatSnapshot) {
@@ -73,7 +73,7 @@ class Messagespecial extends StatelessWidget {
             itemBuilder: (ctx, index) => MessageBubble(
               chatDocs[index]['text'],
               chatDocs[index]['username'],
-              chatDocs[index]['usersemail'] == email,
+              chatDocs[index]['serviceemail'] == auth!.email,
               key: ValueKey(chatDocs[index].id),
             ),
           );

@@ -50,6 +50,13 @@ class _ContinarprfileState extends State<Continarprfile> {
         .doc(auth.currentUser!.uid)
         .update({"imageprofileurl": (images)});
   }
+  //   Future SaveData(String images) async {
+  //   var auth = FirebaseAuth.instance;
+  //   await FirebaseFirestore.instance
+  //       .collection('specialist')
+  //       .doc(auth.currentUser!.uid)
+  //       .update({"imageprofileurl": (images)});
+  // }
 
   Future slecteFile() async {
     final result = await FilePicker.platform.pickFiles();
@@ -338,6 +345,8 @@ class _ContainerProfileViewState extends State<Continarprfileview> {
 
     CollectionReference ref =
         FirebaseFirestore.instance.collection(widget.CollectionName!);
+    CollectionReference ref2 =
+        FirebaseFirestore.instance.collection('specialist');
 
     var documents = ref.snapshots();
     ratingAva(DocumentSnapshot document) {
@@ -402,6 +411,8 @@ class _ContainerProfileViewState extends State<Continarprfileview> {
                           if (myrating != null) {
                             await ref.doc(myDoc!.id).update(
                                 {'rating': FieldValue.arrayUnion(sumlist)});
+
+                            // rating. = myrating;
                           }
 
                           Navigator.pop(context);
@@ -436,7 +447,7 @@ class _ContainerProfileViewState extends State<Continarprfileview> {
                   CircleAvatar(
                       radius: 40,
                       backgroundImage:
-                          NetworkImage('${widget.profilephotpurl}')),
+                          NetworkImage("${widget.profilephotpurl}")),
                   SizedBox(
                     width: 20,
                   ),

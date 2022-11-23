@@ -289,7 +289,7 @@ class _SignUpSpecialistState extends State<SignUpSpecialist> {
                                       Addchat(FirstName.text.trim());
                                       Navigator.push(context, MaterialPageRoute(
                                         builder: (context) {
-                                          return Specialistprofileforedit();
+                                          return LoginPage();
                                         },
                                       ));
                                     }

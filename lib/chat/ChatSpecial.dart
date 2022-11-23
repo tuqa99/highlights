@@ -16,7 +16,7 @@ class _ChatSpecialState extends State<ChatSpecial> {
     User? auth = FirebaseAuth.instance.currentUser;
 
     return StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
-      stream: collection.doc(auth!.email).snapshots(),
+      stream: collection.doc(auth!.email).get().asStream(),
       builder: (BuildContext context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
           if (snapshot.hasError) {

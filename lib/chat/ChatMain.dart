@@ -21,7 +21,8 @@ class _ChatMainState extends State<ChatMain> {
       stream: FirebaseFirestore.instance
           .collection('chat')
           .doc(auth!.email)
-          .snapshots(),
+          .get()
+          .asStream(),
       builder: (BuildContext context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
           if (snapshot.hasError) {

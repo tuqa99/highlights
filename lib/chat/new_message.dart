@@ -122,9 +122,10 @@ class _NewMessages1State extends State<NewMessages1> {
     FocusScope.of(context).unfocus();
     final user = await FirebaseAuth.instance.currentUser;
     final userData = await FirebaseFirestore.instance
-        .collection('users')
-        .doc(user!.email)
+        .collection('specialist')
+        .doc(user!.uid)
         .get();
+
     FirebaseFirestore.instance
         .collection('chat')
         .doc(user.email)
@@ -132,12 +133,32 @@ class _NewMessages1State extends State<NewMessages1> {
         .add({
       'text': _enteredMessage,
       'createdAt': Timestamp.now(),
-      'specialemail': user.email,
-      'specialname': userData['first name'],
-      'usersemail': widget.email,
-      'usersname': widget.name,
+      'useremail': widget.email,
+      'username': widget.name,
+      'serviceemail': user.email,
+      'servicename': userData['first name'],
     });
     usersemails.add(widget.email);
+    usersnames.add(widget.name);
+
+    FirebaseFirestore.instance.collection('chat').doc(user.email).update({
+      'useremail': FieldValue.arrayUnion(usersemails),
+      'username': FieldValue.arrayUnion(usersnames),
+    });
+
+    FirebaseFirestore.instance
+        .collection('chat')
+        .doc(doc)
+        .collection('messages')
+        .add({
+      'text': _enteredMessage,
+      'createdAt': Timestamp.now(),
+      'specialemail': widget.email,
+      'specialname': widget.name,
+      'usersemail': user.email,
+      'usersname': userData['first name']
+    });
+    usersemails.add(user.email);
     usersnames.add(widget.name);
     FirebaseFirestore.instance.collection('chat').doc(doc).update({
       'usersemail': FieldValue.arrayUnion(usersemails),
