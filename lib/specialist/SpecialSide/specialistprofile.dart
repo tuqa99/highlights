@@ -55,22 +55,21 @@ class _SpecialistprofileforeditState extends State<Specialistprofileforedit> {
           child: AccountSpecial(),
         ),
         appBar: AppBar(
-          title: const Text(
-            "Specialist",
-            style: TextStyle(color: Colors.black),
-          ),
-          titleSpacing: 00.0,
-          centerTitle: true,
-          toolbarHeight: 60.2,
-          toolbarOpacity: 0.8,
-          shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.only(
-                bottomRight: Radius.circular(25),
-                bottomLeft: Radius.circular(25)),
-          ),
-          elevation: 0.00,
-          backgroundColor: Color.fromARGB(255, 225, 223, 224).withOpacity(.6),
-        ),
+            title: const Text(
+              "Specialist",
+              // style: TextStyle(color: Colors.black),
+            ),
+            titleSpacing: 00.0,
+            centerTitle: true,
+            toolbarHeight: 60.2,
+            toolbarOpacity: 0.8,
+            // shape: const RoundedRectangleBorder(
+            //   borderRadius: BorderRadius.only(
+            //       bottomRight: Radius.circular(25),
+            //       bottomLeft: Radius.circular(25)),
+            // ),
+            elevation: 0.00,
+            backgroundColor: Theme.of(context).primaryColor),
         body: Stack(
           children: [
             Continarprfile(),

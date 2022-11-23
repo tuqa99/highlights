@@ -79,7 +79,7 @@ class _ContinarprfileState extends State<Continarprfile> {
               // var ab = json.decode(_service).cast().toList();
               return Container(
                 height: 200,
-                color: Color.fromARGB(255, 162, 212, 244),
+                color: Theme.of(context).cardColor,
                 child: Padding(
                   padding: const EdgeInsets.all(30),
                   child: Column(
@@ -193,12 +193,10 @@ class _ContinarprfileState extends State<Continarprfile> {
                                             },
                                             child: Container(
                                               padding: const EdgeInsets.all(14),
-                                              child: const Text(
-                                                "Upadte",
-                                                style: TextStyle(
-                                                    color: Color.fromARGB(
-                                                        255, 2, 2, 2)),
-                                              ),
+                                              child: Text("Upadte",
+                                                  style: TextStyle(
+                                                      color: Theme.of(context)
+                                                          .primaryColor)),
                                             ),
                                           ),
                                         ],
@@ -208,7 +206,7 @@ class _ContinarprfileState extends State<Continarprfile> {
                                   child: Text(
                                     '$_service',
                                     style: TextStyle(
-                                        color: Color.fromARGB(255, 2, 2, 2)),
+                                        color: Theme.of(context).primaryColor),
                                   )),
                               SizedBox(
                                 height: 13,
@@ -234,9 +232,8 @@ class _ContinarprfileState extends State<Continarprfile> {
                               RatingBarIndicator(
                                 rating: 4.75,
                                 itemBuilder: (context, index) => Icon(
-                                  Icons.star,
-                                  color: Colors.amber,
-                                ),
+                                    Icons.star,
+                                    color: Theme.of(context).primaryColor),
                                 itemCount: 5,
                                 itemSize: 25.0,
                                 direction: Axis.horizontal,

@@ -22,9 +22,9 @@ class ButtonWidget extends StatelessWidget {
       child: Text(
         text,
         style: TextStyle(
+          color: Colors.white,
           fontSize: 18,
           fontWeight: FontWeight.bold,
-          color: Colors.black,
         ),
       ),
       onPressed: onClicked,

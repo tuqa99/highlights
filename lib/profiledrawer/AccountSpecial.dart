@@ -9,7 +9,6 @@ import 'Widget/icon_widget.dart';
 
 class AccountSpecial extends StatelessWidget {
   static const KeyDarkMode = 'key-dark-mode';
-  Color mycolor = Colors.black;
   static const KeyLocation = 'key-Location';
   static const Keypassword = 'key-password';
   static const keyAbout = 'key-About';
@@ -22,6 +21,8 @@ class AccountSpecial extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //signout function
+    Color mycolor = Theme.of(context).primaryColor;
+
     signOut() async {
       await _auth2.signOut();
       Navigator.pushReplacement(
@@ -45,6 +46,8 @@ class AccountSpecial extends StatelessWidget {
                 AccountInformation(),
                 SettingsGroup(
                   title: 'System prefrence',
+                  titleTextStyle:
+                      TextStyle(color: Theme.of(context).primaryColor),
                   children: <Widget>[
                     //===========================Dark Mode=====================================
 
@@ -60,8 +63,14 @@ class AccountSpecial extends StatelessWidget {
                   ],
                 ),
                 SettingsGroup(
+                  titleTextStyle: TextStyle(
+                    color: Theme.of(context).primaryColor,
+                  ),
                   title: 'General',
                   children: <Widget>[
+                    SizedBox(
+                      height: 15,
+                    ),
                     //===========================logout=====================================
                     SimpleSettingsTile(
                       title: 'Logout',
@@ -218,24 +227,38 @@ class _AccountInformationState extends State<AccountInformation> {
                               letterSpacing: .5),
                         ),
                       )),
-                  SettingsGroup(title: "Account Info", children: <Widget>[
-                    TextInputSettingsTile(
-                      settingKey: keyAbout,
-                      title: 'About Section',
-                      initialValue: "Enter an about section",
-                      onChange: (About) {},
-                    ),
-                    TextInputSettingsTile(
-                      settingKey: keylocation,
-                      title: 'Location',
-                      initialValue: "$_location",
-                      onChange: (About) {
-                        setState(() {
-                          collection.doc('$doc_id').update({'location': About});
-                        });
-                      },
-                    ),
-                  ]),
+                  SettingsGroup(
+                      title: "Account Info",
+                      titleTextStyle:
+                          TextStyle(color: Theme.of(context).primaryColor),
+                      children: <Widget>[
+                        TextInputSettingsTile(
+                          settingKey: keyAbout,
+                          title: 'About Section',
+                          titleTextStyle: TextStyle(
+                            color: Theme.of(context).primaryColor,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          initialValue: "Enter an about section",
+                          onChange: (About) {},
+                        ),
+                        TextInputSettingsTile(
+                          titleTextStyle: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          settingKey: keylocation,
+                          title: 'Location',
+                          initialValue: "$_location",
+                          onChange: (About) {
+                            setState(() {
+                              collection
+                                  .doc('$doc_id')
+                                  .update({'location': About});
+                            });
+                          },
+                        ),
+                      ]),
                 ],
               );
             }
