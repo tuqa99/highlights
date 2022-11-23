@@ -4,7 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:highlights/UserScreens/HomePageComp/FirstPage.dart';
 
-import '../UserScreens/userProfile/button_widget.dart';
+import '../../UserScreens/userProfile/button_widget.dart';
 import 'login.dart';
 
 class SignupPageuser extends StatelessWidget {

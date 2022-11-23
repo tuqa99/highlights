@@ -1,11 +1,10 @@
-import 'dart:collection';
-
 import 'package:flutter/material.dart';
-import 'package:highlights/screens/SingupUser.dart';
+import 'package:highlights/screens/SignIn_Up/SingupUser.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:highlights/screens/login.dart';
-import 'package:highlights/screens/signupspecialist.dart';
+import 'package:highlights/screens/SignIn_Up/login.dart';
 import 'package:video_player/video_player.dart';
+
+import 'SignIn_Up/SignUpSpecialist.dart';
 
 class VideoApp extends StatefulWidget {
   const VideoApp({Key? key}) : super(key: key);

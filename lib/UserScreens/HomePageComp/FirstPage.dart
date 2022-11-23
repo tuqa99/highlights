@@ -89,13 +89,31 @@ class _NewHomeState extends State<NewHome> {
                               children: [
                                 Packages(
                                   image: "images/grad.jpg",
-                                  category: "Bridal",
+                                  category: "Graduation",
                                   numOfOffers: 5,
                                   press: () {},
                                 ),
                                 Packages(
                                   image: "images/wedding.jpg",
                                   category: "Bridal",
+                                  numOfOffers: 8,
+                                  press: () {},
+                                ),
+                                Packages(
+                                  image: "images/birthday.jpg",
+                                  category: "Birthday",
+                                  numOfOffers: 8,
+                                  press: () {},
+                                ),
+                                Packages(
+                                  image: "images/party.jpg",
+                                  category: "Party",
+                                  numOfOffers: 8,
+                                  press: () {},
+                                ),
+                                Packages(
+                                  image: "images/regular.jpg",
+                                  category: "Regular",
                                   numOfOffers: 8,
                                   press: () {},
                                 ),

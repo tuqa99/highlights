@@ -8,13 +8,12 @@ import 'package:highlights/screens/resetPass.dart';
 import 'package:highlights/signInGoogle/FirebaseServices.dart';
 import 'package:highlights/screens/viewscreen.dart';
 import 'package:highlights/signInGoogle/database.dart';
-import 'package:highlights/specialist/specialistprofile.dart';
 import 'package:line_icons/line_icons.dart';
-import '../UserScreens/HomePageComp/FirstPage.dart';
-import '../UserScreens/allscreens.dart';
+import '../../UserScreens/HomePageComp/FirstPage.dart';
+import '../../UserScreens/allscreens.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
-import '../specialist/AllscreenSpecialist.dart';
+import '../../specialist/SpecialSide/AllscreenSpecialist.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
