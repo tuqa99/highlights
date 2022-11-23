@@ -168,8 +168,19 @@ class _AddpackegsState extends State<Addpackegs> {
                     'discount': discount.text,
                     'imagepacges': imagepacges
                   });
+
+                  var addpackeges2 = FirebaseFirestore.instance
+                      .collection('packges')
+                      .doc(typepackges);
+
+                  addpackeges2.update({
+                    "descripution": descriptionpackeg.text,
+                    'typepackges': typepackges,
+                    'discount': discount.text,
+                    'imagepacges': imagepacges
+                  });
                 },
-                child: Text("Add package"))
+                child: const Text("Add package"))
           ],
         ),
       ),

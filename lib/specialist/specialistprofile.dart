@@ -132,25 +132,28 @@ class _SpecialistprofileforeditState extends State<Specialistprofileforedit> {
                               )
                             ],
                           )),
-                      // ButtonWidget(
-                      //   text: 'add packges',
-                      //   onClicked: () {
-                      //     showDialog(
-                      //         context: context, builder: (ctx) => Addpackegs());
-                      //   },
-                      // ),
-                      // SingleChildScrollView(
-                      //   scrollDirection: Axis.horizontal,
-                      //   child: Row(
-                      //     children: [
-                      //       Container(
-                      //         height: 300,
-                      //         width: 300,
-                      //         child: Read_component1(),
-                      //       ),
-                      //     ],
-                      //   ),
-                      // )
+                      SizedBox(
+                        height: 66,
+                      ),
+                      ButtonWidget(
+                        text: 'add packges',
+                        onClicked: () {
+                          showDialog(
+                              context: context, builder: (ctx) => Addpackegs());
+                        },
+                      ),
+                      SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          children: [
+                            Container(
+                              height: 300,
+                              width: 300,
+                              child: Read_component1(),
+                            ),
+                          ],
+                        ),
+                      )
                     ],
                   ),
                 ),

@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -34,19 +36,44 @@ class Read_component1 extends StatelessWidget {
             return Padding(
               padding: const EdgeInsets.only(right: 22, left: 22),
               child: Container(
-                width: 100,
-                height: 100,
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.blueAccent),
-                ),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text('${packgeDocs[index]['descripution']}'),
-                    Text('${packgeDocs[index]['discount']}'),
-                    Image(
-                        image:
-                            AssetImage('${packgeDocs[index]['imagepacges']}'))
+                    Text('press to see more details'),
+                    Text(
+                      ' sale ${packgeDocs[index]['discount']}',
+                      style: TextStyle(color: Colors.red),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        showDialog(
+                          context: context,
+                          builder: (ctx) => AlertDialog(
+                            title: const Text("packeges detailes"),
+                            content: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Container(
+                                    child: Text(
+                                        ' ${packgeDocs[index]['descripution']}')),
+                                Text(
+                                    'discount  ${packgeDocs[index]['discount']}')
+                              ],
+                            ),
+                          ),
+                        );
+                      },
+                      child: Container(
+                        height: 100,
+                        width: 100,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15.0),
+                            image: DecorationImage(
+                                image: AssetImage(
+                                    '${packgeDocs[index]['imagepacges']}'),
+                                fit: BoxFit.cover)),
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -80,26 +107,58 @@ class Readbackgesforuser extends StatelessWidget {
           }
         }
         final packgeDocs = packgeSnapshot.data!.docs;
+
         if (packgeSnapshot.hasData) {
+          // print('${packgeDocs['descripution']}');
           return ListView.builder(
+            scrollDirection: Axis.horizontal,
             itemCount: packgeDocs.length,
             itemBuilder: (context, index) {
+              print('@@@@@@@@@@@@@@@@@@@@@@@@@@@@');
+              print('${emial}');
               return Padding(
                 padding: const EdgeInsets.only(right: 22, left: 22),
                 child: Container(
                   width: 100,
                   height: 200,
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.blueAccent),
-                  ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text('${packgeDocs[index]['descripution']}'),
-                      Text('${packgeDocs[index]['discount']}'),
-                      Image(
-                          image:
-                              AssetImage('${packgeDocs[index]['imagepacges']}'))
+                      Text('press to see more details'),
+                      Text(
+                        ' sale ${packgeDocs[index]['discount']}',
+                        style: TextStyle(color: Colors.red),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          showDialog(
+                            context: context,
+                            builder: (ctx) => AlertDialog(
+                              title: const Text("packeges detailes"),
+                              content: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Container(
+                                      child: Text(
+                                          ' ${packgeDocs[index]['descripution']}')),
+                                  Text(
+                                      'discount  ${packgeDocs[index]['discount']}')
+                                ],
+                              ),
+                            ),
+                          );
+                        },
+                        child: Container(
+                          height: 100,
+                          width: 100,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(15.0),
+                              image: DecorationImage(
+                                  image: AssetImage(
+                                      '${packgeDocs[index]['imagepacges']}'),
+                                  fit: BoxFit.cover)),
+                        ),
+                      ),
                     ],
                   ),
                 ),
