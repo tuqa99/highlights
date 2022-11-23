@@ -15,7 +15,7 @@ class Messages extends StatelessWidget {
             .collection('chat')
             .doc(auth!.email)
             .collection('messages')
-            .where('useremail', isEqualTo: auth!.email)
+            .where('usersemail', isEqualTo: auth!.email)
             .where('serviceemail', isEqualTo: email)
             .get()
             .asStream(),
@@ -26,17 +26,21 @@ class Messages extends StatelessWidget {
               child: CircularProgressIndicator(),
             );
           }
-          final chatDocs = chatSnapshot.data!.docs;
+
+          final chatDocs = chatSnapshot.data.docs;
+
           return ListView.builder(
-            reverse: true,
-            itemCount: chatDocs.length,
-            itemBuilder: (ctx, index) => MessageBubble(
-              chatDocs[index]['text'],
-              chatDocs[index]['username'],
-              chatDocs[index]['useremail'] == auth!.email,
-              key: ValueKey(chatDocs[index].id),
-            ),
-          );
+              reverse: true,
+              itemCount: chatDocs.length,
+              itemBuilder: (ctx, index) {
+                print(chatDocs[index]['serviceemail']);
+                return MessageBubble(
+                  chatDocs[index]['text'],
+                  chatDocs[index]['usersname'],
+                  chatDocs[index]['sender'],
+                  key: ValueKey(chatDocs[index].id),
+                );
+              });
         });
   }
 }
@@ -72,9 +76,8 @@ class Messagespecial extends StatelessWidget {
             itemCount: chatDocs.length,
             itemBuilder: (ctx, index) => MessageBubble(
               chatDocs[index]['text'],
-              chatDocs[index]['username'],
-              chatDocs[index]['serviceemail'] == auth!.email,
-              key: ValueKey(chatDocs[index].id),
+              chatDocs[index]['usersname'],
+              chatDocs[index]['sender'],
             ),
           );
         });

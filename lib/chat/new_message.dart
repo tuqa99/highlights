@@ -35,10 +35,11 @@ class _NewMessageState extends State<NewMessage> {
         .add({
       'text': _enteredMessage,
       'createdAt': Timestamp.now(),
-      'useremail': user.email,
-      'username': userData['first name'],
+      'usersemail': user.email,
+      'usersname': userData['first name'],
       'serviceemail': widget.email,
-      'servicename': widget.name
+      'servicename': widget.name,
+      "sender": true
     });
     specialemails.add(widget.email);
     specialnames.add(widget.name);
@@ -55,10 +56,11 @@ class _NewMessageState extends State<NewMessage> {
         .add({
       'text': _enteredMessage,
       'createdAt': Timestamp.now(),
-      'specialemail': widget.email,
-      'specialname': widget.name,
+      'serviceemail': widget.email,
+      'servicename': widget.name,
       'usersemail': user.email,
-      'usersname': userData['first name']
+      'usersname': userData['first name'],
+      "sender": false
     });
     usersemails.add(user.email);
     usersnames.add(widget.name);
@@ -133,17 +135,18 @@ class _NewMessages1State extends State<NewMessages1> {
         .add({
       'text': _enteredMessage,
       'createdAt': Timestamp.now(),
-      'useremail': widget.email,
-      'username': widget.name,
+      'usersemail': widget.email,
+      'usersname': widget.name,
       'serviceemail': user.email,
       'servicename': userData['first name'],
+      "sender": true
     });
     usersemails.add(widget.email);
     usersnames.add(widget.name);
 
     FirebaseFirestore.instance.collection('chat').doc(user.email).update({
-      'useremail': FieldValue.arrayUnion(usersemails),
-      'username': FieldValue.arrayUnion(usersnames),
+      'usersemail': FieldValue.arrayUnion(usersemails),
+      'usersname': FieldValue.arrayUnion(usersnames),
     });
 
     FirebaseFirestore.instance
@@ -153,16 +156,17 @@ class _NewMessages1State extends State<NewMessages1> {
         .add({
       'text': _enteredMessage,
       'createdAt': Timestamp.now(),
-      'specialemail': widget.email,
-      'specialname': widget.name,
-      'usersemail': user.email,
-      'usersname': userData['first name']
+      'serviceemail': user.email,
+      'servicename': userData['first name'],
+      'usersemail': widget.email,
+      'usersname': widget.name,
+      "sender": false
     });
-    usersemails.add(user.email);
-    usersnames.add(widget.name);
+    specialemails.add(user.email);
+    specialnames.add(widget.name);
     FirebaseFirestore.instance.collection('chat').doc(doc).update({
-      'usersemail': FieldValue.arrayUnion(usersemails),
-      'usersname': FieldValue.arrayUnion(usersnames),
+      'serviceemail': FieldValue.arrayUnion(specialemails),
+      'servicename': FieldValue.arrayUnion(specialnames),
     });
     _controller.clear();
   }
