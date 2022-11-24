@@ -5,6 +5,7 @@ import 'package:highlights/UserScreens/AppBar/theme.dart';
 import 'package:highlights/UserScreens/HomePageComp/homemodels.dart/hairspecialist.dart';
 
 import '../../profiledrawer/AccountSettings.dart';
+import '../../specialist/SpecialSide/compantsspecialist/packagesuser.dart';
 import 'categories.dart';
 import 'homemodels.dart/title_section.dart';
 import 'packages.dart';
@@ -88,15 +89,21 @@ class _NewHomeState extends State<NewHome> {
                             child: Row(
                               children: [
                                 Packages(
-                                  image: "images/grad.jpg",
-                                  category: "Graduation",
-                                  numOfOffers: 5,
-                                  press: () {},
-                                ),
-                                Packages(
                                   image: "images/wedding.jpg",
                                   category: "Bridal",
                                   numOfOffers: 8,
+                                  press: () {
+                                    Navigator.push(context, MaterialPageRoute(
+                                      builder: (context) {
+                                        return Userpackages();
+                                      },
+                                    ));
+                                  },
+                                ),
+                                Packages(
+                                  image: "images/grad.jpg",
+                                  category: "Graduation",
+                                  numOfOffers: 5,
                                   press: () {},
                                 ),
                                 Packages(

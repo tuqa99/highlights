@@ -2,8 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:highlights/Chat/messages.dart';
-import 'package:highlights/UserScreens/Appointments.dart';
-import 'package:highlights/chat/messages.dart';
 
 import '../screens/chat_screen.dart';
 

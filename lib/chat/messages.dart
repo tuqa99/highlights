@@ -30,7 +30,7 @@ class Messages extends StatelessWidget {
           final chatDocs = chatSnapshot.data.docs;
 
           return ListView.builder(
-              reverse: false,
+              reverse: true,
               itemCount: chatDocs.length,
               itemBuilder: (ctx, index) {
                 if (chatDocs[index]['sender']) {
@@ -80,7 +80,7 @@ class Messagespecial extends StatelessWidget {
           }
           final chatDocs = chatSnapshot.data!.docs;
           return ListView.builder(
-              reverse: false,
+              reverse: true,
               itemCount: chatDocs.length,
               itemBuilder: (ctx, index) {
                 if (chatDocs[index]['sender']) {

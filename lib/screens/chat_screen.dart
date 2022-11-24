@@ -47,6 +47,7 @@ class ChatScreen1 extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Chat'),
+        backgroundColor: Color.fromARGB(255, 162, 212, 244),
       ),
       body: Container(
         child: Column(

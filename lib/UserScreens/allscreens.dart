@@ -4,7 +4,6 @@ import 'package:highlights/screens/chat_screen.dart';
 import 'package:sliding_clipped_nav_bar/sliding_clipped_nav_bar.dart';
 import '../chat/ChatMain.dart';
 import 'HomePageComp/FirstPage.dart';
-import 'Appointments.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);

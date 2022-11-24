@@ -68,14 +68,14 @@ class MySeachDelegate extends SearchDelegate {
 
   ratingAva(DocumentSnapshot document) {
     List allRatings = document['rating'];
-    int length = allRatings.length;
+    num length = allRatings.length;
     if (length > 1) {
       length = length - 1;
     }
-    int sum = 0;
+    num sum = 0;
     print(length);
     for (int i = 0; i < allRatings.length; i++) {
-      int index = allRatings[i];
+      num index = allRatings[i];
       sum += index;
     }
     double ava = sum / length;
@@ -110,7 +110,8 @@ class MySeachDelegate extends SearchDelegate {
                               firstname: snapshot.data!.docs[index]
                                   ['first name'],
                               email: snapshot.data!.docs[index]['email'],
-                              profilephotpurl: '',
+                              profilephotpurl: snapshot.data!.docs[index]
+                                  ['imageprofileurl'],
                               CollectionName: snapshot.data!.docs[index]
                                   ['service'][0],
                               index: index,
@@ -136,12 +137,9 @@ class MySeachDelegate extends SearchDelegate {
                               height: 7,
                             ),
                             CircleAvatar(
-                              radius: 40,
-                              backgroundImage: _profileimage != null
-                                  ? NetworkImage('$_profileimage')
-                                  : NetworkImage(
-                                      'https://media.istockphoto.com/id/587805156/vector/profile-picture-vector-illustration.jpg?s=612x612&w=0&k=20&c=gkvLDCgsHH-8HeQe7JsjhlOY6vRBJk_sKW9lyaLgmLo='),
-                            ),
+                                radius: 40,
+                                backgroundImage: NetworkImage(
+                                    '${snapshot.data!.docs[index]['imageprofileurl']}')),
                             const SizedBox(
                               height: 10,
                             ),
@@ -216,7 +214,8 @@ class MySeachDelegate extends SearchDelegate {
                               firstname: snapshot.data!.docs[index]
                                   ['first name'],
                               email: snapshot.data!.docs[index]['email'],
-                              profilephotpurl: '',
+                              profilephotpurl: snapshot.data!.docs[index]
+                                  ['imageprofileurl'],
                               CollectionName: snapshot.data!.docs[index]
                                   ['service'][0],
                               index: index,
@@ -242,12 +241,9 @@ class MySeachDelegate extends SearchDelegate {
                               height: 7,
                             ),
                             CircleAvatar(
-                              radius: 40,
-                              backgroundImage: _profileimage != null
-                                  ? NetworkImage('$_profileimage')
-                                  : NetworkImage(
-                                      'https://media.istockphoto.com/id/587805156/vector/profile-picture-vector-illustration.jpg?s=612x612&w=0&k=20&c=gkvLDCgsHH-8HeQe7JsjhlOY6vRBJk_sKW9lyaLgmLo='),
-                            ),
+                                radius: 40,
+                                backgroundImage: NetworkImage(
+                                    '${snapshot.data!.docs[index]['imageprofileurl']}')),
                             const SizedBox(
                               height: 10,
                             ),
